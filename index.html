@@ -91,7 +91,7 @@
               class="animation-button play"
             />
           </button>
-          <input type="range" class="win10-thumb" />
+          <input type="range" id= "speed-range" class="win10-thumb" min="50" max="1000"/>
           <input type="">
         </div>
         <div class="table-section">
@@ -102,7 +102,11 @@
       </div>
     </section>
   </body>
-  <script src="./js/main.js"></script>
-  <script src="./js/manual_process.js"></script>
-  <script src="./js/FCFS.js"></script>
+  <script type="module" src="./js/helpers.js"></script>
+  <script type="module" src="./js/inputValidation.js"></script>
+  <script type="module" src="./js/manual_process.js"></script>
+  <script type="module" src="./js/FCFS.js"></script>
+  <script type="module" src="./js/animation_table.js"></script>
+  <script type="module" src="./js/main.js"></script>
+
 </html>

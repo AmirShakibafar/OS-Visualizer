@@ -1,3 +1,11 @@
+import { sleep } from "./helpers.js";
+import { isCancelled, get_next_block } from "./animation_table.js";
+const speedSlider = document.getElementById("speed-range");
+let SPEED = 1050 - speedSlider.value;
+speedSlider.addEventListener("input", () => {
+  SPEED = 1050 - speedSlider.value;
+});
+
 const FCFS = async (processes) => {
   processes.sort((a, b) => a.start - b.start); // Sort processes by start time
   let curr_tick = 0;
@@ -9,9 +17,9 @@ const FCFS = async (processes) => {
       if (isCancelled) {
         return;
       }
-      get_next_block({ color: "#fafafa", name: "Idle" }, curr_tick);
+      get_next_block({ bgcolor: "#fcfcfc", color: "#000", name: "Idle" }, curr_tick);
       curr_tick++;
-      await sleep(300);
+      await sleep(SPEED);
     }
     let duration = process.duration;
     while (duration > 0) {
@@ -21,8 +29,7 @@ const FCFS = async (processes) => {
       get_next_block(process, curr_tick);
       duration--;
       curr_tick++;
-
-      await sleep(300);
+      await sleep(SPEED);
     }
   }
 };
@@ -46,13 +53,4 @@ const FCFSArray = (processes) => {
   return fcfs;
 };
 
-const ShowFCFS = async (fcfsArray) => {
-  while (curr_tick < fcfsArray.length) {
-    get_next_block(fcfsArray[curr_tick], curr_tick);
-    await sleep(500);
-    curr_tick++;
-    if (isPaused) {
-      break;
-    }
-  }
-};
+export {FCFS}
