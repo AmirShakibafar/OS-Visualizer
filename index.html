@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS</title>
+    <link rel="stylesheet" href="./Styles/style.css" />
+    <link rel="stylesheet" href="./Styles/custom_range.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h3>OS Visualizer</h3>
+      </div>
+      <nav>
+        <ul class="nav-options">
+          <a href="#"><li>Project 1</li></a>
+          <a href="#"><li>Project 2</li></a>
+        </ul>
+      </nav>
+    </header>
+    <section class="user-interactions-section">
+      <div class="upload">
+        <label for="upload-box" id="upload-area">
+          <input type="file" id="upload-box" hidden />
+          <div class="text-view">
+            <img src="images/upload.svg" alt="" />
+            <p>drag and drop or click here <br />to upload your text file</p>
+            <span>make sure its in the correct format</span>
+          </div>
+        </label>
+      </div>
+      <div class="seperation-line"></div>
+      <div class="process-buttons">
+        <div class="process-adder">
+          <h2 class="input-title">Add New Process</h2>
+          <div class="add-procces-inputs">
+            <input
+              type="text"
+              class="arrive-time"
+              placeholder="arrival"
+              id="arrive-time"
+            />
+            <input
+              type="text"
+              class="duration"
+              placeholder="duration"
+              id="duration"
+            />
+            <button id="process-adder" class="submit-button">submit</button>
+          </div>
+        </div>
+        <div class="process-generator">
+          <h2 class="input-title">Generate Proceses Randomly</h2>
+          <div class="generate-random-procces-inputs">
+            <input type="text" class="amount-input" placeholder="how many? " />
+            <button id="proccess-generator" class="submit-button">
+              submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="main-area">
+      <div>
+        <table class="procces-table">
+          <thead>
+            <tr>
+              <th>process</th>
+              <th>arrival</th>
+              <th>duration</th>
+              <th>color</th>
+            </tr>
+          </thead>
+          <tbody id="process-table-body"></tbody>
+        </table>
+      </div>
+      <div class="visual-box">
+        <div class="animation-controls">
+          <button class="display-hidden" id="play-button">
+            <img
+              src="./images/play.svg"
+              alt="Play"
+              class="animation-button play"
+            />
+          </button>
+          <button class="display-hidden" id="reset-button">
+            <img
+              src="./images/x.svg"
+              alt="Play"
+              class="animation-button play"
+            />
+          </button>
+          <input type="range" class="win10-thumb" />
+          <input type="">
+        </div>
+        <div class="table-section">
+          <table id="dynamic_table">
+            <tbody class="dynamic_table_body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="./js/main.js"></script>
+  <script src="./js/manual_process.js"></script>
+  <script src="./js/FCFS.js"></script>
+</html>

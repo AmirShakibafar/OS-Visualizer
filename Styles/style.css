@@ -1,0 +1,294 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  font-family: "Roboto", sans-serif;
+}
+
+body {
+  background-size: 20px 20px;
+  background-image: linear-gradient(to right, #f8edeb 1px, transparent 1px),
+    linear-gradient(to bottom, #f8edeb 1px, transparent 1px);
+}
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin: 0 140px;
+  padding: 2rem 0;
+}
+
+.logo h3 {
+  font-size: 2rem;
+}
+.nav-options {
+  display: flex;
+  justify-content: space-evenly;
+  list-style: none;
+  width: 20vw;
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.user-interactions-section,
+.main-area {
+  margin: 0 140px;
+  padding: 2rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #ffffff;
+  border: 1px solid #f6f6f6;
+  border-radius: 25px;
+  box-shadow: 22px 17px 6px -5px rgba(0, 0, 0, 0.042);
+}
+
+#upload-area {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 500px;
+  border-radius: 24px;
+  padding: 30px;
+  height: 300px;
+  background-color: #ffffff;
+  text-align: center;
+}
+
+.text-view {
+  width: 100%;
+  height: 100%;
+  border: 2px dotted #3b3b3b;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 24px;
+}
+
+.text-view img {
+  width: 60px;
+  height: 60px;
+  margin: 25px 0 15px 0;
+}
+
+.text-view span {
+  color: #555657;
+  margin-top: 10px;
+  font-size: 0.9rem;
+}
+
+.seperation-line {
+  height: 400px;
+  width: 2px;
+  background-color: #3b3b3b;
+}
+
+.input-title {
+  font-size: 1.7rem;
+  font-weight: 400;
+  width: fit-content;
+  padding: 6px 0;
+  border-bottom: 2px solid #3b3b3b;
+}
+
+.input-title:last-of-type {
+  margin-top: 20px;
+}
+
+.arrive-time,
+.duration,
+.amount-input {
+  width: 100px;
+  text-align: center;
+  margin-top: 10px;
+  padding: 10px;
+  border-radius: 0;
+  border: 1px solid #e5e5e5;
+}
+
+.arrive-time {
+  border-radius: 12px 0 0 12px;
+}
+
+.duration {
+  border-radius: 0 12px 12px 0;
+}
+
+.amount-input {
+  width: 105px;
+  border-radius: 12px;
+}
+
+.submit-button,
+.animation-button {
+  width: 100px;
+  margin: 3px 10px;
+  padding: 10px;
+  border-radius: 12px;
+  border: 2px solid transparent; /* Maintain consistent border width */
+  background-color: #3a86ff;
+  color: #fffdfc;
+  transition: all 150ms ease-in;
+  box-sizing: border-box; /* Include border and padding in width/height */
+}
+
+.submit-button:hover,
+.animation-button:hover {
+  border-color: #0d10aa; /* Change border color only */
+  background-color: #337cef;
+  color: #fffdfc;
+  font-weight: 500;
+}
+
+.submit-button:active,
+.animation-button:active {
+  transform: translateY(2px);
+}
+
+.animation-button {
+  width: 45px;
+  height: 45px;
+}
+
+.main-area {
+  align-items: flex-start;
+  margin-top: 3rem;
+}
+
+.procces-table {
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  min-width: 300px;
+  border-radius: 8px 8px 0 0;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  margin-top: 14px;
+}
+
+.procces-table thead tr {
+  background-color: #3a86ff;
+  color: #fff;
+  text-align: left;
+  font-weight: bold;
+}
+
+.procces-table th,
+td {
+  padding: 12px 15px;
+  height: 40px;
+  font-size: 18px;
+}
+
+.procces-table tbody tr {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.procces-table tbody tr:nth-of-type(even) {
+  background-color: #f6f6f6;
+}
+
+.procces-table tbody tr:last-of-type {
+  border-bottom: 2px solid #3a86ff;
+}
+
+.visual-box {
+  width: 50vw;
+  height: 100vh;
+  position: relative;
+  /* background-color: #cdcddb;  */
+}
+.animation-controls {
+  display: flex;
+  align-items: center;
+  height: 70px;
+}
+
+.label {
+  font-size: 1.4rem;
+  margin-right: 5px;
+  margin-top: 10px;
+  width: 120px;
+}
+
+.animation-section {
+  background-color: #3a86ff;
+  height: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.process-block {
+  background-color: brown;
+  margin: 5px;
+  color: #fff;
+  border-radius: 12px;
+  width: 400px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.table-section table {
+  border-collapse: collapse;
+  border-spacing: 0 20px;
+  border-collapse: separate;
+  margin: 20px 0;
+  table-layout: fixed;
+}
+
+.table-section td {
+  height: 25px;
+  border: 1px solid #ccc;
+  text-align: center;
+  vertical-align: middle;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  text-align: center;
+  padding: 5px;
+}
+
+.table-section {
+  display: flex;
+  justify-content: center;
+}
+
+.dynamic_table_body tr td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.dynamic_table_body tr td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.bottom-animation-controls {
+  position: absolute;
+  bottom: 0;
+  display: flex;
+  justify-content: center;
+  background-color: #0d10aa;
+}
+
+.display-hidden {
+  background: transparent;
+  border: none;
+  padding: 0;
+  outline: none;
+  cursor: pointer;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
