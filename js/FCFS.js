@@ -17,7 +17,10 @@ const FCFS = async (processes) => {
       if (isCancelled) {
         return;
       }
-      get_next_block({ bgcolor: "#fcfcfc", color: "#000", name: "Idle" }, curr_tick);
+      get_next_block(
+        { bgcolor: "#fcfcfc", color: "#000", name: "Idle" },
+        curr_tick
+      );
       curr_tick++;
       await sleep(SPEED);
     }
@@ -53,4 +56,4 @@ const FCFSArray = (processes) => {
   return fcfs;
 };
 
-export {FCFS}
+export { FCFS };

@@ -7,7 +7,6 @@ const tableBody = document
 const playButton = document.getElementById("play-button");
 const resetButton = document.getElementById("reset-button");
 
-
 const maxCellsPerRow = 10;
 let currentRow = null;
 let cellCount = 0;
@@ -34,7 +33,6 @@ const get_next_block = (process, time) => {
   currentRow.appendChild(newCell);
 };
 
-
 playButton.addEventListener("click", async () => {
   isCancelled = false;
   tableBody.innerHTML = "";
@@ -51,4 +49,4 @@ resetButton.addEventListener("click", () => {
   curr_tick = 0;
 });
 
-export {isCancelled, get_next_block}
+export { isCancelled, get_next_block };
