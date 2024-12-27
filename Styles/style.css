@@ -127,7 +127,7 @@ header {
 .submit-button,
 .animation-button {
   width: 100px;
-  margin: 3px 10px;
+  margin: 3px 5px;
   padding: 10px;
   border-radius: 12px;
   border: 2px solid transparent; /* Maintain consistent border width */
@@ -143,6 +143,15 @@ header {
   background-color: #337cef;
   color: #fffdfc;
   font-weight: 500;
+  cursor: pointer;
+}
+
+.white {
+  background-color: #cccccc;
+}
+
+.white:hover {
+  background-color: #cacaca;
 }
 
 .submit-button:active,
@@ -156,6 +165,7 @@ header {
 }
 
 .main-area {
+  display: flex;
   align-items: flex-start;
   margin-top: 3rem;
 }
@@ -197,30 +207,23 @@ td {
 
 .visual-box {
   width: 50vw;
-  height: 100vh;
   position: relative;
-  /* background-color: #cdcddb;  */
 }
 .animation-controls {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   height: 70px;
 }
 
-.label {
-  font-size: 1.4rem;
-  margin-right: 5px;
-  margin-top: 10px;
-  width: 120px;
+.control-buttons {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
-.animation-section {
-  background-color: #3a86ff;
-  height: auto;
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-wrap: wrap;
+.speed {
+  margin: 0 10px;
 }
 
 .process-block {
@@ -256,7 +259,7 @@ td {
 
 .table-section {
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
 .dynamic_table_body tr td:first-child {
@@ -267,13 +270,6 @@ td {
   border-radius: 0 12px 12px 0;
 }
 
-.bottom-animation-controls {
-  position: absolute;
-  bottom: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #0d10aa;
-}
 
 .display-hidden {
   background: transparent;
@@ -281,6 +277,11 @@ td {
   padding: 0;
   outline: none;
   cursor: pointer;
+}
+
+.policy {
+  font-size: 9rem;
+  width: 350px;
 }
 
 @keyframes fadeIn {

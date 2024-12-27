@@ -62,6 +62,42 @@
       </div>
     </section>
     <section class="main-area">
+      <div class="visual-box">
+        <div class="animation-controls">
+          <div>
+            <h1 id="policy-heading" class="policy">FCFS</h1>
+          </div>
+          <div class="control-buttons">
+            <input type="range" id= "speed-range" class="win10-thumb speed" min="50" max="1000"/>
+            <button class="display-hidden" id="play-button">
+              <img
+                src="./images/play(b).svg"
+                alt="Play"
+                class="animation-button white"
+              />
+            </button>
+            <button class="display-hidden" id="reset-button">
+              <img
+                src="images/trash-2.svg"
+                alt="Play"
+                class="animation-button white"
+              />
+            </button>
+            <button class="display-hidden" id="reset-table-button">
+              <img
+                src="./images/x.svg"
+                alt="Play"
+                class="animation-button blue"
+              />
+            </button>
+          </div>
+        </div>
+        <div class="table-section">
+          <table id="dynamic_table">
+            <tbody class="dynamic_table_body"></tbody>
+          </table>
+        </div>
+      </div>
       <div>
         <table class="procces-table">
           <thead>
@@ -75,37 +111,14 @@
           <tbody id="process-table-body"></tbody>
         </table>
       </div>
-      <div class="visual-box">
-        <div class="animation-controls">
-          <button class="display-hidden" id="play-button">
-            <img
-              src="./images/play.svg"
-              alt="Play"
-              class="animation-button play"
-            />
-          </button>
-          <button class="display-hidden" id="reset-button">
-            <img
-              src="./images/x.svg"
-              alt="Play"
-              class="animation-button play"
-            />
-          </button>
-          <input type="range" id= "speed-range" class="win10-thumb" min="50" max="1000"/>
-          <input type="">
-        </div>
-        <div class="table-section">
-          <table id="dynamic_table">
-            <tbody class="dynamic_table_body"></tbody>
-          </table>
-        </div>
-      </div>
     </section>
   </body>
+  <script type="module" src="./js/timing_policies.js"></script>
   <script type="module" src="./js/helpers.js"></script>
   <script type="module" src="./js/inputValidation.js"></script>
   <script type="module" src="./js/processes.js"></script>
-  <script type="module" src="./js/manual_process.js"></script>
+  <script type="module" src="./js/process_table.js"></script>
+  <script type="module" src="./js/manual_add_process.js"></script>
   <script type="module" src="./js/random_generate_process.js"></script>
   <script type="module" src="./js/FCFS.js"></script>
   <script type="module" src="./js/animation_table.js"></script>

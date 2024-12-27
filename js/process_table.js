@@ -1,4 +1,7 @@
+import { clearProcesses} from "./processes.js";
+import { processes } from "./processes.js";
 const processTable = document.getElementById("process-table-body");
+const resetTableButton = document.getElementById("reset-table-button");
 
 const createNewRow = (process) => {
   const row = document.createElement("tr");
@@ -38,4 +41,9 @@ const render_processes = (processes) => {
   });
 };
 
+
+resetTableButton.addEventListener("click", () => {
+  clearProcesses();
+  render_processes(processes);
+});
 export { render_processes };
