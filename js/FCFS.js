@@ -1,10 +1,18 @@
 import { sleep } from "./helpers.js";
-import { isCancelled, get_next_block, SPEED } from "./animation_table.js";
+import { isCancelled, get_next_block, SPEED, ShowAvgTime} from "./animation_table.js";
+
 
 const FCFS = async (processes) => {
-  processes.sort((a, b) => a.start - b.start); // Sort processes by start time
+  processes.sort((a, b) => a.start - b.start);
   let curr_tick = 0;
+  let totalWaitTime = 0;
   for (const process of processes) {
+    let waitTime = 0;
+    if (curr_tick >= process.start) {
+      waitTime = curr_tick - process.start;
+    }
+    totalWaitTime += waitTime;
+
     if (isCancelled) {
       return;
     }
@@ -30,6 +38,8 @@ const FCFS = async (processes) => {
       await sleep(SPEED);
     }
   }
+  const avgWaitTime = totalWaitTime / processes.length;
+  ShowAvgTime(avgWaitTime);
 };
 
 const FCFSArray = (processes) => {

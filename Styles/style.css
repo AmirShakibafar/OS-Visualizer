@@ -245,7 +245,10 @@ td {
   margin: 20px 0;
   table-layout: fixed;
 }
-
+.table-section {
+  display: flex;
+  flex-direction: column;
+}
 .table-section td {
   height: 25px;
   border: 1px solid #ccc;
@@ -282,6 +285,7 @@ td {
 .policy {
   font-size: 9rem;
   width: 350px;
+  cursor: pointer;
 }
 
 @keyframes fadeIn {

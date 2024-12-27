@@ -1,5 +1,6 @@
 import { processes } from "./manual_add_process.js";
 import { whatPolicy } from "./timing_policies.js";
+const tableSection = document.getElementById("table-section");
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
@@ -16,6 +17,14 @@ const maxCellsPerRow = 10;
 let currentRow = null;
 let cellCount = 0;
 let isCancelled = false;
+
+const ShowAvgTime = (time) => {
+  const TimeHeading = document.createElement("h1");
+  TimeHeading.textContent = `Average Time is: ${time}`
+  TimeHeading.style.fontSize = "4rem"; 
+  TimeHeading.style.color = "#000"; 
+  tableSection.appendChild(TimeHeading);
+};
 
 const get_next_block = (process, time) => {
   if (!currentRow || cellCount % maxCellsPerRow === 0) {
@@ -40,11 +49,11 @@ const get_next_block = (process, time) => {
 const resetTableSettings = () => {
   currentRow = null;
   cellCount = 0;
+  tableBody.innerHTML = "";
 }
 playButton.addEventListener("click", async () => {
   resetTableSettings();
   isCancelled = false;
-  tableBody.innerHTML = "";
   playButton.disabled = true;
   const policy = whatPolicy();
   await policy(processes);
@@ -53,8 +62,7 @@ playButton.addEventListener("click", async () => {
 
 resetButton.addEventListener("click", () => {
   isCancelled = true;
-  tableBody.innerHTML = "";
   resetTableSettings();
 });
 
-export { isCancelled, get_next_block, SPEED };
+export { isCancelled, get_next_block, SPEED, ShowAvgTime };

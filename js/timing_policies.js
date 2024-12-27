@@ -21,8 +21,6 @@ const whatPolicy = () => {
             return SPN;
         case "RR":
             return RR;
-        default:
-            return "Unknown policy. Please provide a valid scheduling policy.";
     }
 };
 

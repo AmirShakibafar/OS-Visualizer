@@ -12,13 +12,11 @@ const get_srtf_processes = (readyProcesses, currProcess) => {
   if (currProcess && currProcess.remaining > 0) {
     priorityProcesses.enqueue(currProcess, currProcess.remaining);
   }
-  console.log(priorityProcesses.isEmpty())
   
   return priorityProcesses;
 };
 
 const SRTF = async (processes) => {
-    console.log(processes);
   const readyProcesses = [];
   let curr_tick = 0;
   let index = 0; 
