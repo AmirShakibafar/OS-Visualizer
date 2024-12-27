@@ -1,6 +1,6 @@
 import { processes } from "./manual_add_process.js";
 import { whatPolicy } from "./timing_policies.js";
-const tableSection = document.getElementById("table-section");
+const tableInfo = document.getElementById("result-box");
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
@@ -19,12 +19,10 @@ let cellCount = 0;
 let isCancelled = false;
 
 const ShowAvgTime = (time) => {
-  const TimeHeading = document.createElement("h1");
-  TimeHeading.textContent = `Average Time is: ${time}`
-  TimeHeading.style.fontSize = "4rem"; 
-  TimeHeading.style.color = "#000"; 
-  tableSection.appendChild(TimeHeading);
+  time = parseFloat(time.toFixed(2));
+  tableInfo.textContent = `Average Time: ${time}`;
 };
+
 
 const get_next_block = (process, time) => {
   if (!currentRow || cellCount % maxCellsPerRow === 0) {
@@ -50,8 +48,12 @@ const resetTableSettings = () => {
   currentRow = null;
   cellCount = 0;
   tableBody.innerHTML = "";
+  ShowAvgTime(0)
 }
 playButton.addEventListener("click", async () => {
+  if (!processes.length) {
+    return;
+  }
   resetTableSettings();
   isCancelled = false;
   playButton.disabled = true;

@@ -1,6 +1,6 @@
 import { PriorityQueue } from "./p_queue.js";
 import { sleep } from "./helpers.js";
-import { isCancelled, get_next_block, SPEED } from "./animation_table.js";
+import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
 
 const get_spn_processes = (readyProcesses) => {
   const priorityProcesses = new PriorityQueue();
@@ -14,15 +14,19 @@ const SPN = async (processes) => {
   const readyProcesses = [];
   let curr_tick = 0;
   let index = 0;
+  const waitTimes = new Map();
+  let totalWaitTime = 0;
+
+  processes.forEach((process) => {
+    waitTimes.set(process.name, 0);
+  });
 
   while (index < processes.length || readyProcesses.length > 0) {
-    console.log(0)
     while (index < processes.length && processes[index].start <= curr_tick) {
       readyProcesses.push(processes[index]);
       index++;
     }
 
-    // If no process is ready, simulate idle time
     if (readyProcesses.length === 0) {
       if (isCancelled) {
         return;
@@ -44,6 +48,9 @@ const SPN = async (processes) => {
       readyProcesses.splice(processIndex, 1);
     }
 
+    const waitingTime = curr_tick - process.start;
+    waitTimes.set(process.name, waitTimes.get(process.name) + waitingTime);
+
     let duration = process.duration;
     while (duration > 0) {
       if (isCancelled) {
@@ -55,6 +62,13 @@ const SPN = async (processes) => {
       await sleep(SPEED);
     }
   }
+
+  processes.forEach((process) => {
+    totalWaitTime += waitTimes.get(process.name);
+  });
+
+  const avgWaitTime = totalWaitTime / processes.length;
+  ShowAvgTime(avgWaitTime);
 };
 
 export { get_spn_processes, SPN };

@@ -288,6 +288,22 @@ td {
   cursor: pointer;
 }
 
+.information-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+}
+.process-result {
+  background-color: #f6f6f6;
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 10px;
+  border-radius: 12px;
+  width: 300px;
+  margin: 3rem 0;
+}
 @keyframes fadeIn {
   from {
     opacity: 0;
