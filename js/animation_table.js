@@ -1,17 +1,21 @@
-import { FCFS } from "./FCFS.js";
 import { processes } from "./manual_add_process.js";
-
+import { whatPolicy } from "./timing_policies.js";
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
 const playButton = document.getElementById("play-button");
 const resetButton = document.getElementById("reset-button");
 
+const speedSlider = document.getElementById("speed-range");
+let SPEED = 1050 - speedSlider.value;
+speedSlider.addEventListener("input", () => {
+  SPEED = 1050 - speedSlider.value;
+});
+
 const maxCellsPerRow = 10;
 let currentRow = null;
 let cellCount = 0;
 let isCancelled = false;
-let curr_tick = 0;
 
 const get_next_block = (process, time) => {
   if (!currentRow || cellCount % maxCellsPerRow === 0) {
@@ -33,20 +37,24 @@ const get_next_block = (process, time) => {
   currentRow.appendChild(newCell);
 };
 
+const resetTableSettings = () => {
+  currentRow = null;
+  cellCount = 0;
+}
 playButton.addEventListener("click", async () => {
+  resetTableSettings();
   isCancelled = false;
   tableBody.innerHTML = "";
   playButton.disabled = true;
-  await FCFS(processes);
+  const policy = whatPolicy();
+  await policy(processes);
   playButton.disabled = false;
 });
 
 resetButton.addEventListener("click", () => {
   isCancelled = true;
   tableBody.innerHTML = "";
-  currentRow = null;
-  cellCount = 0;
-  curr_tick = 0;
+  resetTableSettings();
 });
 
-export { isCancelled, get_next_block };
+export { isCancelled, get_next_block, SPEED };

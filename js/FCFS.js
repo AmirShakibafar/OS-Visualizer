@@ -1,10 +1,5 @@
 import { sleep } from "./helpers.js";
-import { isCancelled, get_next_block } from "./animation_table.js";
-const speedSlider = document.getElementById("speed-range");
-let SPEED = 1050 - speedSlider.value;
-speedSlider.addEventListener("input", () => {
-  SPEED = 1050 - speedSlider.value;
-});
+import { isCancelled, get_next_block, SPEED } from "./animation_table.js";
 
 const FCFS = async (processes) => {
   processes.sort((a, b) => a.start - b.start); // Sort processes by start time

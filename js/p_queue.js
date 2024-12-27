@@ -16,11 +16,11 @@ class PriorityQueue {
   
     // Remove and return the highest-priority element
     dequeue() {
-      if (this.heap.length === 1) return this.heap.pop();
-      const top = this.heap[0];
-      this.heap[0] = this.heap.pop();
-      this.bubbleDown();
-      return top;
+        if (this.heap.length === 1) return this.heap.pop().element;
+        const top = this.heap[0].element;
+        this.heap[0] = this.heap.pop();
+        this.bubbleDown();
+        return top;
     }
   
     // Move the last element up to restore heap property
