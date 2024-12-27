@@ -1,6 +1,6 @@
 import { PriorityQueue } from "./p_queue.js";
 import { sleep } from "./helpers.js";
-import { isCancelled, get_next_block, SPEED } from "./animation_table.js";
+import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
 
 const get_srtf_processes = (readyProcesses, currProcess) => {
   const priorityProcesses = new PriorityQueue();
@@ -21,6 +21,13 @@ const SRTF = async (processes) => {
   let curr_tick = 0;
   let index = 0; 
   let currProcess = null; 
+  let totalWaitTime = 0;
+  const waitTimes = new Map();
+
+  processes.forEach((process) => {
+    process.remaining = process.duration; 
+    waitTimes.set(process.name, 0);
+  });
 
   while (
     index < processes.length ||
@@ -28,7 +35,6 @@ const SRTF = async (processes) => {
     (currProcess && currProcess.remaining > 0)
   ) {
     while (index < processes.length && processes[index].start <= curr_tick) {
-      processes[index].remaining = processes[index].duration;
       readyProcesses.push(processes[index]);
       index++;
     }
@@ -52,6 +58,15 @@ const SRTF = async (processes) => {
       currProcess = nextProcess;
     }
 
+    readyProcesses.forEach((process) => {
+      if (process.name !== currProcess.name && process.remaining > 0) {
+        waitTimes.set(
+          process.name,
+          waitTimes.get(process.name) + 1
+        );
+      }
+    });
+
     if (currProcess.remaining > 0) {
       if (isCancelled) {
         return;
@@ -69,6 +84,9 @@ const SRTF = async (processes) => {
       }
     }
   }
+  totalWaitTime = Array.from(waitTimes.values()).reduce((sum, wt) => sum + wt, 0);
+  const avgWaitTime = totalWaitTime / processes.length;
+  ShowAvgTime(avgWaitTime);
 };
 
 export { SRTF };
