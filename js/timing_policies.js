@@ -1,5 +1,6 @@
 import { FCFS } from "./FCFS.js";
 import { SPN } from "./spn.js";
+import { SRTF } from "./srtf.js";
 const policies = ["FCFS", "SRTF", "RR", "SPN"];
 const policy = document.getElementById("policy-heading");
 let currentHeadingIndex = 0;
@@ -14,7 +15,7 @@ const whatPolicy = () => {
         case "FCFS":
             return FCFS;
         case "SRTF":
-            return null;
+            return SRTF;
         case "SPN":
             return SPN;
         case "RR":
