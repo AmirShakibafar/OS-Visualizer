@@ -1,6 +1,7 @@
 import { FCFS } from "./FCFS.js";
-import { SPN } from "./spn.js";
+import { RR } from "./RR.js";
 import { SRTF } from "./srtf.js";
+import { SPN } from "./spn.js";
 const policies = ["FCFS", "SRTF", "RR", "SPN"];
 const policy = document.getElementById("policy-heading");
 let currentHeadingIndex = 0;
@@ -19,7 +20,7 @@ const whatPolicy = () => {
         case "SPN":
             return SPN;
         case "RR":
-            return null;
+            return RR;
         default:
             return "Unknown policy. Please provide a valid scheduling policy.";
     }
