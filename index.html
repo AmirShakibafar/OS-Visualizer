@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>OS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0&icon_names=favorite" />
     <link rel="stylesheet" href="./Styles/style.css" />
     <link rel="stylesheet" href="./Styles/custom_range.css" />
   </head>
@@ -64,32 +65,37 @@
     <section class="main-area">
       <div class="visual-box">
         <div class="animation-controls">
-          <div>
+          <div class="policy-container" id="policy-container">
             <h1 id="policy-heading" class="policy">FCFS</h1>
           </div>
-          <div class="control-buttons">
-            <input type="range" id= "speed-range" class="win10-thumb speed" min="50" max="1000"/>
-            <button class="display-hidden" id="play-button">
-              <img
-                src="./images/play(b).svg"
-                alt="Play"
-                class="animation-button white"
-              />
-            </button>
-            <button class="display-hidden" id="reset-button">
-              <img
-                src="images/trash-2.svg"
-                alt="Play"
-                class="animation-button white"
-              />
-            </button>
-            <button class="display-hidden" id="reset-table-button">
-              <img
-                src="./images/x.svg"
-                alt="Play"
-                class="animation-button blue"
-              />
-            </button>
+          <div class="info-and-controls">
+            <div class="control-buttons">
+              <input type="range" id= "speed-range" class="win10-thumb speed" min="50" max="1000"/>
+              <button class="display-hidden" id="play-button">
+                <img
+                  src="./images/play(b).svg"
+                  alt="Play"
+                  class="animation-button white"
+                />
+              </button>
+              <button class="display-hidden" id="reset-button">
+                <img
+                  src="images/trash-2.svg"
+                  alt="Play"
+                  class="animation-button white"
+                />
+              </button>
+              <button class="display-hidden" id="reset-table-button">
+                <img
+                  src="./images/x.svg"
+                  alt="Play"
+                  class="animation-button blue"
+                />
+              </button>
+            </div>
+            <div class="process-result">
+              <h1 id="result-box">Average Time: TBD</h1>
+            </div>
           </div>
         </div>
         <div class="table-section" id="table-section">
@@ -110,11 +116,13 @@
           </thead>
           <tbody id="process-table-body"></tbody>
         </table>
-        <div class="process-result">
-          <h1 id="result-box">Average Time: TBD</h1>
-        </div>
       </div>
     </section>
+    <footer>
+      <h3>made with <span class="material-symbols-outlined">
+        favorite
+        </span> by <a id="link-linkedin" href="https://www.linkedin.com/in/amirshakibafar/">Amir Shakibafar</a></h3>
+    </footer>
   </body>
   <script type="module" src="./js/helpers.js"></script>
   <script type="module" src="./js/p_queue.js"></script>

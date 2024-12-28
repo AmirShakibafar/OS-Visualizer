@@ -177,9 +177,12 @@ header {
   border-radius: 8px 8px 0 0;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
-  margin-top: 14px;
+  margin-top: 2rem;
 }
 
+.material-symbols-outlined {
+  color: #ed2d2d;
+}
 .procces-table thead tr {
   background-color: #3a86ff;
   color: #fff;
@@ -211,9 +214,16 @@ td {
 }
 .animation-controls {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
-  height: 70px;
+  margin: 2rem 0;
+}
+
+.info-and-controls {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .control-buttons {
@@ -273,7 +283,6 @@ td {
   border-radius: 0 12px 12px 0;
 }
 
-
 .display-hidden {
   background: transparent;
   border: none;
@@ -284,8 +293,14 @@ td {
 
 .policy {
   font-size: 9rem;
+  margin-top: 10px;
   width: 350px;
   cursor: pointer;
+  transition: transform 0.2s ease-in-out, color 0.2s ease;
+  transform-style: preserve-3d;
+}
+.policy:hover {
+  color: #3b3b3b;
 }
 
 .information-section {
@@ -293,7 +308,6 @@ td {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-
 }
 .process-result {
   background-color: #f6f6f6;
@@ -302,8 +316,71 @@ td {
   padding: 10px;
   border-radius: 12px;
   width: 300px;
-  margin: 3rem 0;
 }
+
+#policy-container {
+  perspective: 1000px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+  position: relative;
+}
+
+.flip-in {
+  animation: flip-in 0.3s forwards;
+}
+
+.flip-out {
+  animation: flip-out 0.3s forwards;
+}
+
+footer {
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+footer h3 {
+  color: #3b3b3b;
+  display: flex;
+  gap: 6px;
+}
+#link-linkedin {
+  color: #3b3b3b;
+}
+
+#link-linkedin:hover {
+  color: #3a86ff;
+}
+
+#link-linkedin:visited {
+  color: #3a86ff;
+}
+
+@keyframes flip-in {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-out {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
