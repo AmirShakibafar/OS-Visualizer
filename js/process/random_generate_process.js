@@ -1,6 +1,6 @@
 import { processes, generateProcess, clearProcesses } from "./processes.js";
 import { render_processes } from "./process_table.js";
-import { correctInputSize, allowNumbersOnly } from "./helpers/inputValidation.js";
+import { correctInputSize, allowNumbersOnly } from "../helpers/inputValidation.js";
 
 const amountBox = document.getElementById("amount-box");
 const randomSubmitButton = document.getElementById("proccess-generator");

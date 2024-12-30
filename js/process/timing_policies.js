@@ -1,7 +1,7 @@
 import { FCFS } from "./FCFS.js";
 import { RR } from "./RR.js";
-import { SRTF } from "./srtf.js";
-import { SPN } from "./spn.js";
+import { SRTF } from "./SRTF.js";
+import { SPN } from "./SPN.js";
 
 const policies = ["FCFS", "SRTF", "RR", "SPN"];
 const policy = document.getElementById("policy-heading");
@@ -15,9 +15,7 @@ const switchPolicy = () => {
     policy.innerText = nextPolicyText;
     policy.classList.remove("flip-out");
     policy.classList.add("flip-in");
-
-    
-  }, 500); 
+  }, 500);
 };
 
 const whatPolicy = () => {

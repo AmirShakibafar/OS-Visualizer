@@ -1,6 +1,10 @@
-import { sleep } from "./helpers/helpers.js";
-import { isCancelled, get_next_block, SPEED, ShowAvgTime} from "./animation_table.js";
-
+import { sleep } from "../helpers/helpers.js";
+import {
+  isCancelled,
+  get_next_block,
+  SPEED,
+  ShowAvgTime,
+} from "./animation_table.js";
 
 const FCFS = async (processes) => {
   processes.sort((a, b) => a.start - b.start);

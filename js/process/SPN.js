@@ -1,6 +1,11 @@
-import { PriorityQueue } from "./p_queue.js";
-import { sleep } from "./helpers/helpers.js";
-import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
+import { PriorityQueue } from "../helpers/p_queue.js";
+import { sleep } from "../helpers/helpers.js";
+import {
+  isCancelled,
+  get_next_block,
+  SPEED,
+  ShowAvgTime,
+} from "./animation_table.js";
 
 const get_spn_processes = (readyProcesses) => {
   const priorityProcesses = new PriorityQueue();
@@ -43,7 +48,9 @@ const SPN = async (processes) => {
     const priorityProcesses = get_spn_processes(readyProcesses);
     const process = priorityProcesses.dequeue();
 
-    const processIndex = readyProcesses.findIndex((p) => p.name === process.name);
+    const processIndex = readyProcesses.findIndex(
+      (p) => p.name === process.name
+    );
     if (processIndex !== -1) {
       readyProcesses.splice(processIndex, 1);
     }

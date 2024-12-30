@@ -1,6 +1,11 @@
-import { PriorityQueue } from "./p_queue.js";
-import { sleep } from "./helpers/helpers.js";
-import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
+import { PriorityQueue } from "../helpers/p_queue.js";
+import { sleep } from "../helpers/helpers.js";
+import {
+  isCancelled,
+  get_next_block,
+  SPEED,
+  ShowAvgTime,
+} from "./animation_table.js";
 
 const get_srtf_processes = (readyProcesses, currProcess) => {
   const priorityProcesses = new PriorityQueue();
@@ -12,20 +17,20 @@ const get_srtf_processes = (readyProcesses, currProcess) => {
   if (currProcess && currProcess.remaining > 0) {
     priorityProcesses.enqueue(currProcess, currProcess.remaining);
   }
-  
+
   return priorityProcesses;
 };
 
 const SRTF = async (processes) => {
   const readyProcesses = [];
   let curr_tick = 0;
-  let index = 0; 
-  let currProcess = null; 
+  let index = 0;
+  let currProcess = null;
   let totalWaitTime = 0;
   const waitTimes = new Map();
 
   processes.forEach((process) => {
-    process.remaining = process.duration; 
+    process.remaining = process.duration;
     waitTimes.set(process.name, 0);
   });
 
@@ -40,7 +45,9 @@ const SRTF = async (processes) => {
     }
 
     const priorityProcesses = get_srtf_processes(readyProcesses, currProcess);
-    const nextProcess = !priorityProcesses.isEmpty() ? priorityProcesses.dequeue():null;
+    const nextProcess = !priorityProcesses.isEmpty()
+      ? priorityProcesses.dequeue()
+      : null;
     if (!nextProcess) {
       if (isCancelled) {
         return;
@@ -60,10 +67,7 @@ const SRTF = async (processes) => {
 
     readyProcesses.forEach((process) => {
       if (process.name !== currProcess.name && process.remaining > 0) {
-        waitTimes.set(
-          process.name,
-          waitTimes.get(process.name) + 1
-        );
+        waitTimes.set(process.name, waitTimes.get(process.name) + 1);
       }
     });
 
@@ -77,14 +81,19 @@ const SRTF = async (processes) => {
       await sleep(SPEED);
 
       if (currProcess.remaining === 0) {
-        const processIndex = readyProcesses.findIndex((p) => p.name === currProcess.name);
+        const processIndex = readyProcesses.findIndex(
+          (p) => p.name === currProcess.name
+        );
         if (processIndex !== -1) {
           readyProcesses.splice(processIndex, 1);
         }
       }
     }
   }
-  totalWaitTime = Array.from(waitTimes.values()).reduce((sum, wt) => sum + wt, 0);
+  totalWaitTime = Array.from(waitTimes.values()).reduce(
+    (sum, wt) => sum + wt,
+    0
+  );
   const avgWaitTime = totalWaitTime / processes.length;
   ShowAvgTime(avgWaitTime);
 };

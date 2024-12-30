@@ -1,0 +1,133 @@
+.arrival {
+  border-radius: 12px 0 0 12px;
+}
+
+.duration {
+  border-radius: 0 12px 12px 0;
+}
+
+.random-count {
+  border-radius: 12px;
+}
+
+.animation-area {
+  width: 50vw;
+  position: relative;
+}
+
+.animation-controls {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.info-slider-buttons-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-buttons-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.average-time-section {
+  background-color: #f6f6f6;
+  font-size: 1.2rem;
+  text-align: left;
+  padding: 10px 20px;
+  border-radius: 12px;
+  width: 300px;
+}
+
+.slider {
+  margin: 0 10px;
+}
+
+.animation-table table {
+  border-collapse: collapse;
+  border-spacing: 0 20px;
+  border-collapse: separate;
+  margin: 20px 0;
+  table-layout: fixed;
+}
+
+.animation-table td {
+  height: 25px;
+  border: 1px solid #ccc;
+  text-align: center;
+  vertical-align: middle;
+  opacity: 0;
+  animation: fadeIn 1s forwards;
+  text-align: center;
+  padding: 5px;
+}
+
+.dynamic_table_body tr td:first-child {
+  border-radius: 12px 0 0 12px;
+}
+
+.dynamic_table_body tr td:last-child {
+  border-radius: 0 12px 12px 0;
+}
+
+.policy-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100px;
+}
+
+.policy {
+  font-size: 9rem;
+  width: 350px;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out, color 0.2s ease;
+}
+
+.policy:hover {
+  color: #3b3b3b;
+}
+
+.flip-in {
+  animation: flip-in 0.3s forwards;
+}
+
+.flip-out {
+  animation: flip-out 0.3s forwards;
+}
+
+@keyframes flip-in {
+  0% {
+    transform: rotateX(-90deg);
+    opacity: 0;
+  }
+  100% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes flip-out {
+  0% {
+    transform: rotateX(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: rotateX(90deg);
+    opacity: 0;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}

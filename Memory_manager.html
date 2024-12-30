@@ -8,7 +8,7 @@
       rel="stylesheet"
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0&icon_names=favorite"
     />
-    <link rel="stylesheet" href="./Styles/style.css" />
+    <link rel="stylesheet" href="./Styles/main.css" />
     <link rel="stylesheet" href="./Styles/memory.css" />
     <link rel="stylesheet" href="./Styles/custom_range.css" />
   </head>
@@ -25,10 +25,10 @@
       </nav>
     </header>
     <section class="user-interactions-section">
-      <div class="upload">
+      <div>
         <label for="upload-box" id="upload-area">
           <input type="file" id="upload-box" hidden />
-          <div class="text-view">
+          <div class="upload-box-text">
             <img src="images/upload.svg" alt="" />
             <p>drag and drop or click here <br />to upload your text file</p>
             <span>make sure its in the correct format</span>
@@ -36,10 +36,10 @@
         </label>
       </div>
       <div class="seperation-line"></div>
-      <div class="process-buttons">
+      <div class="input-fields">
         <div class="process-adder">
           <h2 class="input-title">Add New Process Block</h2>
-          <div class="add-procces-inputs">
+          <div>
             <input
               type="text"
               class="process-size"
@@ -51,7 +51,7 @@
         </div>
         <div class="process-generator">
           <h2 class="input-title">Generate Blocks Randomly</h2>
-          <div class="generate-random-procces-inputs">
+          <div>
             <input
               type="text"
               id="amount-box"
@@ -139,4 +139,5 @@
     </footer>
   </body>
   <script type="module" src="./js/memory/memory_table.js"></script>
+  <script type="module" src="./js/memory/generate_random_blocks.js"></script>
 </html>

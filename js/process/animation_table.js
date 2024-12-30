@@ -23,7 +23,6 @@ const ShowAvgTime = (time) => {
   tableInfo.textContent = `Average Time: ${time}`;
 };
 
-
 const get_next_block = (process, time) => {
   if (!currentRow || cellCount % maxCellsPerRow === 0) {
     currentRow = document.createElement("tr");
@@ -48,8 +47,8 @@ const resetTableSettings = () => {
   currentRow = null;
   cellCount = 0;
   tableBody.innerHTML = "";
-  ShowAvgTime(0)
-}
+  ShowAvgTime(0);
+};
 playButton.addEventListener("click", async () => {
   if (!processes.length) {
     return;
