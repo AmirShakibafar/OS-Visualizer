@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OS</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20,400,0,0&icon_names=favorite" />
+    <link rel="stylesheet" href="./Styles/style.css" />
+    <link rel="stylesheet" href="./Styles/custom_range.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h3>OS Memory Visualizer</h3>
+      </div>
+      <nav>
+        <ul class="nav-options">
+          <a href="./Process_manager.html"><li>Process Visualizer</li></a>
+          <a href="./Memory_manager.html"><li>Memory Visualizer</li></a>
+        </ul>
+      </nav>
+    </header>
+    <section class="user-interactions-section">
+      <div class="upload">
+        <label for="upload-box" id="upload-area">
+          <input type="file" id="upload-box" hidden />
+          <div class="text-view">
+            <img src="images/upload.svg" alt="" />
+            <p>drag and drop or click here <br />to upload your text file</p>
+            <span>make sure its in the correct format</span>
+          </div>
+        </label>
+      </div>
+      <div class="seperation-line"></div>
+      <div class="process-buttons">
+        <div class="process-adder">
+          <h2 class="input-title">Add New Process</h2>
+          <div class="add-procces-inputs">
+            <input
+              type="text"
+              class="arrive-time"
+              placeholder="arrival"
+              id="arrive-time"
+            />
+            <input
+              type="text"
+              class="duration"
+              placeholder="duration"
+              id="duration"
+            />
+            <button id="process-adder" class="submit-button">submit</button>
+          </div>
+        </div>
+        <div class="process-generator">
+          <h2 class="input-title">Generate Proceses Randomly</h2>
+          <div class="generate-random-procces-inputs">
+            <input type="text" id="amount-box" class="amount-input" placeholder="how many? " />
+            <button id="proccess-generator" class="submit-button">
+              submit
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="main-area">
+      <div class="visual-box">
+        <div class="animation-controls">
+          <div class="policy-container" id="policy-container">
+            <h1 id="policy-heading" class="policy">FCFS</h1>
+          </div>
+          <div class="info-and-controls">
+            <div class="control-buttons">
+              <input type="range" id= "speed-range" class="win10-thumb speed" min="50" max="1000"/>
+              <button class="display-hidden" id="play-button">
+                <img
+                  src="./images/play(b).svg"
+                  alt="Play"
+                  class="animation-button white"
+                />
+              </button>
+              <button class="display-hidden" id="reset-button">
+                <img
+                  src="images/trash-2.svg"
+                  alt="Play"
+                  class="animation-button white"
+                />
+              </button>
+              <button class="display-hidden" id="reset-table-button">
+                <img
+                  src="./images/x.svg"
+                  alt="Play"
+                  class="animation-button blue"
+                />
+              </button>
+            </div>
+            <div class="process-result">
+              <h1 id="result-box">Average Time: TBD</h1>
+            </div>
+          </div>
+        </div>
+        <div class="table-section" id="table-section">
+          <table id="dynamic_table">
+            <tbody class="dynamic_table_body"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="information-section">
+        <table class="procces-table">
+          <thead>
+            <tr>
+              <th>process</th>
+              <th>arrival</th>
+              <th>duration</th>
+              <th>color</th>
+            </tr>
+          </thead>
+          <tbody id="process-table-body"></tbody>
+        </table>
+      </div>
+    </section>
+    <footer>
+      <h3>made with <span class="material-symbols-outlined">
+        favorite
+        </span> by <a id="link-linkedin" href="https://www.linkedin.com/in/amirshakibafar/">Amir Shakibafar</a></h3>
+    </footer>
+  </body>
+  <script type="module" src="./js/helpers.js"></script>
+  <script type="module" src="./js/p_queue.js"></script>
+  <script type="module" src="./js/inputValidation.js"></script>
+  <script type="module" src="./js/processes.js"></script>
+  <script type="module" src="./js/process_table.js"></script>
+  <script type="module" src="./js/file_reader.js"></script>
+  <script type="module" src="./js/manual_add_process.js"></script>
+  <script type="module" src="./js/random_generate_process.js"></script>
+  <script type="module" src="./js/FCFS.js"></script>
+  <script type="module" src="./js/SPN.js"></script>
+  <script type="module" src="./js/SRTF.js"></script>
+  <script type="module" src="./js/RR.js"></script>
+  <script type="module" src="./js/timing_policies.js"></script>
+  <script type="module" src="./js/animation_table.js"></script>
+</html>

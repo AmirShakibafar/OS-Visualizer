@@ -27,7 +27,7 @@ header {
   display: flex;
   justify-content: space-evenly;
   list-style: none;
-  width: 20vw;
+  width: 30vw;
   font-size: 1.2rem;
   font-weight: 500;
 }
