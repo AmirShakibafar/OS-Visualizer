@@ -107,7 +107,7 @@ header {
   text-align: center;
   margin-top: 10px;
   padding: 10px;
-  border-radius: 0;
+  border-radius: 12px;
   border: 1px solid #e5e5e5;
 }
 
@@ -160,6 +160,10 @@ header {
   transform: translateY(2px);
 }
 
+.slider {
+  margin: 0 10px;
+}
+
 .display-hidden {
   background: transparent;
   border: none;
@@ -172,6 +176,31 @@ header {
   display: flex;
   align-items: flex-start;
   margin-top: 3rem;
+}
+
+.animation-area {
+  width: 50vw;
+  position: relative;
+}
+
+.animation-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 2rem 0;
+}
+
+.info-slider-buttons-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider-buttons-section {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 .procces-table {

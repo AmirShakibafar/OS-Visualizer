@@ -6,35 +6,6 @@
   border-radius: 0 12px 12px 0;
 }
 
-.random-count {
-  border-radius: 12px;
-}
-
-.animation-area {
-  width: 50vw;
-  position: relative;
-}
-
-.animation-controls {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin: 2rem 0;
-}
-
-.info-slider-buttons-section {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.slider-buttons-section {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-}
-
 .average-time-section {
   background-color: #f6f6f6;
   font-size: 1.2rem;
@@ -42,10 +13,6 @@
   padding: 10px 20px;
   border-radius: 12px;
   width: 300px;
-}
-
-.slider {
-  margin: 0 10px;
 }
 
 .animation-table table {

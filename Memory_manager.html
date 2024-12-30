@@ -19,8 +19,8 @@
       </div>
       <nav>
         <ul class="nav-options">
-          <a href="./Process_manager.html"><li>Process Visualizer</li></a>
-          <a href="./Memory_manager.html"><li>Memory Visualizer</li></a>
+          <a href="./process_manager.html"><li>Process Visualizer</li></a>
+          <a href="./memory_manager.html"><li>Memory Visualizer</li></a>
         </ul>
       </nav>
     </header>
@@ -36,29 +36,29 @@
         </label>
       </div>
       <div class="seperation-line"></div>
-      <div class="input-fields">
-        <div class="process-adder">
+      <div>
+        <div>
           <h2 class="input-title">Add New Process Block</h2>
           <div>
             <input
               type="text"
-              class="process-size"
+              class="short-input-type"
               placeholder="size"
               id="process-size"
             />
-            <button id="process-adder" class="submit-button">submit</button>
+            <button id="process-adder" class="submit-button blue">submit</button>
           </div>
         </div>
-        <div class="process-generator">
+        <div>
           <h2 class="input-title">Generate Blocks Randomly</h2>
           <div>
             <input
               type="text"
               id="amount-box"
-              class="amount-input"
+              class="short-input-type"
               placeholder="how many? "
             />
-            <button id="proccess-generator" class="submit-button">
+            <button id="proccess-generator" class="submit-button blue">
               submit
             </button>
           </div>
@@ -66,17 +66,17 @@
       </div>
     </section>
     <section class="main-area">
-      <div class="visual-box">
+      <div class="animation-area">
         <div class="animation-controls">
           <div class="policy-container" id="memory-policy-container">
             <h1 id="memory-policy-heading" class="policy">FCFS</h1>
           </div>
-          <div class="info-and-controls">
-            <div class="control-buttons">
+          <div class="info-slider-buttons-section">
+            <div class="slider-buttons-section">
               <input
                 type="range"
                 id="speed-range"
-                class="win10-thumb speed"
+                class="win10-thumb slider"
                 min="50"
                 max="1000"
               />
@@ -84,26 +84,23 @@
                 <img
                   src="./images/play(b).svg"
                   alt="Play"
-                  class="animation-button white"
+                  class="control-button white"
                 />
               </button>
               <button class="display-hidden" id="memory-reset-button">
                 <img
                   src="images/trash-2.svg"
                   alt="Play"
-                  class="animation-button white"
+                  class="control-button white"
                 />
               </button>
               <button class="display-hidden" id="memory-reset-table-button">
                 <img
                   src="./images/x.svg"
                   alt="Play"
-                  class="animation-button blue"
+                  class="control-button blue"
                 />
               </button>
-            </div>
-            <div class="process-result">
-              <h1 id="result-box">Average Time: TBD</h1>
             </div>
           </div>
         </div>
@@ -116,7 +113,7 @@
           </table>
         </div>
       </div>
-      <div class="information-section">
+      <div>
         <table class="procces-table">
           <thead>
             <tr>
