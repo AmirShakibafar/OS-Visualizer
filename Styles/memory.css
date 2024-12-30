@@ -1,13 +1,3 @@
-.process-size {
-  width: 100px;
-  text-align: center;
-  margin-top: 10px;
-  padding: 10px;
-  border-radius: 12px;
-  border: 1px solid #e5e5e5;
-
-}
-
 .memory-section {
     display: flex;
     justify-content: center;
