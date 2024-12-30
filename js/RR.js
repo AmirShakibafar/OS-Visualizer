@@ -1,4 +1,4 @@
-import { sleep } from "./helpers.js";
+import { sleep } from "./helpers/helpers.js";
 import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
 
 const RR = async (processes) => {

@@ -4,7 +4,6 @@ import { SRTF } from "./srtf.js";
 import { SPN } from "./spn.js";
 
 const policies = ["FCFS", "SRTF", "RR", "SPN"];
-const policyContainer = document.getElementById("policy-container");
 const policy = document.getElementById("policy-heading");
 let currentHeadingIndex = 0;
 

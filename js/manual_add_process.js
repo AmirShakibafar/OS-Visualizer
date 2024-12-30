@@ -1,4 +1,4 @@
-import { allowNumbersOnly, correctInputSize } from "./inputValidation.js";
+import { allowNumbersOnly, correctInputSize } from "./helpers/inputValidation.js";
 import { render_processes } from "./process_table.js";
 import { processes, generateProcess } from "./processes.js";
 

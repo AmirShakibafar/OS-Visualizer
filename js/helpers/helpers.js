@@ -27,36 +27,29 @@ const generateAccentColor = (
     return 0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2];
   };
 
-  // Function to calculate contrast ratio
   const getContrastRatio = (lum1, lum2) => {
     const brighter = Math.max(lum1, lum2);
     const darker = Math.min(lum1, lum2);
     return (brighter + 0.05) / (darker + 0.05);
   };
 
-  // Parse the background color
   const bg = parseRGB(backgroundColor);
   const bgLuminance = getLuminance(bg.r, bg.g, bg.b);
 
-  // Directly calculate a color with sufficient contrast
   const calculateColor = () => {
     const isLightBackground = bgLuminance > 0.5;
 
-    // Generate colors that are lighter or darker depending on background
     const targetLuminance = isLightBackground
       ? bgLuminance / (minContrast - 0.05) - 0.05
       : bgLuminance * (minContrast - 0.05) + 0.05;
 
-    // Clamp luminance to valid range
     const adjustedLuminance = Math.max(0, Math.min(1, targetLuminance));
 
-    // Convert luminance back to an approximate RGB value
     const approximateValue =
       adjustedLuminance > 0.03928
         ? Math.pow((adjustedLuminance + 0.055) / 1.055, 1 / 2.4) * 255
         : adjustedLuminance * 12.92 * 255;
 
-    // Generate RGB components around the luminance target
     const r = Math.min(
       255,
       Math.max(0, approximateValue + Math.random() * 50 - 25)
@@ -73,12 +66,10 @@ const generateAccentColor = (
     return { r: Math.round(r), g: Math.round(g), b: Math.round(b) };
   };
 
-  // Generate a valid color
   let accentColor;
   let contrast = 0;
 
   for (let i = 0; i < 5; i++) {
-    // Limit iterations
     const { r, g, b } = calculateColor();
     const accentLuminance = getLuminance(r, g, b);
     contrast = getContrastRatio(bgLuminance, accentLuminance);
@@ -89,7 +80,6 @@ const generateAccentColor = (
     }
   }
 
-  // Fallback to a predefined color if no match is found
   return (
     accentColor || (bgLuminance > 0.5 ? "rgb(0, 0, 0)" : "rgb(255, 255, 255)")
   );

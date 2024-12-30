@@ -1,5 +1,5 @@
 import { PriorityQueue } from "./p_queue.js";
-import { sleep } from "./helpers.js";
+import { sleep } from "./helpers/helpers.js";
 import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
 
 const get_srtf_processes = (readyProcesses, currProcess) => {

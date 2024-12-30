@@ -7,3 +7,22 @@
   border: 1px solid #e5e5e5;
 
 }
+
+.memory-section {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+}
+
+.memory-table {
+    border: 1px solid #000;
+    border-collapse: collapse;
+    width: 200px;
+}
+
+.memory-table td {
+    border: 1px solid #000;
+    padding: 8px;
+    text-align: center;
+}

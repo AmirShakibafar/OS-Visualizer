@@ -1,4 +1,4 @@
-import { generate_random_color, generateAccentColor } from "./helpers.js";
+import { generate_random_color, generateAccentColor } from "./helpers/helpers.js";
 
 let processes = [];
 
