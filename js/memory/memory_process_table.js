@@ -12,16 +12,16 @@ const createNewRow = (process) => {
   arrivalCell.textContent = process.blockArrival;
   row.appendChild(arrivalCell);
 
-  const sizeCell = document.createElement("td");
-  sizeCell.textContent = process.blockSize;
-  row.appendChild(sizeCell);
-
   const durationCell = document.createElement("td");
   durationCell.textContent = process.blockExitTime - process.blockArrival;
   row.appendChild(durationCell);
 
+  const sizeCell = document.createElement("td");
+  sizeCell.textContent = process.blockSize;
+  row.appendChild(sizeCell);
+  
   const colorCell = document.createElement("td");
-  colorCell.style.backgroundColor = process.bgcolor;
+  colorCell.style.backgroundColor = process.bgColor;
   row.appendChild(colorCell);
 
   return row;
@@ -31,7 +31,7 @@ const renderMemoryTable = () => {
   memoryTable.innerHTML = "";
   reArrangeMemoryBlocks();
   getMemoryBlocks().forEach((process) => {
-    processTable.appendChild(createNewRow(process));
+    memoryTable.appendChild(createNewRow(process));
   });
 };
 

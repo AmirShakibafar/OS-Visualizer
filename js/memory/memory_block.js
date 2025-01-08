@@ -5,9 +5,9 @@ const createMemoryBlock = (arrival, size, duration) => {
   const backgroundColor = generate_random_color();
   return {
     name: `P${getMemoryBlocks().length}`,
-    blockSize: size,
-    blockArrival: arrival,
-    blockExitTime: arrival + duration,
+    blockSize: Number(size),
+    blockArrival: Number(arrival),
+    blockExitTime: Number(arrival) + Number(duration),
     color: generateAccentColor(backgroundColor),
     bgColor: backgroundColor,
   };

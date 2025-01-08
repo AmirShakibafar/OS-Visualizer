@@ -15,7 +15,7 @@ const reArrangeMemoryBlocks = () => {
   if (!memoryBlocks.length) {
     return;
   }
-  memoryBlocks.sort((a, b) => a.start - b.start);
+  memoryBlocks.sort((a, b) => a.blockArrival - b.blockArrival);
   memoryBlocks.forEach((process, idx) => {
     process.name = `P${idx}`;
   });
