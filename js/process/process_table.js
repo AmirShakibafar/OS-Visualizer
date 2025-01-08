@@ -26,7 +26,7 @@ const createNewRow = (process) => {
 };
 
 const reEvaluateTable = (processes) => {
-  processes.sort((a, b) => a.start - b.start); // sort based on start so we know start from where
+  processes.sort((a, b) => a.start - b.start); 
   processes.forEach((process, idx) => {
     process.name = `P${idx}`;
   });
