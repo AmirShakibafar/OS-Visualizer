@@ -1,5 +1,8 @@
 let memoryBlocks = [];
 
+const getMemoryBlocks = () => {
+  return memoryBlocks;
+};
 const addToMemoryBlocks = (memoryBlock) => {
   memoryBlocks.push(memoryBlock);
 };
@@ -17,4 +20,10 @@ const reArrangeMemoryBlocks = () => {
     process.name = `P${idx}`;
   });
 };
-export { clearMemoryBlocks, addToMemoryBlocks, reArrangeMemoryBlocks };
+
+export {
+  clearMemoryBlocks,
+  addToMemoryBlocks,
+  reArrangeMemoryBlocks,
+  getMemoryBlocks,
+};
