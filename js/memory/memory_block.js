@@ -1,19 +1,13 @@
-import {
-  correctInputSize,
-  allowNumbersOnly,
-} from "../helpers/inputValidation.js";
 import { getMemoryBlocks } from "./memory_blocks.js";
-import { generate_random_color, generateAccentColor } from "../helpers/helpers";
-const blockSize = document.getElementById("block-size");
-const blockArrive = document.getElementById("block-arrival");
+import { generate_random_color, generateAccentColor } from "../helpers/helpers.js";
 
-
-const createMemoryBlock = (size, arrival) => {
+const createMemoryBlock = (arrival, size, duration) => {
   const backgroundColor = generate_random_color();
   return {
     name: `P${getMemoryBlocks().length}`,
     blockSize: size,
     blockArrival: arrival,
+    blockExitTime: arrival + duration,
     color: generateAccentColor(backgroundColor),
     bgColor: backgroundColor,
   };

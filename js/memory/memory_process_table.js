@@ -1,3 +1,4 @@
+import { getMemoryBlocks, reArrangeMemoryBlocks } from "./memory_blocks.js";
 const memoryTable = document.getElementById("memory-process-table-body");
 
 const createNewRow = (process) => {
@@ -7,12 +8,16 @@ const createNewRow = (process) => {
   nameCell.textContent = process.name;
   row.appendChild(nameCell);
 
-  const startCell = document.createElement("td");
-  startCell.textContent = process.start;
-  row.appendChild(startCell);
+  const arrivalCell = document.createElement("td");
+  arrivalCell.textContent = process.blockArrival;
+  row.appendChild(arrivalCell);
+
+  const sizeCell = document.createElement("td");
+  sizeCell.textContent = process.blockSize;
+  row.appendChild(sizeCell);
 
   const durationCell = document.createElement("td");
-  durationCell.textContent = process.duration;
+  durationCell.textContent = process.blockExitTime - process.blockArrival;
   row.appendChild(durationCell);
 
   const colorCell = document.createElement("td");
@@ -21,3 +26,13 @@ const createNewRow = (process) => {
 
   return row;
 };
+
+const renderMemoryTable = () => {
+  memoryTable.innerHTML = "";
+  reArrangeMemoryBlocks();
+  getMemoryBlocks().forEach((process) => {
+    processTable.appendChild(createNewRow(process));
+  });
+};
+
+export {renderMemoryTable};
