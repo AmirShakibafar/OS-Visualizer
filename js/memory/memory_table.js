@@ -9,7 +9,7 @@ const generate_memory_block = (number) => {
 
 // Create the memory section (initialize memorySpaces)
 const create_memory_section = () => {
-    for (let i = 0; i < 16; i++) {
+    for (let i = 0; i < 64; i++) {
         memorySpaces.push(generate_memory_block(i + 1));
     }
 };
@@ -22,8 +22,8 @@ const create_table_element = (memoryBlock) => {
 
     cellNumber.textContent = memoryBlock.number;
     cellProcessName.textContent = memoryBlock.processName;
+    cellProcessName.classList.add("memory-cell");
 
-    // Add the "active" class if the memory block is active
     if (memoryBlock.isActive) {
         row.classList.add("active");
     }
