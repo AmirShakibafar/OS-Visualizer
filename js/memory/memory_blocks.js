@@ -1,11 +1,20 @@
 let memoryBlocks = [];
 
 const addToMemoryBlocks = (memoryBlock) => {
-    memoryBlocks.push(memoryBlock);
-}
+  memoryBlocks.push(memoryBlock);
+};
 
-const clearMemoryBlock = () => {
-    memoryBlocks = [];
-}
+const clearMemoryBlocks = () => {
+  memoryBlocks = [];
+};
 
-export {clearMemoryBlock, addToMemoryBlocks};
+const reArrangeMemoryBlocks = () => {
+  if (!memoryBlocks.length) {
+    return;
+  }
+  memoryBlocks.sort((a, b) => a.start - b.start);
+  memoryBlocks.forEach((process, idx) => {
+    process.name = `P${idx}`;
+  });
+};
+export { clearMemoryBlocks, addToMemoryBlocks, reArrangeMemoryBlocks };
