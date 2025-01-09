@@ -1,3 +1,4 @@
+import { showMessage } from "./message.js";
 let memoryBlocks = [];
 
 const getMemoryBlocks = () => {
@@ -5,6 +6,7 @@ const getMemoryBlocks = () => {
 };
 
 const addToMemoryBlocks = (memoryBlock) => {
+  showMessage("process added successfully!", "success");
   memoryBlocks.push(memoryBlock);
 };
 
