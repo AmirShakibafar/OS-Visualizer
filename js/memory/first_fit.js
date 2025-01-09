@@ -10,6 +10,7 @@ import {
 } from "./memory_space.js";
 import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
+import { updateTime, resetTime } from "./timer.js";
 
 const findFirstFit = async (processBlock, animationDelay = 200) => {
   let startIndex = 0;
@@ -24,7 +25,7 @@ const findFirstFit = async (processBlock, animationDelay = 200) => {
       allocateMemorySpace(startIndex, processBlock);
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
-      return true;
+      return;
     }
 
     updateHoverState(startIndex, processBlock.blockSize, false);
@@ -33,26 +34,51 @@ const findFirstFit = async (processBlock, animationDelay = 200) => {
   }
 
   showMessage("No available memory block found!", "fail");
-  return false; 
+  return;
 };
 
 const executeFirstFit = async (animationDelay = 200) => {
   const processBlocks = getMemoryBlocks();
   clearMemorySpaces();
+  resetTime();
   let currTick = 0;
 
   for (const process of processBlocks) {
-    await sleep(400);
     while (currTick < process.blockArrival) {
-      deAllocateMemorySpace(currTick);
-      renderMemorySections();
-      await sleep(animationDelay);
+      let mustGetDeAllocated = deAllocateMemorySpace(currTick);
+      while (mustGetDeAllocated) {
+        await sleep(animationDelay);
+        mustGetDeAllocated = deAllocateMemorySpace(currTick);
+        renderMemorySections();
+      }
+
       currTick++;
+      updateTime(currTick);
+      await sleep(animationDelay);
     }
-    const allocated = await findFirstFit(process, animationDelay);
-    if (!allocated) {
-      console.error(`Failed to allocate memory for process: ${process.name}`);
+
+    await findFirstFit(process, animationDelay);
+    updateTime(currTick);
+    await sleep(animationDelay);
+  }
+
+  while (true) {
+    let mustGetDeAllocated = deAllocateMemorySpace(currTick);
+
+    const activeProcesses = getMemorySpaces().some((space) => space.isActive);
+    if (!activeProcesses) {
+      break;
     }
+
+    while (mustGetDeAllocated) {
+      await sleep(animationDelay);
+      mustGetDeAllocated = deAllocateMemorySpace(currTick);
+      renderMemorySections();
+    }
+
+    currTick++;
+    updateTime(currTick);
+    await sleep(animationDelay);
   }
 };
 

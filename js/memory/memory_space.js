@@ -46,7 +46,7 @@ const deAllocateMemorySpace = (currTick) => {
   for (let i = 0; i < 64; i++) {
     if (
       memorySpaces[i].blockExitTime &&
-      memorySpaces[i].blockExitTime >= currTick
+      memorySpaces[i].blockExitTime <= currTick
     ) {
       memorySpaces[i] = {
         processName: "empty",
@@ -56,8 +56,10 @@ const deAllocateMemorySpace = (currTick) => {
         isHovered: false,
         blockIndex: i,
       };
+      return true;
     }
   }
+  return false;
 };
 
 const checkIfRangeEmpty = (start, size) => {
