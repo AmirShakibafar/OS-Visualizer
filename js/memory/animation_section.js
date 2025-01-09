@@ -1,16 +1,16 @@
-import { sleep } from "/js/helpers/helpers.js";
-import { renderMemorySections } from "./memory_table.js";
-import { getMemoryBlocks } from "./memory_blocks.js";
-import { executeFirstFit } from "./first_fit.js";
+import { executeFirstFit, setAnimationSpeed } from "./first_fit.js";
 const playButton = document.getElementById("memory-play-button");
 const speedSlider = document.getElementById("speed-range");
+
 let SPEED = 1050 - speedSlider.value;
 speedSlider.addEventListener("input", () => {
   SPEED = 1050 - speedSlider.value;
+  setAnimationSpeed(SPEED); 
 });
 
 const playHandler = async () => {
-  executeFirstFit();
+  setAnimationSpeed(SPEED);
+  await executeFirstFit();
 };
 
 playButton.addEventListener("click", playHandler);
