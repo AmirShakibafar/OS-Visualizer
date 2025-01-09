@@ -11,6 +11,10 @@ const addToMemoryBlocks = (memoryBlock) => {
 };
 
 const clearMemoryBlocks = () => {
+  if (!memoryBlocks.length) {
+    showMessage("Table is already empty!", "fail");
+    return;
+  }
   showMessage("processes cleared successfully", "success");
   memoryBlocks = [];
 };

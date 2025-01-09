@@ -6,7 +6,7 @@ const showMessage = async (message, type) => {
   const messageId = ++currentMessageId;
   messageBox.innerHTML = "";
   messageBox.style.visibility = "visible";
-  const messageText = document.createElement("h3");
+  const messageText = document.createElement("h1");
   messageText.innerText = message;
   messageBox.style.color = "#fff";
   messageBox.appendChild(messageText);
