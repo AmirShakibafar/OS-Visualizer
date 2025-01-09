@@ -47,6 +47,12 @@ header {
   box-shadow: 22px 17px 6px -5px rgba(0, 0, 0, 0.042);
 }
 
+#message-area {
+  visibility: hidden;
+  text-align: center;
+  padding: 1.2rem 0;
+}
+
 #upload-area {
   display: flex;
   justify-content: center;
@@ -175,7 +181,6 @@ header {
 .main-area {
   display: flex;
   align-items: flex-start;
-  margin-top: 3rem;
 }
 
 .animation-area {

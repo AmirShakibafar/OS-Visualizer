@@ -1,10 +1,11 @@
 import {
-    correctInputSize,
-    allowNumbersOnly,
+  correctInputSize,
+  allowNumbersOnly,
 } from "../helpers/inputValidation.js";
 import { createMemoryBlock } from "./memory_block.js";
-import {addToMemoryBlocks } from "./memory_blocks.js";
+import { addToMemoryBlocks } from "./memory_blocks.js";
 import { renderMemoryTable } from "./memory_process_table.js";
+import { showMessage } from "../helpers/message.js";
 
 const blockSize = document.getElementById("block-size");
 const blockArrive = document.getElementById("block-arrival");
@@ -19,11 +20,16 @@ blockDuration.addEventListener("input", () => correctInputSize(blockDuration));
 allowNumbersOnly(blockDuration);
 
 const submitHandler = () => {
-    if (!blockSize.value || !blockArrive.value || !blockDuration.value) {
-        return 
-    }
-    const memoryBlock = createMemoryBlock(blockArrive.value, blockSize.value, blockDuration.value);
-    addToMemoryBlocks(memoryBlock);
-    renderMemoryTable();
-}
+  if (!blockSize.value || !blockArrive.value || !blockDuration.value) {
+    showMessage("you have empty fields!", "fail");
+    return;
+  }
+  const memoryBlock = createMemoryBlock(
+    blockArrive.value,
+    blockSize.value,
+    blockDuration.value
+  );
+  addToMemoryBlocks(memoryBlock);
+  renderMemoryTable();
+};
 submitNewProcess.addEventListener("click", submitHandler);
