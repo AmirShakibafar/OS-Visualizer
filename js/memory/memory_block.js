@@ -1,5 +1,8 @@
 import { getMemoryBlocks } from "./memory_blocks.js";
-import { generate_random_color, generateAccentColor } from "../helpers/helpers.js";
+import {
+  generate_random_color,
+  generateAccentColor,
+} from "../helpers/helpers.js";
 
 const createMemoryBlock = (arrival, size, duration) => {
   const backgroundColor = generate_random_color();
@@ -8,9 +11,11 @@ const createMemoryBlock = (arrival, size, duration) => {
     blockSize: Number(size),
     blockArrival: Number(arrival),
     blockExitTime: Number(arrival) + Number(duration),
+    blockStartIndex: null,
     color: generateAccentColor(backgroundColor),
     bgColor: backgroundColor,
+    isActive: false,
   };
 };
 
-export {createMemoryBlock}
+export { createMemoryBlock };

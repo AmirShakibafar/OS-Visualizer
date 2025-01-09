@@ -26,6 +26,6 @@
     width: 150px;
 }
 
-.active {
+.hovered {
     background-color: rgba(58, 133, 255, 0.351) !important; 
 }
