@@ -3,6 +3,7 @@ let memoryBlocks = [];
 const getMemoryBlocks = () => {
   return memoryBlocks;
 };
+
 const addToMemoryBlocks = (memoryBlock) => {
   memoryBlocks.push(memoryBlock);
 };

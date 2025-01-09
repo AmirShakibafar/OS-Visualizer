@@ -1,5 +1,6 @@
-import { getMemoryBlocks, reArrangeMemoryBlocks } from "./memory_blocks.js";
+import { getMemoryBlocks, reArrangeMemoryBlocks, clearMemoryBlocks } from "./memory_blocks.js";
 const memoryTable = document.getElementById("memory-process-table-body");
+const clearTableButton = document.getElementById("memory-reset-table-button");
 
 const createNewRow = (process) => {
   const row = document.createElement("tr");
@@ -35,4 +36,12 @@ const renderMemoryTable = () => {
   });
 };
 
-export {renderMemoryTable};
+const clearMemoryTable = () => {
+  memoryTable.innerHTML = "";
+  clearMemoryBlocks();
+}
+
+clearTableButton.addEventListener("click", clearMemoryTable);
+
+
+export {renderMemoryTable, clearMemoryTable};
