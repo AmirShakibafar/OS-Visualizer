@@ -32,6 +32,11 @@
 
 .time-container {
   margin: 1rem 0;
+  background-color: #f6f6f6;
+  font-size: 2rem;
+  text-align: left;
+  padding: 10px 20px;
+  border-radius: 12px;
 }
 
 @keyframes fadeIn {
