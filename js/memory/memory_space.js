@@ -14,6 +14,7 @@ const getMemorySpaces = () => {
 };
 
 const clearMemorySpaces = () => {
+  memorySpaces.length = 0;
   for (let i = 0; i < 64; i++) {
     memorySpaces[i] = {
       processName: "empty",
@@ -26,7 +27,6 @@ const clearMemorySpaces = () => {
       blockIndex: i,
     };
   }
-
 };
 
 const updateHoverState = (start, size, isHovered) => {

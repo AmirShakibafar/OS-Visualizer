@@ -1,7 +1,7 @@
 import { executeFirstFit, setAnimationSpeed } from "./first_fit.js";
 import { renderMemorySections } from "./memory_table.js";
 import { clearMemorySpaces, getMemorySpaces } from "./memory_space.js";
-
+import { resetTime } from "./timer.js";
 const playButton = document.getElementById("memory-play-button");
 const cancelButton = document.getElementById("memory-reset-button");
 const speedSlider = document.getElementById("speed-range");
@@ -24,13 +24,16 @@ const playHandler = async () => {
   playButton.disabled = true;
   setAnimationSpeed(SPEED);
   await executeFirstFit(() => isCancelled);
+  if (isCancelled) {
+    clearMemorySpaces();
+    renderMemorySections();
+    resetTime();
+  }
   playButton.disabled = false;
 };
 
 const cancelButtonHandler = () => {
   isCancelled = true;
-  clearMemorySpaces();
-  renderMemorySections();
 };
 
 playButton.addEventListener("click", playHandler);
