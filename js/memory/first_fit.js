@@ -29,6 +29,10 @@ const findFirstFit = async (processBlock, isCancelled) => {
     await sleep(currentSpeed);
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
+        showMessage(
+            `found empty block for ${processBlock.name} at index: ${startIndex}`,
+            "success"
+          );
       allocateMemorySpace(startIndex, processBlock);
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();

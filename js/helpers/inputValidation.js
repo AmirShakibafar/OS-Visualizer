@@ -4,6 +4,12 @@ const correctInputSize = (input) => {
   }
 };
 
+const correctOneDigitInputSize = (input) => {
+  if (input.value.length > 1) {
+    input.value = input.value.slice(0, 1);
+  }
+};
+
 const allowNumbersOnly = (inputElement) => {
   inputElement.addEventListener("keydown", (e) => {
     const key = e.key;
@@ -16,4 +22,4 @@ const allowNumbersOnly = (inputElement) => {
   });
 };
 
-export { allowNumbersOnly, correctInputSize };
+export { allowNumbersOnly, correctInputSize, correctOneDigitInputSize };
