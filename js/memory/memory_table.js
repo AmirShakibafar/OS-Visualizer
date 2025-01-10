@@ -38,9 +38,9 @@ const renderMemorySections = () => {
       memoryBlock.wasRecentlyAdded = false;
     }
     if (memoryBlock.isHovered) {
-      row.classList.add("hovered");
+      row.childNodes[0].classList.add("hovered");
     } else {
-      row.classList.remove("hovered");
+      row.childNodes[0].classList.remove("hovered");
     }
     if (index < Math.ceil(memorySpaces.length / 2)) {
       tableOne.querySelector("tbody").appendChild(row);

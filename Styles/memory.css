@@ -27,7 +27,7 @@
 }
 
 .hovered {
-  background-color: rgba(58, 133, 255, 0.351) !important;
+  background-color: rgb(58, 133, 255) !important;
 }
 
 .time-container {
