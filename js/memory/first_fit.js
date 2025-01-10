@@ -11,12 +11,7 @@ import {
 import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
 import { updateTime, resetTime } from "./timer.js";
-
-let currentSpeed = 200;
-
-const setAnimationSpeed = (newSpeed) => {
-  currentSpeed = newSpeed;
-};
+import { currentSpeed } from "./speed.js";
 
 const findFirstFit = async (processBlock, isCancelled) => {
   let startIndex = 0;
@@ -101,4 +96,4 @@ const executeFirstFit = async (isCancelled) => {
   }
 };
 
-export { findFirstFit, executeFirstFit, setAnimationSpeed };
+export {executeFirstFit};

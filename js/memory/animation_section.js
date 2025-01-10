@@ -1,4 +1,4 @@
-import { executeFirstFit, setAnimationSpeed } from "./first_fit.js";
+import { setAnimationSpeed } from "./speed.js";
 import { renderMemorySections } from "./memory_table.js";
 import { clearMemorySpaces, getMemorySpaces } from "./memory_space.js";
 import { resetTime } from "./timer.js";
