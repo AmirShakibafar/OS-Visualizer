@@ -23,11 +23,9 @@ const findBestFit = async (processBlock, isCancelled) => {
   let bestFitIndex = -1;
   let bestFitSize = Infinity;
 
-  // Find the best fit block
   for (let startIndex = 0; startIndex < memorySpaces.length; startIndex++) {
     if (isCancelled()) return;
 
-    // Ensure the range check doesn't go out of bounds
     if (
       startIndex + processBlock.blockSize <= memorySpaces.length &&
       checkIfRangeEmpty(startIndex, processBlock.blockSize)
@@ -41,8 +39,14 @@ const findBestFit = async (processBlock, isCancelled) => {
     }
   }
 
+  
   if (bestFitIndex !== -1) {
+    updateHoverState(bestFitIndex, processBlock.blockSize, true);
+    renderMemorySections();
+    await sleep(currentSpeed);
+
     allocateMemorySpace(bestFitIndex, processBlock);
+    updateHoverState(bestFitIndex, processBlock.blockSize, false);
     renderMemorySections();
     return;
   }

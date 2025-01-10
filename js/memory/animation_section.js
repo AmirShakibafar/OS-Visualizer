@@ -19,6 +19,7 @@ const playHandler = async () => {
   if (!getMemorySpaces().length) {
     return;
   }
+  setAnimationSpeed(SPEED);
   isCancelled = false;
   clearMemorySpaces();
   renderMemorySections();
