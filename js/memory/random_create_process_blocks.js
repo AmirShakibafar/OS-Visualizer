@@ -15,9 +15,9 @@ allowNumbersOnly(amount);
 
 const addRandomMemoryBlocks = (
   amount,
-  arrivalRange = [1, 10],
-  sizeRange = [1, 10],
-  durationRange = [1, 5]
+  arrivalRange = [1, 30],
+  sizeRange = [1, 16],
+  durationRange = [1, 20]
 ) => {
   for (let i = 0; i < amount; i++) {
     const arrival =
