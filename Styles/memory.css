@@ -39,6 +39,10 @@
   border-radius: 12px;
 }
 
+.policy {
+  font-size: 6rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

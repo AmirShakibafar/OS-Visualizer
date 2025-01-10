@@ -15,7 +15,7 @@
   <body>
     <header>
       <div class="logo">
-        <h3>OS Memory Visualizer</h3>
+        <h3>Memory Visualizer</h3>
       </div>
       <nav>
         <ul class="nav-options">
@@ -86,7 +86,7 @@
       <div class="animation-area">
         <div class="animation-controls">
           <div class="policy-container" id="memory-policy-container">
-            <h1 id="memory-policy-heading" class="policy">FCFS</h1>
+            <h1 id="memory-policy-heading" class="policy">FirstFit</h1>
           </div>
           <div class="info-slider-buttons-section">
             <div class="slider-buttons-section">
@@ -122,7 +122,9 @@
           </div>
         </div>
         <div class="time-container" id="memory-time-container">
-          <h1 id="memory-time-heading">current time: <span id="curr-time">0</span></h1>
+          <h1 id="memory-time-heading">
+            current time: <span id="curr-time">0</span>
+          </h1>
         </div>
         <div class="memory-section">
           <table class="memory-table" id="table-1">
@@ -151,9 +153,7 @@
     <footer>
       <h3>
         made with <span class="material-symbols-outlined"> favorite </span> by
-        <a id="link-linkedin" href="https://www.linkedin.com/in/amirshakibafar/"
-          >Amir Shakibafar</a
-        >
+        <a id="link-linkedin" href="https://www.linkedin.com/in/amirshakibafar/">Amir Shakibafar</a>
       </h3>
     </footer>
   </body>
@@ -161,5 +161,9 @@
   <script type="module" src="./js/memory/memory_table.js"></script>
   <script type="module" src="./js/memory/animation_section.js"></script>
   <script type="module" src="./js/memory/manual_add_process_block.js"></script>
-  <script type="module" src="./js/memory/random_create_process_blocks.js"></script>
+  <script type="module" src="./js/memory/hub_algorithmes.js"></script>
+  <script
+    type="module"
+    src="./js/memory/random_create_process_blocks.js"
+  ></script>
 </html>
