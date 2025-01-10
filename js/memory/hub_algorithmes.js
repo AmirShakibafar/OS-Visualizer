@@ -1,5 +1,5 @@
 import { executeFirstFit } from "./first_fit.js";
-
+import { executeBestFit } from "./best_fit.js";
 const policies = ["FirstFit", "BestFit", "WorstFit"];
 const policy = document.getElementById("memory-policy-heading");
 let currentIndex = 0;
@@ -16,14 +16,16 @@ const switchPolicy = () => {
 };
 
 const whatPolicy = () => {
-    switch (policy.innerText) {
-      case "FirstFit":
-        return executeFirstFit;
-      default:
-        return null;
-    }
-  };
+  switch (policy.innerText) {
+    case "FirstFit":
+      return executeFirstFit;
+    case "BestFit":
+      return executeBestFit;
+    default:
+      return null;
+  }
+};
 
 policy.addEventListener("click", switchPolicy);
 
-export{whatPolicy}
+export { whatPolicy };

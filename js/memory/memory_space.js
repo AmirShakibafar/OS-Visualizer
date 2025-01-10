@@ -71,35 +71,16 @@ const deAllocateMemorySpace = (currTick) => {
   return false;
 };
 
-const checkIfRangeEmpty = (start, size) => {
-  for (let i = start; i < start + size; i++) {
-    if (memorySpaces[i].isActive) {
+const checkIfRangeEmpty = (startIndex, blockSize) => {
+  const memorySpaces = getMemorySpaces();
+  
+  for (let i = startIndex; i < startIndex + blockSize; i++) {
+    if (i >= memorySpaces.length || !memorySpaces[i] || memorySpaces[i].processName !== "empty") {
       return false;
     }
   }
   return true;
 };
-
-// const checkFirstEmptySpace = (processBlock) => {
-//   let startIndex = 0;
-
-//   while (startIndex + processBlock.blockSize <= memorySpaces.length) {
-//     updateHoverState(startIndex, processBlock.blockSize, true);
-
-//     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
-//       showMessage(`Found space starting at block: ${startIndex}!`, "success");
-//       allocateMemorySpace(startIndex, processBlock);
-//       renderMemorySections();
-//       updateHoverState(startIndex, processBlock.blockSize, false);
-//       return;
-//     }
-
-//     updateHoverState(startIndex, processBlock.blockSize, false);
-//     startIndex++;
-//   }
-
-//   showMessage("No available memory block found!", "fail");
-// };
 
 export {
   getMemorySpaces,
