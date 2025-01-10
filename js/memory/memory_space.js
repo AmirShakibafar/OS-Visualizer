@@ -31,14 +31,14 @@ const clearMemorySpaces = () => {
 
 const updateHoverState = (start, size, isHovered) => {
   for (let i = start; i < start + size; i++) {
-    memorySpaces[i].isHovered = isHovered;
+    memorySpaces[i % 64].isHovered = isHovered;
   }
 };
 
 const allocateMemorySpace = (start, processBlock) => {
   for (let i = start; i < start + processBlock.blockSize; i++) {
-    memorySpaces[i] = {
-      ...memorySpaces[i],
+    memorySpaces[i % 64] = {
+      ...memorySpaces[i % 64],
       processName: processBlock.name,
       blockExitTime: processBlock.blockExitTime,
       bgColor: processBlock.bgColor,
@@ -52,10 +52,10 @@ const allocateMemorySpace = (start, processBlock) => {
 const deAllocateMemorySpace = (currTick) => {
   for (let i = 0; i < 64; i++) {
     if (
-      memorySpaces[i].blockExitTime &&
-      memorySpaces[i].blockExitTime <= currTick
+      memorySpaces[i % 64].blockExitTime &&
+      memorySpaces[i % 64].blockExitTime <= currTick
     ) {
-      memorySpaces[i] = {
+      memorySpaces[i % 64] = {
         processName: "empty",
         bgColor: null,
         color: null,
@@ -75,7 +75,7 @@ const checkIfRangeEmpty = (startIndex, blockSize) => {
   const memorySpaces = getMemorySpaces();
   
   for (let i = startIndex; i < startIndex + blockSize; i++) {
-    if (i >= memorySpaces.length || !memorySpaces[i] || memorySpaces[i].processName !== "empty") {
+    if (memorySpaces[i % 64].processName !== "empty") {
       return false;
     }
   }

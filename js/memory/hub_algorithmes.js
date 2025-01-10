@@ -1,7 +1,8 @@
 import { executeFirstFit } from "./first_fit.js";
 import { executeBestFit } from "./best_fit.js";
 import { executeWorstFit } from "./worst_fit.js";
-const policies = ["FirstFit", "BestFit", "WorstFit"];
+import { executeNextFit } from "./next_fit.js";
+const policies = ["FirstFit", "BestFit", "WorstFit", "NextFit"];
 const policy = document.getElementById("memory-policy-heading");
 let currentIndex = 0;
 
@@ -24,6 +25,8 @@ const whatPolicy = () => {
       return executeBestFit;
     case "WorstFit":
       return executeWorstFit;
+    case "NextFit":
+      return executeNextFit;
     default:
       return null;
   }
