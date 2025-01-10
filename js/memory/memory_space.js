@@ -14,14 +14,19 @@ const getMemorySpaces = () => {
 };
 
 const clearMemorySpaces = () => {
-  for (let i = 0; i < memorySpaces.length; i++) {
+  for (let i = 0; i < 64; i++) {
     memorySpaces[i] = {
-      ...memorySpaces[i],
       processName: "empty",
       bgColor: null,
+      color: null,
+      blockExitTime: null,
       isActive: false,
+      isHovered: false,
+      wasRecentlyAdded: false,
+      blockIndex: i,
     };
   }
+
 };
 
 const updateHoverState = (start, size, isHovered) => {
@@ -37,6 +42,8 @@ const allocateMemorySpace = (start, processBlock) => {
       processName: processBlock.name,
       blockExitTime: processBlock.blockExitTime,
       bgColor: processBlock.bgColor,
+      color: processBlock.color,
+      wasRecentlyAdded: true,
       isActive: true,
     };
   }
@@ -51,9 +58,11 @@ const deAllocateMemorySpace = (currTick) => {
       memorySpaces[i] = {
         processName: "empty",
         bgColor: null,
+        color: null,
         blockExitTime: null,
         isActive: false,
         isHovered: false,
+        wasRecentlyAdded: false,
         blockIndex: i,
       };
       return true;

@@ -13,6 +13,9 @@ const create_table_element = (memoryBlock, index) => {
   if (memoryBlock.bgColor) {
     row.style.backgroundColor = memoryBlock.bgColor;
   }
+  if (memoryBlock.color) {
+    row.style.color = memoryBlock.color;
+  }
 
   if (memoryBlock.isActive) {
     row.classList.add("active");
@@ -29,6 +32,11 @@ const renderMemorySections = () => {
   const memorySpaces = getMemorySpaces();
   memorySpaces.forEach((memoryBlock, index) => {
     const row = create_table_element(memoryBlock, index);
+    if (memoryBlock.isActive && memoryBlock.wasRecentlyAdded) {
+      row.classList.add("fade-in");
+      setTimeout(() => row.classList.remove("fade-in"), 500);
+      memoryBlock.wasRecentlyAdded = false;
+    }
     if (memoryBlock.isHovered) {
       row.classList.add("hovered");
     } else {

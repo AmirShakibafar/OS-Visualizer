@@ -1,35 +1,48 @@
 .memory-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
 }
 
 .memory-table {
-    border: 1px solid #000;
-    border-collapse: collapse;
-    font-size: 8px;
+  border: 1px solid #000;
+  border-collapse: collapse;
+  font-size: 8px;
 }
 
 .memory-table tr {
-    background-color: #f0f0f0;
+  background-color: #f0f0f0;
 }
 
 .memory-table tr td {
-    border: 1px solid #000;
-    text-align: center;
-    padding: 2px;
-    height: 10px;
+  border: 1px solid #000;
+  text-align: center;
+  padding: 2px;
+  height: 10px;
 }
 
 .memory-cell {
-    width: 150px;
+  width: 150px;
 }
 
 .hovered {
-    background-color: rgba(58, 133, 255, 0.351) !important; 
+  background-color: rgba(58, 133, 255, 0.351) !important;
 }
 
 .time-container {
-    margin: 1rem 0;
+  margin: 1rem 0;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
 }
