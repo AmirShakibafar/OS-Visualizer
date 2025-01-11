@@ -7,6 +7,10 @@
   font-family: "Roboto", sans-serif;
 }
 
+a:visited {
+  color: inherit; 
+}
+
 body {
   background-size: 20px 20px;
   background-image: linear-gradient(to right, #f8edeb 1px, transparent 1px),
@@ -255,15 +259,15 @@ footer h3 {
   display: flex;
   gap: 6px;
 }
-#link-linkedin {
+.link-linkedin {
   color: #3b3b3b;
 }
 
-#link-linkedin:hover {
+.link-linkedin:hover {
   color: #3a86ff;
 }
 
-#link-linkedin:visited {
+.link-linkedin:visited {
   color: #3a86ff;
 }
 
