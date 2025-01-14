@@ -15,15 +15,15 @@ Acceptance Criteria
 -------------------  
 
 **Process Scheduling Policies**  
-- FCFS (First Come, First Served)  
-- SPN (Shortest Process Next)  
-- SRTF (Shortest Remaining Time First)  
-- RR (Round Robin)  
-- HRRN (Highest Response Ratio Next)  
-- MLQ (Multi-Level Queue)  
+├── FCFS (First Come, First Served)  
+├── SPN (Shortest Process Next)  
+├── SRTF (Shortest Remaining Time First)  
+├── RR (Round Robin)  
+├── HRRN (Highest Response Ratio Next)  
+├── MLQ (Multi-Level Queue)  
 
 **Memory Allocation Policies**  
-- First Fit  
-- Next Fit  
-- Worst Fit  
-- Best Fit  
+├── First Fit  
+├── Next Fit  
+├── Worst Fit  
+├── Best Fit  
