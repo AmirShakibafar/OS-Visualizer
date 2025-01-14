@@ -28,3 +28,8 @@ Acceptance Criteria
     * Next Fit  
     * Worst Fit  
     * Best Fit  
+
+
+**Additional Features**  
+    * Uploading a file containing processes.  
+    * Manually entering process data. 
