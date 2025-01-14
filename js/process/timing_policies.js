@@ -2,8 +2,9 @@ import { FCFS } from "./FCFS.js";
 import { RR } from "./RR.js";
 import { SRTF } from "./SRTF.js";
 import { SPN } from "./SPN.js";
+import { HRRN } from "./HRRN.js"
 
-const policies = ["FCFS", "SRTF", "RR", "SPN"];
+const policies = ["FCFS", "SRTF", "RR", "SPN", "HRRN"];
 const policy = document.getElementById("policy-heading");
 let currentHeadingIndex = 0;
 
@@ -28,6 +29,8 @@ const whatPolicy = () => {
       return SPN;
     case "RR":
       return RR;
+    case "HRRN":
+      return HRRN;
     default:
       return null;
   }

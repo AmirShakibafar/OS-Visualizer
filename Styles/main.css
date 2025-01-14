@@ -283,7 +283,7 @@ footer h3 {
 }
 
 .policy {
-  font-size: 9rem;
+  font-size: 8rem;
   width: 350px;
   cursor: pointer;
   transition: transform 0.2s ease-in-out, color 0.2s ease;
