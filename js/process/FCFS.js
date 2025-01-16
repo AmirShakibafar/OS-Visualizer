@@ -14,9 +14,10 @@ const FCFSProcessSort =  (processes) =>{
   let curTime = Number(processes[0].start);
 
   processes.forEach((process) => {
+    if (curTime < process.start)
+      curTime = process.start;
     curTime += Number(process.duration) 
     process.endTime = curTime;
-    console.log(process.endTime);
   })
 
   return processes;
@@ -62,4 +63,4 @@ const FCFS =  (processes) => {
 
 
 
-export { FCFS };
+export { FCFS, FCFSProcessSort};
