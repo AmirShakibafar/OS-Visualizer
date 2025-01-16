@@ -5,18 +5,27 @@ import {
   SPEED,
   ShowAvgTime,
 } from "./animation_table.js";
+import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 
-const FCFS = async (processes) => {
+
+
+const FCFSProcessSort =  (processes) =>{
   processes.sort((a, b) => a.start - b.start);
-  let curr_tick = 0;
-  let totalWaitTime = 0;
-  for (const process of processes) {
-    let waitTime = 0;
-    if (curr_tick >= process.start) {
-      waitTime = curr_tick - process.start;
-    }
-    totalWaitTime += waitTime;
+  let curTime = Number(processes[0].start);
 
+  processes.forEach((process) => {
+    curTime += Number(process.duration) 
+    process.endTime = curTime;
+    console.log(process.endTime);
+  })
+
+  return processes;
+}
+
+
+const FCFSDisplay = async (processes) => {
+  let curr_tick = 0;
+  for (const process of processes) {
     if (isCancelled) {
       return;
     }
@@ -42,27 +51,15 @@ const FCFS = async (processes) => {
       await sleep(SPEED);
     }
   }
-  const avgWaitTime = totalWaitTime / processes.length;
-  ShowAvgTime(avgWaitTime);
+}
+
+const FCFS =  (processes) => {
+  processes = FCFSProcessSort(processes);
+  const AvgWaitTime = avgWaitTime(processes);
+  FCFSDisplay(processes);
+  ShowAvgTime(AvgWaitTime);
 };
 
-const FCFSArray = (processes) => {
-  processes.sort((a, b) => a.start - b.start); // Sort processes by start time
-  const fcfs = [];
-  let curr_tick = 0;
-  for (const process of processes) {
-    while (process.start > curr_tick) {
-      fcfs.push({ color: "#fafafa", name: "Idle" });
-      curr_tick++;
-    }
-    let duration = process.duration;
-    while (duration > 0) {
-      fcfs.push(process);
-      duration--;
-      curr_tick++;
-    }
-  }
-  return fcfs;
-};
+
 
 export { FCFS };
