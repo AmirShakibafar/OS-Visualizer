@@ -3,5 +3,8 @@ const avgWaitTime = (processes) => {
     processes.forEach((process) => {
       totalWaitTime += (process.endTime - process.start - process.duration) ;
     })
-    return totalWaitTime / processes.length;
+    let avg = totalWaitTime / processes.length
+    return avg;
   }
+
+export { avgWaitTime };
