@@ -28,3 +28,15 @@ jobs:
         npm i -d vitest
     - name: Run tests
       run: npm test
+
+      
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install npm
+      run: npm install
+      
+    - name: Run tests
+      run: npm test
