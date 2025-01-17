@@ -1,81 +1,47 @@
-import { PriorityQueue } from "../helpers/p_queue.js";
-import { sleep } from "../helpers/helpers.js";
-import {
-  isCancelled,
-  get_next_block,
-  SPEED,
-  ShowAvgTime,
-} from "./animation_table.js";
+import { ShowAvgTime } from "./animation_table.js";
+import { Display } from "./display.js";
+import { avgWaitTime } from "./avgWaitTimeCalculator.js";
 
-const get_spn_processes = (readyProcesses) => {
-  const priorityProcesses = new PriorityQueue();
-  readyProcesses.forEach((process) => {
-    priorityProcesses.enqueue(process, process.duration);
-  });
-  return priorityProcesses;
-};
 
-const SPN = async (processes) => {
-  const readyProcesses = [];
-  let curr_tick = 0;
-  let index = 0;
-  const waitTimes = new Map();
-  let totalWaitTime = 0;
 
-  processes.forEach((process) => {
-    waitTimes.set(process.name, 0);
-  });
+const SPNProcessSort = (processes) => {
+  processes.sort((a, b) => a.start - b.start);
+  let ProcessesClone = processes
+  let curTime = 0;
+  let SPNArray = [];
+  let readyToProcess = [];
 
-  while (index < processes.length || readyProcesses.length > 0) {
-    while (index < processes.length && processes[index].start <= curr_tick) {
-      readyProcesses.push(processes[index]);
-      index++;
-    }
-
-    if (readyProcesses.length === 0) {
-      if (isCancelled) {
-        return;
-      }
-      get_next_block(
-        { bgcolor: "#fcfcfc", color: "#000", name: "Idle" },
-        curr_tick
-      );
-      curr_tick++;
-      await sleep(SPEED);
-      continue;
-    }
-
-    const priorityProcesses = get_spn_processes(readyProcesses);
-    const process = priorityProcesses.dequeue();
-
-    const processIndex = readyProcesses.findIndex(
-      (p) => p.name === process.name
+  while (SPNArray.length < processes.length) {
+    readyToProcess = ProcessesClone.filter(
+      (p) => Number(p.start) <= curTime && p.endTime === undefined
     );
-    if (processIndex !== -1) {
-      readyProcesses.splice(processIndex, 1);
-    }
 
-    const waitingTime = curr_tick - process.start;
-    waitTimes.set(process.name, waitTimes.get(process.name) + waitingTime);
-
-    let duration = process.duration;
-    while (duration > 0) {
-      if (isCancelled) {
-        return;
+    readyToProcess.sort((a, b) => a.duration - b.duration);
+    if (readyToProcess.length > 0) {
+      if (curTime < Number(readyToProcess[0].start)) {
+        curTime = Number(readyToProcess[0].start);
       }
-      get_next_block(process, curr_tick);
-      duration--;
-      curr_tick++;
-      await sleep(SPEED);
+
+      curTime += Number(readyToProcess[0].duration);
+      readyToProcess[0].endTime = curTime;
+      SPNArray.push(readyToProcess[0]);
+
+    } else {
+      const nextProcess = processes.find((p) => p.endTime === undefined);
+      if (nextProcess) curTime = Number(nextProcess.start);
     }
   }
-
-  processes.forEach((process) => {
-    totalWaitTime += waitTimes.get(process.name);
-  });
-
-  const avgWaitTime = totalWaitTime / processes.length;
-  ShowAvgTime(avgWaitTime);
+  return SPNArray;
 };
 
-export { get_spn_processes, SPN };
+
+
+const SPN =  (processes) => {
+  processes.forEach((processes) => processes.endTime = undefined)
+  let processes_ = SPNProcessSort(processes);
+  const AvgWaitTime = avgWaitTime(processes_);
+  Display(processes_);
+  ShowAvgTime(AvgWaitTime);
+};
+
+export { SPN, SPNProcessSort };
