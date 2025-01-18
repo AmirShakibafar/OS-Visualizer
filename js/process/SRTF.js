@@ -1,101 +1,65 @@
-import { PriorityQueue } from "../helpers/p_queue.js";
-import { sleep } from "../helpers/helpers.js";
-import {
-  isCancelled,
-  get_next_block,
-  SPEED,
-  ShowAvgTime,
-} from "./animation_table.js";
+import { Display } from "./display.js";
+import { avgWaitTime } from "./avgWaitTimeCalculator.js"
+import { ShowAvgTime } from "./animation_table.js";
 
-const get_srtf_processes = (readyProcesses, currProcess) => {
-  const priorityProcesses = new PriorityQueue();
-  readyProcesses.forEach((process) => {
-    if (process.remaining > 0) {
-      priorityProcesses.enqueue(process, process.remaining);
-    }
-  });
-  if (currProcess && currProcess.remaining > 0) {
-    priorityProcesses.enqueue(currProcess, currProcess.remaining);
-  }
+const q = 1;
 
-  return priorityProcesses;
-};
-
-const SRTF = async (processes) => {
-  const readyProcesses = [];
-  let curr_tick = 0;
-  let index = 0;
-  let currProcess = null;
-  let totalWaitTime = 0;
-  const waitTimes = new Map();
-
+const SRTFProcessSort = (processes) => {
+  processes.sort((a, b) => a.start - b.start);
   processes.forEach((process) => {
-    process.remaining = process.duration;
-    waitTimes.set(process.name, 0);
+    process.remaining = process.duration; 
   });
 
-  while (
-    index < processes.length ||
-    readyProcesses.length > 0 ||
-    (currProcess && currProcess.remaining > 0)
-  ) {
-    while (index < processes.length && processes[index].start <= curr_tick) {
-      readyProcesses.push(processes[index]);
-      index++;
-    }
+  let curTime = 0; 
+  let SRTFQueue = [];
+  let readyQueue = [];
+  let completed = 0;
 
-    const priorityProcesses = get_srtf_processes(readyProcesses, currProcess);
-    const nextProcess = !priorityProcesses.isEmpty()
-      ? priorityProcesses.dequeue()
-      : null;
-    if (!nextProcess) {
-      if (isCancelled) {
-        return;
-      }
-      get_next_block(
-        { bgcolor: "#fcfcfc", color: "#000", name: "Idle" },
-        curr_tick
-      );
-      curr_tick++;
-      await sleep(SPEED);
-      continue;
-    }
-
-    if (currProcess !== nextProcess) {
-      currProcess = nextProcess;
-    }
-
-    readyProcesses.forEach((process) => {
-      if (process.name !== currProcess.name && process.remaining > 0) {
-        waitTimes.set(process.name, waitTimes.get(process.name) + 1);
+  while (completed < processes.length) {
+    processes.forEach((process) => {
+      if (process.start <= curTime && process.endTime === undefined && !readyQueue.includes(process)) {
+        readyQueue.push(process);
       }
     });
 
-    if (currProcess.remaining > 0) {
-      if (isCancelled) {
-        return;
-      }
-      get_next_block(currProcess, curr_tick);
-      currProcess.remaining--;
-      curr_tick++;
-      await sleep(SPEED);
-
-      if (currProcess.remaining === 0) {
-        const processIndex = readyProcesses.findIndex(
-          (p) => p.name === currProcess.name
-        );
-        if (processIndex !== -1) {
-          readyProcesses.splice(processIndex, 1);
-        }
-      }
+    if (readyQueue.length === 0) {
+      curTime = Math.min(...processes.filter(p => p.endTime === undefined).map(p => p.start));
+      continue;
     }
+    readyQueue.sort((a, b) => a.remaining - b.remaining)
+    
+    let currProcess = readyQueue.shift();
+    if (currProcess.remaining > q) {
+      SRTFQueue.push({ ...currProcess });
+      currProcess.remaining -= q;
+      curTime += q;
+    } else {
+      curTime += currProcess.remaining;
+      currProcess.endTime = curTime;
+      SRTFQueue.push({ ...currProcess });
+      currProcess.remaining = 0;
+      completed++;
+    }
+    if (currProcess.remaining > 0) {
+      readyQueue.push(currProcess);
+    }
+
+    
   }
-  totalWaitTime = Array.from(waitTimes.values()).reduce(
-    (sum, wt) => sum + wt,
-    0
-  );
-  const avgWaitTime = totalWaitTime / processes.length;
-  ShowAvgTime(avgWaitTime);
+  return SRTFQueue;
 };
 
-export { SRTF };
+
+const SRTF =  (processes) => {
+  processes.forEach((process) => {
+    process.remaining = undefined
+    process.endTime = undefined
+  })
+
+  let processes_ = [...SRTFProcessSort(processes)];
+  const AvgWaitTime = avgWaitTime(processes_);
+  Display(processes_, q);
+  ShowAvgTime(AvgWaitTime);
+  console.log(processes_)
+};
+export { SRTFProcessSort, SRTF };
