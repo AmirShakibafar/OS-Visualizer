@@ -1,78 +1,86 @@
-import { sleep } from "../helpers/helpers.js";
-import { isCancelled, get_next_block, SPEED, ShowAvgTime } from "./animation_table.js";
+import { Display } from "./display.js";
+import { avgWaitTime } from "./avgWaitTimeCalculator.js"
+import { ShowAvgTime } from "./animation_table.js";
+const q = 2;
 
-const RR = async (processes) => {
-  const readyQueue = [];
-  let curr_tick = 0;
-  let index = 0;
-  let currProcess = null;
-  const waitTimes = new Map();
-  let totalWaitTime = 0;
-
+const RRProcessSort = (processes) => {
+  processes.sort((a, b) => a.start - b.start);
   processes.forEach((process) => {
-    process.remaining = process.duration;
-    process.lastExecution = process.start;
-    waitTimes.set(process.name, 0);
+    process.remaining = process.duration; 
   });
 
-  while (
-    index < processes.length || 
-    readyQueue.length > 0 || 
-    (currProcess && currProcess.remaining > 0)
-  ) {
-    while (index < processes.length && processes[index].start <= curr_tick) {
-      readyQueue.push(processes[index]);
-      index++;
-    }
-
-    if (!currProcess && readyQueue.length > 0) {
-      currProcess = readyQueue.shift();
-    }
-
-    if (!currProcess) {
-      if (isCancelled) {
-        return;
+  let curTime = 0; 
+  let RRQueue = [];
+  let readyQueue = [];
+  let completed = 0;
+  let newReadyProcesse = [];
+  while (completed < processes.length) {
+    processes.forEach((process) => {
+      if (process.start <= curTime && process.endTime === undefined && !readyQueue.includes(process)) {
+        newReadyProcesse.push(process);
       }
-      get_next_block(
-        { bgcolor: "#fcfcfc", color: "#000", name: "Idle" },
-        curr_tick
-      );
-      curr_tick++;
-      await sleep(SPEED);
+    });
+
+    if(readyQueue != []){
+      newReadyProcesse.reverse();
+      newReadyProcesse.forEach((process) => {
+        readyQueue.unshift(process);
+      })
+    }else{
+      newReadyProcesse.forEach((process) => {
+        readyQueue.push(process);
+      })
+    }
+    newReadyProcesse = [];
+
+    if (readyQueue.length === 0) {
+      curTime = Math.min(...processes.filter(p => p.endTime === undefined).map(p => p.start));
       continue;
     }
 
-    const timeSlice = Math.min(currProcess.remaining, 4);
+    let countProcessesReady = readyQueue.length;
+    for(let i = 0; i < countProcessesReady; i++){
+      let currProcess = readyQueue.shift();
 
-    const waitingTime = curr_tick - currProcess.lastExecution;
-    waitTimes.set(currProcess.name, waitTimes.get(currProcess.name) + waitingTime);
+      if (currProcess.remaining > q) {
 
-    for (let t = 0; t < timeSlice; t++) {
-      if (isCancelled) {
-        return;
+        RRQueue.push({ ...currProcess });
+        currProcess.remaining -= q;
+        curTime += q;
+
+      } else {
+        curTime += currProcess.remaining;
+        currProcess.endTime = curTime;
+
+        RRQueue.push({ ...currProcess });
+        currProcess.remaining = 0;
+        completed++;
       }
-      get_next_block(currProcess, curr_tick);
-      currProcess.remaining--;
-      curr_tick++;
-      await sleep(SPEED);
+
+      if (currProcess.remaining > 0) {
+        readyQueue.push(currProcess);
+      }
+
     }
-
-    currProcess.lastExecution = curr_tick;
-
-    if (currProcess.remaining > 0) {
-      readyQueue.push(currProcess);
-    }
-
-    currProcess = null;
   }
-
-  processes.forEach((process) => {
-    totalWaitTime += waitTimes.get(process.name);
-  });
-
-  const avgWaitTime = totalWaitTime / processes.length;
-  ShowAvgTime(avgWaitTime);
+  return RRQueue;
 };
 
-export { RR };
+
+
+const RR =  (processes) => {
+  processes.forEach((process) => {
+    process.remaining = undefined
+    process.endTime = undefined
+  })
+
+  let processes_ = [...RRProcessSort(processes)];
+  const AvgWaitTime = avgWaitTime(processes_);
+  Display(processes_, q);
+  ShowAvgTime(AvgWaitTime);
+  console.log(processes_)
+};
+
+
+export { RR,RRProcessSort };
 
