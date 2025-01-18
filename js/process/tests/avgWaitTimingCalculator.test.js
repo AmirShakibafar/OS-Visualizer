@@ -77,4 +77,19 @@ describe("Calculate average wait time:", () =>{
           { name: "P5", start: 20, duration: 30, endTime: 100 }
         ])).toEqual(20); // Average wait time: (0 + 5 + 15 + 30 + 50) / 5 = 20
       });
+
+      it("Test case 9: Processes with negative start times and without endTime", () => {
+        expect(
+          avgWaitTime([
+            { name: "P1", start: -3, duration: 5, remaining: 3 },
+      
+            { name: "P3", start: -1, duration: 4, remaining: 2 },
+            { name: "P2", start: 0, duration: 2, remaining: 0, endTime: 6 },
+            { name: "P1", start: -3, duration: 5, remaining: 1 },
+            
+            { name: "P3", start: -1, duration: 4, remaining: 0, endTime: 10 },
+            { name: "P1", start: -3, duration: 5, remaining: 0, endTime: 11 },
+          ])
+        ).toEqual(20/3); // Average wait time: (4 + 7 + 9) / 3 = 20/3
+      });
 })

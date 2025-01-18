@@ -20,7 +20,7 @@ vi.mock('../animation_table', () => ({
 
 /////////////////////////////     Tests    ////////////////////////////
 
-describe('FCFSProcessSort', () => {
+describe('SPNProcessSort', () => {
     it('Test case 1: Processes with no overlap', () => {
         expect(SPNProcessSort([
           { name: "P1", start: 0, duration: 3 },
