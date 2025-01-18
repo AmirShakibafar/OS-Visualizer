@@ -39,9 +39,10 @@ const HRRNProcessSort = (processes) => {
 
 
 const HRRN =  (processes) => {
-  processes = HRRNProcessSort(processes);
-  const AvgWaitTime = avgWaitTime(processes);
-  Display(processes);
+  processes.forEach((processes) => processes.endTime = undefined)
+  let processes_ = HRRNProcessSort(processes);
+  const AvgWaitTime = avgWaitTime(processes_);
+  Display(processes_);
   ShowAvgTime(AvgWaitTime);
 };
 

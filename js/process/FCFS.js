@@ -7,22 +7,24 @@ import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 const FCFSProcessSort =  (processes) =>{
   processes.sort((a, b) => a.start - b.start);
   let curTime = Number(processes[0].start);
+  let FCFSArray = processes;
 
-  processes.forEach((process) => {
+  FCFSArray.forEach((process) => {
     if (curTime < process.start)
       curTime = process.start;
     curTime += Number(process.duration) 
     process.endTime = curTime;
   })
 
-  return processes;
+  return FCFSArray;
 }
 
 
 const FCFS =  (processes) => {
-  processes = FCFSProcessSort(processes);
-  const AvgWaitTime = avgWaitTime(processes);
-  Display(processes);
+  processes.forEach((processes) => processes.endTime = undefined)
+  let processes_ = FCFSProcessSort(processes);
+  const AvgWaitTime = avgWaitTime(processes_);
+  Display(processes_);
   ShowAvgTime(AvgWaitTime);
 };
 
