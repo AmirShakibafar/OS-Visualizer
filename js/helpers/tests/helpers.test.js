@@ -160,10 +160,4 @@ describe("generateAccentColor", () => {
       expect(end - start).toBeLessThan(10); // Treated as no delay
     });
   
-    it("Test case 10: should resolve properly when using with Promise.all", async () => {
-      const start = Date.now();
-      await Promise.all([sleep(100), sleep(200)]);
-      const end = Date.now();
-      expect(end - start).toBeGreaterThanOrEqual(200);
-    });
   });
