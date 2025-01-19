@@ -36,11 +36,11 @@ const SPNProcessSort = (processes) => {
 
 
 
-const SPN =  (processes) => {
+const SPN =  async (processes) => {
   processes.forEach((processes) => processes.endTime = undefined)
   let processes_ = SPNProcessSort(processes);
   const AvgWaitTime = avgWaitTime(processes_);
-  Display(processes_);
+  await Display(processes_);
   ShowAvgTime(AvgWaitTime);
 };
 

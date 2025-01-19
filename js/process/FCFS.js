@@ -20,11 +20,11 @@ const FCFSProcessSort =  (processes) =>{
 }
 
 
-const FCFS =  (processes) => {
+const FCFS =  async (processes) => {
   processes.forEach((processes) => processes.endTime = undefined)
   let processes_ = FCFSProcessSort(processes);
   const AvgWaitTime = avgWaitTime(processes_);
-  Display(processes_);
+  await Display(processes_);
   ShowAvgTime(AvgWaitTime);
 };
 

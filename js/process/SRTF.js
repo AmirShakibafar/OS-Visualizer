@@ -50,7 +50,7 @@ const SRTFProcessSort = (processes) => {
 };
 
 
-const SRTF =  (processes) => {
+const SRTF =  async (processes) => {
   processes.forEach((process) => {
     process.remaining = undefined
     process.endTime = undefined
@@ -58,7 +58,7 @@ const SRTF =  (processes) => {
 
   let processes_ = [...SRTFProcessSort(processes)];
   const AvgWaitTime = avgWaitTime(processes_);
-  Display(processes_, q);
+  await Display(processes_, q);
   ShowAvgTime(AvgWaitTime);
   console.log(processes_)
 };

@@ -68,7 +68,7 @@ const RRProcessSort = (processes) => {
 
 
 
-const RR =  (processes) => {
+const RR =  async (processes) => {
   processes.forEach((process) => {
     process.remaining = undefined
     process.endTime = undefined
@@ -76,7 +76,7 @@ const RR =  (processes) => {
 
   let processes_ = [...RRProcessSort(processes)];
   const AvgWaitTime = avgWaitTime(processes_);
-  Display(processes_, q);
+  await Display(processes_, q);
   ShowAvgTime(AvgWaitTime);
   console.log(processes_)
 };
