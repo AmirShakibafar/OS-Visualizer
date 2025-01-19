@@ -70,7 +70,7 @@ Process Sort Documentation
 1.  **FCFSProcessSort**
 
 
-    `FCFSProcessSort(processes)`
+        `FCFSProcessSort(processes)`
 
     The **FCFS (First-Come, First-Served)** scheduling policy processes tasks in the order they **arrive**. The first process to enter the queue is the first to be executed, regardless of its duration.
 
@@ -97,7 +97,7 @@ Process Sort Documentation
 2.  **SPNProcessSort**
 
 
-    `SPNProcessSort(processes)`
+        `SPNProcessSort(processes)`
 
     The **SPN (Shortest Process Next)** scheduling policy prioritizes processes based on the **shortest execution time** at current time. The process with the shortest processing time is executed first.
 
@@ -124,7 +124,7 @@ Process Sort Documentation
 3.  **HRRNProcessSort**
 
 
-    `HRRNProcessSort(processes)`
+        `HRRNProcessSort(processes)`
 
     The **HRRN (Highest Response Ratio Next)** scheduling policy selects the process with the **highest response ratio** to execute next. The response ratio is calculated as:
     
@@ -154,7 +154,7 @@ Process Sort Documentation
 4.  **RRProcessSort**
 
 
-    `RRProcessSort(processes)`
+        `RRProcessSort(processes)`
 
     The **RR (Round Robin)** scheduling policy allocates a **fixed time slice**, called a quantum, to each process in the queue. Processes are executed in a **cyclic order**, and if a process doesn't complete within its time slice, it is **moved to the back of the queue**.
 
@@ -186,7 +186,7 @@ Process Sort Documentation
 5.  **SRTFProcessSort**
 
 
-    `SRTFProcessSort(processes)`
+        `SRTFProcessSort(processes)`
 
     The **SRTF (Shortest Remaining Time First)** scheduling policy selects the process with the **shortest remaining execution time** to execute next. If a new process arrives with a shorter remaining time than the currently running process, the current process is preempted, and the new process is executed.
     
