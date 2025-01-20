@@ -11,10 +11,11 @@ a:visited {
   color: inherit; 
 }
 
+
 body {
   background-size: 20px 20px;
-  background-image: linear-gradient(to right, #f8edeb 1px, transparent 1px),
-    linear-gradient(to bottom, #f8edeb 1px, transparent 1px);
+  background-image: linear-gradient(to right, #6e6e6e29 1px, transparent 1px),
+    linear-gradient(to bottom, #6e6e6e29 1px, transparent 1px);
 }
 
 header {
