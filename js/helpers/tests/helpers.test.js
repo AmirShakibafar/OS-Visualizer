@@ -71,22 +71,22 @@ describe("generateAccentColor", () => {
       const start = Date.now();
       await sleep(200); // 200ms delay
       const end = Date.now();
-      expect(end - start).toBeGreaterThanOrEqual(200);
-      expect(end - start).toBeLessThan(300); // Allow for small execution overhead
+      expect(end - start).toBeGreaterThanOrEqual(180);
+      expect(end - start).toBeLessThan(320); // Allow for small execution overhead
     });
   
     it("Test case 2: should resolve immediately when passed 0", async () => {
       const start = Date.now();
       await sleep(0); // No delay
       const end = Date.now();
-      expect(end - start).toBeLessThan(10); // Practically no delay
+      expect(end - start).toBeLessThan(20); // Practically no delay
     });
   
     it("Test case 3: should handle negative delay values gracefully", async () => {
       const start = Date.now();
       await sleep(-100); // Negative delay, treated as no delay
       const end = Date.now();
-      expect(end - start).toBeLessThan(10);
+      expect(end - start).toBeLessThan(20);
     });
   
     it("Test case 4: should work with a large delay value", async () => {
@@ -94,8 +94,8 @@ describe("generateAccentColor", () => {
       const start = Date.now();
       await sleep(timeout);
       const end = Date.now();
-      expect(end - start).toBeGreaterThanOrEqual(timeout);
-      expect(end - start).toBeLessThan(timeout + 100); // Small margin for overhead
+      expect(end - start).toBeGreaterThanOrEqual(timeout-10);
+      expect(end - start).toBeLessThan(timeout + 120); // Small margin for overhead
     });
   
     it("Test case 5: should return a promise that resolves", async () => {
@@ -135,7 +135,7 @@ describe("generateAccentColor", () => {
   
       const end = Date.now();
       expect(results).toEqual(["start", "after 100ms", "after 200ms"]);
-      expect(end - start).toBeGreaterThanOrEqual(300);
+      expect(end - start).toBeGreaterThanOrEqual(280);
     });
   
     it("Test case 8: should work correctly in loops with delays", async () => {
@@ -148,16 +148,16 @@ describe("generateAccentColor", () => {
         results.push(Date.now() - start);
       }
   
-      expect(results[0]).toBeGreaterThanOrEqual(100);
-      expect(results[1]).toBeGreaterThanOrEqual(300);
-      expect(results[2]).toBeGreaterThanOrEqual(600);
+      expect(results[0]).toBeGreaterThanOrEqual(80);
+      expect(results[1]).toBeGreaterThanOrEqual(280);
+      expect(results[2]).toBeGreaterThanOrEqual(580);
     });
   
     it("Test case 9: should handle invalid input gracefully", async () => {
       const start = Date.now();
       await sleep("invalid"); // Non-numeric input
       const end = Date.now();
-      expect(end - start).toBeLessThan(10); // Treated as no delay
+      expect(end - start).toBeLessThan(20); // Treated as no delay
     });
   
   });

@@ -3,6 +3,7 @@
     "vitest": "^3.0.1"
   },
   "scripts": {
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest run --coverage"
   }
 }
