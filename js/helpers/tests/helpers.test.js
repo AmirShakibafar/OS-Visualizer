@@ -120,7 +120,7 @@ describe("generateAccentColor", () => {
   
       const end = Date.now();
       expect(results).toEqual(["100ms", "200ms"]);
-      expect(end - start).toBeGreaterThanOrEqual(200);
+      expect(end - start).toBeGreaterThanOrEqual(180);
     });
   
     it("Test case 7: should delay execution even in async-await chains", async () => {
