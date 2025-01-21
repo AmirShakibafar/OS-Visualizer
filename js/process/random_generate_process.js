@@ -27,3 +27,6 @@ randomSubmitButton.addEventListener("click", () => {
     generate_random_processes(amountBox.value);
     render_processes(processes);
 });
+
+
+export { generate_start_duration, generate_random_processes }
