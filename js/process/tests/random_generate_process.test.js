@@ -63,17 +63,17 @@ describe("generate_random_processes", () => {
         processes = []
     })
   
-    it("should clear existing processes", () => {
+    it("Test case 1: should clear existing processes", () => {
         generate_random_processes(3);
         expect(clearProcesses).toHaveBeenCalledTimes(1); // Ensure processes are cleared
       });
     
-      it("should generate the correct number of processes", () => {
+      it("Test case 2: should generate the correct number of processes", () => {
         generate_random_processes(5);
         expect(processes).toHaveLength(5); // Ensure 5 processes are generated
       });
     
-      it("should populate the processes array with valid data", () => {
+      it("Test case 3: should populate the processes array with valid data", () => {
         generate_random_processes(3);
         processes.forEach((process) => {
           expect(process).toHaveProperty("start");
@@ -85,7 +85,7 @@ describe("generate_random_processes", () => {
         });
       });
     
-      it("should handle generating zero processes gracefully", () => {
+      it("Test case 4: should handle generating zero processes gracefully", () => {
         generate_random_processes(0);
         expect(processes).toHaveLength(0); // No processes should be added
         expect(clearProcesses).toHaveBeenCalled(); // Processes should still be cleared
