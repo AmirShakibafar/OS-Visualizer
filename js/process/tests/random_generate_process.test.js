@@ -1,26 +1,27 @@
-import { describe, test, it, expect, vi } from "vitest";
-import { generate_start_duration } from  "../random_generate_process.js";
+import { describe, test, it, expect, beforeEach, vi } from "vitest";
+import { 
+    generate_start_duration,
+    generate_random_processes
+ } from  "../random_generate_process.js";
+ 
+ import { 
+    processes,
+    clearProcesses 
+} from "../processes.js";
 
 
-const test_generate_start_duration = () => {
-    const start = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
-    const duration = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
-    return [start, duration]
-}
+
 // Disable DOM
 vi.mock('../process_table', () => ({
     processTable: null
   }));
 
-
-
-vi.mock('../random_generate_process', () => ({
-    processTable: null,
-    generate_start_duration: vi.fn(() => {
-        return test_generate_start_duration()
-    })
-
+vi.mock("../processes.js", () => ({
+  processes: [],
+  generateProcess: vi.fn((start, duration) => ({ start, duration })),
+  clearProcesses: vi.fn(),
 }));
+  
 
 
 /////////////////////////////     Tests    ////////////////////////////
@@ -53,3 +54,40 @@ describe('generate_start_duration', () => {
 
 
 })
+
+
+
+describe("generate_random_processes", () => {
+    beforeEach(() => {
+        vi.restoreAllMocks()
+        processes = []
+    })
+  
+    it("should clear existing processes", () => {
+        generate_random_processes(3);
+        expect(clearProcesses).toHaveBeenCalledTimes(1); // Ensure processes are cleared
+      });
+    
+      it("should generate the correct number of processes", () => {
+        generate_random_processes(5);
+        expect(processes).toHaveLength(5); // Ensure 5 processes are generated
+      });
+    
+      it("should populate the processes array with valid data", () => {
+        generate_random_processes(3);
+        processes.forEach((process) => {
+          expect(process).toHaveProperty("start");
+          expect(process).toHaveProperty("duration");
+          expect(process.start).toBeGreaterThanOrEqual(1);
+          expect(process.start).toBeLessThanOrEqual(20);
+          expect(process.duration).toBeGreaterThanOrEqual(1);
+          expect(process.duration).toBeLessThanOrEqual(20);
+        });
+      });
+    
+      it("should handle generating zero processes gracefully", () => {
+        generate_random_processes(0);
+        expect(processes).toHaveLength(0); // No processes should be added
+        expect(clearProcesses).toHaveBeenCalled(); // Processes should still be cleared
+      });
+});

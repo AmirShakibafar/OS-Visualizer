@@ -2,8 +2,11 @@ import { processes, generateProcess, clearProcesses } from "./processes.js";
 import { render_processes } from "./process_table.js";
 import { correctInputSize, allowNumbersOnly } from "../helpers/inputValidation.js";
 
-const amountBox = document.getElementById("amount-box");
-const randomSubmitButton = document.getElementById("proccess-generator");
+
+// we need typeof document !== "undefined" to handle test cases
+const amountBox = typeof document !== "undefined" ? document.getElementById("amount-box") : null;
+const randomSubmitButton = typeof document !== "undefined" ? document.getElementById("proccess-generator") : null;
+
 
 const generate_start_duration = () => {
     const start = Math.floor(Math.random() * (20 - 1 + 1)) + 1;
@@ -18,15 +21,17 @@ const generate_random_processes = (amount) => {
     }
 
 };
-amountBox.addEventListener("input", () => correctInputSize(amountBox));
-allowNumbersOnly(amountBox);
-randomSubmitButton.addEventListener("click", () => {
-    if (!amountBox) {
-        return;
-    }
-    generate_random_processes(amountBox.value);
-    render_processes(processes);
-});
 
+if (amountBox !== null){
+    amountBox.addEventListener("input", () => correctInputSize(amountBox));
+    allowNumbersOnly(amountBox);
+    randomSubmitButton.addEventListener("click", () => {
+        if (!amountBox) {
+            return;
+        }
+        generate_random_processes(amountBox.value);
+        render_processes(processes);
+    });
+}
 
 export { generate_start_duration, generate_random_processes }
