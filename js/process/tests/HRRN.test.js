@@ -1,5 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
-import { HRRNProcessSort } from "../HRRN.js";
+import { HRRN, HRRNProcessSort } from "../HRRN.js";
+import { ShowAvgTime } from "../animation_table.js";
+import { avgWaitTime } from "../avgWaitTimeCalculator.js"
+import { Display } from "../display.js";
 
 
 // Disable DOM
@@ -12,8 +15,18 @@ vi.mock("../manual_add_process", () => ({
 vi.mock("../timing_policies", () => ({
   policy: null,
 }));
-vi.mock("../animation_table", () => ({
+vi.mock('../animation_table', () => ({
   policy: null,
+  ShowAvgTime: vi.fn()
+}));
+
+vi.mock('../avgWaitTimeCalculator', () => ({
+  avgWaitTime: vi.fn((s) => {return 1}),
+  
+}));
+vi.mock('../display', () => ({
+  Display: vi.fn((s) => {return}),
+  
 }));
 
 
@@ -200,3 +213,26 @@ describe("HRRNProcessSort", () => {
     ]);
   });
 });
+
+
+
+describe('HRRN', () => {
+  it('Test case 1: sould send correct value to another functions', () => {
+    const processes = [
+      { name: "P1", start: 0, duration: 5 },
+      { name: "P2", start: 3, duration: 7 },
+    ];
+    const sortedProcesses = [
+      { name: "P1", start: 0, duration: 5, endTime:5 },
+      { name: "P2", start: 3, duration: 7, endTime:12 },
+    ];
+    const averageWaitTime = 1;
+
+    HRRN(processes)
+    expect(processes.every(p => p.endTime !== undefined)).toBe(true);
+    //expect(HRRNProcessSort).toHaveBeenCalledWith(processes);
+    expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
+    expect(Display).toHaveBeenCalledWith(sortedProcesses);
+    //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
+  });
+})
