@@ -18,9 +18,6 @@ const SPNProcessSort = (processes) => {
 
     readyToProcess.sort((a, b) => a.duration - b.duration);
     if (readyToProcess.length > 0) {
-      if (curTime < Number(readyToProcess[0].start)) {
-        curTime = Number(readyToProcess[0].start);
-      }
 
       curTime += Number(readyToProcess[0].duration);
       readyToProcess[0].endTime = curTime;
