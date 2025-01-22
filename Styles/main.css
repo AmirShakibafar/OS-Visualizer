@@ -177,6 +177,15 @@ header {
   border-color: #6e6e6e;
 }
 
+.delete {
+  text-align: center;
+}
+
+.delete:hover {
+  background-color: #cccccc;
+  cursor: pointer;
+}
+
 .submit-button:active,
 .control-button:active {
   transform: translateY(2px);

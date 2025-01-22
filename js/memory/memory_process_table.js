@@ -1,8 +1,8 @@
-import { getMemoryBlocks, reArrangeMemoryBlocks, clearMemoryBlocks } from "./memory_blocks.js";
+import { getMemoryBlocks, reArrangeMemoryBlocks, clearMemoryBlocks, deleteMemoryBlock } from "./memory_blocks.js";
 const memoryTable = document.getElementById("memory-process-table-body");
 const clearTableButton = document.getElementById("memory-reset-table-button");
 
-const createNewRow = (process) => {
+const createNewRow = (process, processes) => {
   const row = document.createElement("tr");
 
   const nameCell = document.createElement("td");
@@ -24,6 +24,12 @@ const createNewRow = (process) => {
   const colorCell = document.createElement("td");
   colorCell.style.backgroundColor = process.bgColor;
   row.appendChild(colorCell);
+
+  const deleteCell = document.createElement("td");
+  deleteCell.textContent = "Delete";
+  deleteCell.classList.add("delete");
+  deleteCell.onclick = () => deleteMemoryBlock(process.name, row);
+  row.appendChild(deleteCell);
 
   return row;
 };
