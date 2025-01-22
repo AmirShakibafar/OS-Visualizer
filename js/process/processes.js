@@ -17,4 +17,13 @@ const generateProcess = (start, duration) => {
 const clearProcesses = () => {
   processes = [];
 };
-export { processes, generateProcess, clearProcesses };
+
+const removeProcess = (name, row) => {
+  const index = processes.findIndex(proc => proc.name === name);
+  if (index !== -1) {
+    processes.splice(index, 1);
+    row.remove();
+  }
+};
+
+export { processes, generateProcess, clearProcesses, removeProcess };
