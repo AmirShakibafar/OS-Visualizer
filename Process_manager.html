@@ -26,55 +26,46 @@
     </header>
     <section class="user-interactions-section">
       <div>
-        <label for="upload-box" id="upload-area">
-          <input type="file" id="upload-box" hidden />
-          <div class="upload-box-text">
-            <img src="images/upload.svg" alt="" />
-            <p>drag and drop or click here <br />to upload your text file</p>
-            <span>make sure its in the correct format</span>
-          </div>
-        </label>
+        <img src="./images/cpu 2 Background Removed.png" alt="cpu image" class="hero-img"/>
       </div>
       <div class="seperation-line"></div>
-      <div>
-        <div>
-          <h2 class="input-title">Add New Process</h2>
-          <div>
-            <input
-              type="text"
-              class="short-input-type arrival"
-              placeholder="arrival"
-              id="arrive-time"
-            />
-            <input
-              type="text"
-              class="short-input-type duration"
-              placeholder="duration"
-              id="duration"
-            />
-            <button id="process-adder" class="submit-button blue">
-              submit
-            </button>
-          </div>
-        </div>
-        <div>
-          <h2 class="input-title">Generate Proceses Randomly</h2>
-          <div class="generate-random-procces-inputs">
-            <input
-              type="text"
-              id="amount-box"
-              class="short-input-type"
-              placeholder="how many? "
-            />
-            <button id="proccess-generator" class="submit-button blue">
-              submit
-            </button>
-          </div>
-        </div>
+      <div class="tab-container">
+        <ul class="tab-options" id="tab-options">
+          <li class="tab active" data-target="panel-one">Create New Process</li>
+          <li class="tab" data-target="panel-two">Generate Processes Randomly</li>
+        </ul>
+        <div class="tab-panels">
+            <div id="panel-one" class="tab-panel active-body">
+              <input
+                type="text"
+                class="short-input-type arrival"
+                placeholder="arrival"
+                id="arrive-time"
+              />
+              <input
+                type="text"
+                class="short-input-type duration"
+                placeholder="duration"
+                id="duration"
+              />
+              <button id="process-adder" class="submit-button blue">
+                submit
+              </button>
+            </div>
+            <div id="panel-two" class="tab-panel">
+              <input
+                type="text"
+                id="amount-box"
+                class="short-input-type"
+                placeholder="how many? "
+              />
+              <button id="proccess-generator" class="submit-button blue">
+                submit
+              </button>
+            </div>
       </div>
     </section>
-    <section id="message-area">
-    </section>
+    <section id="message-area"></section>
     <section class="main-area">
       <div class="animation-area">
         <div class="animation-controls">
@@ -140,14 +131,17 @@
     <footer>
       <h3>
         made with <span class="material-symbols-outlined"> favorite </span> by
-        <a class="link-linkedin" href="https://www.linkedin.com/in/amirshakibafar/"
-          >Amir Shakibafar</a 
+        <a
+          class="link-linkedin"
+          href="https://www.linkedin.com/in/amirshakibafar/"
+          >Amir Shakibafar</a
         >
       </h3>
     </footer>
   </body>
   <script type="module" src="./js/helpers/helpers.js"></script>
   <script type="module" src="./js/helpers/inputValidation.js"></script>
+  <script type="module" src="./js/helpers/input_tab_view.js"></script>
   <script type="module" src="./js/helpers/p_queue.js"></script>
   <script type="module" src="./js/process/processes.js"></script>
   <script type="module" src="./js/process/process_table.js"></script>
