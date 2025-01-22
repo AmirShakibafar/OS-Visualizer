@@ -1,9 +1,9 @@
-import { clearProcesses} from "./processes.js";
+import { clearProcesses, removeProcess} from "./processes.js";
 import { processes } from "./processes.js";
 const processTable = document.getElementById("process-table-body");
 const resetTableButton = document.getElementById("reset-table-button");
 
-const createNewRow = (process) => {
+const createNewRow = (process, processes) => {
   const row = document.createElement("tr");
 
   const nameCell = document.createElement("td");
@@ -22,8 +22,16 @@ const createNewRow = (process) => {
   colorCell.style.backgroundColor = process.bgcolor;
   row.appendChild(colorCell);
 
+  const deleteCell = document.createElement("td");
+  deleteCell.textContent = "delete";
+  deleteCell.classList.add("delete");
+  deleteCell.style.cursor = "pointer";
+  deleteCell.onclick = () => removeProcess(process.name, row);
+  row.appendChild(deleteCell);
+
   return row;
 };
+
 
 const reEvaluateTable = (processes) => {
   processes.sort((a, b) => a.start - b.start); 

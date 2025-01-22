@@ -25,22 +25,16 @@
       </nav>
     </header>
     <section class="user-interactions-section">
-      <div>
-        <label for="memory-upload-box" id="upload-area">
-          <input type="file" id="memory-upload-box" hidden />
-          <div class="upload-box-text">
-            <img src="images/upload.svg" alt="" />
-            <p>drag and drop or click here <br />to upload your text file</p>
-            <span>make sure its in the correct format</span>
-          </div>
-        </label>
-      </div>
+      <img src="./images/ram.webp" alt="ram" class="hero-img">
       <div class="seperation-line"></div>
-      <div>
-        <div>
-          <h2 class="input-title">Add New Process Block</h2>
-          <div>
-            <input
+      <div class="tab-container">
+        <ul class="tab-options" id="tab-options">
+          <li class="tab active" data-target="panel-one">Create New Process</li>
+          <li class="tab" data-target="panel-two">Generate Processes Randomly</li>
+        </ul>
+        <div class="tab-panels">
+            <div id="panel-one" class="tab-panel active-body">
+              <input
               type="text"
               class="short-input-type"
               placeholder="arrival"
@@ -61,12 +55,9 @@
             <button id="process-block-adder" class="submit-button blue">
               submit
             </button>
-          </div>
-        </div>
-        <div>
-          <h2 class="input-title">Generate Blocks Randomly</h2>
-          <div>
-            <input
+            </div>
+            <div id="panel-two" class="tab-panel">
+              <input
               type="text"
               id="number-of-randoms"
               class="short-input-type"
@@ -75,8 +66,9 @@
             <button id="random-proccess-generator" class="submit-button blue">
               submit
             </button>
-          </div>
-        </div>
+            </div>
+      </div>
+      <div>
       </div>
     </section>
     <section id="message-area">
@@ -144,6 +136,7 @@
               <th>duration</th>
               <th>size</th>
               <th>color</th>
+              <th>option</th>
             </tr>
           </thead>
           <tbody id="memory-process-table-body"></tbody>
@@ -159,6 +152,7 @@
       </h3>
     </footer>
   </body>
+  <script type="module" src="./js/helpers/input_tab_view.js"></script>
   <script type="module" src="./js/memory/memory_space.js"></script>
   <script type="module" src="./js/memory/memory_table.js"></script>
   <script type="module" src="./js/memory/file_reader.js"></script>
