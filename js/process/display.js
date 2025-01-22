@@ -66,4 +66,4 @@ const Display = async (processes, q = 0) => {
 };
 
 
-export { Display };
+export { Display, handleIdleState, processExecution };
