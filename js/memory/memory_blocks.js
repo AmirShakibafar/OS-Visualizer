@@ -29,9 +29,19 @@ const reArrangeMemoryBlocks = () => {
   });
 };
 
+const deleteMemoryBlock = (name, row) => {
+  const memoryBlocks = getMemoryBlocks();
+  const index = memoryBlocks.findIndex(proc => proc.name === name);
+  if (index !== -1) {
+    memoryBlocks.splice(index, 1);
+    row.remove();
+  }
+};
+
 export {
   clearMemoryBlocks,
   addToMemoryBlocks,
   reArrangeMemoryBlocks,
   getMemoryBlocks,
+  deleteMemoryBlock
 };
