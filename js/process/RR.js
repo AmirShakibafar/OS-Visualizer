@@ -21,7 +21,7 @@ const RRProcessSort = (processes) => {
       }
     });
 
-    if(readyQueue != []){
+    if(readyQueue.length != 0){
       newReadyProcesse.reverse();
       newReadyProcesse.forEach((process) => {
         readyQueue.unshift(process);
