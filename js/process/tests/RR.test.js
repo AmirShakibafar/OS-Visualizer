@@ -1,5 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
-import { RRProcessSort } from "../RR.js";
+import { RR, RRProcessSort } from "../RR.js";
+import { Display } from "../display.js";
+import { avgWaitTime } from "../avgWaitTimeCalculator.js"
+import { ShowAvgTime } from "../animation_table.js";
 
 
 // Disable DOM
@@ -12,8 +15,18 @@ vi.mock("../manual_add_process", () => ({
 vi.mock("../timing_policies", () => ({
   policy: null,
 }));
-vi.mock("../animation_table", () => ({
+vi.mock('../animation_table', () => ({
   policy: null,
+  ShowAvgTime: vi.fn()
+}));
+
+vi.mock('../avgWaitTimeCalculator', () => ({
+  avgWaitTime: vi.fn((s) => {return 1}),
+  
+}));
+vi.mock('../display', () => ({
+  Display: vi.fn((s) => {return}),
+  
 }));
 
 
@@ -270,3 +283,31 @@ describe("RRProcessSort", () => {
     ]);
   });
 });
+
+
+describe('RR', () => {
+  it('Test case 1: sould send correct value to another functions', () => {
+    const processes = [
+      { name: "P1", start: 0, duration: 3 },
+      { name: "P2", start: 5, duration: 2 },
+      { name: "P3", start: 10, duration: 1 }
+    ];
+    const sortedProcesses = [
+      { name: "P1", start: 0, duration: 3, remaining: 3 },
+      { name: "P1", start: 0, duration: 3, remaining: 1, endTime: 3 },
+
+      { name: "P2", start: 5, duration: 2, remaining: 2, endTime: 7 },
+
+      { name: "P3", start: 10, duration: 1, remaining: 1, endTime: 11 },
+    ];
+    const averageWaitTime = 0;
+    const q = 2;
+
+    RR(processes)
+    expect(processes.every(p => p.endTime !== undefined)).toBe(true);
+    //expect(SPNProcessSort).toHaveBeenCalledWith(processes);
+    expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
+    expect(Display).toHaveBeenCalledWith(sortedProcesses, q);
+    //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
+  });
+})

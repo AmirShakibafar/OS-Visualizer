@@ -1,5 +1,8 @@
 import { describe, test, it, expect, vi } from "vitest";
-import {SPNProcessSort} from  "../SPN.js";
+import { SPN, SPNProcessSort } from  "../SPN.js";
+import { ShowAvgTime } from "../animation_table.js";
+import { avgWaitTime } from "../avgWaitTimeCalculator.js"
+import { Display } from "../display.js";
 
 
 // Disable DOM
@@ -13,7 +16,17 @@ vi.mock('../timing_policies', () => ({
     policy: null
   }));
 vi.mock('../animation_table', () => ({
-    policy: null
+    policy: null,
+    ShowAvgTime: vi.fn()
+  }));
+
+vi.mock('../avgWaitTimeCalculator', () => ({
+    avgWaitTime: vi.fn((s) => {return 1}),
+    
+  }));
+vi.mock('../display', () => ({
+    Display: vi.fn((s) => {return}),
+    
   }));
 
 
@@ -23,11 +36,11 @@ vi.mock('../animation_table', () => ({
 describe('SPNProcessSort', () => {
     it('Test case 1: Processes with no overlap', () => {
         expect(SPNProcessSort([
-          { name: "P1", start: 0, duration: 3 },
+          { name: "P1", start: 1, duration: 3 },
           { name: "P2", start: 5, duration: 2 },
           { name: "P3", start: 10, duration: 1 }
         ])).toStrictEqual([
-          { name: "P1", start: 0, duration: 3, endTime: 3 },
+          { name: "P1", start: 1, duration: 3, endTime: 4 },
           { name: "P2", start: 5, duration: 2, endTime: 7 },
           { name: "P3", start: 10, duration: 1, endTime: 11 }
         ]);
@@ -192,4 +205,26 @@ describe('SPNProcessSort', () => {
           { name: "P16", start: 15, duration: 7, endTime: 81 }
         ]);
       });
+})
+
+
+describe('SPN', () => {
+  it('Test case 1: sould send correct value to another functions', () => {
+    const processes = [
+      { name: "P1", start: 0, duration: 5 },
+      { name: "P2", start: 3, duration: 7 },
+    ];
+    const sortedProcesses = [
+      { name: "P1", start: 0, duration: 5, endTime:5 },
+      { name: "P2", start: 3, duration: 7, endTime:12 },
+    ];
+    const averageWaitTime = 1;
+
+    SPN(processes)
+    expect(processes.every(p => p.endTime !== undefined)).toBe(true);
+    //expect(SPNProcessSort).toHaveBeenCalledWith(processes);
+    expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
+    expect(Display).toHaveBeenCalledWith(sortedProcesses);
+    //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
+  });
 })
