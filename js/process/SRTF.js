@@ -60,6 +60,5 @@ const SRTF =  async (processes) => {
   const AvgWaitTime = avgWaitTime(processes_);
   await Display(processes_, q);
   ShowAvgTime(AvgWaitTime);
-  console.log(processes_)
 };
 export { SRTFProcessSort, SRTF };
