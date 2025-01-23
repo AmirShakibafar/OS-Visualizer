@@ -49,3 +49,14 @@ describe("generateProcess", () => {
       expect(process.name).toBe("P1");
     });
   });
+describe("clearProcesses", () => {
+    beforeEach(() => {
+      // Clear mocks and reset the processes array
+      vi.clearAllMocks;
+    });
+  
+    it("Test case 1: delete all processes", () => {
+     clearProcesses();
+     expect(processes.length).toBe(0);
+    });
+  });
