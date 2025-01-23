@@ -58,7 +58,7 @@ describe("clearProcesses", () => {
   
     it("Test case 1: delete all processes", () => {
   
-     processes = [{value:'some stuff 1'},{value:'some stuff 2'}]
+     processes = [1,2]
      clearProcesses();
      expect(processes.length).toBe(0);
     });
