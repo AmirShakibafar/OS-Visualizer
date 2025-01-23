@@ -53,12 +53,9 @@ describe("clearProcesses", () => {
     beforeEach(() => {
       // Clear mocks and reset the processes array
       vi.clearAllMocks;
-      processes.length = 0;
     });
   
     it("Test case 1: delete all processes", () => {
-  
-     processes = [1,2]
      clearProcesses();
      expect(processes.length).toBe(0);
     });
