@@ -76,3 +76,57 @@ describe('processExecution', () => {
       expect(get_next_block).toBeCalledTimes(0);
     });
 })
+
+
+
+
+describe('Display', () => {
+  beforeEach(()=>{
+      vi.clearAllMocks()
+  })
+
+  it('Test case 1: sould send correct value to another functions if q = 0',async () => {
+    isCancelled = false
+    await Display([{ name: "P1", start: 2, duration: 3, endTime: 5 }])
+    
+    expect(get_next_block).toBeCalledTimes(5);
+
+    // run handleIdleState
+    expect(get_next_block).toHaveBeenCalledWith({ bgcolor: "#fcfcfc", color: "#000", name: "Idle" },0);
+    expect(get_next_block).toHaveBeenCalledWith({ bgcolor: "#fcfcfc", color: "#000", name: "Idle" },1);
+    
+    // any obj shold have bgcolor and color property in real
+    // run processExecution
+    expect(get_next_block).toHaveBeenCalledWith({ name: "P1", start: 2, duration: 3, endTime: 5 }, 2);
+    expect(get_next_block).toHaveBeenCalledWith({ name: "P1", start: 2, duration: 3, endTime: 5 }, 3);
+    expect(get_next_block).toHaveBeenCalledWith({ name: "P1", start: 2, duration: 3, endTime: 5 }, 4);
+  });
+
+  it('Test case 2: sould return if isCancelled is true', async () => {
+    isCancelled = true;
+    await Display([{ name: "P1", start: 2, duration: 3, endTime: 3 }])
+    expect(get_next_block).toBeCalledTimes(0);
+  });
+
+  it('Test case 3: sould send correct value to another functions if q != 0',async () => {
+    isCancelled = false;
+    const q = 2;
+    await Display([
+      { name: "P1", start: 2, duration: 3, remaining: 3 },
+      { name: "P1", start: 2, duration: 3, remaining: 1, endTime: 5 }
+    ], q)
+    
+    expect(get_next_block).toBeCalledTimes(5);
+
+    // run handleIdleState
+    expect(get_next_block).toHaveBeenCalledWith({ bgcolor: "#fcfcfc", color: "#000", name: "Idle" },0);
+    expect(get_next_block).toHaveBeenCalledWith({ bgcolor: "#fcfcfc", color: "#000", name: "Idle" },1);
+    
+    // any obj shold have bgcolor and color property in real
+    // run processExecution
+    expect(get_next_block).toHaveBeenCalledWith({ name: "P1", start: 2, duration: 3, remaining: 3 }, 2);
+    expect(get_next_block).toHaveBeenCalledWith({ name: "P1", start: 2, duration: 3, remaining: 3 }, 3);
+    expect(get_next_block).toHaveBeenCalledWith({ name: "P1", start: 2, duration: 3, remaining: 1, endTime: 5 }, 4);
+  });
+})
+
