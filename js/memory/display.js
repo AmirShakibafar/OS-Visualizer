@@ -1,8 +1,8 @@
 import {
-    getMemorySpaces,
-    clearMemorySpaces,
-    deAllocateMemorySpace,
-  } from "./memory_space.js";
+  getMemorySpaces,
+  clearMemorySpaces,
+  deAllocateMemorySpace,
+} from "./memory_space.js";
 import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
 import { updateTime, resetTime } from "./timer.js";
@@ -13,7 +13,22 @@ import { findFirstFit } from "./first_fit.js";
 import { findWorstFit } from "./worst_fit.js";
 import { findNextFit } from "./next_fit.js";
 
-const Display = async (isCancelled, type_of_memory) =>  {
+const getMemoryAlgorithm = (typeOfMemory) => {
+  switch (typeOfMemory) {
+    case "first_fit":
+      return findFirstFit;
+    case "worst_fit":
+      return findWorstFit;
+    case "next_fit":
+      return findNextFit;
+    case "best_fit":
+      return findBestFit;
+    default:
+      return undefined;
+  }
+};
+
+const Display = async (isCancelled, typeOfMemory) => {
   const processBlocks = getMemoryBlocks();
   clearMemorySpaces();
   resetTime();
@@ -35,22 +50,7 @@ const Display = async (isCancelled, type_of_memory) =>  {
       await sleep(currentSpeed);
     }
     if (isCancelled()) return;
-    switch (type_of_memory){
-        case "first_fit":
-            await findFirstFit(process, isCancelled)
-            break
-        case "worst_fit":
-            await findWorstFit(process, isCancelled)
-            break
-        case "next_fit":
-            await findNextFit(process, isCancelled)
-            break
-        case "best_fit":
-            await findBestFit(process, isCancelled)
-            break
-        
-    }
-    await findFirstFit(process, isCancelled);
+    await getMemoryAlgorithm(typeOfMemory)(process, isCancelled);
     updateTime(currTick);
     await sleep(currentSpeed);
   }
@@ -74,6 +74,6 @@ const Display = async (isCancelled, type_of_memory) =>  {
     updateTime(currTick);
     await sleep(currentSpeed);
   }
-}
+};
 
-export {Display}
+export { Display };
