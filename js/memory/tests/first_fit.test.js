@@ -1,15 +1,19 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { findFirstFit } from "../first_fit"; // Assuming the file name
+import { executeFirstFit, findFirstFit } from "../first_fit"; // Assuming the file name
 import {
   getMemorySpaces,
+  clearMemorySpaces,
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
-} from "../memory_space";
+  deAllocateMemorySpace,
+} from "../memory_space.js";
 import { sleep } from "../../helpers/helpers";
 import { renderMemorySections } from "../memory_table";
 import { showMessage } from "../../helpers/message";
 import { currentSpeed } from "../speed";
+import { updateTime, resetTime } from "../timer.js";
+import { getMemoryBlocks } from "../memory_blocks.js";
 
 // Mock dependencies
 vi.mock("../memory_space", () => ({
@@ -17,6 +21,8 @@ vi.mock("../memory_space", () => ({
   allocateMemorySpace: vi.fn(),
   checkIfRangeEmpty: vi.fn(),
   updateHoverState: vi.fn(),
+  clearMemorySpaces: vi.fn(),
+  deAllocateMemorySpace: vi.fn()
 }));
 
 
@@ -44,6 +50,10 @@ vi.mock("../speed", () => ({
 vi.mock("../timer", () => ({
   updateTime: vi.fn(),
   resetTime: vi.fn(),
+}));
+
+vi.mock("../memory_blocks", () => ({
+  getMemoryBlocks: vi.fn(),
 }));
 
 
@@ -136,5 +146,146 @@ describe("findFirstFit", () => {
     expect(allocateMemorySpace).toHaveBeenCalledWith(30, processBlock);
     expect(renderMemorySections).toHaveBeenCalled();
     expect(showMessage).toHaveBeenCalledWith("found empty block for ProcessE at index: 30", "success");
+  });
+});
+
+
+describe("executeFirstFit", () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+    clearMemorySpaces.mockClear();
+    resetTime.mockClear();
+    updateTime.mockClear();
+    allocateMemorySpace.mockClear();
+    getMemorySpaces.mockReturnValue(
+      Array.from({ length: 64 }, (_, i) => ({
+        processName: "empty",
+        blockExitTime: null,
+        isActive: false,
+        blockIndex: i,
+      }))
+    );
+  });
+/*
+  it("Test case 1: should allocate memory for all processes in order", async () => {
+    getMemoryBlocks.mockReturnValue([
+      { name: "Process1", blockSize: 5, blockArrival: 0, blockExitTime: 10 },
+      { name: "Process2", blockSize: 10, blockArrival: 5, blockExitTime: 15 },
+    ]);
+    await executeFirstFit(() => false);
+
+    expect(clearMemorySpaces).toHaveBeenCalled();
+    expect(resetTime).toHaveBeenCalled();
+    expect(allocateMemorySpace).toHaveBeenCalledTimes(2);
+    expect(allocateMemorySpace).toHaveBeenCalledWith(0, {
+      name: "Process1",
+      blockSize: 5,
+      blockArrival: 0,
+      blockExitTime: 10,
+    });
+    expect(allocateMemorySpace).toHaveBeenCalledWith(5, {
+      name: "Process2",
+      blockSize: 10,
+      blockArrival: 5,
+      blockExitTime: 15,
+    });
+    expect(renderMemorySections).toHaveBeenCalled();
+    expect(showMessage).toHaveBeenCalledWith(
+      "found empty block for Process1 at index: 0",
+      "success"
+    );
+  });
+*/
+  it("Test case 2: should fail to allocate memory when no space is available", async () => {
+    getMemoryBlocks.mockReturnValue([
+      { name: "Process1", blockSize: 65, blockArrival: 0, blockExitTime: 10 },
+    ]);
+    await executeFirstFit(() => false);
+
+    expect(clearMemorySpaces).toHaveBeenCalled();
+    expect(resetTime).toHaveBeenCalled();
+    expect(allocateMemorySpace).not.toHaveBeenCalled();
+    expect(showMessage).toHaveBeenCalledWith(
+      "No available memory block found for Process1!",
+      "fail"
+    );
+  });
+/*
+  it("Test case 3: should deallocate memory as time progresses", async () => {
+    getMemoryBlocks.mockReturnValue([
+      { name: "Process1", blockSize: 5, blockArrival: 0, blockExitTime: 10 },
+    ]);
+
+    deAllocateMemorySpace.mockImplementation((currTick) => {
+      if (currTick >= 10) {
+        getMemorySpaces.mockReturnValueOnce(
+          Array.from({ length: 64 }, (_, i) => ({
+            processName: "empty",
+            blockExitTime: null,
+            isActive: false,
+            blockIndex: i,
+          }))
+        );
+        return true;
+      }
+      return false;
+    });
+
+    await executeFirstFit(() => false);
+
+    expect(deAllocateMemorySpace).toHaveBeenCalled();
+    expect(updateTime).toHaveBeenCalledWith(10);
+  });
+*/
+  it("Test case 4: should stop execution if cancelled", async () => {
+    getMemoryBlocks.mockReturnValue([
+      { name: "Process1", blockSize: 5, blockArrival: 0, blockExitTime: 10 },
+      { name: "Process2", blockSize: 10, blockArrival: 5, blockExitTime: 15 },
+    ]);
+
+    const isCancelled = vi.fn();
+    isCancelled.mockReturnValueOnce(true);
+
+    await executeFirstFit(isCancelled);
+
+    expect(allocateMemorySpace).toHaveBeenCalledTimes(0);
+    expect(isCancelled).toHaveBeenCalled();
+  });
+/*
+  it("Test case 5: should handle cyclic memory allocation", async () => {
+    getMemoryBlocks.mockReturnValue([
+      { name: "Process1", blockSize: 5, blockArrival: 0, blockExitTime: 10 },
+      { name: "Process2", blockSize: 60, blockArrival: 5, blockExitTime: 15 },
+    ]);
+
+    await executeFirstFit(() => false);
+
+    expect(allocateMemorySpace).toHaveBeenCalledTimes(2);
+    expect(allocateMemorySpace).toHaveBeenCalledWith(0, {
+      name: "Process1",
+      blockSize: 5,
+      blockArrival: 0,
+      blockExitTime: 10,
+    });
+    expect(allocateMemorySpace).toHaveBeenCalledWith(5, {
+      name: "Process2",
+      blockSize: 60,
+      blockArrival: 5,
+      blockExitTime: 15,
+    });
+  });
+*/
+  it("Test case 6: should continue processing after deallocation", async () => {
+    getMemoryBlocks.mockReturnValue([
+      { name: "Process1", blockSize: 5, blockArrival: 0, blockExitTime: 5 },
+      { name: "Process2", blockSize: 5, blockArrival: 6, blockExitTime: 15 },
+    ]);
+
+    deAllocateMemorySpace.mockReturnValueOnce(true).mockReturnValueOnce(false);
+
+    await executeFirstFit(() => false);
+
+    expect(deAllocateMemorySpace).toHaveBeenCalled();
+    expect(allocateMemorySpace).toHaveBeenCalledTimes(2);
   });
 });
