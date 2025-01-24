@@ -12,6 +12,7 @@ import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
 import { updateTime, resetTime } from "./timer.js";
 import { currentSpeed } from "./speed.js";
+import { Display } from "./display.js";
 
 const findBestFit = async (processBlock, isCancelled) => {
   const memorySpaces = getMemorySpaces();
@@ -58,51 +59,7 @@ const findBestFit = async (processBlock, isCancelled) => {
 };
 
 const executeBestFit = async (isCancelled) => {
-  const processBlocks = getMemoryBlocks();
-  clearMemorySpaces();
-  resetTime();
-  let currTick = 0;
-
-  for (const process of processBlocks) {
-    while (currTick < process.blockArrival) {
-      if (isCancelled()) return;
-      let mustGetDeAllocated = deAllocateMemorySpace(currTick);
-      while (mustGetDeAllocated) {
-        if (isCancelled()) return;
-        await sleep(currentSpeed);
-        mustGetDeAllocated = deAllocateMemorySpace(currTick);
-        renderMemorySections();
-      }
-
-      currTick++;
-      updateTime(currTick);
-      await sleep(currentSpeed);
-    }
-    if (isCancelled()) return;
-    await findBestFit(process, isCancelled);
-    updateTime(currTick);
-    await sleep(currentSpeed);
-  }
-
-  while (true) {
-    if (isCancelled()) return;
-    let mustGetDeAllocated = deAllocateMemorySpace(currTick);
-    const activeProcesses = getMemorySpaces().some((space) => space.isActive);
-    if (!activeProcesses) {
-      break;
-    }
-
-    while (mustGetDeAllocated) {
-      if (isCancelled()) return;
-      await sleep(currentSpeed);
-      mustGetDeAllocated = deAllocateMemorySpace(currTick);
-      renderMemorySections();
-    }
-
-    currTick++;
-    updateTime(currTick);
-    await sleep(currentSpeed);
-  }
+  Display(isCancelled, "best_fit")
 };
 
 export { findBestFit, executeBestFit };
