@@ -96,4 +96,4 @@ const executeFirstFit = async (isCancelled) => {
   }
 };
 
-export {executeFirstFit};
+export {executeFirstFit, findFirstFit};
