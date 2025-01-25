@@ -38,7 +38,6 @@ const findBestFit = async (processBlock, isCancelled) => {
         bestFitSize = emptyRangeSize;
         bestFitIndex = startIndex
       }
-      console.log(bestFitIndex, bestFitSize)
 
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
