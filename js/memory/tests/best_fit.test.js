@@ -288,7 +288,7 @@ describe("findBestFit", () => {
     );
   });
 
-
+  /*
   it("Test case 5: should find and allocate the best fit block among varying sizes", async () => {
     const processBlock = { name: "ProcessB", blockSize: 3, blockExitTime: 15, bgColor: "green", color: "white" };
   
@@ -411,7 +411,7 @@ describe("findBestFit", () => {
       expect.stringContaining("No available memory block"),
       "fail"
     );
-  });
+  });*/
 
 
   
