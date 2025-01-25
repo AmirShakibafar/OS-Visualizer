@@ -7,4 +7,8 @@ const getContextSwitch = () => {
     return Number(contextSwitch.value) || 0;
 }
 
-export {getContextSwitch}
+const resetContextInputBox = () => {
+    contextSwitch.value = ""
+}
+
+export {getContextSwitch, resetContextInputBox}
