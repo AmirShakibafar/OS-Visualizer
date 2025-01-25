@@ -14,6 +14,7 @@ import { showMessage } from "../../helpers/message";
 import { currentSpeed } from "../speed";
 import { updateTime, resetTime } from "../timer.js";
 import { getMemoryBlocks } from "../memory_blocks.js";
+import { Display } from "../display.js";
 
 // Mock dependencies
 vi.mock("../memory_space", () => ({
@@ -24,6 +25,10 @@ vi.mock("../memory_space", () => ({
   clearMemorySpaces: vi.fn(),
   deAllocateMemorySpace: vi.fn()
 }));
+
+vi.mock("../display", () => ({
+  Display: vi.fn(),
+}))
 
 
 vi.mock('../../helpers/message', () => ({
@@ -148,3 +153,12 @@ describe("findFirstFit", () => {
     expect(showMessage).toHaveBeenCalledWith("found empty block for ProcessE at index: 30", "success");
   });
 });
+
+
+describe("executeFirstFit", () =>{
+  it("Test case 1: should call Display function", async () =>{
+    await executeFirstFit(false)
+    expect(Display).toHaveBeenCalled()
+    expect(Display).toBeCalledWith(false, "first_fit")
+  })
+})
