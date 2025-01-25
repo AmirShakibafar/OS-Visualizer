@@ -2,18 +2,12 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { executeFirstFit, findFirstFit } from "../first_fit"; // Assuming the file name
 import {
   getMemorySpaces,
-  clearMemorySpaces,
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
-  deAllocateMemorySpace,
 } from "../memory_space.js";
-import { sleep } from "../../helpers/helpers";
 import { renderMemorySections } from "../memory_table";
 import { showMessage } from "../../helpers/message";
-import { currentSpeed } from "../speed";
-import { updateTime, resetTime } from "../timer.js";
-import { getMemoryBlocks } from "../memory_blocks.js";
 import { Display } from "../display.js";
 
 // Mock dependencies
