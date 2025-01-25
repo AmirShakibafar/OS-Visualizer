@@ -1,7 +1,7 @@
 import { Display } from "./display.js";
-import { ShowAvgWaitTime } from "./animation_table.js";
+import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
-
+import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 
 
 const FCFSProcessSort =  (processes) =>{
@@ -24,8 +24,10 @@ const FCFS =  async (processes) => {
   processes.forEach((processes) => processes.endTime = undefined)
   let processes_ = FCFSProcessSort(processes);
   const AvgWaitTime = avgWaitTime(processes_);
+  const AvgResponseTime = avgResponseTime(processes_);
   await Display(processes_);
   ShowAvgWaitTime(AvgWaitTime);
+  ShowAvgResponseTime(AvgResponseTime);
 };
 
 

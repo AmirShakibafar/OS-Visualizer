@@ -1,7 +1,7 @@
-import { ShowAvgWaitTime } from "./animation_table.js";
+import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { Display } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
-
+import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 
 
 const SPNProcessSort = (processes) => {
@@ -37,8 +37,10 @@ const SPN =  async (processes) => {
   processes.forEach((processes) => processes.endTime = undefined)
   let processes_ = SPNProcessSort(processes);
   const AvgWaitTime = avgWaitTime(processes_);
+  const AvgResponseTime = avgResponseTime(processes_);
   await Display(processes_);
   ShowAvgWaitTime(AvgWaitTime);
+  ShowAvgResponseTime(AvgResponseTime);
 };
 
 export { SPN, SPNProcessSort };

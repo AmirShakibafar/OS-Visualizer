@@ -1,13 +1,14 @@
 import { processes } from "./manual_add_process.js";
 import { whatPolicy } from "./timing_policies.js";
-const tableInfo = document.getElementById("average-result-box");
+const waitInfo = document.getElementById("average-result-box");
+const responseInfo = document.getElementById("response-result-box");
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
 const playButton = document.getElementById("play-button");
 const resetButton = document.getElementById("reset-button");
-
 const speedSlider = document.getElementById("speed-range");
+const contextSwitch = document.getElementById("context-switch");
 let SPEED = 1050 - speedSlider.value;
 speedSlider.addEventListener("input", () => {
   SPEED = 1050 - speedSlider.value;
@@ -20,7 +21,12 @@ let isCancelled = false;
 
 const ShowAvgWaitTime = (time) => {
   time = parseFloat(time.toFixed(2));
-  tableInfo.textContent = `Average Wait Time: ${time}`;
+  waitInfo.textContent = `Average Wait Time: ${time}`;
+};
+
+const ShowAvgResponseTime = (time) => {
+  time = parseFloat(time.toFixed(2));
+  responseInfo.textContent = `Average Response Time: ${time}`;
 };
 
 const get_next_block = (process, time) => {
@@ -48,7 +54,9 @@ const resetTableSettings = () => {
   cellCount = 0;
   tableBody.innerHTML = "";
   ShowAvgWaitTime(0);
+  ShowAvgResponseTime(0);
 };
+
 playButton.addEventListener("click", async () => {
   if (!processes.length) {
     return;
@@ -66,4 +74,4 @@ resetButton.addEventListener("click", () => {
   resetTableSettings();
 });
 
-export { isCancelled, get_next_block, SPEED, ShowAvgWaitTime };
+export { isCancelled, get_next_block, SPEED, ShowAvgWaitTime, ShowAvgResponseTime };

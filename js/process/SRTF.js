@@ -1,7 +1,7 @@
 import { Display } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
-import { ShowAvgWaitTime } from "./animation_table.js";
-
+import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
+import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 const q = 1;
 
 const SRTFProcessSort = (processes) => {
@@ -58,7 +58,9 @@ const SRTF =  async (processes) => {
 
   let processes_ = [...SRTFProcessSort(processes)];
   const AvgWaitTime = avgWaitTime(processes_);
+  const AvgResponseTime = avgResponseTime(processes_);
   await Display(processes_, q);
   ShowAvgWaitTime(AvgWaitTime);
+  ShowAvgResponseTime(AvgResponseTime);
 };
 export { SRTFProcessSort, SRTF };

@@ -1,6 +1,7 @@
 import { Display } from "./display.js";
-import { avgWaitTime } from "./avgWaitTimeCalculator.js"
-import { ShowAvgWaitTime } from "./animation_table.js";
+import { avgWaitTime} from "./avgWaitTimeCalculator.js"
+import { avgResponseTime } from "./avgResponseTimeCalculator.js";
+import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 const q = 2;
 
 const RRProcessSort = (processes) => {
@@ -73,11 +74,14 @@ const RR =  async (processes) => {
     process.remaining = undefined
     process.endTime = undefined
   })
-
+  console.log(processes);
   let processes_ = [...RRProcessSort(processes)];
-  const AvgWaitTime = avgWaitTime(processes_);
+  console.log(processes_);
+  const AvgWaitTime = avgWaitTime(processes_)
+  const AvgResponseTime = avgResponseTime(processes_);
   await Display(processes_, q);
   ShowAvgWaitTime(AvgWaitTime);
+  ShowAvgResponseTime(AvgResponseTime);
 };
 
 
