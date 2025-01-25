@@ -50,7 +50,7 @@ const findFirstFit = async (processBlock, isCancelled) => {
 };
 
 const executeFirstFit = async (isCancelled) => {
-  Display(isCancelled, "first_fit")
+  await Display(isCancelled, "first_fit")
 };
 
 export {executeFirstFit, findFirstFit};

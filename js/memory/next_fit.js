@@ -95,7 +95,7 @@ const findNextFit = async (processBlock, isCancelled) => {
 
 
 const executeNextFit = async (isCancelled) => {
-  Display(isCancelled, "next_fit")
+ await Display(isCancelled, "next_fit")
 };
 
 export {executeNextFit, findNextFit};

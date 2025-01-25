@@ -59,7 +59,7 @@ const findWorstFit = async (processBlock, isCancelled) => {
 };
 
 const executeWorstFit = async (isCancelled) => {
-  Display(isCancelled, "worst_fit")
+  await Display(isCancelled, "worst_fit")
   };
 
 export {executeWorstFit, findWorstFit};
