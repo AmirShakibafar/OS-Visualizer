@@ -298,6 +298,26 @@ td {
   border-bottom: 2px solid #3a86ff;
 }
 
+.procces-table tbody tr:first-child {
+  background-color: #c1c0c0;
+  cursor: pointer;  
+  text-align: center; 
+}
+
+.procces-table tbody tr:first-child:hover {
+  background-color: #b3b3b3;
+}
+
+.procces-table tbody tr:first-child td {
+  padding: 12px 0; 
+  font-size: 16px; 
+  color: #0052b7;  
+}
+
+.procces-table tbody tr:first-child td button {
+  display: none;
+}
+
 footer {
   height: 15vh;
   display: flex;
@@ -385,3 +405,4 @@ footer h3 {
     opacity: 1;
   }
 }
+

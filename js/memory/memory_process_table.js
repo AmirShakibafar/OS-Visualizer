@@ -36,6 +36,19 @@ const createNewRow = (process, processes) => {
 
 const renderMemoryTable = () => {
   memoryTable.innerHTML = "";
+  if (getMemoryBlocks().length) {
+    const deleteAllRow = document.createElement("tr");
+    deleteAllRow.innerHTML = `
+    <td colspan="6">
+      Delete All
+    </td>
+  `;
+    deleteAllRow.addEventListener("click", () => {
+      clearMemoryBlocks();
+      memoryTable.innerHTML = "";
+    });
+    memoryTable.prepend(deleteAllRow);
+  }
   reArrangeMemoryBlocks();
   getMemoryBlocks().forEach((process) => {
     memoryTable.appendChild(createNewRow(process));

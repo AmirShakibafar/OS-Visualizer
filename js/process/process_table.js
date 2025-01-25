@@ -1,9 +1,9 @@
-import { clearProcesses, removeProcess} from "./processes.js";
-import { processes } from "./processes.js";
+import { clearProcesses, removeProcess } from "./processes.js";
+// import { processes } from "./processes.js";
 const processTable = document.getElementById("process-table-body");
-const resetTableButton = document.getElementById("reset-table-button");
+// const resetTableButton = document.getElementById("reset-table-button");
 
-const createNewRow = (process, processes) => {
+const createNewRow = (process) => {
   const row = document.createElement("tr");
 
   const nameCell = document.createElement("td");
@@ -32,9 +32,8 @@ const createNewRow = (process, processes) => {
   return row;
 };
 
-
 const reEvaluateTable = (processes) => {
-  processes.sort((a, b) => a.start - b.start); 
+  processes.sort((a, b) => a.start - b.start);
   processes.forEach((process, idx) => {
     process.name = `P${idx}`;
   });
@@ -43,15 +42,23 @@ const reEvaluateTable = (processes) => {
 
 const render_processes = (processes) => {
   processTable.innerHTML = "";
+  if (processes.length) {
+    const deleteAllRow = document.createElement("tr");
+    deleteAllRow.innerHTML = `
+    <td colspan="5">
+      Delete All
+    </td>
+  `;
+    deleteAllRow.addEventListener("click", () => {
+      clearProcesses();
+      processTable.innerHTML = "";
+    });
+    processTable.prepend(deleteAllRow);
+  }
   processes = reEvaluateTable(processes);
   processes.forEach((process) => {
     processTable.appendChild(createNewRow(process));
   });
 };
 
-
-resetTableButton.addEventListener("click", () => {
-  clearProcesses();
-  render_processes(processes);
-});
 export { render_processes };
