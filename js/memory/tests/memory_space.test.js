@@ -6,6 +6,7 @@ import {
   deAllocateMemorySpace,
   updateHoverState,
   checkIfRangeEmpty,
+  findRangeOfEmpty
 } from "../memory_space"; 
 
 vi.mock('../../helpers/message', () => ({
@@ -268,3 +269,16 @@ describe("checkIfRangeEmpty", () => {
     expect(checkIfRangeEmpty(3, 4)).toBe(true);
   });
 });
+
+
+describe("findRangeOfEmpty", () => {
+  beforeEach(() => {
+    clearMemorySpaces();
+  });
+
+  it("Test case 1: should return range of empty", () => {
+    expect(findRangeOfEmpty(0)).toBe(64);
+  });
+
+});
+
