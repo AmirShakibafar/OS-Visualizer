@@ -6,13 +6,23 @@
   border-radius: 0 12px 12px 0;
 }
 
-.average-time-section {
+.input-boxes-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.stats-section {
+  display: flex;
+}
+
+.show-time-section {
   background-color: #f6f6f6;
-  font-size: 1.2rem;
+  font-size: 1rem;
   text-align: left;
   padding: 10px 20px;
+  margin: 0 5px;
   border-radius: 12px;
-  width: 300px;
 }
 
 .animation-table table {
