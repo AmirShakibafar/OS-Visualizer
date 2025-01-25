@@ -9,7 +9,7 @@ const avgResponseTime = (processes) => {
         }
     });
 
-    return completedProcesses > 0 ? (totalResponseTime / completedProcesses) - 1 : 0;
+    return completedProcesses > 0 ? (totalResponseTime / completedProcesses): 0;
 };
 
 export { avgResponseTime };
