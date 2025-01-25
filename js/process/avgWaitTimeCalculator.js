@@ -9,7 +9,6 @@ const avgWaitTime = (processes) => {
       realNumberOfProcesses += 1;
     }
   });
-  console.log(realNumberOfProcesses)
   let avg = realNumberOfProcesses === 0 ? 0 : totalWaitTime / realNumberOfProcesses;
   return avg;
 }
