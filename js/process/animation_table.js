@@ -1,6 +1,6 @@
 import { processes } from "./manual_add_process.js";
 import { whatPolicy } from "./timing_policies.js";
-const tableInfo = document.getElementById("result-box");
+const tableInfo = document.getElementById("average-result-box");
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
@@ -18,9 +18,9 @@ let currentRow = null;
 let cellCount = 0;
 let isCancelled = false;
 
-const ShowAvgTime = (time) => {
+const ShowAvgWaitTime = (time) => {
   time = parseFloat(time.toFixed(2));
-  tableInfo.textContent = `Average Time: ${time}`;
+  tableInfo.textContent = `Average Wait Time: ${time}`;
 };
 
 const get_next_block = (process, time) => {
@@ -47,7 +47,7 @@ const resetTableSettings = () => {
   currentRow = null;
   cellCount = 0;
   tableBody.innerHTML = "";
-  ShowAvgTime(0);
+  ShowAvgWaitTime(0);
 };
 playButton.addEventListener("click", async () => {
   if (!processes.length) {
@@ -66,4 +66,4 @@ resetButton.addEventListener("click", () => {
   resetTableSettings();
 });
 
-export { isCancelled, get_next_block, SPEED, ShowAvgTime };
+export { isCancelled, get_next_block, SPEED, ShowAvgWaitTime };

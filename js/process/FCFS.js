@@ -1,5 +1,5 @@
 import { Display } from "./display.js";
-import { ShowAvgTime } from "./animation_table.js";
+import { ShowAvgWaitTime } from "./animation_table.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 
 
@@ -25,7 +25,7 @@ const FCFS =  async (processes) => {
   let processes_ = FCFSProcessSort(processes);
   const AvgWaitTime = avgWaitTime(processes_);
   await Display(processes_);
-  ShowAvgTime(AvgWaitTime);
+  ShowAvgWaitTime(AvgWaitTime);
 };
 
 

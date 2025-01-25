@@ -1,4 +1,4 @@
-import { ShowAvgTime } from "./animation_table.js";
+import { ShowAvgWaitTime } from "./animation_table.js";
 import { Display } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
 
@@ -43,7 +43,7 @@ const HRRN =  async (processes) => {
   let processes_ = HRRNProcessSort(processes);
   const AvgWaitTime = avgWaitTime(processes_);
   await Display(processes_);
-  ShowAvgTime(AvgWaitTime);
+  ShowAvgWaitTime(AvgWaitTime);
 };
 
 
