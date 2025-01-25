@@ -2,7 +2,11 @@ import { Display } from "./display.js";
 import { avgWaitTime} from "./avgWaitTimeCalculator.js"
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
-const q = 2;
+let q = 2;
+
+const changeQuantom = (value) => {
+  q = value;
+}
 
 const RRProcessSort = (processes) => {
   processes.sort((a, b) => a.start - b.start);
@@ -85,5 +89,5 @@ const RR =  async (processes) => {
 };
 
 
-export { RR,RRProcessSort };
+export { RR,RRProcessSort, changeQuantom };
 

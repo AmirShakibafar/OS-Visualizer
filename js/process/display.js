@@ -1,6 +1,5 @@
 // Process Visualizer
 
-
 import { sleep } from "../helpers/helpers.js";
 import {
   isCancelled,
@@ -8,7 +7,7 @@ import {
   SPEED,
 } from "./animation_table.js";
 
-// handels execution of the idle state
+// Handles execution of the idle state
 const handleIdleState = async (curr_tick) => {
   if (isCancelled) {
     return { curr_tick: null }; 
@@ -22,7 +21,7 @@ const handleIdleState = async (curr_tick) => {
   return { curr_tick }; 
 };
 
-// handels execution of a process
+// Handles execution of a process
 const processExecution = async (process, curr_tick, duration) => {
   for (let i = 0; i < duration; i++) {
     if (isCancelled) {
@@ -35,10 +34,27 @@ const processExecution = async (process, curr_tick, duration) => {
   return { curr_tick }; 
 };
 
-// refactored Display function
-const Display = async (processes, q = 0) => {
+// Handles context switching
+const handleContextSwitch = async (curr_tick) => {
+  if (isCancelled) {
+    return { curr_tick: null };
+  }
+  get_next_block(
+    { bgcolor: "#000", color: "#fff", name: "Context Switch" },
+    curr_tick
+  );
+  curr_tick++;
+  await sleep(SPEED);
+  return { curr_tick };
+};
+
+// Refactored Display function
+const Display = async (processes, q = 0, contextSwitch = 0) => {
   let curr_tick = 0;
-  for (const process of processes) {
+  let processQueue = processes.map(p => ({ ...p, remaining: p.duration }));
+
+  for (let i = 0; i < processQueue.length; i++) {
+    const process = processQueue[i];
     if (isCancelled) {
       return;
     }
@@ -49,21 +65,18 @@ const Display = async (processes, q = 0) => {
       curr_tick = result.curr_tick;
     }
 
-    if (q == 0) {
-      // For FCFS, SPN, HRRN
-      let duration = process.duration;
-      const result = await processExecution(process, curr_tick, duration);
-      if (result.curr_tick === null) return; 
-      curr_tick = result.curr_tick;
-    } else {
-      // For RR
-      let remaining = process.remaining;
-      const result = await processExecution(process, curr_tick, Math.min(q, remaining)); // if remaining is smaller than q its handled
-      if (result.curr_tick === null) return;
-      curr_tick = result.curr_tick;
+    let execute_time = q ? Math.min(q, process.remaining) : process.remaining;
+    const result = await processExecution(process, curr_tick, execute_time);
+    if (result.curr_tick === null) return;
+    curr_tick = result.curr_tick;
+    process.remaining -= execute_time;
+
+    if (i < processQueue.length - 1 && contextSwitch > 0) {
+      const csResult = await handleContextSwitch(curr_tick);
+      if (csResult.curr_tick === null) return;
+      curr_tick = csResult.curr_tick;
     }
   }
 };
 
-
-export { Display, handleIdleState, processExecution };
+export {Display};

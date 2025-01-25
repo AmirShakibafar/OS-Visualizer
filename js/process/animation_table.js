@@ -9,6 +9,7 @@ const playButton = document.getElementById("play-button");
 const resetButton = document.getElementById("reset-button");
 const speedSlider = document.getElementById("speed-range");
 const contextSwitch = document.getElementById("context-switch");
+
 let SPEED = 1050 - speedSlider.value;
 speedSlider.addEventListener("input", () => {
   SPEED = 1050 - speedSlider.value;
