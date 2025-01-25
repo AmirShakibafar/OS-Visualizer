@@ -1,4 +1,4 @@
-import { Display } from "./display.js";
+import { Display, SC } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 import { ShowAvgTime } from "./animation_table.js";
 
@@ -14,6 +14,8 @@ const SRTFProcessSort = (processes) => {
   let SRTFQueue = [];
   let readyQueue = [];
   let completed = 0;
+  let processName = [];
+
 
   while (completed < processes.length) {
     processes.forEach((process) => {
@@ -29,6 +31,15 @@ const SRTFProcessSort = (processes) => {
     readyQueue.sort((a, b) => a.remaining - b.remaining)
     
     let currProcess = readyQueue.shift();
+
+    //////////////////////////////// handle SC
+    processName.push(currProcess.name);
+    if(processName.length > 1){
+      if(processName[processName.length-2] !== currProcess.name){
+        curTime += SC;
+      }
+    }
+    ////////////////////////////
     if (currProcess.remaining > q) {
       SRTFQueue.push({ ...currProcess });
       currProcess.remaining -= q;
