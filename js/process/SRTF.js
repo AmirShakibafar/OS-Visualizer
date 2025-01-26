@@ -1,4 +1,4 @@
-import { Display, SC } from "./display.js";
+import { Display} from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
