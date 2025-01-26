@@ -76,7 +76,7 @@ describe("findWorstFit", () => {
 
   it("Test case 1: should find and allocate the worst fit block", async () => {
     const processBlock = { name: "ProcessA", blockSize: 2, blockExitTime: 10, bgColor: "blue", color: "white" };
-    checkIfRangeEmpty.mockImplementation((start, size) => start >= 2 || (start > 4 && start + size <= 64));
+    checkIfRangeEmpty.mockImplementation((start, size) => start == 2 || (start == 5));
     getMemorySpaces.mockReturnValue([
         {
             processName: "any",
@@ -181,10 +181,10 @@ describe("findWorstFit", () => {
 
     await findWorstFit(processBlock, mockIsCancelled);
 
-    expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 5, true);
-    expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 5, false);
+    expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, true);
+    expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, false);
     expect(renderMemorySections).toHaveBeenCalled();
-    expect(allocateMemorySpace).toHaveBeenCalledWith(5, processBlock); // find best fit in index 2 and allocate
+    expect(allocateMemorySpace).toHaveBeenCalledWith(5, processBlock); // find worst fit in index 2 and allocate
     expect(showMessage).not.toHaveBeenCalledWith(
       expect.stringContaining("No available memory block"),
       "fail"
