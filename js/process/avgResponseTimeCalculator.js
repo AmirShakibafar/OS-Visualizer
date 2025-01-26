@@ -1,12 +1,10 @@
-import { getProcesses } from "./processes.js";
-
 const responseInfo = document.getElementById("response-result-box");
 
-const avgResponseTime = () => {
+const avgResponseTime = (process) => {
   let totalResponseTime = 0;
   let completedProcesses = 0;
 
-  getProcesses().forEach((process) => {
+  process.forEach((process) => {
     if (process.endTime !== undefined) {
       totalResponseTime += Number(process.endTime) - Number(process.start);
       completedProcesses += 1;

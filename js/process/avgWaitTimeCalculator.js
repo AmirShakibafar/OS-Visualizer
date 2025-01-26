@@ -2,11 +2,11 @@ import { getProcesses } from "./processes.js";
 
 const waitInfo = document.getElementById("average-result-box");
 
-const avgWaitTime = () => {
+const avgWaitTime = (process) => {
   let totalWaitTime = 0;
   let realNumberOfProcesses = 0;
 
-  getProcesses().forEach((process) => {
+  process.forEach((process) => {
     if (process.endTime !== undefined) {
       // Wait time = end time - start time - process duration
       totalWaitTime += (process.endTime - Number(process.start) - Number(process.duration));

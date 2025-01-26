@@ -1,10 +1,6 @@
 import { Display } from "./display.js";
-import { avgWaitTime } from "./avgWaitTimeCalculator.js";
-import {
-  ShowAvgWaitTime,
-  ShowAvgResponseTime,
-} from "./processAnimationSection.js";
-import { avgResponseTime } from "./avgResponseTimeCalculator.js";
+import { avgWaitTime, ShowAvgWaitTime } from "./avgWaitTimeCalculator.js";
+import { avgResponseTime, ShowAvgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
 
 const SRTFProcessSort = (processes, q, CS) => {
@@ -73,9 +69,9 @@ const SRTF = async (processes) => {
   });
   const CS = getContextSwitch();
   let processes_ = [...SRTFProcessSort(processes, 1, CS)];
+  await Display(processes_, 1);
   const AvgWaitTime = avgWaitTime(processes_);
   const AvgResponseTime = avgResponseTime(processes_);
-  await Display(processes_, 1);
   ShowAvgWaitTime(AvgWaitTime);
   ShowAvgResponseTime(AvgResponseTime);
 };
