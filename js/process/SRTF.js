@@ -1,43 +1,50 @@
-import { Display} from "./display.js";
-import { avgWaitTime } from "./avgWaitTimeCalculator.js"
-import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
+import { Display } from "./display.js";
+import { avgWaitTime } from "./avgWaitTimeCalculator.js";
+import {
+  ShowAvgWaitTime,
+  ShowAvgResponseTime,
+} from "./processAnimationSection.js";
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
 
 const SRTFProcessSort = (processes, q, CS) => {
   processes.sort((a, b) => a.start - b.start);
   processes.forEach((process) => {
-    process.remaining = process.duration; 
+    process.remaining = process.duration;
   });
 
-  let curTime = 0; 
+  let curTime = 0;
   let SRTFQueue = [];
   let readyQueue = [];
   let completed = 0;
   let processName = [];
 
-
   while (completed < processes.length) {
     processes.forEach((process) => {
-      if (process.start <= curTime && process.endTime === undefined && !readyQueue.includes(process)) {
+      if (
+        process.start <= curTime &&
+        process.endTime === undefined &&
+        !readyQueue.includes(process)
+      ) {
         readyQueue.push(process);
       }
     });
 
     if (readyQueue.length === 0) {
-      curTime = Math.min(...processes.filter(p => p.endTime === undefined).map(p => p.start));
+      curTime = Math.min(
+        ...processes.filter((p) => p.endTime === undefined).map((p) => p.start)
+      );
       continue;
     }
-    readyQueue.sort((a, b) => a.remaining - b.remaining)
-    
+    readyQueue.sort((a, b) => a.remaining - b.remaining);
+
     let currProcess = readyQueue.shift();
 
     //////////////////////////////// handle SC
     processName.push(currProcess.name);
-    if(processName.length > 1){
-      if(processName[processName.length-2] !== currProcess.name){
+    if (processName.length > 1) {
+      if (processName[processName.length - 2] !== currProcess.name) {
         curTime += CS;
-
       }
     }
     ////////////////////////////
@@ -55,19 +62,15 @@ const SRTFProcessSort = (processes, q, CS) => {
     if (currProcess.remaining > 0) {
       readyQueue.push(currProcess);
     }
-
-    
   }
   return SRTFQueue;
 };
 
-
-
-const SRTF =  async (processes) => {
+const SRTF = async (processes) => {
   processes.forEach((process) => {
-    process.remaining = undefined
-    process.endTime = undefined
-  })
+    process.remaining = undefined;
+    process.endTime = undefined;
+  });
   const CS = getContextSwitch();
   let processes_ = [...SRTFProcessSort(processes, 1, CS)];
   const AvgWaitTime = avgWaitTime(processes_);

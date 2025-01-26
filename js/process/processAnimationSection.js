@@ -1,13 +1,15 @@
-import { processes } from "./manual_add_process.js";
 import { whatPolicy } from "./timing_policies.js";
-const waitInfo = document.getElementById("average-result-box");
-const responseInfo = document.getElementById("response-result-box");
+import { ShowAvgResponseTime } from "./avgResponseTimeCalculator.js";
+import { ShowAvgWaitTime } from "./avgWaitTimeCalculator.js";
+import { getProcesses } from "./processes.js";
+
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
+
 const playButton = document.getElementById("play-button");
 const resetButton = document.getElementById("reset-button");
-export const speedSlider = document.getElementById("speed-range");
+const speedSlider = document.getElementById("speed-range");
 
 let SPEED = 1050 - speedSlider.value;
 speedSlider.addEventListener("input", () => {
@@ -18,16 +20,6 @@ const maxCellsPerRow = 10;
 let currentRow = null;
 let cellCount = 0;
 let isCancelled = false;
-
-const ShowAvgWaitTime = (time) => {
-  time = parseFloat(time.toFixed(2));
-  waitInfo.textContent = `Average Wait Time: ${time}`;
-};
-
-const ShowAvgResponseTime = (time) => {
-  time = parseFloat(time.toFixed(2));
-  responseInfo.textContent = `Average Response Time: ${time}`;
-};
 
 const get_next_block = (process, time) => {
   if (!currentRow || cellCount % maxCellsPerRow === 0) {
@@ -58,14 +50,12 @@ const resetTableSettings = () => {
 };
 
 playButton.addEventListener("click", async () => {
-  if (!processes.length) {
-    return;
-  }
+  if (!getProcesses().length) return;
   resetTableSettings();
   isCancelled = false;
   playButton.disabled = true;
   const policy = whatPolicy();
-  await policy(processes);
+  await policy(getProcesses());
   playButton.disabled = false;
 });
 
@@ -74,4 +64,4 @@ resetButton.addEventListener("click", () => {
   resetTableSettings();
 });
 
-export { isCancelled, get_next_block, SPEED, ShowAvgWaitTime, ShowAvgResponseTime };
+export { isCancelled, SPEED, get_next_block, ShowAvgWaitTime, ShowAvgResponseTime };

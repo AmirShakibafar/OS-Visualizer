@@ -1,4 +1,7 @@
-import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
+import {
+  ShowAvgWaitTime,
+  ShowAvgResponseTime,
+} from "./processAnimationSection.js";
 import { Display } from "./display.js";
 
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
@@ -7,7 +10,7 @@ import { getContextSwitch } from "./context_switch.js";
 
 const SPNProcessSort = (processes, CS) => {
   processes.sort((a, b) => a.start - b.start);
-  let ProcessesClone = processes
+  let ProcessesClone = processes;
   let curTime = 0;
   let SPNArray = [];
   let readyToProcess = [];
@@ -20,20 +23,17 @@ const SPNProcessSort = (processes, CS) => {
 
     readyToProcess.sort((a, b) => a.duration - b.duration);
     if (readyToProcess.length > 0) {
-
       curTime += Number(readyToProcess[0].duration);
 
-      if(firstProcess){
+      if (firstProcess) {
         readyToProcess[0].endTime = curTime;
         firstProcess = false;
-      }else{
+      } else {
         readyToProcess[0].endTime = curTime + CS;
         curTime += CS;
-
       }
 
       SPNArray.push(readyToProcess[0]);
-
     } else {
       const nextProcess = processes.find((p) => p.endTime === undefined);
       if (nextProcess) curTime = Number(nextProcess.start);
@@ -42,8 +42,8 @@ const SPNProcessSort = (processes, CS) => {
   return SPNArray;
 };
 
-const SPN =  async (processes) => {
-  processes.forEach((processes) => processes.endTime = undefined)
+const SPN = async (processes) => {
+  processes.forEach((processes) => (processes.endTime = undefined));
   const CS = getContextSwitch();
   let processes_ = SPNProcessSort(processes, CS);
   const AvgWaitTime = avgWaitTime(processes_);
