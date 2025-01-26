@@ -466,6 +466,6 @@ describe("executeWorstFit", () => {
   it("Test case 1: should call Display function", async () => {
     await executeWorstFit(false);
     expect(Display).toHaveBeenCalled();
-    expect(Display).toHaveBeenCalledWith(false, "best_fit");
+    expect(Display).toHaveBeenCalledWith(false, "worst_fit");
   });
 });
