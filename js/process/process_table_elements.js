@@ -1,16 +1,22 @@
 import { clearProcesses, removeProcess } from "./processes.js";
+import { renderOnTables } from "./hub_table.js";
 
 const processTable = document.getElementById("process-table-body");
 const cardsContainer = document.querySelector(".cards-container");
 const mobileControls = document.getElementById("mobile-controls");
-
 const mobileDeleteAll = document.getElementById("mobile-delete-all");
+
+const deleteOne = (process, row) => {
+  removeProcess(process.name, row);
+  renderOnTables();
+};
+
 const deleteAll = () => {
   clearProcesses();
-  processTable.innerHTML = "";
-  cardsContainer.innerHTML = "";
+  renderOnTables();
 };
-mobileDeleteAll.addEventListener("click", () => deleteAll);
+
+mobileDeleteAll.addEventListener("click", () => deleteAll());
 
 const createNewRow = (process) => {
   const row = document.createElement("tr");
@@ -35,7 +41,7 @@ const createNewRow = (process) => {
   deleteCell.textContent = "delete";
   deleteCell.classList.add("delete");
   deleteCell.style.cursor = "pointer";
-  deleteCell.onclick = () => removeProcess(process.name, row);
+  deleteCell.onclick = () => deleteOne(process, row);
   row.appendChild(deleteCell);
 
   return row;
@@ -48,7 +54,7 @@ const createDeleteRow = () => {
       Delete All
     </td>
   `;
-  deleteAllRow.addEventListener("click", () => deleteAll);
+  deleteAllRow.addEventListener("click", () => deleteAll());
   processTable.prepend(deleteAllRow);
 };
 
@@ -59,7 +65,7 @@ const createNewCard = (process) => {
   const deleteBtn = document.createElement("button");
   deleteBtn.classList.add("delete-btn");
   deleteBtn.innerHTML = "&times;";
-  deleteBtn.onclick = () => removeProcess(process.name, card);
+  deleteBtn.onclick = () => deleteOne(process, card);
   card.appendChild(deleteBtn);
 
   const cardColor = document.createElement("div");
@@ -77,4 +83,12 @@ const createNewCard = (process) => {
   return card;
 };
 
-export { createDeleteRow, createNewRow, createNewCard,  processTable, cardsContainer, mobileControls, mobileDeleteAll};
+export {
+  createDeleteRow,
+  createNewRow,
+  createNewCard,
+  processTable,
+  cardsContainer,
+  mobileControls,
+  mobileDeleteAll,
+};

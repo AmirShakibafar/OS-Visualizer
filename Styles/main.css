@@ -412,7 +412,7 @@ footer h3 {
 
 .mobile-table-area {
   display: none;
-  height: 35vh;
+  height: auto;
   margin: 30px 5%;
   background-color: #fff;
   border-radius: 25px;
