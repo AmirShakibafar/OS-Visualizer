@@ -1,4 +1,5 @@
 import { getMemoryBlocks, reArrangeMemoryBlocks, clearMemoryBlocks, deleteMemoryBlock } from "./memory_blocks.js";
+import { cardsContainer, render_mobile_table } from "./mobile_table.js";
 const memoryTable = document.getElementById("memory-process-table-body");
 
 const createNewRow = (process, processes) => {
@@ -27,7 +28,10 @@ const createNewRow = (process, processes) => {
   const deleteCell = document.createElement("td");
   deleteCell.textContent = "Delete";
   deleteCell.classList.add("delete");
-  deleteCell.onclick = () => deleteMemoryBlock(process.name, row);
+  deleteCell.onclick = () => {
+    deleteMemoryBlock(process.name, row);
+    render_mobile_table();
+  };
   row.appendChild(deleteCell);
 
   return row;
@@ -53,9 +57,10 @@ const renderMemoryTable = () => {
 
 const clearMemoryTable = () => {
   memoryTable.innerHTML = "";
+  cardsContainer.innerHTML = "";
   clearMemoryBlocks();
 }
 
 
 
-export {renderMemoryTable, clearMemoryTable};
+export {renderMemoryTable, clearMemoryTable, memoryTable};
