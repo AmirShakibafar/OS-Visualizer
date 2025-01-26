@@ -1,12 +1,9 @@
 import { Display } from "./display.js";
-import { avgWaitTime } from "./avgWaitTimeCalculator.js";
-import { avgResponseTime } from "./avgResponseTimeCalculator.js";
-import {
-  ShowAvgWaitTime,
-  ShowAvgResponseTime,
-} from "./processAnimationSection.js";
-import { quantomInput } from "./quantom_input.js";
+import { avgWaitTime, ShowAvgWaitTime } from "./avgWaitTimeCalculator.js";
+import { avgResponseTime, ShowAvgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
+import { quantomInput } from "./quantom_input.js";
+
 const getQuantom = () => {
   return quantomInput.value ? Number(quantomInput.value) : 2;
 };

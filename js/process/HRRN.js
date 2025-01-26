@@ -1,10 +1,6 @@
-import {
-  ShowAvgWaitTime,
-  ShowAvgResponseTime,
-} from "./processAnimationSection.js";
 import { Display } from "./display.js";
-import { avgWaitTime } from "./avgWaitTimeCalculator.js";
-import { avgResponseTime } from "./avgResponseTimeCalculator.js";
+import { avgWaitTime, ShowAvgWaitTime } from "./avgWaitTimeCalculator.js";
+import { avgResponseTime, ShowAvgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
 
 const HRRNProcessSort = (processes, CS) => {
