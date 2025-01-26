@@ -82,6 +82,18 @@ const checkIfRangeEmpty = (startIndex, blockSize) => {
   return true;
 };
 
+const findRangeOfEmpty = (startIndex) => {
+  let counter = 0;
+  for(let i = startIndex; i < 64; i++){
+    if(memorySpaces[i].processName ==  "empty"){
+      counter++
+    }else{
+      break
+    }
+  }
+  return counter
+}
+
 export {
   getMemorySpaces,
   clearMemorySpaces,
@@ -89,4 +101,5 @@ export {
   deAllocateMemorySpace,
   updateHoverState,
   checkIfRangeEmpty,
+  findRangeOfEmpty
 };

@@ -19,6 +19,7 @@ const FCFSProcessSort =  (processes, CS) =>{
       process.endTime = curTime;
       firstProcess = false;
     }else{
+
       process.endTime = curTime + CS;
       curTime += CS;
     }

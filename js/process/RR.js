@@ -9,6 +9,7 @@ const getQuantom = () => {
 }
 
 const RRProcessSort = (processes, q, CS) => {
+
   processes.sort((a, b) => a.start - b.start);
   processes.forEach((process) => {
     process.remaining = process.duration; 
@@ -55,7 +56,9 @@ const RRProcessSort = (processes, q, CS) => {
       processName.push(currProcess.name);
       if(processName.length > 1){
         if(processName[processName.length-2] !== currProcess.name){
+
           curTime += CS;
+
         }
       }
       ////////////////////////////

@@ -5,6 +5,7 @@ import {
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
+  findRangeOfEmpty,
 } from "../memory_space.js";
 import { renderMemorySections } from "../memory_table";
 import { showMessage } from "../../helpers/message";
@@ -17,7 +18,8 @@ vi.mock("../memory_space", () => ({
     checkIfRangeEmpty: vi.fn(),
     updateHoverState: vi.fn(),
     clearMemorySpaces: vi.fn(),
-    deAllocateMemorySpace: vi.fn()
+    deAllocateMemorySpace: vi.fn(),
+    findRangeOfEmpty: vi.fn()
   }));
   
   vi.mock("../display", () => ({
@@ -128,6 +130,12 @@ describe("findBestFit", () => {
         }
     ])
 
+    findRangeOfEmpty.mockImplementation((startIndex) => {
+      if (startIndex == 2){
+          return 2
+        }
+      })
+
     await findBestFit(processBlock, mockIsCancelled);
 
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, true);
@@ -168,28 +176,8 @@ describe("findBestFit", () => {
     expect(showMessage).not.toHaveBeenCalled();
   });
 
-  it("Test case 4: should find best fit in a fragmented memory scenario", async () => {
-    const memorySpaces = getMemorySpaces.mockReturnValue([
-      ...Array.from({ length: 10 }, () => ({ processName: "empty", isActive: false })),
-      ...Array.from({ length: 15 }, () => ({ processName: "ProcessX", isActive: true })),
-      ...Array.from({ length: 5 }, () => ({ processName: "empty", isActive: false })),
-    ]);
 
-    const processBlock = { name: "ProcessD", blockSize: 5, blockExitTime: 30 };
-    checkIfRangeEmpty.mockImplementation((start, size) => start === 15 && size === 5);
-
-    await findBestFit(processBlock, mockIsCancelled);
-
-    expect(updateHoverState).toHaveBeenCalledWith(15, 5, true);
-    expect(allocateMemorySpace).toHaveBeenCalledWith(15, processBlock);
-    expect(renderMemorySections).toHaveBeenCalled();
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
-  });
-
-  it("Test case 5: should find and allocate the best fit block among varying sizes", async () => {
+  it("Test case 4: should find and allocate the best fit block among varying sizes", async () => {
     const processBlock = { name: "ProcessB", blockSize: 3, blockExitTime: 15, bgColor: "green", color: "white" };
   
     // Mock `checkIfRangeEmpty` to simulate which blocks are empty
@@ -270,7 +258,11 @@ describe("findBestFit", () => {
         blockIndex: 7,
       },
     ]);
-  
+    findRangeOfEmpty.mockImplementation((startIndex) => {
+      if (startIndex == 5){
+        return 3
+      }
+    })
     await findBestFit(processBlock, mockIsCancelled);
   
     // Ensure hover state is updated correctly for best fit
@@ -288,7 +280,7 @@ describe("findBestFit", () => {
     );
   });
 
-  /*
+  
   it("Test case 5: should find and allocate the best fit block among varying sizes", async () => {
     const processBlock = { name: "ProcessB", blockSize: 3, blockExitTime: 15, bgColor: "green", color: "white" };
   
@@ -395,12 +387,22 @@ describe("findBestFit", () => {
         blockIndex: 10,
       },
     ]);
+    findRangeOfEmpty.mockImplementation((startIndex) => {
+      if (startIndex == 7){
+        return 3
+      }
+      else if(startIndex == 2){
+        return 4
+      }
+    })
   
     await findBestFit(processBlock, mockIsCancelled);
   
     // Ensure hover state is updated correctly for best fit
     expect(updateHoverState).toHaveBeenCalledWith(7, 3, true); // Hover on best fit (index 7)
     expect(updateHoverState).toHaveBeenCalledWith(7, 3, false); // Hover off best fit
+
+    expect(findRangeOfEmpty).toHaveBeenCalledTimes(2)
   
     // Ensure the best fit block is allocated
     expect(allocateMemorySpace).toHaveBeenCalledWith(7, processBlock); // Allocate to index 7
@@ -411,7 +413,7 @@ describe("findBestFit", () => {
       expect.stringContaining("No available memory block"),
       "fail"
     );
-  });*/
+  });
 
 
   

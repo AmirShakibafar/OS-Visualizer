@@ -9,14 +9,18 @@ const handleSC = async (curr_tick) =>{
   curr_tick = curr_tick
   for (let i = 0; i < getContextSwitch(); i++){
 
+
     const result = await handleContextSwitch(curr_tick);
+
     if (result.curr_tick === null) return;
     curr_tick = result.curr_tick;
   }
   return {curr_tick: curr_tick}
 
 }
-// Handles execution of the idle state
+
+
+// handels execution of the idle state
 const handleIdleState = async (curr_tick) => {
   if (isCancelled) {
     return { curr_tick: null };
@@ -78,13 +82,13 @@ const Display = async (processes, q = 0) => {
       // For FCFS, SPN, HRRN
       let duration = process.duration;
       let result = await processExecution(process, curr_tick, duration);
+
       if (result.curr_tick === null) return; 
       curr_tick = result.curr_tick;
 
       result = await handleSC(curr_tick);
       if (result.curr_tick === null) return; 
       curr_tick = result.curr_tick;
-
     } else {
       // For RR
       if(processesName.length > 1){
@@ -104,4 +108,6 @@ const Display = async (processes, q = 0) => {
   }
 };
 
+
 export { Display};
+

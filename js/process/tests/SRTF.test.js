@@ -1,6 +1,6 @@
 import { describe, test, it, expect, vi } from "vitest";
 import { SRTF, SRTFProcessSort } from  "../SRTF.js";
-import { Display } from "../display.js";
+import { Display, SC } from "../display.js";
 import { avgWaitTime } from "../avgWaitTimeCalculator.js"
 import { ShowAvgTime } from "../animation_table.js";
 
@@ -26,6 +26,7 @@ vi.mock('../avgWaitTimeCalculator', () => ({
   }));
 vi.mock('../display', () => ({
     Display: vi.fn((s) => {return}),
+    SC: 0
     
   }));
 

@@ -1,3 +1,4 @@
+
 import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { Display } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
@@ -32,6 +33,7 @@ const HRRNProcessSort = (processes, CS) => {
       }else{
         selectedProcess.endTime = curr_tick + CS;
         curr_tick += CS;
+
       }
 
       hrrnArray.push(selectedProcess);

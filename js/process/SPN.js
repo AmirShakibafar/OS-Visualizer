@@ -1,5 +1,6 @@
 import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { Display } from "./display.js";
+
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
@@ -28,6 +29,7 @@ const SPNProcessSort = (processes, CS) => {
       }else{
         readyToProcess[0].endTime = curTime + CS;
         curTime += CS;
+
       }
 
       SPNArray.push(readyToProcess[0]);
