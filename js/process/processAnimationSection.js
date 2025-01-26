@@ -2,7 +2,7 @@ import { whatPolicy } from "./timing_policies.js";
 import { ShowAvgResponseTime } from "./avgResponseTimeCalculator.js";
 import { ShowAvgWaitTime } from "./avgWaitTimeCalculator.js";
 import { getProcesses } from "./processes.js";
-
+import { setAnimationSpeed } from "../helpers/speed.js";
 const tableBody = document
   .getElementById("dynamic_table")
   .querySelector("tbody");
@@ -12,9 +12,12 @@ const resetButton = document.getElementById("reset-button");
 const speedSlider = document.getElementById("speed-range");
 
 let SPEED = 1050 - speedSlider.value;
-speedSlider.addEventListener("input", () => {
+const updateSPEED = () => {
   SPEED = 1050 - speedSlider.value;
-});
+  setAnimationSpeed(SPEED);
+}
+updateSPEED();
+speedSlider.addEventListener("input", updateSPEED);
 
 const maxCellsPerRow = 10;
 let currentRow = null;
@@ -64,4 +67,4 @@ resetButton.addEventListener("click", () => {
   resetTableSettings();
 });
 
-export { isCancelled, SPEED, get_next_block, ShowAvgWaitTime, ShowAvgResponseTime };
+export {isCancelled, get_next_block, ShowAvgWaitTime, ShowAvgResponseTime };

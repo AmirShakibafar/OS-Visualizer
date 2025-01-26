@@ -4,8 +4,8 @@ import { sleep } from "../helpers/helpers.js";
 import {
   isCancelled,
   get_next_block,
-  SPEED,
 } from "./processAnimationSection.js";
+import { SPEED } from "../helpers/speed.js";
 import { getContextSwitch } from "./context_switch.js";
 
 const handleCS = async (curr_tick) => {
