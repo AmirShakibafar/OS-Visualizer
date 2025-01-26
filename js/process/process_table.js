@@ -1,8 +1,6 @@
 import { clearProcesses, removeProcess } from "./processes.js";
 import { cardsContainer } from "./mobile_table_add.js";
-// import { processes } from "./processes.js";
 const processTable = document.getElementById("process-table-body");
-// const resetTableButton = document.getElementById("reset-table-button");
 
 const createNewRow = (process) => {
   const row = document.createElement("tr");
@@ -41,21 +39,25 @@ const reEvaluateTable = (processes) => {
   return processes;
 };
 
-const render_processes = (processes) => {
-  processTable.innerHTML = "";
-  if (processes.length) {
-    const deleteAllRow = document.createElement("tr");
-    deleteAllRow.innerHTML = `
+const createDeleteRow = () => {
+  const deleteAllRow = document.createElement("tr");
+  deleteAllRow.innerHTML = `
     <td colspan="5">
       Delete All
     </td>
   `;
-    deleteAllRow.addEventListener("click", () => {
-      clearProcesses();
-      processTable.innerHTML = "";
-      cardsContainer.innerHTML = "";
-    });
-    processTable.prepend(deleteAllRow);
+  deleteAllRow.addEventListener("click", () => {
+    clearProcesses();
+    processTable.innerHTML = "";
+    cardsContainer.innerHTML = "";
+  });
+  processTable.prepend(deleteAllRow);
+};
+
+const render_processes = (processes) => {
+  processTable.innerHTML = "";
+  if (processes.length) {
+    createDeleteRow();
   }
   processes = reEvaluateTable(processes);
   processes.forEach((process) => {
