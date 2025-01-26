@@ -41,8 +41,7 @@ const createNewCard = (process) => {
 
 const render_mobile_table = () => {
   cardsContainer.innerHTML = "";
-  const processes = getMemoryBlocks();
-  if (processes.length) {
+  if (getMemoryBlocks().length) {
     mobileControls.style.display = "block";
   } else {
     mobileControls.style.display = "none";
@@ -57,6 +56,8 @@ mobileDeleteAll.addEventListener("click", () => {
   clearMemoryBlocks();
   memoryTable.innerHTML = "";
   cardsContainer.innerHTML = "";
+  render_mobile_table();
+  renderMemoryTable();
 });
 
 export { render_mobile_table, cardsContainer };
