@@ -43,7 +43,7 @@ const get_next_block = (process, time) => {
   newCell.style.fontSize = "14px";
   newCell.style.textAlign = "center";
   newCell.style.whiteSpace = "nowrap";
-  newCell.style.width = "100px";
+  newCell.style.width = "10vw";
   newCell.style.boxShadow = "0 0 10px rgba(0, 0, 0, 0.15)";
   cellCount++;
   currentRow.appendChild(newCell);
