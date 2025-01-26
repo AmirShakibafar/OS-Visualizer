@@ -1,4 +1,4 @@
-const correctInputSize = (input) => {
+const correctTwoDigitInputSize = (input) => {
   if (input.value.length > 2) {
     input.value = input.value.slice(0, 2);
   }
@@ -22,4 +22,16 @@ const allowNumbersOnly = (inputElement) => {
   });
 };
 
-export { allowNumbersOnly, correctInputSize, correctOneDigitInputSize };
+const oneDigitNumberBox = (inputElement) => {
+  allowNumbersOnly(inputElement);
+  inputElement.addEventListener("input", (e) => correctOneDigitInputSize(e.target));
+};
+
+const twoDigitNumberBox = (inputElement) => {
+  allowNumbersOnly(inputElement);
+  inputElement.addEventListener("input", (e) => correctTwoDigitInputSize(e.target));
+};
+
+
+
+export { oneDigitNumberBox, twoDigitNumberBox};

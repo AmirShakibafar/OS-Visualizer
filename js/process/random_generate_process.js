@@ -1,8 +1,5 @@
 import { getProcesses, generateProcess, clearProcesses } from "./processes.js";
-import {
-  correctInputSize,
-  allowNumbersOnly,
-} from "../helpers/inputValidation.js";
+import { twoDigitNumberBox } from "../helpers/inputValidation.js";
 import { renderOnTables } from "./hub_table.js";
 
 // we need typeof document !== "undefined" to handle test cases
@@ -30,8 +27,7 @@ const generate_random_processes = (amount) => {
 };
 
 if (amountBox !== null) {
-  amountBox.addEventListener("input", () => correctInputSize(amountBox));
-  allowNumbersOnly(amountBox);
+  twoDigitNumberBox(amountBox);
   randomSubmitButton.addEventListener("click", () => {
     if (!amountBox) {
       return;

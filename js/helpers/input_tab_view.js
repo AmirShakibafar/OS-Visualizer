@@ -1,5 +1,5 @@
 document.querySelectorAll('.tab').forEach(tab => {
-    tab.addEventListener('click', function() {
+    tab.addEventListener('click', () => {
       const targetPanel = this.getAttribute('data-target');
 
       document.querySelectorAll('.tab').forEach(tab => tab.classList.remove('active'));
