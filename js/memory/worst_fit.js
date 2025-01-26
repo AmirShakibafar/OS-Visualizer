@@ -7,6 +7,7 @@ import {
   checkIfRangeEmpty,
   updateHoverState,
   deAllocateMemorySpace,
+  findRangeOfEmpty
 } from "./memory_space.js";
 import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
@@ -18,8 +19,10 @@ const findWorstFit = async (processBlock, isCancelled) => {
   const memorySpaces = getMemorySpaces();
   let worstFitIndex = -1;
   let worstFitSize = -1;
+  let startIndex = 0;
+  let emptyRangeSize;
 
-  for (let startIndex = 0; startIndex < memorySpaces.length; startIndex++) {
+  while (startIndex < memorySpaces.length) {
     if (isCancelled()) return;
 
     if (
@@ -30,14 +33,18 @@ const findWorstFit = async (processBlock, isCancelled) => {
       renderMemorySections();
       await sleep(currentSpeed);
 
-      const fitSize = memorySpaces.length - startIndex;
-      if (fitSize > worstFitSize) {
-        worstFitSize = fitSize;
-        worstFitIndex = startIndex;
+      emptyRangeSize = findRangeOfEmpty(startIndex)
+      if (emptyRangeSize > worstFitSize){
+        worstFitSize = emptyRangeSize;
+        worstFitIndex = startIndex
       }
 
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
+      startIndex += emptyRangeSize;
+    }
+    else{
+      startIndex++
     }
   }
 
