@@ -26,8 +26,11 @@ vi.mock('../avgWaitTimeCalculator', () => ({
 }));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
-  SC: 0
-  
+}));
+
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
 }));
 
 

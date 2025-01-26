@@ -2,7 +2,7 @@ import { describe, it, expect, vi } from "vitest";
 import { HRRN, HRRNProcessSort } from "../HRRN.js";
 import { ShowAvgTime } from "../animation_table.js";
 import { avgWaitTime } from "../avgWaitTimeCalculator.js"
-import { Display, SC } from "../display.js";
+import { Display,  } from "../display.js";
 
 
 // Disable DOM
@@ -26,8 +26,11 @@ vi.mock('../avgWaitTimeCalculator', () => ({
 }));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
-  SC: 0
-  
+}));
+
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
 }));
 
 
