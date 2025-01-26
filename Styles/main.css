@@ -8,14 +8,13 @@
 }
 
 @media screen and (max-width: 1250px) {
-  .procces-table-container{
+  .procces-table-container {
     display: none;
   }
-  .mobile-table-area{
+  .mobile-table-area {
     display: block !important;
   }
 }
-
 
 a:visited {
   color: inherit;
@@ -48,7 +47,7 @@ header {
   font-weight: 500;
 }
 
-.nav-options a{
+.nav-options a {
   margin: 10px;
 }
 
@@ -66,7 +65,7 @@ header {
   box-shadow: 22px 17px 6px -5px rgba(0, 0, 0, 0.042);
 }
 
-.main-area{
+.main-area {
   gap: 1%;
   padding-left: 1%;
   padding-right: 1%;
@@ -89,7 +88,7 @@ header {
   background-color: #3b3b3b;
 }
 
-.tab-container{
+.tab-container {
   margin-left: 1%;
   margin-right: 1%;
 }
@@ -115,7 +114,6 @@ header {
   color: #fff;
 }
 
-
 .tab:hover {
   cursor: pointer;
   filter: brightness(0.9);
@@ -133,13 +131,11 @@ header {
   display: none;
 }
 
-
 .active-body {
   display: flex;
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-
 }
 
 .animation-controls {
@@ -151,7 +147,8 @@ header {
   flex-direction: column;
 }
 
-.short-input-type, .medium-input-type {
+.short-input-type,
+.medium-input-type {
   width: 100px;
   text-align: center;
   margin: 3px 5px;
@@ -250,7 +247,7 @@ header {
   justify-content: center;
   margin: 1% 0;
   flex-wrap: wrap;
-  gap : 7%;
+  gap: 7%;
 }
 
 .info-slider-buttons-section {
@@ -266,8 +263,7 @@ header {
   align-items: center;
 }
 
-
-.procces-table-container{
+.procces-table-container {
   position: relative;
 }
 
@@ -275,7 +271,7 @@ header {
   position: relative;
   border-collapse: collapse;
   font-size: 0.75rem;
- 
+
   border-radius: 8px 8px 0 0;
   overflow: hidden;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
@@ -291,7 +287,6 @@ header {
 
 .procces-table th,
 td {
-
   padding: 12px 15px;
   height: 40px;
 }
@@ -310,8 +305,8 @@ td {
 
 .procces-table tbody tr:first-child {
   background-color: #c1c0c0;
-  cursor: pointer;  
-  text-align: center; 
+  cursor: pointer;
+  text-align: center;
 }
 
 .procces-table tbody tr:first-child:hover {
@@ -319,9 +314,9 @@ td {
 }
 
 .procces-table tbody tr:first-child td {
-  padding: 12px 0; 
-  font-size: 16px; 
-  color: #0052b7;  
+  padding: 12px 0;
+  font-size: 16px;
+  color: #0052b7;
 }
 
 .procces-table tbody tr:first-child td button {
@@ -362,7 +357,6 @@ footer h3 {
   justify-content: center;
   align-items: center;
   height: fit-content;
-
 }
 
 .policy {
@@ -418,7 +412,7 @@ footer h3 {
 
 .mobile-table-area {
   display: none;
-  height: 30vh;
+  height: 35vh;
   margin: 30px 5%;
   background-color: #fff;
   border-radius: 25px;
@@ -439,9 +433,9 @@ footer h3 {
   display: flex;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
-  gap: 20px; 
+  gap: 20px;
   padding: 10px;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .card-title {
@@ -468,11 +462,11 @@ footer h3 {
 }
 
 .cards-container .card:first-child {
-  margin-left: 40px; 
+  margin-left: 40px;
 }
 
 .card {
-  position: relative; 
+  position: relative;
   width: 130px;
   height: 130px;
   background-color: #ffffff;
@@ -482,10 +476,8 @@ footer h3 {
   align-items: center;
   justify-content: space-evenly;
   border-radius: 12px;
-  scroll-snap-align: start; 
+  scroll-snap-align: end;
   flex: 0 0 auto;
-
-
 }
 
 .card .delete-btn {
@@ -516,10 +508,10 @@ footer h3 {
 .cards-container {
   display: flex;
   overflow-x: scroll;
-  scroll-snap-type: x mandatory; 
+  scroll-snap-type: x mandatory;
   gap: 20px;
   padding: 10px;
-  white-space: nowrap; 
+  white-space: nowrap;
 }
 
 .cards-container::-webkit-scrollbar {
@@ -527,7 +519,6 @@ footer h3 {
 }
 
 .cards-container::-webkit-scrollbar-thumb {
-  background: #3a86ff; 
+  background: #3a86ff;
   border-radius: 12px;
 }
-
