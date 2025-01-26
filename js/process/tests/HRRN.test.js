@@ -2,7 +2,8 @@ import { describe, it, expect, vi } from "vitest";
 import { HRRN, HRRNProcessSort } from "../HRRN.js";
 import { ShowAvgTime } from "../animation_table.js";
 import { avgWaitTime } from "../avgWaitTimeCalculator.js"
-import { Display, SC } from "../display.js";
+import { Display,  } from "../display.js";
+import { avgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
 // Disable DOM
@@ -17,17 +18,25 @@ vi.mock("../timing_policies", () => ({
 }));
 vi.mock('../animation_table', () => ({
   policy: null,
-  ShowAvgTime: vi.fn()
+  ShowAvgWaitTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
 }));
 
 vi.mock('../avgWaitTimeCalculator', () => ({
   avgWaitTime: vi.fn((s) => {return 1}),
   
 }));
+
+vi.mock('../avgResponseTimeCalculator', () => ({
+  avgResponseTime: vi.fn(),
+}));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
-  SC: 0
-  
+}));
+
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
 }));
 
 
@@ -40,7 +49,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 0, duration: 3 },
         { name: "P2", start: 5, duration: 2 },
         { name: "P3", start: 10, duration: 1 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 0, duration: 3, endTime: 3 },
       { name: "P2", start: 5, duration: 2, endTime: 7 },
@@ -54,7 +63,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 0, duration: 3 },
         { name: "P2", start: 1, duration: 5 },
         { name: "P3", start: 2, duration: 2 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 0, duration: 3, endTime: 3 },
       { name: "P3", start: 2, duration: 2, endTime: 5 },
@@ -68,7 +77,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 0, duration: 4 },
         { name: "P2", start: 0, duration: 2 },
         { name: "P3", start: 0, duration: 3 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 0, duration: 4, endTime: 4 },
       { name: "P2", start: 0, duration: 2, endTime: 6 },
@@ -82,7 +91,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 0, duration: 100 },
         { name: "P2", start: 5, duration: 50 },
         { name: "P3", start: 10, duration: 200 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 0, duration: 100, endTime: 100 },
       { name: "P2", start: 5, duration: 50, endTime: 150 },
@@ -96,7 +105,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 3, duration: 4 },
         { name: "P2", start: 0, duration: 5 },
         { name: "P3", start: 1, duration: 2 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P2", start: 0, duration: 5, endTime: 5 },
       { name: "P3", start: 1, duration: 2, endTime: 7 },
@@ -116,7 +125,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 1, duration: 3 },
         { name: "P2", start: 1, duration: 3 },
         { name: "P3", start: 1, duration: 3 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 1, duration: 3, endTime: 4 },
       { name: "P2", start: 1, duration: 3, endTime: 7 },
@@ -130,7 +139,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 0, duration: 0 },
         { name: "P2", start: 2, duration: 4 },
         { name: "P3", start: 3, duration: 0 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 0, duration: 0, endTime: 0 },
       { name: "P2", start: 2, duration: 4, endTime: 6 },
@@ -144,7 +153,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: 0, duration: 2.5 },
         { name: "P2", start: 1, duration: 3.7 },
         { name: "P3", start: 3, duration: 1.2 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: 0, duration: 2.5, endTime: 2.5 },
       { name: "P2", start: 1, duration: 3.7, endTime: 6.2 },
@@ -158,7 +167,7 @@ describe("HRRNProcessSort", () => {
         { name: "P1", start: -3, duration: 5 },
         { name: "P2", start: 0, duration: 2 },
         { name: "P3", start: -1, duration: 4 },
-      ])
+      ],0)
     ).toStrictEqual([
       { name: "P1", start: -3, duration: 5, endTime: 5 },
       { name: "P2", start: 0, duration: 2, endTime: 7 },
@@ -189,7 +198,7 @@ describe("HRRNProcessSort", () => {
         { name: "P18", start: 17, duration: 4 },
         { name: "P19", start: 18, duration: 6 },
         { name: "P20", start: 19, duration: 3 },
-      ])
+      ],0)
     ).toStrictEqual([
         { name: "P1", start: 0, duration: 5, endTime: 5 },
         { name: "P4", start: 1, duration: 2, endTime: 7 },
@@ -233,6 +242,7 @@ describe('HRRN', () => {
     expect(processes.every(p => p.endTime !== undefined)).toBe(true);
     //expect(HRRNProcessSort).toHaveBeenCalledWith(processes);
     expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
+    expect(avgResponseTime).toHaveBeenCalledWith(sortedProcesses);
     expect(Display).toHaveBeenCalledWith(sortedProcesses);
     //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
   });

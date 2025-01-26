@@ -23,7 +23,13 @@ vi.mock('../animation_table', () => ({
   }));
 vi.mock('../../helpers/helpers.js', () => ({
     sleep : vi.fn(()=>Promise.resolve())
-  }));
+}));
+
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
+}));
+
 
 
 describe('handleIdleState', () => {

@@ -1,8 +1,10 @@
 import { describe, test, it, expect, vi } from "vitest";
 import { SRTF, SRTFProcessSort } from  "../SRTF.js";
-import { Display, SC } from "../display.js";
+import { Display,  } from "../display.js";
 import { avgWaitTime } from "../avgWaitTimeCalculator.js"
 import { ShowAvgTime } from "../animation_table.js";
+import { avgResponseTime } from "../avgResponseTimeCalculator.js"
+import { quantomInput } from "../quantom_input.js";
 
 
 // Disable DOM
@@ -17,18 +19,31 @@ vi.mock('../timing_policies', () => ({
   }));
 vi.mock('../animation_table', () => ({
     policy: null,
-    ShowAvgTime: vi.fn()
+    ShowAvgWaitTime: vi.fn(),
+    ShowAvgResponseTime: vi.fn(),
   }));
 
 vi.mock('../avgWaitTimeCalculator', () => ({
     avgWaitTime: vi.fn((s) => {return 1}),
     
-  }));
+}));
+vi.mock('../avgResponseTimeCalculator', () => ({
+  avgResponseTime: vi.fn(),
+}));
 vi.mock('../display', () => ({
-    Display: vi.fn((s) => {return}),
-    SC: 0
-    
-  }));
+    Display: vi.fn((s) => {return}),    
+}));
+
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
+}));
+
+vi.mock('../quantom_input', () => ({
+  quantomInput: 2,
+}))
+
+
 
 
 
@@ -43,7 +58,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 0, duration: 3 },
           { name: "P2", start: 5, duration: 2 },
           { name: "P3", start: 10, duration: 1 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 0, duration: 3, remaining: 3 },
           { name: "P1", start: 0, duration: 3, remaining: 2 },
           { name: "P1", start: 0, duration: 3, remaining: 1, endTime: 3 },
@@ -61,7 +76,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 0, duration: 3 },
           { name: "P2", start: 1, duration: 5 },
           { name: "P3", start: 2, duration: 2 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 0, duration: 3, remaining: 3 },
           { name: "P1", start: 0, duration: 3, remaining: 2 },
           { name: "P1", start: 0, duration: 3, remaining: 1, endTime: 3 },
@@ -83,7 +98,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 0, duration: 4 },
           { name: "P2", start: 0, duration: 2 },
           { name: "P3", start: 0, duration: 3 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P2", start: 0, duration: 2, remaining: 2 },
           { name: "P2", start: 0, duration: 2, remaining: 1, endTime: 2 },
 
@@ -105,7 +120,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 3, duration: 4 },
           { name: "P2", start: 0, duration: 5 },
           { name: "P3", start: 1, duration: 2 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P2", start: 0, duration: 5, remaining: 5 },
 
           { name: "P3", start: 1, duration: 2, remaining: 2 },
@@ -127,7 +142,7 @@ describe('SRTFProcessSort', () => {
       it('Test case 5: Single process', () => {
         expect(SRTFProcessSort([
           { name: "P1", start: 5, duration: 10 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 5, duration: 10, remaining: 10 },
           { name: "P1", start: 5, duration: 10, remaining: 9 },
           { name: "P1", start: 5, duration: 10, remaining: 8 },
@@ -147,7 +162,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 1, duration: 3 },
           { name: "P2", start: 1, duration: 3 },
           { name: "P3", start: 1, duration: 3 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 1, duration: 3, remaining: 3 },
           { name: "P1", start: 1, duration: 3, remaining: 2 },
           { name: "P1", start: 1, duration: 3, remaining: 1, endTime: 4 },
@@ -168,7 +183,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 0, duration: 0 },
           { name: "P2", start: 2, duration: 4 },
           { name: "P3", start: 3, duration: 0 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 0, duration: 0, remaining: 0, endTime: 0 },
 
           { name: "P2", start: 2, duration: 4, remaining: 4 },
@@ -187,7 +202,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: 0, duration: 2.5 },
           { name: "P2", start: 1, duration: 3.7 },
           { name: "P3", start: 3, duration: 1.2 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 0, duration: 2.5, remaining: 2.5 },
           { name: "P1", start: 0, duration: 2.5, remaining: 1.5 },
           { name: "P1", start: 0, duration: 2.5, remaining: 0.5, endTime: 2.5 },
@@ -211,7 +226,7 @@ describe('SRTFProcessSort', () => {
           { name: "P1", start: -3, duration: 5 },
           { name: "P2", start: 0, duration: 2 },
           { name: "P3", start: -1, duration: 4 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P2", start: 0, duration: 2, remaining: 2 },
           { name: "P2", start: 0, duration: 2, remaining: 1, endTime: 2 },
 
@@ -252,7 +267,7 @@ describe('SRTFProcessSort', () => {
           { name: "P18", start: 17, duration: 4 },
           { name: "P19", start: 18, duration: 6 },
           { name: "P20", start: 19, duration: 3 }
-        ])).toStrictEqual([
+        ],1,0)).toStrictEqual([
           { name: "P1", start: 0, duration: 5, remaining: 5 },
 
           { name: "P4", start: 1, duration: 2, remaining: 2 },
@@ -385,6 +400,7 @@ describe('SRTF', () => {
     expect(processes.every(p => p.endTime !== undefined)).toBe(true);
     //expect(SPNProcessSort).toHaveBeenCalledWith(processes);
     expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
+    expect(avgResponseTime).toHaveBeenCalledWith(sortedProcesses);
     expect(Display).toHaveBeenCalledWith(sortedProcesses, q);
     //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
   });
