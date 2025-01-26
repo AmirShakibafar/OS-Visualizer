@@ -3,22 +3,24 @@ import { avgWaitTime} from "./avgWaitTimeCalculator.js"
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { quantomInput } from "./quantom_input.js";
-
+import { getContextSwitch } from "./context_switch.js";
 const getQuantom = () => {
   return quantomInput.value ? Number(quantomInput.value) : 2
 }
 
-const RRProcessSort = (processes, q) => {
+const RRProcessSort = (processes, q, CS) => {
   processes.sort((a, b) => a.start - b.start);
   processes.forEach((process) => {
     process.remaining = process.duration; 
   });
-
+  let processName = [];
   let curTime = 0; 
   let RRQueue = [];
   let readyQueue = [];
   let completed = 0;
   let newReadyProcesse = [];
+
+
   while (completed < processes.length) {
     processes.forEach((process) => {
       if (process.start <= curTime && process.endTime === undefined && !readyQueue.includes(process)) {
@@ -47,6 +49,16 @@ const RRProcessSort = (processes, q) => {
     for(let i = 0; i < countProcessesReady; i++){
       let currProcess = readyQueue.shift();
 
+     
+
+      //////////////////////////////// handle SC
+      processName.push(currProcess.name);
+      if(processName.length > 1){
+        if(processName[processName.length-2] !== currProcess.name){
+          curTime += CS;
+        }
+      }
+      ////////////////////////////
       if (currProcess.remaining > q) {
 
         RRQueue.push({ ...currProcess });
@@ -72,19 +84,19 @@ const RRProcessSort = (processes, q) => {
 };
 
 
-
 const RR =  async (processes) => {
   processes.forEach((process) => {
     process.remaining = undefined
     process.endTime = undefined
   })
   const Q = getQuantom();
+  const CS = getContextSwitch();
   console.log(processes)
-  let processes_ = [...RRProcessSort(processes, Q)];
+  let processes_ = [...RRProcessSort(processes, Q, CS)];
   console.log(processes_)
   const AvgWaitTime = avgWaitTime(processes_)
   const AvgResponseTime = avgResponseTime(processes_);
-  await Display(processes_, Q, 0);
+  await Display(processes_, Q);
   ShowAvgWaitTime(AvgWaitTime);
   ShowAvgResponseTime(AvgResponseTime);
 };

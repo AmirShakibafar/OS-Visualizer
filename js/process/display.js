@@ -2,7 +2,20 @@
 
 import { sleep } from "../helpers/helpers.js";
 import { isCancelled, get_next_block, SPEED } from "./animation_table.js";
+import { getContextSwitch } from "./context_switch.js";
 
+
+const handleSC = async (curr_tick) =>{
+  curr_tick = curr_tick
+  for (let i = 0; i < getContextSwitch(); i++){
+
+    const result = await handleContextSwitch(curr_tick);
+    if (result.curr_tick === null) return;
+    curr_tick = result.curr_tick;
+  }
+  return {curr_tick: curr_tick}
+
+}
 // Handles execution of the idle state
 const handleIdleState = async (curr_tick) => {
   if (isCancelled) {
@@ -17,7 +30,7 @@ const handleIdleState = async (curr_tick) => {
   return { curr_tick };
 };
 
-// Handles execution of a process
+// handles execution of a process
 const processExecution = async (process, curr_tick, duration) => {
   for (let i = 0; i < duration; i++) {
     if (isCancelled) {
@@ -30,7 +43,7 @@ const processExecution = async (process, curr_tick, duration) => {
   return { curr_tick };
 };
 
-// Handles context switching
+// handles context switching
 const handleContextSwitch = async (curr_tick) => {
   if (isCancelled) {
     return { curr_tick: null };
@@ -44,16 +57,16 @@ const handleContextSwitch = async (curr_tick) => {
   return { curr_tick };
 };
 
-// Refactored Display function
-const Display = async (processes, q = 0, contextSwitch = 0) => {
+// refactored Display function
+const Display = async (processes, q = 0) => {
   let curr_tick = 0;
-  let processQueue = processes.map((p) => ({ ...p, remaining: p.duration }));
-
-  for (let i = 0; i < processQueue.length; i++) {
-    const process = processQueue[i];
+  let processesName = []; 
+  for (const process of processes) {
     if (isCancelled) {
       return;
     }
+    processesName.push(process.name)
+
 
     while (process.start > curr_tick) {
       const result = await handleIdleState(curr_tick);
@@ -61,20 +74,34 @@ const Display = async (processes, q = 0, contextSwitch = 0) => {
       curr_tick = result.curr_tick;
     }
 
-    let execute_time = q ? Math.min(q, process.remaining) : process.remaining;
-    const result = await processExecution(process, curr_tick, execute_time);
-    if (result.curr_tick === null) return;
-    curr_tick = result.curr_tick;
-    process.remaining -= execute_time;
+    if (q == 0) {
+      // For FCFS, SPN, HRRN
+      let duration = process.duration;
+      let result = await processExecution(process, curr_tick, duration);
+      if (result.curr_tick === null) return; 
+      curr_tick = result.curr_tick;
 
-    if (i < processQueue.length - 1 && contextSwitch > 0) {
-      for (let j = 0; j < contextSwitch; j++) {
-        const csResult = await handleContextSwitch(curr_tick);
-        if (csResult.curr_tick === null) return;
-        curr_tick = csResult.curr_tick;
+      result = await handleSC(curr_tick);
+      if (result.curr_tick === null) return; 
+      curr_tick = result.curr_tick;
+
+    } else {
+      // For RR
+      if(processesName.length > 1){
+        if(processesName[processesName.length - 2] && processesName[processesName.length - 2] !== process.name){
+          const result = await handleSC(curr_tick);
+          if (result.curr_tick === null) return; 
+          curr_tick = result.curr_tick;
+        }
       }
+      
+      let remaining = process.remaining;
+      const result = await processExecution(process, curr_tick, Math.min(q, remaining)); // if remaining is smaller than q its handled
+      if (result.curr_tick === null) return;
+      curr_tick = result.curr_tick;
+
     }
   }
 };
 
-export { Display };
+export { Display};

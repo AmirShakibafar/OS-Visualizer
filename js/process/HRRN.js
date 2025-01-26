@@ -4,12 +4,12 @@ import { avgWaitTime } from "./avgWaitTimeCalculator.js";
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
 
-const HRRNProcessSort = (processes, contextSwitchTime = 0) => {
-  let curr_tick = 0; 
-  const hrrnArray = []; 
-  let remainingProcesses = [...processes];
 
-  remainingProcesses.sort((a, b) => a.start - b.start);
+const HRRNProcessSort = (processes, CS) => {
+  let curr_tick = 0; 
+  const hrrnArray = []; // Array to store the sorted processes with end times
+  let remainingProcesses = [...processes];
+  let firstProcess = true;
 
   while (remainingProcesses.length > 0) {
     let readyProcesses = remainingProcesses.filter(process => process.start <= curr_tick);
@@ -26,13 +26,17 @@ const HRRNProcessSort = (processes, contextSwitchTime = 0) => {
       let selectedProcess = highestRatioProcess.process;
 
       curr_tick += selectedProcess.duration;
-      selectedProcess.endTime = curr_tick;
-
-      if (remainingProcesses.length > 1) {
-        curr_tick += contextSwitchTime;
+      if(firstProcess){
+        selectedProcess.endTime = curr_tick;
+        firstProcess = false;
+      }else{
+        selectedProcess.endTime = curr_tick + CS;
+        curr_tick += CS;
       }
 
       hrrnArray.push(selectedProcess);
+
+
       remainingProcesses = remainingProcesses.filter(p => p !== selectedProcess);
     } else {
       curr_tick = Math.min(...remainingProcesses.map(p => p.start));
@@ -42,14 +46,13 @@ const HRRNProcessSort = (processes, contextSwitchTime = 0) => {
   return hrrnArray;
 };
 
-
 const HRRN =  async (processes) => {
   processes.forEach((processes) => processes.endTime = undefined)
   const CS = getContextSwitch();
   let processes_ = HRRNProcessSort(processes, CS);
   const AvgWaitTime = avgWaitTime(processes_);
   const AvgResponseTime = avgResponseTime(processes_);
-  await Display(processes_, 0, CS);
+  await Display(processes_, 0);
   ShowAvgWaitTime(AvgWaitTime);
   ShowAvgResponseTime(AvgResponseTime);
 };

@@ -1,27 +1,29 @@
-import { Display } from "./display.js";
+import { Display} from "./display.js";
 import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 import { avgResponseTime } from "./avgResponseTimeCalculator.js";
 import { getContextSwitch } from "./context_switch.js";
 
 
-const FCFSProcessSort = (processes, contextSwitchTime = 0) => {
+const FCFSProcessSort =  (processes, CS) =>{
   processes.sort((a, b) => a.start - b.start);
-  
   let curTime = Number(processes[0].start);
   let FCFSArray = processes;
-
-  FCFSArray.forEach((process, index) => {
-    if (curTime < process.start) {
+  let firstProcess = true;
+  
+  FCFSArray.forEach((process) => {
+    if (curTime < process.start)
       curTime = process.start;
+    curTime += Number(process.duration) 
+    if(firstProcess){
+      process.endTime = curTime;
+      firstProcess = false;
+    }else{
+      process.endTime = curTime + CS;
+      curTime += CS;
     }
-    curTime += Number(process.duration);
-    process.endTime = curTime; 
-    if (index !== FCFSArray.length - 1) {
-      curTime += contextSwitchTime; 
-    }
-
-  });
+    
+  })
 
   return FCFSArray;
 }
@@ -32,7 +34,7 @@ const FCFS =  async (processes) => {
   let processes_ = FCFSProcessSort(processes, CS);
   const AvgWaitTime = avgWaitTime(processes_);
   const AvgResponseTime = avgResponseTime(processes_);
-  await Display(processes_, 0, CS);
+  await Display(processes_, 0);
   ShowAvgWaitTime(AvgWaitTime);
   ShowAvgResponseTime(AvgResponseTime);
 };
