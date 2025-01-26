@@ -1,9 +1,15 @@
-import { Display, SC } from "./display.js";
-import { avgWaitTime } from "./avgWaitTimeCalculator.js"
-import { ShowAvgTime } from "./animation_table.js";
-const q = 2;
+import { Display } from "./display.js";
+import { avgWaitTime} from "./avgWaitTimeCalculator.js"
+import { avgResponseTime } from "./avgResponseTimeCalculator.js";
+import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
+import { quantomInput } from "./quantom_input.js";
+import { getContextSwitch } from "./context_switch.js";
+const getQuantom = () => {
+  return quantomInput.value ? Number(quantomInput.value) : 2
+}
 
-const RRProcessSort = (processes) => {
+const RRProcessSort = (processes, q, CS) => {
+
   processes.sort((a, b) => a.start - b.start);
   processes.forEach((process) => {
     process.remaining = process.duration; 
@@ -50,7 +56,9 @@ const RRProcessSort = (processes) => {
       processName.push(currProcess.name);
       if(processName.length > 1){
         if(processName[processName.length-2] !== currProcess.name){
-          curTime += SC;
+
+          curTime += CS;
+
         }
       }
       ////////////////////////////
@@ -79,19 +87,23 @@ const RRProcessSort = (processes) => {
 };
 
 
-
 const RR =  async (processes) => {
   processes.forEach((process) => {
     process.remaining = undefined
     process.endTime = undefined
   })
-
-  let processes_ = [...RRProcessSort(processes)];
-  const AvgWaitTime = avgWaitTime(processes_);
-  await Display(processes_, q);
-  ShowAvgTime(AvgWaitTime);
+  const Q = getQuantom();
+  const CS = getContextSwitch();
+  console.log(processes)
+  let processes_ = [...RRProcessSort(processes, Q, CS)];
+  console.log(processes_)
+  const AvgWaitTime = avgWaitTime(processes_)
+  const AvgResponseTime = avgResponseTime(processes_);
+  await Display(processes_, Q);
+  ShowAvgWaitTime(AvgWaitTime);
+  ShowAvgResponseTime(AvgResponseTime);
 };
 
 
-export { RR,RRProcessSort };
+export { RR, RRProcessSort };
 

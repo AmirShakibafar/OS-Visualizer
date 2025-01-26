@@ -78,39 +78,54 @@
           <div class="policy-container">
             <h1 id="policy-heading" class="policy">FCFS</h1>
           </div>
-          <div class="info-slider-buttons-section">
-            <div class="slider-buttons-section">
-              <input
-                type="range"
-                id="speed-range"
-                class="win10-thumb slider"
-                min="50"
-                max="1000"
-              />
-              <button class="display-hidden" id="play-button">
-                <img
-                  src="./images/play(b).svg"
-                  alt="Play"
-                  class="control-button white"
+          <div class="input-animation-controls">
+            <div class="info-slider-buttons-section">
+              <div class="slider-buttons-section">
+                <input
+                  type="range"
+                  id="speed-range"
+                  class="win10-thumb slider"
+                  min="50"
+                  max="1000"
                 />
-              </button>
-              <button class="display-hidden" id="reset-button">
-                <img
-                  src="images/trash-2.svg"
-                  alt="Play"
-                  class="control-button white"
-                />
-              </button>
-              <button class="display-hidden" id="reset-table-button">
-                <img
-                  src="./images/x.svg"
-                  alt="Play"
-                  class="control-button blue"
-                />
-              </button>
+                <button class="display-hidden" id="play-button">
+                  <img
+                    src="./images/play(b).svg"
+                    alt="Play"
+                    class="control-button white"
+                  />
+                </button>
+                <button class="display-hidden" id="reset-button">
+                  <img
+                    src="images/trash-2.svg"
+                    alt="Play"
+                    class="control-button white"
+                  />
+                </button>
+              </div>
             </div>
-            <div class="average-time-section">
-              <h1 id="result-box">Average Time: TBD</h1>
+            <div class="input-boxes-section">
+              <input
+                  type="text"
+                  class="medium-input-type"
+                  placeholder="time quantom"
+                  id="time-quantom"
+                  disabled
+                />
+                <input
+                  type="text"
+                  class="medium-input-type"
+                  placeholder="context switch"
+                  id="context-switch"
+                />
+            </div>
+          </div>
+          <div class="stats-section">
+            <div class="show-time-section">
+              <h1 id="response-result-box">Average Response Time: TBD</h1>
+            </div>
+            <div class="show-time-section">
+              <h1 id="average-result-box">Average Wait Time: TBD</h1>
             </div>
           </div>
         </div>
@@ -131,7 +146,8 @@
               <th>option</th>
             </tr>
           </thead>
-          <tbody id="process-table-body"></tbody>
+          <tbody id="process-table-body">
+          </tbody>
         </table>
       </div>
     </section>

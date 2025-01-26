@@ -1,9 +1,12 @@
-import { ShowAvgTime } from "./animation_table.js";
-import { Display, SC } from "./display.js";
+
+import { ShowAvgWaitTime, ShowAvgResponseTime } from "./animation_table.js";
+import { Display } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
+import { avgResponseTime } from "./avgResponseTimeCalculator.js";
+import { getContextSwitch } from "./context_switch.js";
 
 
-const HRRNProcessSort = (processes) => {
+const HRRNProcessSort = (processes, CS) => {
   let curr_tick = 0; 
   const hrrnArray = []; // Array to store the sorted processes with end times
   let remainingProcesses = [...processes];
@@ -28,8 +31,9 @@ const HRRNProcessSort = (processes) => {
         selectedProcess.endTime = curr_tick;
         firstProcess = false;
       }else{
-        selectedProcess.endTime = curr_tick + SC;
-        curr_tick += SC;
+        selectedProcess.endTime = curr_tick + CS;
+        curr_tick += CS;
+
       }
 
       hrrnArray.push(selectedProcess);
@@ -44,13 +48,15 @@ const HRRNProcessSort = (processes) => {
   return hrrnArray;
 };
 
-
 const HRRN =  async (processes) => {
   processes.forEach((processes) => processes.endTime = undefined)
-  let processes_ = HRRNProcessSort(processes);
+  const CS = getContextSwitch();
+  let processes_ = HRRNProcessSort(processes, CS);
   const AvgWaitTime = avgWaitTime(processes_);
-  await Display(processes_);
-  ShowAvgTime(AvgWaitTime);
+  const AvgResponseTime = avgResponseTime(processes_);
+  await Display(processes_, 0);
+  ShowAvgWaitTime(AvgWaitTime);
+  ShowAvgResponseTime(AvgResponseTime);
 };
 
 
