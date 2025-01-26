@@ -9,7 +9,7 @@ const checkToShowDeleteButton = () => {
   }
 }
 
-const render_mobile_processes = () => {
+const renderMobileProcesses = () => {
   cardsContainer.innerHTML = "";
   checkToShowDeleteButton();
   reOrderProcesses();
@@ -18,4 +18,4 @@ const render_mobile_processes = () => {
   });
 };
 
-export {render_mobile_processes};
+export {renderMobileProcesses};

@@ -1,7 +1,7 @@
 import {reOrderProcesses, getProcesses} from "./processes.js";
+import { processTable, createDeleteRow, createNewRow } from "./process_table_elements.js";
 
-
-const render_processes = () => {
+const renderDesktopProcesses = () => {
   processTable.innerHTML = "";
   if (getProcesses().length) {
     createDeleteRow();
@@ -12,4 +12,4 @@ const render_processes = () => {
   });
 };
 
-export {render_processes};
+export {renderDesktopProcesses};
