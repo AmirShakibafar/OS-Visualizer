@@ -54,7 +54,7 @@ const HRRN =  async (processes) => {
   let processes_ = HRRNProcessSort(processes, CS);
   const AvgWaitTime = avgWaitTime(processes_);
   const AvgResponseTime = avgResponseTime(processes_);
-  await Display(processes_, 0);
+  await Display(processes_);
   ShowAvgWaitTime(AvgWaitTime);
   ShowAvgResponseTime(AvgResponseTime);
 };
