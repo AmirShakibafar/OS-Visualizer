@@ -1,4 +1,5 @@
 import { clearProcesses, removeProcess } from "./processes.js";
+import { cardsContainer } from "./mobile_table_add.js";
 // import { processes } from "./processes.js";
 const processTable = document.getElementById("process-table-body");
 // const resetTableButton = document.getElementById("reset-table-button");
@@ -52,6 +53,7 @@ const render_processes = (processes) => {
     deleteAllRow.addEventListener("click", () => {
       clearProcesses();
       processTable.innerHTML = "";
+      cardsContainer.innerHTML = "";
     });
     processTable.prepend(deleteAllRow);
   }
@@ -61,4 +63,4 @@ const render_processes = (processes) => {
   });
 };
 
-export { render_processes };
+export { render_processes, reEvaluateTable, processTable };

@@ -1,5 +1,6 @@
 import { generate_random_color, generateAccentColor } from "../helpers/helpers.js";
-
+import { render_processes } from "./process_table.js";
+import { render_mobile_processes } from "./mobile_table_add.js";
 let processes = [];
 
 const generateProcess = (start, duration) => {
@@ -24,6 +25,8 @@ const removeProcess = (name, row) => {
     processes.splice(index, 1);
     row.remove();
   }
+  render_mobile_processes(processes);
+  render_processes(processes);
 };
 
 export { processes, generateProcess, clearProcesses, removeProcess };

@@ -1,7 +1,7 @@
 import { processes, generateProcess, clearProcesses } from "./processes.js";
 import { render_processes } from "./process_table.js";
 import { correctInputSize, allowNumbersOnly } from "../helpers/inputValidation.js";
-
+import { render_mobile_processes } from "./mobile_table_add.js";
 
 // we need typeof document !== "undefined" to handle test cases
 const amountBox = typeof document !== "undefined" ? document.getElementById("amount-box") : null;
@@ -31,6 +31,7 @@ if (amountBox !== null){
         }
         generate_random_processes(amountBox.value);
         render_processes(processes);
+        render_mobile_processes(processes);
     });
 }
 
