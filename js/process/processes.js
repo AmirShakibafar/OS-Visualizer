@@ -29,4 +29,11 @@ const removeProcess = (name, row) => {
   }
 };
 
-export { getProcesses, generateProcess, clearProcesses, removeProcess };
+const reOrderProcesses = () => {
+  processes.sort((a, b) => a.start - b.start);
+  processes.forEach((process, idx) => {
+    process.name = `P${idx}`;
+  });
+};
+
+export { getProcesses, generateProcess, clearProcesses, removeProcess, reOrderProcesses };
