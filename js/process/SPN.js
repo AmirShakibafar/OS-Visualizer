@@ -1,5 +1,5 @@
 import { ShowAvgTime } from "./animation_table.js";
-import { Display } from "./display.js";
+import { Display, SC } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
 
 
@@ -10,6 +10,7 @@ const SPNProcessSort = (processes) => {
   let curTime = 0;
   let SPNArray = [];
   let readyToProcess = [];
+  let firstProcess = true;
 
   while (SPNArray.length < processes.length) {
     readyToProcess = ProcessesClone.filter(
@@ -20,7 +21,15 @@ const SPNProcessSort = (processes) => {
     if (readyToProcess.length > 0) {
 
       curTime += Number(readyToProcess[0].duration);
-      readyToProcess[0].endTime = curTime;
+
+      if(firstProcess){
+        readyToProcess[0].endTime = curTime;
+        firstProcess = false;
+      }else{
+        readyToProcess[0].endTime = curTime + SC;
+        curTime += SC;
+      }
+
       SPNArray.push(readyToProcess[0]);
 
     } else {

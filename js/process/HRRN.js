@@ -1,5 +1,5 @@
 import { ShowAvgTime } from "./animation_table.js";
-import { Display } from "./display.js";
+import { Display, SC } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js";
 
 
@@ -7,6 +7,7 @@ const HRRNProcessSort = (processes) => {
   let curr_tick = 0; 
   const hrrnArray = []; // Array to store the sorted processes with end times
   let remainingProcesses = [...processes];
+  let firstProcess = true;
 
   while (remainingProcesses.length > 0) {
     let readyProcesses = remainingProcesses.filter(process => process.start <= curr_tick);
@@ -23,7 +24,13 @@ const HRRNProcessSort = (processes) => {
       let selectedProcess = highestRatioProcess.process;
 
       curr_tick += selectedProcess.duration;
-      selectedProcess.endTime = curr_tick;
+      if(firstProcess){
+        selectedProcess.endTime = curr_tick;
+        firstProcess = false;
+      }else{
+        selectedProcess.endTime = curr_tick + SC;
+        curr_tick += SC;
+      }
 
       hrrnArray.push(selectedProcess);
 

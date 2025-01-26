@@ -1,4 +1,4 @@
-import { Display } from "./display.js";
+import { Display, SC } from "./display.js";
 import { avgWaitTime } from "./avgWaitTimeCalculator.js"
 import { ShowAvgTime } from "./animation_table.js";
 const q = 2;
@@ -8,12 +8,14 @@ const RRProcessSort = (processes) => {
   processes.forEach((process) => {
     process.remaining = process.duration; 
   });
-
+  let processName = [];
   let curTime = 0; 
   let RRQueue = [];
   let readyQueue = [];
   let completed = 0;
   let newReadyProcesse = [];
+
+
   while (completed < processes.length) {
     processes.forEach((process) => {
       if (process.start <= curTime && process.endTime === undefined && !readyQueue.includes(process)) {
@@ -42,6 +44,16 @@ const RRProcessSort = (processes) => {
     for(let i = 0; i < countProcessesReady; i++){
       let currProcess = readyQueue.shift();
 
+     
+
+      //////////////////////////////// handle SC
+      processName.push(currProcess.name);
+      if(processName.length > 1){
+        if(processName[processName.length-2] !== currProcess.name){
+          curTime += SC;
+        }
+      }
+      ////////////////////////////
       if (currProcess.remaining > q) {
 
         RRQueue.push({ ...currProcess });
