@@ -30,7 +30,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin: 0 140px;
+  margin: 0 5%;
   padding: 2rem 0;
 }
 
@@ -42,7 +42,7 @@ header {
   display: flex;
   justify-content: space-evenly;
   list-style: none;
-  width: 30vw;
+  width: auto;
   font-size: 1.2rem;
   font-weight: 500;
 }
