@@ -20,7 +20,7 @@ vi.mock('../timing_policies', () => ({
 }));
 vi.mock('../../helpers/helpers.js', () => ({
     sleep : vi.fn(()=>Promise.resolve())
-}));
+}))
 vi.mock('../../helpers/speed.js', () => ({
     SPEED : 1,
 }));
@@ -35,7 +35,7 @@ vi.mock('../avgResponseTimeCalculator', () => ({
 vi.mock('../processAnimationView', () => ({
   tableBody: null,
   getNextBlock: vi.fn(),
-}));
+}))
 vi.mock('../context_switch', () => ({
   contextSwitch: 0,
   getContextSwitch: vi.fn(() => {return 0}),

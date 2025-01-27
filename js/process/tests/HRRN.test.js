@@ -5,6 +5,7 @@ import { Display,  } from "../display.js";
 import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
+
 // Disable DOM & Mock functions
 vi.mock("../process_table", () => ({
   processTable: null,
@@ -17,6 +18,8 @@ vi.mock("../timing_policies", () => ({
 }));
 vi.mock('../animation_table', () => ({
   policy: null,
+
+
 }));
 vi.mock('../avgWaitTimeCalculator', () => ({
   avgWaitTime: vi.fn((s) => {return 1}),
@@ -26,9 +29,14 @@ vi.mock('../avgResponseTimeCalculator', () => ({
   avgResponseTime: vi.fn(),
   ShowAvgResponseTime: vi.fn(),
 }));
+
+vi.mock('../avgResponseTimeCalculator', () => ({
+  avgResponseTime: vi.fn(),
+}));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
 }));
+
 vi.mock('../context_switch', () => ({
   contextSwitch: 0,
   getContextSwitch: vi.fn(() => {return 0}),

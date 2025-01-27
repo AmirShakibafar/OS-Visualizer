@@ -108,5 +108,7 @@ const Display = async (processes, q = 0) => {
   }
 };
 
+
 export { Display };
 export { handleIdleState, processExecution} // needed for testing
+

@@ -5,7 +5,6 @@ import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
 import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
-
 // Disable DOM
 vi.mock('../process_table', () => ({
     processTable: null

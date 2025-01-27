@@ -1,8 +1,10 @@
 import { describe, test, it, expect, vi } from "vitest";
 import {FCFS, FCFSProcessSort} from  "../FCFS.js";
+
 import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
 import { Display } from "../display.js";
 import { ShowAvgResponseTime, avgResponseTime } from "../avgResponseTimeCalculator.js"
+
 
 
 // Disable DOM & Mock functions
@@ -17,6 +19,7 @@ vi.mock('../timing_policies', () => ({
 }));
 vi.mock('../animation_table', () => ({
     policy: null,
+
 }));
 vi.mock('../avgWaitTimeCalculator', () => ({
     avgWaitTime: vi.fn(),
@@ -33,6 +36,7 @@ vi.mock('../context_switch', () => ({
     contextSwitch: 0,
     getContextSwitch: vi.fn(() => {return 0}),
 }));
+
 
 
 

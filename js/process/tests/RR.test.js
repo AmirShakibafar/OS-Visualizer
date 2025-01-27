@@ -5,7 +5,6 @@ import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
 import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
-
 // Disable DOM
 vi.mock("../process_table", () => ({
   processTable: null,
@@ -27,6 +26,9 @@ vi.mock('../avgResponseTimeCalculator', () => ({
   avgResponseTime: vi.fn(),
   ShowAvgResponseTime: vi.fn(),
 }));
+vi.mock('../avgResponseTimeCalculator', () => ({
+  avgResponseTime: vi.fn(),
+}));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
 }));
@@ -34,6 +36,17 @@ vi.mock('../context_switch', () => ({
   contextSwitch: 0,
   getContextSwitch: vi.fn(() => {return 0}),
 }));
+vi.mock('../quantom_input', () => ({
+  quantomInput: 2,
+}))
+
+
+
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
+}));
+
 vi.mock('../quantom_input', () => ({
   quantomInput: 2,
 }))
