@@ -27,10 +27,10 @@ const FCFSProcessSort = (processes, CS) => {
 const FCFS = async (processes) => {
   processes.forEach((processes) => (processes.endTime = undefined));
   const CS = getContextSwitch();
-  let processes_ = FCFSProcessSort(processes, CS);
+  let processes_ = [...FCFSProcessSort(processes, CS)];
   const AvgWaitTime = avgWaitTime(processes_);
   const AvgResponseTime = avgResponseTime(processes_);
-  await Display(processes_, 0);
+  await Display(processes_);
   ShowAvgWaitTime(AvgWaitTime);
   ShowAvgResponseTime(AvgResponseTime);
 };

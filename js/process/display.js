@@ -6,6 +6,7 @@ import { readIsCancelled } from "../helpers/cancelFlag.js";
 import { SPEED } from "../helpers/speed.js";
 import { getContextSwitch } from "./context_switch.js";
 
+
 const handleCS = async (curr_tick) => {
   curr_tick = curr_tick;
   for (let i = 0; i < getContextSwitch(); i++) {
@@ -107,4 +108,7 @@ const Display = async (processes, q = 0) => {
   }
 };
 
+
 export { Display };
+export { handleIdleState, processExecution} // needed for testing
+

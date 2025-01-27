@@ -37,3 +37,5 @@ const reOrderProcesses = () => {
 };
 
 export { getProcesses, generateProcess, clearProcesses, removeProcess, reOrderProcesses };
+
+export{ processes } // we need it for test 

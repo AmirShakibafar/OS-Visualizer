@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach } from "vitest";
-import { findBestFit, executeBestFit } from "../best_fit"; // Assuming the file name
+import { findWorstFit, executeWorstFit } from "../worst_fit.js"; // Assuming the file name
 import {
   getMemorySpaces,
   allocateMemorySpace,
@@ -26,6 +26,7 @@ vi.mock("../memory_space", () => ({
 vi.mock("../display", () => ({
   Display: vi.fn(),
 }))
+
 
 vi.mock('../../helpers/message', () => ({
   showMessage: vi.fn(),
@@ -58,13 +59,10 @@ vi.mock("../memory_blocks", () => ({
 }));
 
 vi.mock('../../helpers/cancelFlag.js', () => ({
-  readIsCancelled: vi.fn(),
+    readIsCancelled: vi.fn(),
 }));
-
-
   
-  
-describe("findBestFit", () => {
+describe("findWorstFit", () => {
   const mockIsCancelled = vi.fn();
 
   beforeEach(() => {
@@ -80,9 +78,9 @@ describe("findBestFit", () => {
     readIsCancelled.mockReturnValue(false);
   });
 
-  it("Test case 1: should find and allocate the best fit block", async () => {
+  it("Test case 1: should find and allocate the worst fit block", async () => {
     const processBlock = { name: "ProcessA", blockSize: 2, blockExitTime: 10, bgColor: "blue", color: "white" };
-    checkIfRangeEmpty.mockImplementation((start, size) => start >= 2 || (start > 4 && start + size <= 64));
+    checkIfRangeEmpty.mockImplementation((start, size) => start == 2 || (start == 5));
     getMemorySpaces.mockReturnValue([
         {
             processName: "any",
@@ -133,21 +131,64 @@ describe("findBestFit", () => {
             isHovered: false,
             wasRecentlyAdded: false,
             blockIndex: 4,
-        }
+        },
+        {
+            processName: "empty",
+            bgColor: null,
+            color: null,
+            blockExitTime: null,
+            isActive: false,
+            isHovered: false,
+            wasRecentlyAdded: false,
+            blockIndex: 5,
+        },
+        {
+            processName: "empty",
+            bgColor: null,
+            color: null,
+            blockExitTime: null,
+            isActive: false,
+            isHovered: false,
+            wasRecentlyAdded: false,
+            blockIndex: 6,
+        },
+        {
+            processName: "empty",
+            bgColor: null,
+            color: null,
+            blockExitTime: null,
+            isActive: false,
+            isHovered: false,
+            wasRecentlyAdded: false,
+            blockIndex: 7,
+        },
+        {
+            processName: "empty",
+            bgColor: null,
+            color: null,
+            blockExitTime: null,
+            isActive: false,
+            isHovered: false,
+            wasRecentlyAdded: false,
+            blockIndex: 8,
+        },
     ])
 
     findRangeOfEmpty.mockImplementation((startIndex) => {
       if (startIndex == 2){
           return 2
         }
+      if (startIndex == 5){
+          return 4
+        }
       })
 
-    await findBestFit(processBlock, mockIsCancelled);
+    await findWorstFit(processBlock, mockIsCancelled);
 
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, true);
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, false);
     expect(renderMemorySections).toHaveBeenCalled();
-    expect(allocateMemorySpace).toHaveBeenCalledWith(2, processBlock); // find best fit in index 2 and allocate
+    expect(allocateMemorySpace).toHaveBeenCalledWith(5, processBlock); // find worst fit in index 2 and allocate
     expect(showMessage).not.toHaveBeenCalledWith(
       expect.stringContaining("No available memory block"),
       "fail"
@@ -158,7 +199,7 @@ describe("findBestFit", () => {
     const processBlock = { name: "ProcessB", blockSize: 10, blockExitTime: 15 };
     checkIfRangeEmpty.mockReturnValue(false);
 
-    await findBestFit(processBlock, mockIsCancelled);
+    await findWorstFit(processBlock, mockIsCancelled);
 
     expect(updateHoverState).not.toHaveBeenCalled();
     expect(renderMemorySections).not.toHaveBeenCalled();
@@ -174,7 +215,7 @@ describe("findBestFit", () => {
     const processBlock = { name: "ProcessC", blockSize: 5, blockExitTime: 20 };
     readIsCancelled.mockReturnValue(true);
 
-    await findBestFit(processBlock, mockIsCancelled);
+    await findWorstFit(processBlock, mockIsCancelled);
 
     expect(updateHoverState).toHaveBeenCalledTimes(0); // Stops after cancellation
     expect(renderMemorySections).toHaveBeenCalledTimes(0);
@@ -183,12 +224,12 @@ describe("findBestFit", () => {
   });
 
 
-  it("Test case 4: should find and allocate the best fit block among varying sizes", async () => {
+  it("Test case 4: should find and allocate the worst fit block among varying sizes", async () => {
     const processBlock = { name: "ProcessB", blockSize: 3, blockExitTime: 15, bgColor: "green", color: "white" };
   
     // Mock `checkIfRangeEmpty` to simulate which blocks are empty
     checkIfRangeEmpty.mockImplementation((start, size) => {
-      if (start === 5 && size === 3) return true; // Best fit
+      if (start === 5 && size === 3) return true; 
       if (start === 0 && size === 3) return false;
       if (start === 1 && size === 3) return false;
       if (start === 2 && size === 3) return false;
@@ -245,7 +286,7 @@ describe("findBestFit", () => {
         isActive: false,
         isHovered: false,
         wasRecentlyAdded: false,
-        blockIndex: 5, // Best fit starts here
+        blockIndex: 5, // worst fit starts here
       },
       {
         processName: "empty",
@@ -269,7 +310,7 @@ describe("findBestFit", () => {
         return 3
       }
     })
-    await findBestFit(processBlock, mockIsCancelled);
+    await findWorstFit(processBlock, mockIsCancelled);
   
     // Ensure hover state is updated correctly for best fit
     expect(updateHoverState).toHaveBeenCalledWith(5, 3, true); // Hover on best fit (index 5)
@@ -287,14 +328,14 @@ describe("findBestFit", () => {
   });
 
   
-  it("Test case 5: should find and allocate the best fit block among varying sizes", async () => {
+  it("Test case 5: should find and allocate the worst fit block among varying sizes", async () => {
     const processBlock = { name: "ProcessB", blockSize: 3, blockExitTime: 15, bgColor: "green", color: "white" };
   
     // Mock `checkIfRangeEmpty` to simulate which blocks are empty
     checkIfRangeEmpty.mockImplementation((start, size) => {
-      if (start === 2 && size === 3) return true; // is not best
-      if (start === 7 && size === 3) return true; // is best
-      if (start > 10 && size === 3) return true; // is not best
+      if (start === 2 && size === 3) return true; // worst
+      if (start === 7 && size === 3) return true; 
+      if (start > 10 && size === 3) return true; 
       if (start >= 0 && start <= 1 && size === 3) return false; 
       if (start == 6 && size === 3) return false; 
       if (start == 10 && size === 3) return false; 
@@ -398,20 +439,20 @@ describe("findBestFit", () => {
         return 3
       }
       else if(startIndex == 2){
-        return 4
+        return 4 // worst
       }
     })
   
-    await findBestFit(processBlock, mockIsCancelled);
+    await findWorstFit(processBlock, mockIsCancelled);
   
     // Ensure hover state is updated correctly for best fit
-    expect(updateHoverState).toHaveBeenCalledWith(7, 3, true); // Hover on best fit (index 7)
-    expect(updateHoverState).toHaveBeenCalledWith(7, 3, false); // Hover off best fit
+    expect(updateHoverState).toHaveBeenCalledWith(2, 3, true); // Hover on best fit (index 7)
+    expect(updateHoverState).toHaveBeenCalledWith(2, 3, false); // Hover off best fit
 
     expect(findRangeOfEmpty).toHaveBeenCalledTimes(2)
   
     // Ensure the best fit block is allocated
-    expect(allocateMemorySpace).toHaveBeenCalledWith(7, processBlock); // Allocate to index 7
+    expect(allocateMemorySpace).toHaveBeenCalledWith(2, processBlock); // Allocate to index 7
     expect(renderMemorySections).toHaveBeenCalled();
   
     // Ensure no failure message was shown
@@ -425,10 +466,10 @@ describe("findBestFit", () => {
   
 });
 
-describe("executeBestFit", () => {
+describe("executeWorstFit", () => {
   it("Test case 1: should call Display function", async () => {
-    await executeBestFit();
+    await executeWorstFit();
     expect(Display).toHaveBeenCalled();
-    expect(Display).toHaveBeenCalledWith("best_fit");
+    expect(Display).toHaveBeenCalledWith("worst_fit");
   });
 });

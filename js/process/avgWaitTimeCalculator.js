@@ -1,7 +1,3 @@
-import { getProcesses } from "./processes.js";
-
-const waitInfo = document.getElementById("average-result-box");
-
 const avgWaitTime = (process) => {
   let totalWaitTime = 0;
   let realNumberOfProcesses = 0;
@@ -18,8 +14,10 @@ const avgWaitTime = (process) => {
 }
 
 const ShowAvgWaitTime = (time) => {
+  const waitInfo = document.getElementById("average-result-box");
   time = parseFloat(time.toFixed(2));
   waitInfo.textContent = `Average Wait Time: ${time}`;
 };
 
 export { avgWaitTime, ShowAvgWaitTime };
+

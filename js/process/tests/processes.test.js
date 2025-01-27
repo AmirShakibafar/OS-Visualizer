@@ -1,5 +1,5 @@
-import { describe, test, it, expect, beforeEach, vi } from "vitest";
-import { generateProcess, processes, clearProcesses } from "../processes";
+import { describe, it, expect, beforeEach, vi } from "vitest";
+import { generateProcess, processes ,getProcesses, clearProcesses } from "../processes";
 import { generate_random_color, generateAccentColor } from "../../helpers/helpers.js";
 
 vi.mock('../../helpers/helpers.js', () => ({
@@ -38,25 +38,47 @@ describe("generateProcess", () => {
   
     it("Test case 2: should increment the process name based on the length of processes array", () => {
       // Add a mock process to the processes array
-      processes.push({});
+      processes.push({})
   
       // Act
       const start = 5;
       const duration = 15;
-      const process = generateProcess(start, duration);
+      const process0 = generateProcess(start, duration);
+      processes.push(process0);
+      const process1 = generateProcess(start, duration);
   
       // Assert
-      expect(process.name).toBe("P1");
+      expect(process0.name).toBe("P1");
+      expect(process1.name).toBe("P2");
+
     });
   });
+
 describe("clearProcesses", () => {
     beforeEach(() => {
       // Clear mocks and reset the processes array
       vi.clearAllMocks;
     });
   
-    it("Test case 1: delete all processes", () => {
+    it("Test case 1: should delete all processes", () => {
+     processes.push({})
      clearProcesses();
-     expect(processes.length).toBe(0);
+     let processes_ = getProcesses();
+     expect(processes_.length).toBe(0);
+    });
+  });
+
+  describe("getProcesses", () => {
+    beforeEach(() => {
+      // Clear mocks and reset the processes array
+      vi.clearAllMocks;
+    });
+  
+    it("Test case 1: should return all processes", () => {
+     processes.push({})
+     processes.push({})
+     let processes_ = getProcesses();
+     expect(processes_.length).toBe(2);
+     expect(processes_).toStrictEqual([{},{}]);
     });
   });

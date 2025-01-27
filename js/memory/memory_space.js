@@ -101,5 +101,5 @@ export {
   deAllocateMemorySpace,
   updateHoverState,
   checkIfRangeEmpty,
-  findRangeOfEmpty
+  findRangeOfEmpty,
 };
