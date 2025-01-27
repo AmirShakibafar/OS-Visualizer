@@ -1,4 +1,4 @@
-import { describe, test, it, expect, beforeEach, vi } from "vitest";
+import { describe, it, expect, beforeEach, vi } from "vitest";
 import { 
     generate_start_duration,
     generate_random_processes
@@ -6,13 +6,15 @@ import {
  
  import { 
     processes,
-    clearProcesses 
+    clearProcesses, 
+    generateProcess,
+    getProcesses
 } from "../processes.js";
 
 
 
 // Disable DOM
-vi.mock('../process_table', () => ({
+vi.mock('../process_table_elements', () => ({
     processTable: null
   }));
 
@@ -20,8 +22,10 @@ vi.mock("../processes.js", () => ({
   processes: [],
   generateProcess: vi.fn((start, duration) => ({ start, duration })),
   clearProcesses: vi.fn(),
+  getProcesses: vi.fn((processes) => {return []}),
 }));
   
+
 
 
 /////////////////////////////     Tests    ////////////////////////////
@@ -70,7 +74,8 @@ describe("generate_random_processes", () => {
     
       it("Test case 2: should generate the correct number of processes", () => {
         generate_random_processes(5);
-        expect(processes).toHaveLength(5); // Ensure 5 processes are generated
+        expect(getProcesses).toHaveBeenCalledTimes(5); // Ensure 5 processes are generated
+        expect(generateProcess).toHaveBeenCalledTimes(5); // Ensure 5 processes are generated
       });
     
       it("Test case 3: should populate the processes array with valid data", () => {

@@ -2,20 +2,17 @@ import { renderMemorySections } from "./memory_table.js";
 import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
-  clearMemorySpaces,
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
-  deAllocateMemorySpace,
   findRangeOfEmpty
 } from "./memory_space.js";
-import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
-import { updateTime, resetTime } from "./timer.js";
-import { currentSpeed } from "./speed.js";
+import { SPEED } from "../helpers/speed.js";
 import { Display } from "./display.js";
+import { readIsCancelled } from "../helpers/cancelFlag.js";
 
-const findWorstFit = async (processBlock, isCancelled) => {
+const findWorstFit = async (processBlock) => {
   const memorySpaces = getMemorySpaces();
   let worstFitIndex = -1;
   let worstFitSize = -1;
@@ -23,7 +20,7 @@ const findWorstFit = async (processBlock, isCancelled) => {
   let emptyRangeSize;
 
   while (startIndex < memorySpaces.length) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
 
     if (
       startIndex + processBlock.blockSize <= memorySpaces.length &&
@@ -31,7 +28,7 @@ const findWorstFit = async (processBlock, isCancelled) => {
     ) {
       updateHoverState(startIndex, processBlock.blockSize, true);
       renderMemorySections();
-      await sleep(currentSpeed);
+      await sleep(SPEED);
 
       emptyRangeSize = findRangeOfEmpty(startIndex)
       if (emptyRangeSize > worstFitSize){
@@ -42,8 +39,7 @@ const findWorstFit = async (processBlock, isCancelled) => {
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
       startIndex += emptyRangeSize;
-    }
-    else{
+    }else{
       startIndex++
     }
   }
@@ -51,7 +47,7 @@ const findWorstFit = async (processBlock, isCancelled) => {
   if (worstFitIndex !== -1) {
     updateHoverState(worstFitIndex, processBlock.blockSize, true);
     renderMemorySections();
-    await sleep(currentSpeed);
+    await sleep(SPEED);
 
     allocateMemorySpace(worstFitIndex, processBlock);
     updateHoverState(worstFitIndex, processBlock.blockSize, false);
@@ -65,8 +61,8 @@ const findWorstFit = async (processBlock, isCancelled) => {
   }
 };
 
-const executeWorstFit = async (isCancelled) => {
-  await Display(isCancelled, "worst_fit")
+const executeWorstFit = async () => {
+  await Display("worst_fit")
   };
 
 export {executeWorstFit, findWorstFit};

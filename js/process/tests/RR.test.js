@@ -1,10 +1,8 @@
 import { describe, it, expect, vi } from "vitest";
 import { RR, RRProcessSort } from "../RR.js";
-import { Display, SC } from "../display.js";
-import { avgWaitTime } from "../avgWaitTimeCalculator.js"
-import { ShowAvgTime } from "../animation_table.js";
-import { avgResponseTime } from "../avgResponseTimeCalculator.js"
-import { quantomInput } from "../quantom_input.js";
+import { Display} from "../display.js";
+import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
+import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
 // Disable DOM
@@ -19,20 +17,31 @@ vi.mock("../timing_policies", () => ({
 }));
 vi.mock('../animation_table', () => ({
   policy: null,
-  ShowAvgWaitTime: vi.fn(),
-  ShowAvgResponseTime: vi.fn(),
 }));
-
 vi.mock('../avgWaitTimeCalculator', () => ({
   avgWaitTime: vi.fn((s) => {return 1}),
-  
+  ShowAvgWaitTime: vi.fn(),
 }));
 vi.mock('../avgResponseTimeCalculator', () => ({
   avgResponseTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
+}));
+vi.mock('../avgResponseTimeCalculator', () => ({
+  avgResponseTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
 }));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
 }));
+vi.mock('../context_switch', () => ({
+  contextSwitch: 0,
+  getContextSwitch: vi.fn(() => {return 0}),
+}));
+vi.mock('../quantom_input', () => ({
+  quantomInput: 2,
+}))
+
+
 
 vi.mock('../context_switch', () => ({
   contextSwitch: 0,
@@ -302,7 +311,7 @@ describe("RRProcessSort", () => {
 
 
 describe('RR', () => {
-  it('Test case 1: sould send correct value to another functions', () => {
+  it('Test case 1: sould send correct value to another functions', async () => {
     
     const processes = [
       { name: "P1", start: 0, duration: 3 },
@@ -317,15 +326,15 @@ describe('RR', () => {
 
       { name: "P3", start: 10, duration: 1, remaining: 1, endTime: 11 },
     ];
-    const averageWaitTime = 0;
     const q = 2;
 
-    RR(processes)
+    await RR(processes)
     expect(processes.every(p => p.endTime !== undefined)).toBe(true);
-    //expect(SPNProcessSort).toHaveBeenCalledWith(processes);
+    //expect(RRProcessSort).toHaveBeenCalledWith(processes);
     expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
     expect(avgResponseTime).toHaveBeenCalledWith(sortedProcesses);
     expect(Display).toHaveBeenCalledWith(sortedProcesses, q);
-    //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
+    expect(ShowAvgResponseTime).toHaveBeenCalled();
+    expect(ShowAvgWaitTime).toHaveBeenCalled();
   });
 })

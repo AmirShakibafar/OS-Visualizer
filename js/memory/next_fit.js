@@ -2,30 +2,28 @@ import { renderMemorySections } from "./memory_table.js";
 import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
-  clearMemorySpaces,
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
-  deAllocateMemorySpace,
 } from "./memory_space.js";
-import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
-import { updateTime, resetTime } from "./timer.js";
-import { currentSpeed } from "./speed.js";
+import { SPEED } from "../helpers/speed.js";
 import { Display } from "./display.js";
+import { readIsCancelled } from "../helpers/cancelFlag.js";
+
 
 let lastAllocatedIndex = 0;
 
 
-const findNextFit = async (processBlock, isCancelled) => {
+const findNextFit = async (processBlock) => {
   const memorySpaces = getMemorySpaces();
 
   let startIndex = lastAllocatedIndex;
 
-  if (isCancelled()) return;
+  if (readIsCancelled()) return;
 
   while (startIndex < memorySpaces.length) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
 
     if (!memorySpaces[startIndex]) {
       console.error(`Error: memorySpaces[${startIndex}] is undefined`);
@@ -33,7 +31,8 @@ const findNextFit = async (processBlock, isCancelled) => {
     }
     updateHoverState(startIndex, processBlock.blockSize, true);
     renderMemorySections();
-    await sleep(currentSpeed);
+    await sleep(SPEED);
+    
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
       showMessage(
@@ -55,7 +54,7 @@ const findNextFit = async (processBlock, isCancelled) => {
 
   startIndex = 0;
   while (startIndex < lastAllocatedIndex) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
 
     if (!memorySpaces[startIndex]) {
       console.error(`Error: memorySpaces[${startIndex}] is undefined`);
@@ -64,7 +63,8 @@ const findNextFit = async (processBlock, isCancelled) => {
 
     updateHoverState(startIndex, processBlock.blockSize, true);
     renderMemorySections();
-    await sleep(currentSpeed);
+    await sleep(SPEED);
+    
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
       showMessage(
@@ -94,8 +94,8 @@ const findNextFit = async (processBlock, isCancelled) => {
 };
 
 
-const executeNextFit = async (isCancelled) => {
- await Display(isCancelled, "next_fit")
+const executeNextFit = async () => {
+ await Display("next_fit")
 };
 
 export {executeNextFit, findNextFit};

@@ -1,12 +1,12 @@
 import { describe, it, expect, vi } from "vitest";
 import { HRRN, HRRNProcessSort } from "../HRRN.js";
-import { ShowAvgTime } from "../animation_table.js";
-import { avgWaitTime } from "../avgWaitTimeCalculator.js"
+import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
 import { Display,  } from "../display.js";
-import { avgResponseTime } from "../avgResponseTimeCalculator.js"
+import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
-// Disable DOM
+
+// Disable DOM & Mock functions
 vi.mock("../process_table", () => ({
   processTable: null,
 }));
@@ -18,17 +18,21 @@ vi.mock("../timing_policies", () => ({
 }));
 vi.mock('../animation_table', () => ({
   policy: null,
-  ShowAvgWaitTime: vi.fn(),
-  ShowAvgResponseTime: vi.fn(),
-}));
 
+
+}));
 vi.mock('../avgWaitTimeCalculator', () => ({
   avgWaitTime: vi.fn((s) => {return 1}),
-  
+  ShowAvgWaitTime: vi.fn(),
+}));
+vi.mock('../avgResponseTimeCalculator', () => ({
+  avgResponseTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
 }));
 
 vi.mock('../avgResponseTimeCalculator', () => ({
   avgResponseTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
 }));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
@@ -227,7 +231,7 @@ describe("HRRNProcessSort", () => {
 
 
 describe('HRRN', () => {
-  it('Test case 1: sould send correct value to another functions', () => {
+  it('Test case 1: sould send correct value to another functions', async () => {
     const processes = [
       { name: "P1", start: 0, duration: 5 },
       { name: "P2", start: 3, duration: 7 },
@@ -236,14 +240,14 @@ describe('HRRN', () => {
       { name: "P1", start: 0, duration: 5, endTime:5 },
       { name: "P2", start: 3, duration: 7, endTime:12 },
     ];
-    const averageWaitTime = 1;
 
-    HRRN(processes)
+    await HRRN(processes)
     expect(processes.every(p => p.endTime !== undefined)).toBe(true);
     //expect(HRRNProcessSort).toHaveBeenCalledWith(processes);
     expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
     expect(avgResponseTime).toHaveBeenCalledWith(sortedProcesses);
     expect(Display).toHaveBeenCalledWith(sortedProcesses);
-    //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
+    expect(ShowAvgWaitTime).toHaveBeenCalled();
+    expect(ShowAvgResponseTime).toHaveBeenCalled();
   });
 })

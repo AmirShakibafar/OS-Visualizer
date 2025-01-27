@@ -10,6 +10,58 @@ import {
 import { renderMemorySections } from "../memory_table";
 import { showMessage } from "../../helpers/message";
 import { Display } from "../display.js";
+import { readIsCancelled } from "../../helpers/cancelFlag";
+
+// Mock dependencies
+vi.mock("../memory_space", () => ({
+  getMemorySpaces: vi.fn(),
+  allocateMemorySpace: vi.fn(),
+  checkIfRangeEmpty: vi.fn(),
+  updateHoverState: vi.fn(),
+  clearMemorySpaces: vi.fn(),
+  deAllocateMemorySpace: vi.fn(),
+  findRangeOfEmpty: vi.fn()
+}));
+
+vi.mock("../display", () => ({
+  Display: vi.fn(),
+}))
+
+
+vi.mock('../../helpers/message', () => ({
+  showMessage: vi.fn(),
+  messageBox: null
+}));
+
+vi.mock("../../helpers/helpers", () => ({
+  sleep: vi.fn(() => Promise.resolve()),
+}));
+
+vi.mock("../memory_table", () => ({
+  renderMemorySections: vi.fn(),
+}));
+
+vi.mock("../helpers/message", () => ({
+  showMessage: vi.fn(),
+}));
+
+vi.mock("../../speed", () => ({
+  SPEED: 1,
+}));
+
+vi.mock("../timer", () => ({
+  updateTime: vi.fn(),
+  resetTime: vi.fn(),
+}));
+
+vi.mock("../memory_blocks", () => ({
+  getMemoryBlocks: vi.fn(),
+}));
+
+vi.mock('../../helpers/cancelFlag.js', () => ({
+    readIsCancelled: vi.fn(),
+}));
+=======
 
 // Mock dependencies
 vi.mock("../memory_space", () => ({
@@ -57,21 +109,8 @@ vi.mock("../memory_space", () => ({
     getMemoryBlocks: vi.fn(),
   }));
   
-  
-describe("findWorstFit", () => {
-  const mockIsCancelled = vi.fn();
 
-  beforeEach(() => {
-    vi.clearAllMocks();
-    getMemorySpaces.mockReturnValue(
-      Array.from({ length: 64 }, (_, i) => ({
-        processName: "empty",
-        blockExitTime: null,
-        isActive: false,
-        blockIndex: i,
-      }))
-    );
-    mockIsCancelled.mockReturnValue(false);
+    readIsCancelled.mockReturnValue(false);
   });
 
   it("Test case 1: should find and allocate the worst fit block", async () => {
@@ -209,7 +248,9 @@ describe("findWorstFit", () => {
 
   it("Test case 3: should stop execution if cancelled", async () => {
     const processBlock = { name: "ProcessC", blockSize: 5, blockExitTime: 20 };
-    mockIsCancelled.mockReturnValueOnce(true);
+
+    readIsCancelled.mockReturnValue(true);
+
 
     await findWorstFit(processBlock, mockIsCancelled);
 
@@ -464,8 +505,16 @@ describe("findWorstFit", () => {
 
 describe("executeWorstFit", () => {
   it("Test case 1: should call Display function", async () => {
+
+    await executeWorstFit();
+    expect(Display).toHaveBeenCalled();
+    expect(Display).toHaveBeenCalledWith("worst_fit");
+  });
+});
+
     await executeWorstFit(false);
     expect(Display).toHaveBeenCalled();
     expect(Display).toHaveBeenCalledWith(false, "worst_fit");
   });
 });
+

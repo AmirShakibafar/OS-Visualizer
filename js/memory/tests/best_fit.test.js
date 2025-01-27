@@ -10,52 +10,58 @@ import {
 import { renderMemorySections } from "../memory_table";
 import { showMessage } from "../../helpers/message";
 import { Display } from "../display.js";
+import { readIsCancelled } from "../../helpers/cancelFlag";
 
 // Mock dependencies
 vi.mock("../memory_space", () => ({
-    getMemorySpaces: vi.fn(),
-    allocateMemorySpace: vi.fn(),
-    checkIfRangeEmpty: vi.fn(),
-    updateHoverState: vi.fn(),
-    clearMemorySpaces: vi.fn(),
-    deAllocateMemorySpace: vi.fn(),
-    findRangeOfEmpty: vi.fn()
-  }));
-  
-  vi.mock("../display", () => ({
-    Display: vi.fn(),
-  }))
-  
-  
-  vi.mock('../../helpers/message', () => ({
-    showMessage: vi.fn(),
-    messageBox: null
-  }));
-  
-  vi.mock("../../helpers/helpers", () => ({
-    sleep: vi.fn(() => Promise.resolve()),
-  }));
-  
-  vi.mock("../memory_table", () => ({
-    renderMemorySections: vi.fn(),
-  }));
-  
-  vi.mock("../helpers/message", () => ({
-    showMessage: vi.fn(),
-  }));
-  
-  vi.mock("../speed", () => ({
-    currentSpeed: 1,
-  }));
-  
-  vi.mock("../timer", () => ({
-    updateTime: vi.fn(),
-    resetTime: vi.fn(),
-  }));
-  
-  vi.mock("../memory_blocks", () => ({
-    getMemoryBlocks: vi.fn(),
-  }));
+  getMemorySpaces: vi.fn(),
+  allocateMemorySpace: vi.fn(),
+  checkIfRangeEmpty: vi.fn(),
+  updateHoverState: vi.fn(),
+  clearMemorySpaces: vi.fn(),
+  deAllocateMemorySpace: vi.fn(),
+  findRangeOfEmpty: vi.fn()
+}));
+
+vi.mock("../display", () => ({
+  Display: vi.fn(),
+}))
+
+vi.mock('../../helpers/message', () => ({
+  showMessage: vi.fn(),
+  messageBox: null
+}));
+
+vi.mock("../../helpers/helpers", () => ({
+  sleep: vi.fn(() => Promise.resolve()),
+}));
+
+vi.mock("../memory_table", () => ({
+  renderMemorySections: vi.fn(),
+}));
+
+vi.mock("../helpers/message", () => ({
+  showMessage: vi.fn(),
+}));
+
+vi.mock("../../speed", () => ({
+  SPEED: 1,
+}));
+
+vi.mock("../timer", () => ({
+  updateTime: vi.fn(),
+  resetTime: vi.fn(),
+}));
+
+vi.mock("../memory_blocks", () => ({
+  getMemoryBlocks: vi.fn(),
+}));
+
+vi.mock('../../helpers/cancelFlag.js', () => ({
+  readIsCancelled: vi.fn(),
+}));
+
+
   
   
 describe("findBestFit", () => {
@@ -71,7 +77,7 @@ describe("findBestFit", () => {
         blockIndex: i,
       }))
     );
-    mockIsCancelled.mockReturnValue(false);
+    readIsCancelled.mockReturnValue(false);
   });
 
   it("Test case 1: should find and allocate the best fit block", async () => {
@@ -166,7 +172,7 @@ describe("findBestFit", () => {
 
   it("Test case 3: should stop execution if cancelled", async () => {
     const processBlock = { name: "ProcessC", blockSize: 5, blockExitTime: 20 };
-    mockIsCancelled.mockReturnValueOnce(true);
+    readIsCancelled.mockReturnValue(true);
 
     await findBestFit(processBlock, mockIsCancelled);
 
@@ -421,8 +427,8 @@ describe("findBestFit", () => {
 
 describe("executeBestFit", () => {
   it("Test case 1: should call Display function", async () => {
-    await executeBestFit(false);
+    await executeBestFit();
     expect(Display).toHaveBeenCalled();
-    expect(Display).toHaveBeenCalledWith(false, "best_fit");
+    expect(Display).toHaveBeenCalledWith("best_fit");
   });
 });

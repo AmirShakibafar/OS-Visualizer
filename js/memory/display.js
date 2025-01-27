@@ -6,12 +6,13 @@ import {
 import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
 import { updateTime, resetTime } from "./timer.js";
-import { currentSpeed } from "./speed.js";
+import { SPEED } from "../helpers/speed.js";
 import { renderMemorySections } from "./memory_table.js";
 import { findBestFit } from "./best_fit.js";
 import { findFirstFit } from "./first_fit.js";
 import { findWorstFit } from "./worst_fit.js";
 import { findNextFit } from "./next_fit.js";
+import { readIsCancelled } from "../helpers/cancelFlag.js";
 
 const getMemoryAlgorithm = (typeOfMemory) => {
   switch (typeOfMemory) {
@@ -28,7 +29,7 @@ const getMemoryAlgorithm = (typeOfMemory) => {
   }
 };
 
-const Display = async (isCancelled, typeOfMemory) => {
+const Display = async (typeOfMemory) => {
   const processBlocks = getMemoryBlocks();
   clearMemorySpaces();
   resetTime();
@@ -36,27 +37,27 @@ const Display = async (isCancelled, typeOfMemory) => {
 
   for (const process of processBlocks) {
     while (currTick < process.blockArrival) {
-      if (isCancelled()) return;
+      if (readIsCancelled()) return;
       let mustGetDeAllocated = deAllocateMemorySpace(currTick);
       while (mustGetDeAllocated) {
-        if (isCancelled()) return;
-        await sleep(currentSpeed);
+        if (readIsCancelled()) return;
+        await sleep(SPEED);
         mustGetDeAllocated = deAllocateMemorySpace(currTick);
         renderMemorySections();
       }
 
       currTick++;
       updateTime(currTick);
-      await sleep(currentSpeed);
+      await sleep(SPEED);
     }
-    if (isCancelled()) return;
-    await getMemoryAlgorithm(typeOfMemory)(process, isCancelled);
+    if (readIsCancelled()) return;
+    await getMemoryAlgorithm(typeOfMemory)(process);
     updateTime(currTick);
-    await sleep(currentSpeed);
+    await sleep(SPEED);
   }
 
   while (true) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
     let mustGetDeAllocated = deAllocateMemorySpace(currTick);
     const activeProcesses = getMemorySpaces().some((space) => space.isActive);
     if (!activeProcesses) {
@@ -64,15 +65,15 @@ const Display = async (isCancelled, typeOfMemory) => {
     }
 
     while (mustGetDeAllocated) {
-      if (isCancelled()) return;
-      await sleep(currentSpeed);
+      if (readIsCancelled()) return;
+      await sleep(SPEED);
       mustGetDeAllocated = deAllocateMemorySpace(currTick);
       renderMemorySections();
     }
 
     currTick++;
     updateTime(currTick);
-    await sleep(currentSpeed);
+    await sleep(SPEED);
   }
 };
 

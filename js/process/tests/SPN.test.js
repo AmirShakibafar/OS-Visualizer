@@ -1,39 +1,34 @@
 import { describe, test, it, expect, vi } from "vitest";
-import { SPN, SPNProcessSort } from  "../SPN.js";
-import { ShowAvgWaitTime, ShowAvgResponseTime } from "../animation_table.js";
-import { avgWaitTime } from "../avgWaitTimeCalculator.js"
+import { SPN, SPNProcessSort } from  "../SPN.js"
+import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
 import { Display,  } from "../display.js";
-import { avgResponseTime } from "../avgResponseTimeCalculator.js"
+import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
-// Disable DOM
+// Disable DOM & Mock functions
 vi.mock('../process_table', () => ({
     processTable: null
-  }));
+}));
 vi.mock('../manual_add_process', () => ({
     policy: null
-  }));
+}));
 vi.mock('../timing_policies', () => ({
     policy: null
-  }));
+}));
 vi.mock('../animation_table', () => ({
     policy: null,
-    ShowAvgWaitTime: vi.fn(),
-    ShowAvgResponseTime: vi.fn(),
-  }));
-
+}));
 vi.mock('../avgWaitTimeCalculator', () => ({
     avgWaitTime: vi.fn((s) => {return 1}),
-    
+    ShowAvgWaitTime: vi.fn(),    
 }));
-
 vi.mock('../avgResponseTimeCalculator', () => ({
   avgResponseTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
 }));
 vi.mock('../display', () => ({
     Display: vi.fn((s) => {return}),
 }));
-
 vi.mock('../context_switch', () => ({
   contextSwitch: 0,
   getContextSwitch: vi.fn(() => {return 0}),
@@ -219,7 +214,7 @@ describe('SPNProcessSort', () => {
 
 
 describe('SPN', () => {
-  it('Test case 1: sould send correct value to another functions', () => {
+  it('Test case 1: sould send correct value to another functions', async () => {
     const processes = [
       { name: "P1", start: 0, duration: 5 },
       { name: "P2", start: 3, duration: 7 },
@@ -228,14 +223,14 @@ describe('SPN', () => {
       { name: "P1", start: 0, duration: 5, endTime:5 },
       { name: "P2", start: 3, duration: 7, endTime:12 },
     ];
-    const averageWaitTime = 1;
 
-    SPN(processes)
+    await SPN(processes)
     expect(processes.every(p => p.endTime !== undefined)).toBe(true);
     //expect(SPNProcessSort).toHaveBeenCalledWith(processes);
     expect(avgWaitTime).toHaveBeenCalledWith(sortedProcesses);
     expect(avgResponseTime).toHaveBeenCalledWith(sortedProcesses);
     expect(Display).toHaveBeenCalledWith(sortedProcesses);
-    //expect(ShowAvgTime).toHaveBeenCalledWith(averageWaitTime);
+    expect(ShowAvgWaitTime).toHaveBeenCalled();
+    expect(ShowAvgResponseTime).toHaveBeenCalled();
   });
 })

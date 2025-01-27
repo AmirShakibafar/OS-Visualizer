@@ -1,9 +1,8 @@
-import { allowNumbersOnly, correctOneDigitInputSize } from "../helpers/inputValidation.js";
+import { oneDigitNumberBox} from "../helpers/inputValidation.js";
 
 
 const quantomInput = document.getElementById("time-quantom");
-quantomInput.addEventListener("input", correctOneDigitInputSize(quantomInput));
-allowNumbersOnly(quantomInput);
+oneDigitNumberBox(quantomInput);
 
 const activateInputBox = () => {
     quantomInput.disabled = false;  

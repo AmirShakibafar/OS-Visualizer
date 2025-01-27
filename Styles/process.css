@@ -44,6 +44,15 @@
   padding: 5px;
 }
 
+.next-block {
+  font-size: 14px;
+  text-align: center;
+  white-space: nowrap;
+  width: 10vw;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  border-style: solid;
+}
+
 .dynamic_table_body tr td:first-child {
   border-radius: 12px 0 0 12px;
 }

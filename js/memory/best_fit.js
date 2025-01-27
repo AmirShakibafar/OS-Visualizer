@@ -2,20 +2,17 @@ import { renderMemorySections } from "./memory_table.js";
 import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
-  clearMemorySpaces,
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
-  deAllocateMemorySpace,
-  findRangeOfEmpty
+  findRangeOfEmpty,
 } from "./memory_space.js";
-import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
-import { updateTime, resetTime } from "./timer.js";
-import { currentSpeed } from "./speed.js";
+import { SPEED } from "../helpers/speed.js";
 import { Display } from "./display.js";
+import { readIsCancelled } from "../helpers/cancelFlag.js";
 
-const findBestFit = async (processBlock, isCancelled) => {
+const findBestFit = async (processBlock) => {
   const memorySpaces = getMemorySpaces();
   let bestFitIndex = -1;
   let bestFitSize = 10000000000;
@@ -23,7 +20,7 @@ const findBestFit = async (processBlock, isCancelled) => {
   let emptyRangeSize;
 
   while (startIndex < memorySpaces.length) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
 
     if (
       startIndex + processBlock.blockSize <= memorySpaces.length &&
@@ -31,27 +28,27 @@ const findBestFit = async (processBlock, isCancelled) => {
     ) {
       updateHoverState(startIndex, processBlock.blockSize, true);
       renderMemorySections();
-      await sleep(currentSpeed);
+      await sleep(SPEED);
 
-      emptyRangeSize = findRangeOfEmpty(startIndex)
-      if (emptyRangeSize < bestFitSize){
+      emptyRangeSize = findRangeOfEmpty(startIndex);
+      if (emptyRangeSize < bestFitSize) {
         bestFitSize = emptyRangeSize;
-        bestFitIndex = startIndex
+        bestFitIndex = startIndex;
       }
 
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
       startIndex += emptyRangeSize;
-    }
-    else{
-      startIndex++
+    } else {
+      startIndex++;
     }
   }
 
   if (bestFitIndex !== -1) {
     updateHoverState(bestFitIndex, processBlock.blockSize, true);
     renderMemorySections();
-    await sleep(currentSpeed);
+    await sleep(SPEED);
+    
 
     allocateMemorySpace(bestFitIndex, processBlock);
     updateHoverState(bestFitIndex, processBlock.blockSize, false);
@@ -65,8 +62,8 @@ const findBestFit = async (processBlock, isCancelled) => {
   }
 };
 
-const executeBestFit = async (isCancelled) => {
-  await Display(isCancelled, "best_fit")
+const executeBestFit = async () => {
+  await Display("best_fit");
 };
 
 export { findBestFit, executeBestFit };
