@@ -28,6 +28,7 @@ vi.mock('../avgResponseTimeCalculator', () => ({
 }));
 vi.mock('../avgResponseTimeCalculator', () => ({
   avgResponseTime: vi.fn(),
+  ShowAvgResponseTime: vi.fn(),
 }));
 vi.mock('../display', () => ({
   Display: vi.fn((s) => {return}),
