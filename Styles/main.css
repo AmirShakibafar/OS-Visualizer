@@ -22,8 +22,8 @@ a:visited {
 
 body {
   background-size: 20px 20px;
-  background-image: linear-gradient(to right, #6e6e6e29 1px, transparent 1px),
-    linear-gradient(to bottom, #6e6e6e29 1px, transparent 1px);
+  background-image: linear-gradient(to right, #97979729 1px, transparent 1px),
+    linear-gradient(to bottom, #97979729 1px, transparent 1px);
 }
 
 header {
@@ -82,35 +82,40 @@ header {
   height: auto;
 }
 
-.seperation-line {
-  height: 300px;
-  width: 2px;
-  background-color: #3b3b3b;
-}
-
 .tab-container {
   margin-left: 1%;
   margin-right: 1%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .tab-options {
   display: flex;
+  align-items: center;
+  justify-content: center;
   list-style: none;
-  font-size: 1.2rem;
-  border-radius: 12px 12px 0 0;
-  border: 2px solid #337cef;
+  background-color: #e6e6e6;
+  font-size: 0.8rem;
+  border-radius: 8px;
+  height: 50px;
+  width: 350px;
 }
 
 .tab {
-  padding: 2%;
+  border-radius: 6px;
+  padding: 3%;
   text-align: center;
   transition: all 200ms ease-in;
-  background-color: #fff;
+  background-color: #e6e6e6;
 }
 
 .active {
   background-color: #3a86ff;
+  border-radius: 6px;
   color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
 }
 
 .tab:hover {
@@ -118,19 +123,12 @@ header {
   filter: brightness(0.9);
 }
 
-.tab:first-child {
-  border-radius: 11px 0 0 0;
-}
-
-.tab:last-child {
-  border-radius: 0 11px 0 0;
-}
-
 .tab-panel {
   display: none;
-  background-color: #f5f5f5;
+  background-color: #f9f9f9;
   padding: 5% 0;
-  border-radius: 0 0 12px 12px;
+  border-radius: 12px;
+  width: 350px;
 }
 
 .active-body {
@@ -149,6 +147,7 @@ header {
   flex-direction: column;
 }
 
+.small-input-type,
 .short-input-type,
 .medium-input-type {
   width: 100px;
@@ -157,6 +156,11 @@ header {
   padding: 11px;
   border-radius: 12px;
   border: 1px solid #e5e5e5;
+}
+
+.small-input-type {
+  width: 70px;
+  font-size: 0.7rem;
 }
 
 .medium-input-type {
@@ -172,6 +176,7 @@ header {
   height: 45px;
 }
 
+.small-button,
 .submit-button,
 .control-button {
   margin: 3px 5px;
@@ -182,11 +187,21 @@ header {
   transition: all 150ms ease-in;
 }
 
+.small-button:hover,
 .submit-button:hover,
 .control-button:hover {
   color: #fffdfc;
   font-weight: 500;
   cursor: pointer;
+}
+
+.small-button {
+  font-size: 0.7rem;
+  width: 60px;
+}
+
+.small-font {
+  font-size: 0.7rem;
 }
 
 .blue {
@@ -216,6 +231,7 @@ header {
   cursor: pointer;
 }
 
+.small-button:active,
 .submit-button:active,
 .control-button:active {
   transform: translateY(2px);

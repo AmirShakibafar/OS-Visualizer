@@ -32,42 +32,7 @@
       <div>
         <img src="./images/cpu 2 Background Removed.png" alt="cpu image" class="hero-img"/>
       </div>
-      <div class="seperation-line"></div>
-      <div class="tab-container">
-        <ul class="tab-options" id="tab-options">
-          <li class="tab active" data-target="panel-one">Create New Process</li>
-          <li class="tab" data-target="panel-two">Generate Processes Randomly</li>
-        </ul>
-        <div class="tab-panels">
-            <div id="panel-one" class="tab-panel active-body">
-              <input
-                type="text"
-                class="short-input-type arrival"
-                placeholder="arrival"
-                id="arrive-time"
-              />
-              <input
-                type="text"
-                class="short-input-type duration"
-                placeholder="duration"
-                id="duration"
-              />
-              <button id="process-adder" class="submit-button blue">
-                submit
-              </button>
-            </div>
-            <div id="panel-two" class="tab-panel">
-              <input
-                type="text"
-                id="amount-box"
-                class="short-input-type"
-                placeholder="how many? "
-              />
-              <button id="proccess-generator" class="submit-button blue">
-                submit
-              </button>
-            </div>
-      </div>
+      <h1>About Us</h1>
     </section>
 
     <section class="mobile-table-area">
@@ -145,21 +110,59 @@
           </table>
         </div>
       </div>
-      <div class="procces-table-container">
-        <table class="procces-table">
-          <thead>
-            <tr>
-              <th>process</th>
-              <th>arrival</th>
-              <th>duration</th>
-              <th>color</th>
-              <th>option</th>
-            </tr>
-          </thead>
-          <tbody id="process-table-body">
-          </tbody>
-        </table>
+      <div class="table-input-area">
+        <div class="tab-container">
+          <ul class="tab-options" id="tab-options">
+            <li class="tab active" data-target="panel-one">Create New Process</li>
+            <li class="tab" data-target="panel-two">Generate Processes Randomly</li>
+          </ul>
+          <div class="tab-panels">
+              <div id="panel-one" class="tab-panel active-body">
+                <input
+                  type="text"
+                  class="small-input-type arrival"
+                  placeholder="arrival"
+                  id="arrive-time"
+                />
+                <input
+                  type="text"
+                  class="small-input-type duration"
+                  placeholder="duration"
+                  id="duration"
+                />
+                <button id="process-adder" class="small-button blue">
+                  submit
+                </button>
+              </div>
+              <div id="panel-two" class="tab-panel">
+                <input
+                  type="text"
+                  id="amount-box"
+                  class="short-input-type small-font"
+                  placeholder="how many? "
+                />
+                <button id="proccess-generator" class="small-button blue">
+                  submit
+                </button>
+              </div>
+        </div>
+        <div class="procces-table-container">
+          <table class="procces-table">
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Arrival</th>
+                <th>Duration</th>
+                <th>Color</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody id="process-table-body">
+            </tbody>
+          </table>
+        </div>
       </div>
+      
     </section>
 
 

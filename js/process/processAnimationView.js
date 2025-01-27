@@ -2,7 +2,7 @@ import { ShowAvgResponseTime } from "./avgResponseTimeCalculator.js";
 import { ShowAvgWaitTime } from "./avgWaitTimeCalculator.js";
 const tableBody = document.querySelector("#dynamic_table tbody");
 
-const MAX_CELLS_PER_ROW = 10;
+const MAX_CELLS_PER_ROW = 7;
 let currentRow = null;
 let cellCount = 0;
 
