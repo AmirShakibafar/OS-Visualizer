@@ -99,7 +99,6 @@ header {
   font-size: 1.2rem;
   border-radius: 12px 12px 0 0;
   border: 2px solid #337cef;
-  margin-bottom: 20px;
 }
 
 .tab {
@@ -129,6 +128,9 @@ header {
 
 .tab-panel {
   display: none;
+  background-color: #f5f5f5;
+  padding: 5% 0;
+  border-radius: 0 0 12px 12px;
 }
 
 .active-body {
