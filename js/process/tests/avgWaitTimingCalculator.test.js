@@ -1,10 +1,12 @@
-import { describe, test, it, expect, vi } from "vitest";
-import { avgWaitTime } from "../avgWaitTimeCalculator";
+import { describe, beforeEach, it, expect, vi } from "vitest";
+import { avgWaitTime, } from "../avgWaitTimeCalculator";
+
 
 
 ///////////////// Tests /////////////////
 
 describe("Calculate average wait time:", () =>{
+
     it('Test case 1: No waiting time for all processes', () => {
         expect(avgWaitTime([
           { name: "P1", start: 0, duration: 3, endTime: 3 },

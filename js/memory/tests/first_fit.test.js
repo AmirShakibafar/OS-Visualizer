@@ -9,6 +9,7 @@ import {
 import { renderMemorySections } from "../memory_table";
 import { showMessage } from "../../helpers/message";
 import { Display } from "../display.js";
+import { readIsCancelled } from "../../helpers/cancelFlag";
 
 // Mock dependencies
 vi.mock("../memory_space", () => ({
@@ -42,8 +43,8 @@ vi.mock("../helpers/message", () => ({
   showMessage: vi.fn(),
 }));
 
-vi.mock("../speed", () => ({
-  currentSpeed: 1,
+vi.mock('../../helpers/speed.js', () => ({
+  SPEED : 1,
 }));
 
 vi.mock("../timer", () => ({
@@ -53,6 +54,10 @@ vi.mock("../timer", () => ({
 
 vi.mock("../memory_blocks", () => ({
   getMemoryBlocks: vi.fn(),
+}));
+
+vi.mock('../../helpers/cancelFlag.js', () => ({
+  readIsCancelled: vi.fn(),
 }));
 
 
@@ -116,7 +121,7 @@ describe("findFirstFit", () => {
 
   it("Test case 4: should stop execution if cancelled ", async () => {
     const processBlock = { name: "ProcessD", blockSize: 5, blockExitTime: 25 };
-    mockIsCancelled.mockReturnValueOnce(true);
+    readIsCancelled.mockReturnValue(true);
 
     await findFirstFit(processBlock, mockIsCancelled);
 
@@ -135,11 +140,11 @@ describe("findFirstFit", () => {
       ...Array.from({ length: 5 }, () => ({ processName: "empty", isActive: false })),
       ...Array.from({ length: 29 }, () => ({ processName: "ProcessY", isActive: true })),
     ]);
-
+    readIsCancelled.mockReturnValue(false);
     const processBlock = { name: "ProcessE", blockSize: 5, blockExitTime: 30 };
     checkIfRangeEmpty.mockImplementation((start, size) => start === 30 && size === 5);
 
-    await findFirstFit(processBlock, mockIsCancelled);
+    await findFirstFit(processBlock);
 
     expect(updateHoverState).toHaveBeenCalledWith(30, 5, true);
     expect(allocateMemorySpace).toHaveBeenCalledWith(30, processBlock);
@@ -151,8 +156,8 @@ describe("findFirstFit", () => {
 
 describe("executeFirstFit", () =>{
   it("Test case 1: should call Display function", async () =>{
-    await executeFirstFit(false)
+    await executeFirstFit()
     expect(Display).toHaveBeenCalled()
-    expect(Display).toBeCalledWith(false, "first_fit")
+    expect(Display).toBeCalledWith("first_fit")
   })
 })
