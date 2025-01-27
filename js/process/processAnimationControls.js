@@ -2,7 +2,11 @@ import { whatPolicy } from "./timing_policies.js";
 import { resetTableSettings } from "./processAnimationView.js";
 import { getProcesses } from "./processes.js";
 import { setAnimationSpeed } from "../helpers/speed.js";
-import { setIsCancelled, reSetIsCancelled, readIsCancelled } from "../helpers/cancelFlag.js";
+import {
+  setIsCancelled,
+  reSetIsCancelled,
+  readIsCancelled,
+} from "../helpers/cancelFlag.js";
 
 const playButton = document.getElementById("play-button");
 const resetButton = document.getElementById("reset-button");
@@ -31,6 +35,7 @@ const handlePlayButtonClick = async () => {
 
 const handleResetButtonClick = () => {
   setIsCancelled();
+  resetTableSettings()
 };
 
 playButton.addEventListener("click", handlePlayButtonClick);
