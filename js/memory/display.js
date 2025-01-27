@@ -12,6 +12,7 @@ import { findBestFit } from "./best_fit.js";
 import { findFirstFit } from "./first_fit.js";
 import { findWorstFit } from "./worst_fit.js";
 import { findNextFit } from "./next_fit.js";
+import { readIsCancelled } from "../helpers/cancelFlag.js";
 
 const getMemoryAlgorithm = (typeOfMemory) => {
   switch (typeOfMemory) {
@@ -28,7 +29,7 @@ const getMemoryAlgorithm = (typeOfMemory) => {
   }
 };
 
-const Display = async (isCancelled, typeOfMemory) => {
+const Display = async (typeOfMemory) => {
   const processBlocks = getMemoryBlocks();
   clearMemorySpaces();
   resetTime();
@@ -36,10 +37,10 @@ const Display = async (isCancelled, typeOfMemory) => {
 
   for (const process of processBlocks) {
     while (currTick < process.blockArrival) {
-      if (isCancelled()) return;
+      if (readIsCancelled()) return;
       let mustGetDeAllocated = deAllocateMemorySpace(currTick);
       while (mustGetDeAllocated) {
-        if (isCancelled()) return;
+        if (readIsCancelled()) return;
         await sleep(currentSpeed);
         mustGetDeAllocated = deAllocateMemorySpace(currTick);
         renderMemorySections();
@@ -49,14 +50,14 @@ const Display = async (isCancelled, typeOfMemory) => {
       updateTime(currTick);
       await sleep(currentSpeed);
     }
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
     await getMemoryAlgorithm(typeOfMemory)(process, isCancelled);
     updateTime(currTick);
     await sleep(currentSpeed);
   }
 
   while (true) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
     let mustGetDeAllocated = deAllocateMemorySpace(currTick);
     const activeProcesses = getMemorySpaces().some((space) => space.isActive);
     if (!activeProcesses) {
@@ -64,7 +65,7 @@ const Display = async (isCancelled, typeOfMemory) => {
     }
 
     while (mustGetDeAllocated) {
-      if (isCancelled()) return;
+      if (readIsCancelled()) return;
       await sleep(currentSpeed);
       mustGetDeAllocated = deAllocateMemorySpace(currTick);
       renderMemorySections();
