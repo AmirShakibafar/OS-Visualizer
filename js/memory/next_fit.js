@@ -21,10 +21,16 @@ const findNextFit = async (processBlock) => {
 
   let startIndex = lastAllocatedIndex;
 
-  if (readIsCancelled()) return;
+  if (readIsCancelled()){
+    clearLastAllocatedIndex()
+    return
+  };
 
   while (startIndex < memorySpaces.length) {
-    if (readIsCancelled()) return;
+    if (readIsCancelled()){
+      clearLastAllocatedIndex()
+      return
+    };
 
     if (!memorySpaces[startIndex]) {
       console.error(`Error: memorySpaces[${startIndex}] is undefined`);
@@ -54,7 +60,10 @@ const findNextFit = async (processBlock) => {
 
   startIndex = 0;
   while (startIndex < lastAllocatedIndex) {
-    if (readIsCancelled()) return;
+    if (readIsCancelled()){
+      clearLastAllocatedIndex()
+      return
+    };
 
     if (!memorySpaces[startIndex]) {
       console.error(`Error: memorySpaces[${startIndex}] is undefined`);
