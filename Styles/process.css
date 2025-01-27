@@ -18,12 +18,13 @@
 
 .stats-section {
   display: flex;
+  margin-bottom: 15px;
 }
 
 .show-time-section {
   background-color: #f6f6f6;
   font-size: 1rem;
-  text-align: left;
+  text-align: center;
   padding: 10px 20px;
   margin: 0 5px;
   width: 300px;

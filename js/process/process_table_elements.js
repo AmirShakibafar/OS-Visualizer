@@ -45,7 +45,7 @@ const createNewRow = (process) => {
 
   const deleteCell = document.createElement("td");
   const deleteIcon = document.createElement("img");
-  deleteIcon.src = "images/delete_forever_24dp_ED2D2D_FILL0_wght400_GRAD0_opsz24.svg";  
+  deleteIcon.src = "images/trash-2.svg";  
   deleteIcon.alt = "Delete";
   deleteIcon.style.cursor = "pointer";
   deleteIcon.style.width = "25px"; 
