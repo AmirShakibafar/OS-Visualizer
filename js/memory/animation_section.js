@@ -3,13 +3,16 @@ import { renderMemorySections } from "./memory_table.js";
 import { clearMemorySpaces, getMemorySpaces } from "./memory_space.js";
 import { resetTime } from "./timer.js";
 import { whatPolicy } from "./hub_algorithmes.js";
-import { isCancelled } from "../process/processAnimationControls.js";
+import {
+  setIsCancelled,
+  reSetIsCancelled,
+  readIsCancelled,
+} from "../helpers/cancelFlag.js";
 
 const playButton = document.getElementById("memory-play-button");
 const cancelButton = document.getElementById("memory-reset-button");
 const speedSlider = document.getElementById("speed-range");
 
-isCancelled = false;
 let SPEED = 1050 - speedSlider.value;
 const updateSPEED = () => {
   SPEED = 1050 - speedSlider.value;
@@ -18,28 +21,27 @@ const updateSPEED = () => {
 updateSPEED();
 speedSlider.addEventListener("input", updateSPEED);
 
+const resetAnimationSection = () => {
+  clearMemorySpaces();
+  renderMemorySections();
+  resetTime();
+};
+
 const playHandler = async () => {
   if (!getMemorySpaces().length) {
     return;
   }
-  setAnimationSpeed(SPEED);
-  isCancelled = false;
-  clearMemorySpaces();
-  renderMemorySections();
+  reSetIsCancelled();
+  resetAnimationSection();
   playButton.disabled = true;
-  setAnimationSpeed(SPEED);
   const policy = whatPolicy();
-  await policy(() => isCancelled);
-  if (isCancelled) {
-    clearMemorySpaces();
-    renderMemorySections();
-    resetTime();
-  }
+  await policy();
+  if (readIsCancelled) resetAnimationSection();
   playButton.disabled = false;
 };
 
 const cancelButtonHandler = () => {
-  isCancelled = true;
+  setIsCancelled();
 };
 
 playButton.addEventListener("click", playHandler);
