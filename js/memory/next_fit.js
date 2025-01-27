@@ -11,9 +11,10 @@ import { SPEED } from "../helpers/speed.js";
 import { Display } from "./display.js";
 import { readIsCancelled } from "../helpers/cancelFlag.js";
 
-
 let lastAllocatedIndex = 0;
-
+const clearLastAllocatedIndex = () => {
+  lastAllocatedIndex = 0;
+};
 
 const findNextFit = async (processBlock) => {
   const memorySpaces = getMemorySpaces();
@@ -32,7 +33,6 @@ const findNextFit = async (processBlock) => {
     updateHoverState(startIndex, processBlock.blockSize, true);
     renderMemorySections();
     await sleep(SPEED);
-    
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
       showMessage(
@@ -64,7 +64,6 @@ const findNextFit = async (processBlock) => {
     updateHoverState(startIndex, processBlock.blockSize, true);
     renderMemorySections();
     await sleep(SPEED);
-    
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
       showMessage(
@@ -93,9 +92,9 @@ const findNextFit = async (processBlock) => {
   return;
 };
 
-
 const executeNextFit = async () => {
- await Display("next_fit")
+  clearLastAllocatedIndex();
+  await Display("next_fit");
 };
 
-export {executeNextFit, findNextFit};
+export { executeNextFit, findNextFit };
