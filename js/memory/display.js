@@ -6,7 +6,7 @@ import {
 import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
 import { updateTime, resetTime } from "./timer.js";
-import { currentSpeed } from "./speed.js";
+import { SPEED } from "../helpers/speed.js";
 import { renderMemorySections } from "./memory_table.js";
 import { findBestFit } from "./best_fit.js";
 import { findFirstFit } from "./first_fit.js";
@@ -41,19 +41,19 @@ const Display = async (typeOfMemory) => {
       let mustGetDeAllocated = deAllocateMemorySpace(currTick);
       while (mustGetDeAllocated) {
         if (readIsCancelled()) return;
-        await sleep(currentSpeed);
+        await sleep(SPEED);
         mustGetDeAllocated = deAllocateMemorySpace(currTick);
         renderMemorySections();
       }
 
       currTick++;
       updateTime(currTick);
-      await sleep(currentSpeed);
+      await sleep(SPEED);
     }
     if (readIsCancelled()) return;
-    await getMemoryAlgorithm(typeOfMemory)(process, isCancelled);
+    await getMemoryAlgorithm(typeOfMemory)(process);
     updateTime(currTick);
-    await sleep(currentSpeed);
+    await sleep(SPEED);
   }
 
   while (true) {
@@ -66,14 +66,14 @@ const Display = async (typeOfMemory) => {
 
     while (mustGetDeAllocated) {
       if (readIsCancelled()) return;
-      await sleep(currentSpeed);
+      await sleep(SPEED);
       mustGetDeAllocated = deAllocateMemorySpace(currTick);
       renderMemorySections();
     }
 
     currTick++;
     updateTime(currTick);
-    await sleep(currentSpeed);
+    await sleep(SPEED);
   }
 };
 

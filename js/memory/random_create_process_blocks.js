@@ -1,7 +1,4 @@
-import {
-  correctOneDigitInputSize,
-  allowNumbersOnly,
-} from "../helpers/inputValidation.js";
+import { oneDigitNumberBox } from "../helpers/inputValidation.js";
 import { addToMemoryBlocks } from "./memory_blocks.js";
 import { renderMemoryTable } from "./memory_process_table.js";
 import { createMemoryBlock } from "./memory_block.js";
@@ -10,9 +7,9 @@ import { showMessage } from "../helpers/message.js";
 const submitRandomProcesses = document.getElementById(
   "random-proccess-generator"
 );
+
 const amount = document.getElementById("number-of-randoms");
-amount.addEventListener("input", () => correctOneDigitInputSize(amount));
-allowNumbersOnly(amount);
+oneDigitNumberBox(amount)
 
 const addRandomMemoryBlocks = (
   amount,

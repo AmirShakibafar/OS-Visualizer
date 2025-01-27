@@ -2,33 +2,31 @@ import { renderMemorySections } from "./memory_table.js";
 import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
-  clearMemorySpaces,
   allocateMemorySpace,
   checkIfRangeEmpty,
   updateHoverState,
-  deAllocateMemorySpace,
 } from "./memory_space.js";
-import { getMemoryBlocks } from "./memory_blocks.js";
 import { sleep } from "../helpers/helpers.js";
-import { updateTime, resetTime } from "./timer.js";
-import { currentSpeed } from "./speed.js";
+import { SPEED } from "../helpers/speed.js";
 import { Display } from "./display.js";
+import { readIsCancelled } from "../helpers/cancelFlag.js";
 
-const findFirstFit = async (processBlock, isCancelled) => {
+const findFirstFit = async (processBlock) => {
   let startIndex = 0;
   const memorySpaces = getMemorySpaces();
-  if (isCancelled()) return;
+  if (readIsCancelled()) return;
   while (startIndex + processBlock.blockSize <= memorySpaces.length) {
-    if (isCancelled()) return;
+    if (readIsCancelled()) return;
     updateHoverState(startIndex, processBlock.blockSize, true);
     renderMemorySections();
-    await sleep(currentSpeed);
+    await sleep(SPEED);
+    
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
-        showMessage(
-            `found empty block for ${processBlock.name} at index: ${startIndex}`,
-            "success"
-          );
+      showMessage(
+        `found empty block for ${processBlock.name} at index: ${startIndex}`,
+        "success"
+      );
       allocateMemorySpace(startIndex, processBlock);
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
@@ -49,8 +47,8 @@ const findFirstFit = async (processBlock, isCancelled) => {
   return;
 };
 
-const executeFirstFit = async (isCancelled) => {
-  await Display(isCancelled, "first_fit")
+const executeFirstFit = async () => {
+  await Display("first_fit");
 };
 
-export {executeFirstFit, findFirstFit};
+export { executeFirstFit, findFirstFit };
