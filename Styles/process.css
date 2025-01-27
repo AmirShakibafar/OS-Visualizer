@@ -6,6 +6,10 @@
   border-radius: 0 12px 12px 0;
 }
 
+.input-animation-controls {
+  display: flex;
+}
+
 .input-boxes-section {
   display: flex;
   align-items: center;
@@ -22,6 +26,7 @@
   text-align: left;
   padding: 10px 20px;
   margin: 0 5px;
+  width: 300px;
   border-radius: 12px;
 }
 

@@ -107,6 +107,7 @@ header {
   align-items: center;
   justify-content: center;
   flex-direction: column;
+  height: 100px;
 }
 
 .tab-options {
@@ -114,7 +115,8 @@ header {
   align-items: center;
   justify-content: center;
   list-style: none;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
   font-size: 0.8rem;
   border-radius: 8px;
   height: 50px;
@@ -126,13 +128,13 @@ header {
   padding: 3%;
   text-align: center;
   transition: all 200ms ease-in;
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
 }
 
 .active {
-  background-color: var(--primary-color);
+  background-color: var(--lighter-secondary-color);
   border-radius: 6px;
-  color: #fff;
+  color: var(--primary-color);
   box-shadow: 0 0 10px var(--shadow-color);
 }
 
@@ -144,7 +146,7 @@ header {
 .tab-panel {
   display: none;
   background-color: var(--secondary-text-color);
-  padding: 5% 0;
+  padding: 10px;
   border-radius: 12px;
   width: 350px;
 }
@@ -280,7 +282,9 @@ header {
 }
 
 .animation-controls {
+  height: auto;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 1% 0;
@@ -288,11 +292,11 @@ header {
   gap: 7%;
 }
 
-.info-slider-buttons-section {
+.input-animation-controls {
+  height: 100px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
 }
 
 .slider-buttons-section {
@@ -401,6 +405,7 @@ footer h3 {
   justify-content: center;
   align-items: center;
   height: fit-content;
+  width: 350px;
 }
 
 .button-container {
