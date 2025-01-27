@@ -1,8 +1,7 @@
 import { oneDigitNumberBox } from "../helpers/inputValidation.js";
 import { addToMemoryBlocks } from "./memory_blocks.js";
-import { renderMemoryTable } from "./memory_process_table.js";
+import { renderAllTables } from "./hub_memory_process_table.js";
 import { createMemoryBlock } from "./memory_block.js";
-import { render_mobile_table } from "./mobile_table.js";
 import { showMessage } from "../helpers/message.js";
 const submitRandomProcesses = document.getElementById(
   "random-proccess-generator"
@@ -39,8 +38,7 @@ const addRandomBlocksHandler = () => {
   }
   showMessage("processes added succesfully!", "success");
   addRandomMemoryBlocks(amount.value);
-  renderMemoryTable();
-  render_mobile_table();
+  renderAllTables();
 };
 
 submitRandomProcesses.addEventListener("click", addRandomBlocksHandler);

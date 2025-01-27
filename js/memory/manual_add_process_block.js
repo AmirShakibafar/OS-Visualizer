@@ -1,8 +1,7 @@
 import { twoDigitNumberBox } from "../helpers/inputValidation.js";
 import { createMemoryBlock } from "./memory_block.js";
 import { addToMemoryBlocks } from "./memory_blocks.js";
-import { renderMemoryTable } from "./memory_process_table.js";
-import { render_mobile_table } from "./mobile_table.js";
+import { renderAllTables } from "./hub_memory_process_table.js";
 import { showMessage } from "../helpers/message.js";
 
 const blockSize = document.getElementById("block-size");
@@ -25,7 +24,6 @@ const submitHandler = () => {
     blockDuration.value
   );
   addToMemoryBlocks(memoryBlock);
-  renderMemoryTable();
-  render_mobile_table();
+  renderAllTables();
 };
 submitNewProcess.addEventListener("click", submitHandler);
