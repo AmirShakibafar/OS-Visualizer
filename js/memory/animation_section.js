@@ -42,6 +42,7 @@ const playHandler = async () => {
 
 const cancelButtonHandler = () => {
   setIsCancelled();
+  resetAnimationSection();
 };
 
 playButton.addEventListener("click", playHandler);
