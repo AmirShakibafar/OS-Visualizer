@@ -27,7 +27,6 @@ vi.mock("../display", () => ({
   Display: vi.fn(),
 }))
 
-
 vi.mock('../../helpers/message', () => ({
   showMessage: vi.fn(),
   messageBox: null
