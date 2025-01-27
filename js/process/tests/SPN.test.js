@@ -2,7 +2,7 @@ import { describe, test, it, expect, vi } from "vitest";
 import { SPN, SPNProcessSort } from  "../SPN.js"
 import { avgWaitTime, ShowAvgWaitTime } from "../avgWaitTimeCalculator.js"
 import { Display,  } from "../display.js";
-import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js
+import { avgResponseTime, ShowAvgResponseTime } from "../avgResponseTimeCalculator.js"
 
 
 // Disable DOM & Mock functions
