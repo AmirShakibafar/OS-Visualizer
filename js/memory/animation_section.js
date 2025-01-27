@@ -3,7 +3,7 @@ import { renderMemorySections } from "./memory_table.js";
 import { clearMemorySpaces, getMemorySpaces } from "./memory_space.js";
 import { resetTime } from "./timer.js";
 import { whatPolicy } from "./hub_algorithmes.js";
-import { isCancelled } from "../process/processAnimationSection.js";
+import { isCancelled } from "../process/processAnimationControls.js";
 
 const playButton = document.getElementById("memory-play-button");
 const cancelButton = document.getElementById("memory-reset-button");
@@ -14,7 +14,7 @@ let SPEED = 1050 - speedSlider.value;
 const updateSPEED = () => {
   SPEED = 1050 - speedSlider.value;
   setAnimationSpeed(SPEED);
-}
+};
 updateSPEED();
 speedSlider.addEventListener("input", updateSPEED);
 
