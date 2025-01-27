@@ -301,7 +301,6 @@ header {
   align-items: center;
 }
 
-
 .table-input-area {
   padding-top: 28px;
 }
@@ -404,6 +403,14 @@ footer h3 {
   height: fit-content;
 }
 
+.button-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  height: 100px;
+  margin-top: 10px;
+}
+
 .policy {
   font-size: 7rem;
   width: fit-content;
@@ -424,6 +431,14 @@ footer h3 {
   animation: flip-out 0.3s forwards;
 }
 
+
+.down:hover {
+  transform: translateY(2px);
+}
+
+.up:hover {
+  transform: translateY(-2px);
+}
 @keyframes flip-in {
   0% {
     transform: rotateX(-90deg);
