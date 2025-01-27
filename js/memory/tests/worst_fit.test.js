@@ -61,7 +61,7 @@ vi.mock("../memory_blocks", () => ({
 vi.mock('../../helpers/cancelFlag.js', () => ({
     readIsCancelled: vi.fn(),
 }));
-=======
+
 
 // Mock dependencies
 vi.mock("../memory_space", () => ({
@@ -109,7 +109,19 @@ vi.mock("../memory_space", () => ({
     getMemoryBlocks: vi.fn(),
   }));
   
+describe("findWorstFit", () => {
+  const mockIsCancelled = vi.fn();
 
+  beforeEach(() => {
+    vi.clearAllMocks();
+    getMemorySpaces.mockReturnValue(
+      Array.from({ length: 64 }, (_, i) => ({
+        processName: "empty",
+        blockExitTime: null,
+        isActive: false,
+        blockIndex: i,
+      }))
+    );
     readIsCancelled.mockReturnValue(false);
   });
 
@@ -511,10 +523,3 @@ describe("executeWorstFit", () => {
     expect(Display).toHaveBeenCalledWith("worst_fit");
   });
 });
-
-    await executeWorstFit(false);
-    expect(Display).toHaveBeenCalled();
-    expect(Display).toHaveBeenCalledWith(false, "worst_fit");
-  });
-});
-
