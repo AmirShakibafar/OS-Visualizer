@@ -13,6 +13,7 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
+  color: var(--text-color);
 }
 
 body {
@@ -22,8 +23,12 @@ body {
 }
 
 section {
+  background-color: var(--section-background);
+  border: 4px solid var(--primary-color);
   box-shadow: 10px 10px 6px var(--shadow-color);
-  border-radius: 12px;
+  border-radius: 24px;
+  margin: 2% 10%;
+  padding: 3%;
 }
 
 nav {
@@ -52,16 +57,8 @@ nav {
 /* hero section styles*/
 
 .hero-section {
-  margin: 2% 10%;
-  padding: 3%;
   display: flex;
   justify-content: space-evenly;
-  background-color: var(--section-background);
-  border: 4px solid var(--primary-color);
-}
-
-.ilustration-frame {
-  /* background-color: #011627; */
 }
 
 .hero-image {
@@ -88,3 +85,5 @@ nav {
   width: 100%;
   font-size: 1.2rem;
 }
+
+/*  */
