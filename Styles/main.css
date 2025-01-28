@@ -24,31 +24,31 @@ body {
 }
 
 input {
-    display: block;
-    width: 50%;
-    padding: 0.5rem;
-    margin-bottom: 1rem;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+  display: block;
+  width: 50%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
 }
 
 button {
-    background: var(--primary-color);
-    color: var(--secondary-text-color);
-    padding: 0.5rem 1rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: opacity 0.2s;
+  background: var(--primary-color);
+  color: var(--secondary-text-color);
+  padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: opacity 0.2s;
 }
 
 button:hover {
-    opacity: 0.9;
+  opacity: 0.9;
 }
 
 section {
   background-color: var(--section-background);
-  border: 4px solid var(--primary-color);
+  border: 2px solid var(--primary-color);
   box-shadow: 10px 10px 6px var(--shadow-color);
   border-radius: 24px;
   margin: 2% 10%;
@@ -110,62 +110,88 @@ nav {
   font-size: 1.2rem;
 }
 /* guid user input section */
+.user-guide-and-input {
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-input {
+  width: 40%;
+}
 
 /* user input  */
 #tab-interface {
-    background-color: var(--background-color);
-    max-width: 45%;
-    margin: 1rem auto;
-    border: 2px solid var(--primary-color);
-    border-radius: 12px;
-    padding: 1rem;
+  background-color: var(--background-color);
+  max-width: 100%;
+  margin: 1rem auto;
+  border: 2px solid var(--primary-color);
+  border-radius: 12px;
+  padding: 1rem 0;
 }
 
 #tab-controls {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 1rem;
-    border-bottom: 2px solid #eee;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  gap: 1rem;
+  border-bottom: 2px solid #eee;
 }
 
 #tab-controls button {
-    padding: 0.8rem 1.5rem;
-    border: none;
-    background: none;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: all 0.2s;
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background: none;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
 }
 
 #tab-controls button[aria-selected="true"] {
-    background: var(--primary-color);
-    color: white;
+  background: var(--primary-color);
+  color: white;
 }
 
 #tab-controls button[aria-selected="false"] {
-    color: var(--text-color);
+  color: var(--text-color);
 }
 
-
 #tab-content div {
-    padding: 1.5rem 2.5rem;
-    display: none;
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  padding: 1.5rem 2.5rem;
+  display: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }
 
 #tab-content div[aria-hidden="false"] {
-    display: block;
-    animation: fadeIn 0.3s ease forwards;
+  display: block;
+  animation: fadeIn 0.3s ease forwards;
 }
 
 @keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
+/* visualizer section */
 
+.visualizer-section {
+  display: flex;
+  justify-content: space-between;
+  gap: 5%;
+}
 
+.animation-section {
+  width: 60%;
+  margin: 0;
+  background-color: var(--background-color);
+  border-radius: 12px;
+}
 
+/* for process table */
