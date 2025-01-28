@@ -108,6 +108,9 @@ header {
   justify-content: center;
   flex-direction: column;
   height: 100px;
+  margin-top: 7rem;
+  margin-bottom: 3rem;
+
 }
 
 .tab-options {
@@ -274,6 +277,7 @@ header {
 .main-area {
   display: flex;
   align-items: flex-start;
+  flex-direction: row-reverse;
 }
 
 .animation-area {
@@ -301,7 +305,9 @@ header {
 .slider-buttons-section {
   display: flex;
   justify-content: space-evenly;
+  width: 45vw;
   align-items: center;
+  flex-direction: row-reverse;
 }
 
 .table-input-area {
@@ -318,7 +324,6 @@ header {
   font-size: 0.8rem;
   overflow: hidden;
   box-shadow: 0 0 10px var(--shadow-color);
-  margin-top: 3.5rem;
   border-radius: 8px;
 }
 
