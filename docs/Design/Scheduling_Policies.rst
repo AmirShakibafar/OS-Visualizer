@@ -35,7 +35,7 @@ Each module has two key functions. The module includes the following functions:
     |   `RR (processes);` 
     |   `HRRN (processes);`
 
-*  A higher-level function that sorts the processes, calculates their average waiting time, and displays the results using helper functions:
+*  A higher-level function that sorts the processes, calculates their average waiting time, etc, and displays the results using helper functions:
 
     |   `Display(processes, q=0);` 
     |   `ShowAvgWaitTime(AvgWaitTime);`
