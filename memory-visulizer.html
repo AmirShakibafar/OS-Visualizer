@@ -33,13 +33,11 @@
       <div class="hero-text">
         <h1 class="poppins-bold">Memory Visualizer</h1>
         <p class="poppins-regular">
-          Welcome to the Memory Visualizer. Watch as processes dynamically come
-          in and out, and explore how different allocation algorithms—First Fit,
-          Last Fit, Worst Fit, and Best Fit—impact memory distribution in
-          real-time. Whether you're a student learning operating systems or a
-          professional looking to visualize memory management in action, this
-          tool brings complex concepts to life with intuitive graphics and
-          engaging simulations.
+          Welcome to the Memory Visualizer! See processes come and go while
+          exploring how allocation algorithms—First Fit, Last Fit, Worst Fit,
+          and Best Fit—affect memory distribution in real-time. Perfect for
+          students and professionals alike, this tool brings memory management
+          concepts to life with intuitive graphics and simulations.
         </p>
       </div>
     </section>
@@ -114,11 +112,7 @@
                 id="arrive-time"
               />
               <input type="number" placeholder="Duration" id="duration" />
-              <input
-                type="number"
-                placeholder="Size"
-                id="arrive-time"
-              />
+              <input type="number" placeholder="Size" id="arrive-time" />
               <button id="process-adder">Add Process</button>
             </div>
 
@@ -138,36 +132,38 @@
         <section class="animation-section">
           <div class="animation-controls">
             <div class="algorithm-container">
-                <label for="algorithm-select">Algorithm:</label>
-                <select id="algorithm-select">
-                  <option value="FCFS">First-Fit</option>
-                  <option value="RR">Best-Fit</option>
-                  <option value="SPN">Worst-Fit</option>
-                  <option value="SRTF">Next-fit</option>
-                </select>
+              <label for="algorithm-select">Algorithm:</label>
+              <select id="algorithm-select">
+                <option value="FCFS">First-Fit</option>
+                <option value="RR">Best-Fit</option>
+                <option value="SPN">Worst-Fit</option>
+                <option value="SRTF">Next-fit</option>
+              </select>
             </div>
             <div class="play-back-buttons">
-                <button id="play-button" class="squre-button play-btn">
-                    <img src="./images/play.svg" alt="Play" />
-                  </button>
-                  <button id="reset-button" class="squre-button cancel-btn">
-                    <img src="images/trash.svg" alt="trash" />
-                  </button>
-                  <button id="speedBTN" value="2" class="squre-button speed-btn">
-                    1X
-                  </button>
+              <button id="play-button" class="squre-button play-btn">
+                <img src="./images/play.svg" alt="Play" />
+              </button>
+              <button id="reset-button" class="squre-button cancel-btn">
+                <img src="images/trash.svg" alt="trash" />
+              </button>
+              <button id="speedBTN" value="2" class="squre-button speed-btn">
+                1X
+              </button>
             </div>
           </div>
           <div class="stats-section">
             <div class="show-time-section">
-              <p id="current-time">
-                Current Time: TBD
-              </p>
+              <p id="current-time">Current Time: TBD</p>
             </div>
           </div>
-          <div class="animation-table" id="table-section">
-            <table id="dynamic_table">
-              <tbody class="dynamic_table_body poppins-medium"></tbody>
+
+          <div class="memory-section">
+            <table class="memory-table" id="table-1">
+              <tbody></tbody>
+            </table>
+            <table class="memory-table" id="table-2">
+              <tbody></tbody>
             </table>
           </div>
         </section>
@@ -189,6 +185,7 @@
       </div>
     </section>
   </body>
-  <script src="./js/helpers/input_tab_view.js"></script>
-  <script src="./js/helpers/modal_opening.js"></script>
+  <script src="./js/helpers/input_tab_view.js" type="module"></script>
+  <script src="./js/helpers/modal_opening.js" type="module"></script>
+  <script src="./js/memory/memory_table.js" type="module"></script>
 </html>

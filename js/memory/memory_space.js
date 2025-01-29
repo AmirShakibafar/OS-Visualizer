@@ -1,5 +1,3 @@
-import { showMessage } from "../helpers/message.js";
-
 const memorySpaces = Array.from({ length: 64 }, (_, i) => ({
   processName: "empty",
   blockExitTime: null,
