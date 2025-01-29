@@ -43,56 +43,109 @@
     <section class="main-section">
       <div class="user-guide-and-input">
         <div class="guide">
-          <h1>guide placeholder</h1>
-        </div>
-        
-          <div id="tab-interface">
-            <nav role="tablist">
-              <ul id="tab-controls">
-                <li role="presentation">
-                  <button
-                    role="tab"
-                    aria-selected="true"
-                    data-target="panel-one"
-                  >
-                    Create New Process
-                  </button>
-                </li>
-                <li role="presentation">
-                  <button
-                    role="tab"
-                    aria-selected="false"
-                    data-target="panel-two"
-                  >
-                    Generate Processes Randomly
-                  </button>
-                </li>
-              </ul>
-            </nav>
-            <div id="tab-content">
-              <div id="panel-one" role="tabpanel" aria-hidden="false">
-                <input
-                  type="number"
-                  placeholder="Arrival time"
-                  id="arrive-time"
-                />
-                <input type="number" placeholder="Duration" id="duration" />
-                <button id="process-adder">Add Process</button>
-              </div>
+          <h1>User Guide</h1>
+          <p>
+            Understand how each button functions in the CPU scheduling
+            visualizer.
+          </p>
 
-              <div id="panel-two" role="tabpanel" aria-hidden="true">
-                <input
-                  type="number"
-                  placeholder="Number of processes"
-                  id="amount-box"
-                />
-                <button id="proccess-generator">Generate</button>
-              </div>
+          <div class="guide-item">
+            <button class="guide-btn">Create New Process</button>
+            <span>➝ Manually add a process with arrival time & duration</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="guide-btn">Generate Processes Randomly</button>
+            <span>➝ Auto-generate a set number of processes</span>
+          </div>
+
+          <div class="guide-item">
+            <select class="guide-dropdown">
+              <option>Choose Algorithm</option>
+            </select>
+            <span>➝ Select a scheduling algorithm (FCFS, RR, SPN, etc.)</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="squre-button play-btn">
+              <img src="./images/play.svg" alt="Play" />
+            </button>
+            <span>➝ Start the simulation</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="squre-button cancel-btn">
+              <img src="images/trash.svg" alt="Trash" />
+            </button>
+            <span>➝ Stop and reset the simulation</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="squre-button  speed-btn">2X</button>
+            <span>➝ Speed up the animation</span>
+          </div>
+        </div>
+        <div id="tab-interface">
+          <nav role="tablist">
+            <ul id="tab-controls">
+              <li role="presentation">
+                <button role="tab" aria-selected="true" data-target="panel-one">
+                  Create New Process
+                </button>
+              </li>
+              <li role="presentation">
+                <button
+                  role="tab"
+                  aria-selected="false"
+                  data-target="panel-two"
+                >
+                  Generate Processes Randomly
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div id="tab-content">
+            <div id="panel-one" role="tabpanel" aria-hidden="false">
+              <input
+                type="number"
+                placeholder="Arrival time"
+                id="arrive-time"
+              />
+              <input type="number" placeholder="Duration" id="duration" />
+              <button id="process-adder">Add Process</button>
+            </div>
+
+            <div id="panel-two" role="tabpanel" aria-hidden="true">
+              <input
+                type="number"
+                placeholder="Number of processes"
+                id="amount-box"
+              />
+              <button id="proccess-generator">Generate</button>
             </div>
           </div>
+        </div>
       </div>
       <div class="visualizer-section">
-        <section class="animation-section"></section>
+        <section class="animation-section">
+          <div class="animation-controls">
+            <label for="algorithm-select">Choose Algorithm:</label>
+            <select id="algorithm-select">
+              <option value="fcfs">FCFS</option>
+              <option value="rr">RR</option>
+              <option value="spn">SPN</option>
+              <option value="srtf">SRTF</option>
+              <option value="hrrn">HRRN</option>
+            </select>
+            <button class="squre-button play-btn">
+              <img src="./images/play.svg" alt="Play" />
+            </button>
+            <button class="squre-button cancel-btn">
+              <img src="images/trash.svg" alt="trash" />
+            </button>
+            <button class="squre-button speed-btn">2X</button>
+          </div>
+        </section>
         <div class="process-table-container">
           <table class="procces-table">
             <thead>

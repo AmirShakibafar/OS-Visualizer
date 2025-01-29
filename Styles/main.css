@@ -100,7 +100,7 @@ nav {
 }
 
 .hero-text h1 {
-  font-size: 2.5rem;
+  font-size: 2rem;
   text-align: left;
   border-bottom: 2px solid var(--text-color);
   width: fit-content;
@@ -115,6 +115,7 @@ nav {
 .user-guide-and-input {
   display: flex;
   justify-content: space-between;
+  align-items: flex-end;
   margin-bottom: 3rem;
 }
 
@@ -171,6 +172,60 @@ nav {
     transform: translateY(0);
   }
 }
+
+/* for guide */
+
+.guide {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 20px;
+    background: var(--section-background, #FFFCF2);
+    border-radius: 12px;
+}
+.guide h1{
+    font-size: 2rem;
+
+}
+.guide p {
+    margin-bottom: 1rem;
+}
+.guide-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.guide-btn, .squre-button, .guide-dropdown {
+    padding: 8px 12px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color, #011627);
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.squre-button {
+    background: white;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.squre-button img {
+    width: 20px;
+    height: 20px;
+}
+
+.guide-item span {
+    font-size: 16px;
+    color: var(--text-color, #252422);
+}
+
 
 /* visualizer section */
 
@@ -260,3 +315,66 @@ td {
 
 /* inside animation section */
 
+.animation-controls {
+    font-family: "Poppins", serif;
+    font-weight: 400;
+    font-style: normal;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: var(--background-color, #FDFFFC);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px var(--shadow-color, rgba(0, 0, 0, 0.1));
+}
+
+label {
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--text-color, #252422);
+}
+
+select {
+    padding: 8px 12px;
+    width: 200px;
+    font-size: 16px;
+    border: 2px solid var(--primary-color, #011627);
+    border-radius: 6px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+button {
+    padding: 8px 16px;
+    font-size: 16px;
+    font-weight: 600;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+.play-btn {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.cancel-btn {
+    background-color: #E71D36;
+    color: white;
+}
+
+.speed-btn {
+    background-color: var(--primary-color, #011627);
+    color: white;
+}
+
+
+
+.squre-button {
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
