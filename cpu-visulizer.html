@@ -43,23 +43,35 @@
     <section class="main-section">
       <div class="user-guide-and-input">
         <div class="guide">
-          <div class="guid text">
+          <div class="guide-text">
             <h1>User Guide</h1>
-            <p>Click on each item to learn more about its functionality.</p>
+            <p>Hover over each item to learn more about its functionality.</p>
           </div>
 
-          <div class="guide-item" onclick="openModal('modal1')">
+          <div
+            class="guide-item"
+            data-tooltip="Manually add a process with arrival time & duration."
+          >
             <button class="guide-btn">Create New Process</button>
           </div>
-          <div class="guide-item" onclick="openModal('modal2')">
+          <div
+            class="guide-item"
+            data-tooltip="Auto-generate a set number of processes."
+          >
             <button class="guide-btn">Generate Processes Randomly</button>
           </div>
-          <div class="guide-item" onclick="openModal('modal3')">
+          <div
+            class="guide-item"
+            data-tooltip="Select a scheduling algorithm (FCFS, RR, SPN, etc.)."
+          >
             <select class="guide-dropdown">
               <option>Choose Algorithm</option>
             </select>
           </div>
-          <div class="guide-item" onclick="openModal('modal4')">
+          <div
+            class="guide-item"
+            data-tooltip="Enter the Time Quantum (TQ) value. Only enabled for Round Robin (RR)."
+          >
             <input
               type="text"
               class="small-input-type"
@@ -67,84 +79,27 @@
               disabled
             />
           </div>
-          <div class="guide-item" onclick="openModal('modal5')">
+          <div
+            class="guide-item"
+            data-tooltip="Enter the Context Switch (CS) time to account for process switching delays."
+          >
             <input type="text" class="small-input-type" placeholder="CS" />
           </div>
-          <div class="guide-item" onclick="openModal('modal6')">
+          <div class="guide-item" data-tooltip="Start the simulation.">
             <button class="squre-button play-btn">
               <img src="./images/play.svg" alt="Play" />
             </button>
           </div>
-          <div class="guide-item" onclick="openModal('modal7')">
+          <div class="guide-item" data-tooltip="Stop and reset the simulation.">
             <button class="squre-button cancel-btn">
               <img src="images/trash.svg" alt="Trash" />
             </button>
           </div>
-          <div class="guide-item" onclick="openModal('modal8')">
+          <div class="guide-item" data-tooltip="Speed up the animation.">
             <button class="squre-button speed-btn">2X</button>
           </div>
         </div>
 
-        <div id="modal1" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal1')">&times;</span>
-            <p>Manually add a process with arrival time & duration.</p>
-          </div>
-        </div>
-        <div id="modal2" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal2')">&times;</span>
-            <p>Auto-generate a set number of processes.</p>
-          </div>
-        </div>
-        <div id="modal3" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal3')">&times;</span>
-            <p>Select a scheduling algorithm (FCFS, RR, SPN, etc.).</p>
-          </div>
-        </div>
-        <div id="modal4" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal4')">&times;</span>
-            <p>
-              Enter the Time Quantum (TQ) value. Only enabled for Round Robin
-              (RR).
-            </p>
-          </div>
-        </div>
-        <div id="modal5" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal5')">&times;</span>
-            <p>
-              Enter the Context Switch (CS) time to account for process
-              switching delays.
-            </p>
-          </div>
-        </div>
-        <div id="modal6" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal6')">&times;</span>
-            <p>
-              Start The Visualization.
-            </p>
-          </div>
-        </div>
-        <div id="modal7" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal7')">&times;</span>
-            <p>
-              Cancel The Visualization.
-            </p>
-          </div>
-        </div>
-        <div id="modal8" class="modal">
-          <div class="modal-content">
-            <span class="close" onclick="closeModal('modal8')">&times;</span>
-            <p>
-              adjust The Speed.
-            </p>
-          </div>
-        </div>
         <div id="tab-interface">
           <nav role="tablist">
             <ul id="tab-controls">
