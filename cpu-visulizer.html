@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./Styles/fonts.css" />
   </head>
   <body>
-    <nav>
+    <nav class="main-nav">
       <div class="logo">
         <h1 class="logo-text poppins-bold">OS Visualizer</h1>
       </div>
@@ -45,7 +45,7 @@
         <div class="guide">
           <h1>guide placeholder</h1>
         </div>
-        <div class="user-input">
+        
           <div id="tab-interface">
             <nav role="tablist">
               <ul id="tab-controls">
@@ -90,12 +90,11 @@
               </div>
             </div>
           </div>
-        </div>
       </div>
       <div class="visualizer-section">
         <section class="animation-section"></section>
         <div class="process-table-container">
-          <table class="procces-table poppins-regular">
+          <table class="procces-table">
             <thead>
               <tr>
                 <th>Process</th>
@@ -106,38 +105,41 @@
               </tr>
             </thead>
             <tbody id="process-table-body">
-                <tr>
-                    <td>P1</td>
-                    <td>0</td>
-                    <td>5</td>
-                    <td style="background-color: #FF5733; color: #fff;"></td>
-                    <td><button class="edit-btn">del</button></td>
-                </tr>
-                <tr>
-                    <td>P2</td>
-                    <td>2</td>
-                    <td>3</td>
-                    <td style="background-color: #33B5E5; color: #fff;"></td>
-                    <td><button class="edit-btn">del</button></td>
-                </tr>
-                <tr>
-                    <td>P3</td>
-                    <td>4</td>
-                    <td>7</td>
-                    <td style="background-color: #9C27B0; color: #fff;"></td>
-                    <td><button class="edit-btn">del</button></td>
-                </tr>
-                <tr>
-                    <td>P4</td>
-                    <td>6</td>
-                    <td>2</td>
-                    <td style="background-color: #4CAF50; color: #fff; border-radius:50%;"></td>
-                    <td><button class="edit-btn">del</button></td>
-                </tr>
-            </tbody>            
+              <tr>
+                <td colspan="5">Delete All</td>
+              </tr>
+              <tr>
+                <td>P1</td>
+                <td>0</td>
+                <td>5</td>
+                <td><div class="color-circle"></div></td>
+                <td><button class="edit-btn">del</button></td>
+              </tr>
+              <tr>
+                <td>P2</td>
+                <td>2</td>
+                <td>3</td>
+                <td><div class="color-circle"></div></td>
+                <td><button class="edit-btn">del</button></td>
+              </tr>
+              <tr>
+                <td>P3</td>
+                <td>4</td>
+                <td>7</td>
+                <td><div class="color-circle"></div></td>
+                <td><button class="edit-btn">del</button></td>
+              </tr>
+              <tr>
+                <td>P4</td>
+                <td>6</td>
+                <td>2</td>
+                <td><div class="color-circle"></div></td>
+                <td><button class="edit-btn">del</button></td>
+              </tr>
+            </tbody>
           </table>
         </div>
-    </div>
+      </div>
     </section>
   </body>
   <script src="./js/helpers/input_tab_view.js"></script>

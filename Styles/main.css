@@ -1,8 +1,8 @@
 :root {
-  --background-color: #fdfffc;
+  --background-color: #f2f4f3;
   --primary-color: #011627;
   --warning-color: #e71d36;
-  --section-background: #f0ebda;
+  --section-background: #fdfffc;
   --text-color: #252422;
   --secondary-text-color: #fafafa;
   --shadow-color: rgba(0, 0, 0, 0.1);
@@ -14,7 +14,6 @@
   text-decoration: none;
   list-style: none;
   box-sizing: border-box;
-  color: var(--text-color);
 }
 
 body {
@@ -57,9 +56,12 @@ section {
 
 nav {
   display: flex;
-  padding: 2% 10%;
   justify-content: space-between;
   align-items: center;
+}
+
+.main-nav {
+  padding: 2% 10%;
 }
 
 .logo-text {
@@ -113,28 +115,18 @@ nav {
 .user-guide-and-input {
   display: flex;
   justify-content: space-between;
-}
-
-.user-input {
-  width: 40%;
+  margin-bottom: 3rem;
 }
 
 /* user input  */
-#tab-interface {
-  background-color: var(--background-color);
-  max-width: 100%;
-  margin: 1rem auto;
-  border: 2px solid var(--primary-color);
-  border-radius: 12px;
-  padding: 1rem 0;
-}
+
 
 #tab-controls {
+    width: 380px;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  gap: 1rem;
   border-bottom: 2px solid #eee;
 }
 
@@ -143,22 +135,23 @@ nav {
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 8px;
   transition: all 0.2s;
 }
 
 #tab-controls button[aria-selected="true"] {
   background: var(--primary-color);
-  color: white;
+  color: var(--secondary-text-color);
 }
 
 #tab-controls button[aria-selected="false"] {
+  background: var(--background-color);
   color: var(--text-color);
 }
 
 #tab-content div {
-  padding: 1.5rem 2.5rem;
-  display: none;
+  display: flex;
+  padding: 1.5rem 0.5rem;
   opacity: 0;
   transition: opacity 0.3s ease;
 }
@@ -184,14 +177,86 @@ nav {
 .visualizer-section {
   display: flex;
   justify-content: space-between;
-  gap: 5%;
 }
 
 .animation-section {
   width: 60%;
   margin: 0;
-  background-color: var(--background-color);
+  background-color: var(--section-background);
   border-radius: 12px;
+  border-width: 1px;
 }
 
 /* for process table */
+
+.procces-table-container {
+  position: relative;
+}
+
+.procces-table {
+  border-collapse: collapse;
+  font-size: 0.75rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  font-family: "Poppins", serif;
+  font-weight: 700;
+  text-align: center;
+}
+
+.procces-table thead tr {
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
+}
+
+.procces-table th,
+td {
+  padding: 12px 15px;
+  height: 40px;
+}
+
+.procces-table tbody tr {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.procces-table tbody tr:nth-of-type(odd) {
+  background-color: var(--background-color);
+}
+
+.procces-table tbody tr:nth-of-type(even) {
+  background-color: var(--secondary-text-color);
+}
+
+.procces-table tbody tr:last-of-type {
+  border-bottom: 2px solid var(--primary-color);
+}
+
+.procces-table tbody tr:first-child {
+  background-color: var(--background-color);
+  cursor: pointer;
+  text-align: center;
+}
+
+.procces-table tbody tr:first-child:hover {
+  background-color: var(--section-background);
+}
+
+.procces-table tbody tr:first-child td {
+  padding: 12px 0;
+  font-size: 0.8rem;
+  color: var(--warning-color);
+}
+
+.procces-table tbody tr:first-child td button {
+  display: none;
+}
+
+.color-circle {
+    background-color: #e71d36;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+/* inside animation section */
+
