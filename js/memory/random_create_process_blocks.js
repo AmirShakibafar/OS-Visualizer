@@ -3,10 +3,10 @@ import { addToMemoryBlocks } from "./memory_blocks.js";
 import { renderAllTables } from "./hub_memory_process_table.js";
 import { createMemoryBlock } from "./memory_block.js";
 const submitRandomProcesses = document.getElementById(
-  "random-proccess-generator"
+  "proccess-generator"
 );
 
-const amount = document.getElementById("number-of-randoms");
+const amount = document.getElementById("amount-box");
 oneDigitNumberBox(amount)
 
 const addRandomMemoryBlocks = (
