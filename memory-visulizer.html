@@ -56,13 +56,13 @@
             class="guide-item"
             data-tooltip="Manually add a process with arrival time & duration."
           >
-            <button class="guide-btn">Create New Process</button>
+            <button class="guide-btn">Create Process</button>
           </div>
           <div
             class="guide-item"
             data-tooltip="Auto-generate a set number of processes."
           >
-            <button class="guide-btn">Generate Processes Randomly</button>
+            <button class="guide-btn">Create Randomly</button>
           </div>
           <div
             class="guide-item"
@@ -71,23 +71,6 @@
             <select class="guide-dropdown">
               <option>Choose Algorithm</option>
             </select>
-          </div>
-          <div
-            class="guide-item"
-            data-tooltip="Enter the Time Quantum (TQ) value. Only enabled for Round Robin (RR)."
-          >
-            <input
-              type="text"
-              class="small-input-type"
-              placeholder="TQ"
-              disabled
-            />
-          </div>
-          <div
-            class="guide-item"
-            data-tooltip="Enter the Context Switch (CS) time to account for process switching delays."
-          >
-            <input type="text" class="small-input-type" placeholder="CS" />
           </div>
           <div class="guide-item" data-tooltip="Start the simulation.">
             <button class="squre-button play-btn">
@@ -131,6 +114,11 @@
                 id="arrive-time"
               />
               <input type="number" placeholder="Duration" id="duration" />
+              <input
+                type="number"
+                placeholder="Size"
+                id="arrive-time"
+              />
               <button id="process-adder">Add Process</button>
             </div>
 
@@ -169,8 +157,6 @@
                     1X
                   </button>
             </div>
-            
-            
           </div>
           <div class="stats-section">
             <div class="show-time-section">
@@ -192,6 +178,7 @@
                 <th>Process</th>
                 <th>Arrival</th>
                 <th>Duration</th>
+                <th>Size</th>
                 <th>Color</th>
                 <th>Option</th>
               </tr>
