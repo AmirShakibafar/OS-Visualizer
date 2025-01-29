@@ -1,0 +1,21 @@
+.animation-controls {
+    justify-content: space-between;
+}
+
+.animation-controls select{
+    width: 60%;
+}
+
+.algorithm-container {
+    width: 70%;
+}
+
+.play-back-buttons {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.play-back-buttons button {
+    margin: 0 0.5rem;
+}
+

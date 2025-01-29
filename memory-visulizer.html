@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -12,9 +12,196 @@
     <title>Memory Visualizer</title>
     <link rel="stylesheet" href="./Styles/main.css" />
     <link rel="stylesheet" href="./Styles/fonts.css" />
-    <link rel="stylesheet" href="./Styles/process.css" />
-</head>
-<body>
-    
-</body>
+    <link rel="stylesheet" href="./Styles/memory.css" />
+  </head>
+  <body>
+    <nav class="main-nav">
+      <div class="logo">
+        <h1 class="logo-text poppins-bold">OS Visualizer</h1>
+      </div>
+      <div class="poppins-regular">
+        <ul class="nav-options">
+          <li><a href="./cpu-visulizer.html">CPU</a></li>
+          <li><a href="./memory-visulizer.html">Memory</a></li>
+        </ul>
+      </div>
+    </nav>
+    <section class="hero-section">
+      <div class="ilustration-frame">
+        <img src="./images/ram.webp" class="hero-image" />
+      </div>
+      <div class="hero-text">
+        <h1 class="poppins-bold">Memory Visualizer</h1>
+        <p class="poppins-regular">
+          Welcome to the Memory Visualizer. Watch as processes dynamically come
+          in and out, and explore how different allocation algorithms—First Fit,
+          Last Fit, Worst Fit, and Best Fit—impact memory distribution in
+          real-time. Whether you're a student learning operating systems or a
+          professional looking to visualize memory management in action, this
+          tool brings complex concepts to life with intuitive graphics and
+          engaging simulations.
+        </p>
+      </div>
+    </section>
+
+    <section class="main-section">
+      <div class="user-guide-and-input">
+        <div class="guide">
+          <div class="guide-text">
+            <h1>User Guide</h1>
+            <p>Hover over each item to learn more about its functionality.</p>
+          </div>
+
+          <div
+            class="guide-item"
+            data-tooltip="Manually add a process with arrival time & duration."
+          >
+            <button class="guide-btn">Create New Process</button>
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Auto-generate a set number of processes."
+          >
+            <button class="guide-btn">Generate Processes Randomly</button>
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Select a scheduling algorithm (FCFS, RR, SPN, etc.)."
+          >
+            <select class="guide-dropdown">
+              <option>Choose Algorithm</option>
+            </select>
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Enter the Time Quantum (TQ) value. Only enabled for Round Robin (RR)."
+          >
+            <input
+              type="text"
+              class="small-input-type"
+              placeholder="TQ"
+              disabled
+            />
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Enter the Context Switch (CS) time to account for process switching delays."
+          >
+            <input type="text" class="small-input-type" placeholder="CS" />
+          </div>
+          <div class="guide-item" data-tooltip="Start the simulation.">
+            <button class="squre-button play-btn">
+              <img src="./images/play.svg" alt="Play" />
+            </button>
+          </div>
+          <div class="guide-item" data-tooltip="Stop and reset the simulation.">
+            <button class="squre-button cancel-btn">
+              <img src="images/trash.svg" alt="Trash" />
+            </button>
+          </div>
+          <div class="guide-item" data-tooltip="Speed up the animation.">
+            <button class="squre-button speed-btn">2X</button>
+          </div>
+        </div>
+
+        <div id="tab-interface">
+          <nav role="tablist">
+            <ul id="tab-controls">
+              <li role="presentation">
+                <button role="tab" aria-selected="true" data-target="panel-one">
+                  Create Process
+                </button>
+              </li>
+              <li role="presentation">
+                <button
+                  role="tab"
+                  aria-selected="false"
+                  data-target="panel-two"
+                >
+                  Create Randomly
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div id="tab-content">
+            <div id="panel-one" role="tabpanel" aria-hidden="false">
+              <input
+                type="number"
+                placeholder="Arrival time"
+                id="arrive-time"
+              />
+              <input type="number" placeholder="Duration" id="duration" />
+              <button id="process-adder">Add Process</button>
+            </div>
+
+            <div id="panel-two" role="tabpanel" aria-hidden="true">
+              <input
+                type="number"
+                placeholder="Number of processes"
+                id="amount-box"
+              />
+              <button id="proccess-generator">Generate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="visualizer-section">
+        <section class="animation-section">
+          <div class="animation-controls">
+            <div class="algorithm-container">
+                <label for="algorithm-select">Algorithm:</label>
+                <select id="algorithm-select">
+                  <option value="FCFS">First-Fit</option>
+                  <option value="RR">Best-Fit</option>
+                  <option value="SPN">Worst-Fit</option>
+                  <option value="SRTF">Next-fit</option>
+                </select>
+            </div>
+            <div class="play-back-buttons">
+                <button id="play-button" class="squre-button play-btn">
+                    <img src="./images/play.svg" alt="Play" />
+                  </button>
+                  <button id="reset-button" class="squre-button cancel-btn">
+                    <img src="images/trash.svg" alt="trash" />
+                  </button>
+                  <button id="speedBTN" value="2" class="squre-button speed-btn">
+                    1X
+                  </button>
+            </div>
+            
+            
+          </div>
+          <div class="stats-section">
+            <div class="show-time-section">
+              <p id="current-time">
+                Current Time: TBD
+              </p>
+            </div>
+          </div>
+          <div class="animation-table" id="table-section">
+            <table id="dynamic_table">
+              <tbody class="dynamic_table_body poppins-medium"></tbody>
+            </table>
+          </div>
+        </section>
+        <div class="process-table-container">
+          <table class="procces-table">
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Arrival</th>
+                <th>Duration</th>
+                <th>Color</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody id="process-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </body>
+  <script src="./js/helpers/input_tab_view.js"></script>
+  <script src="./js/helpers/modal_opening.js"></script>
 </html>
