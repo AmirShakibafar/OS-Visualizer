@@ -1,28 +1,37 @@
 .animation-section {
-    width: 55%;
+  width: 55%;
 }
 
 .animation-controls {
-    justify-content: space-between;
+  justify-content: space-between;
 }
 
-.animation-controls select{
-    width: 60%;
+.animation-controls select {
+  width: 60%;
 }
 
 .algorithm-container {
-    width: 70%;
+  width: 70%;
 }
 
 .play-back-buttons {
-    display: flex;
-    justify-content: space-evenly;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .play-back-buttons button {
-    margin: 0 0.5rem;
+  margin: 0 0.5rem;
 }
 
 .guide {
-    width: 55%;
+  width: 55%;
+}
+
+
+#tab-interface {
+    width: 40%;
+    
+}
+#tab-content input {
+  margin-bottom: 0.5rem;
 }
