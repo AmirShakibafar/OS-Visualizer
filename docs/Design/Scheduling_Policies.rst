@@ -21,8 +21,8 @@ Each module has two key functions. The module includes the following functions:
 
     |   `FCFSProcessSort(processes, CS)`
     |   `SPNProcessSort(processes, CS)`
-    |   `SRTFProcessSort(processes, CS)` 
-    |   `RRProcessSort(processes, CS)` 
+    |   `SRTFProcessSort(processes, q, CS)` 
+    |   `RRProcessSort(processes, q, CS)` 
     |   `HRRNProcessSort(processes, CS)` 
 
 * The responsibility of organizing and prioritizing processes based on the scheduling policy rules.
