@@ -3,8 +3,8 @@ import { renderOnTables } from "./hub_table.js";
 
 const processTable = document.getElementById("process-table-body");
 const cardsContainer = document.querySelector(".cards-container");
-const mobileControls = document.getElementById("mobile-controls");
-const mobileDeleteAll = document.getElementById("mobile-delete-all");
+//const mobileControls = document.getElementById("mobile-controls");
+//const mobileDeleteAll = document.getElementById("mobile-delete-all");
 
 const deleteOne = (process, row) => {
   removeProcess(process.name, row);
@@ -16,7 +16,7 @@ const deleteAll = () => {
   renderOnTables();
 };
 
-mobileDeleteAll.addEventListener("click", () => deleteAll());
+//mobileDeleteAll.addEventListener("click", () => deleteAll());
 const createNewRow = (process) => {
   const row = document.createElement("tr");
 
@@ -101,6 +101,6 @@ export {
   createNewCard,
   processTable,
   cardsContainer,
-  mobileControls,
-  mobileDeleteAll,
+//  mobileControls,
+//  mobileDeleteAll,
 };

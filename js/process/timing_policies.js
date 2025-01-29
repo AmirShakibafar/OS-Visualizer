@@ -10,36 +10,17 @@ import {
   resetQuantomInputBox,
 } from "./quantom_input.js";
 
-const policies = ["FCFS", "SRTF", "RR", "SPN", "HRRN"];
-const policy = document.getElementById("policy-heading");
+const policy = document.getElementById("algorithm-select");
 
-let currentHeadingIndex = 0;
 
-const switchPolicy = (direction) => {
-  resetContextInputBox();
-  resetQuantomInputBox();
-  deactivateInputBox();
+policy.addEventListener("change", (event) => {
+  if(event.target.value === "RR") activateInputBox();
+  else{
+    resetQuantomInputBox();
+    deactivateInputBox();
+  }
+});
 
-  policy.classList.add("flip-out");
-  setTimeout(() => {
-    if (direction === "next") {
-      currentHeadingIndex = (currentHeadingIndex + 1) % policies.length;
-    } else {
-      currentHeadingIndex =
-        (currentHeadingIndex - 1 + policies.length) % policies.length;
-    }
-
-    const nextPolicyText = policies[currentHeadingIndex];
-
-    if (nextPolicyText === "RR") activateInputBox();
-
-    policy.innerText = nextPolicyText;
-    policy.classList.replace("flip-out", "flip-in");
-  }, 500);
-};
-
-window.prevPolicy = () => switchPolicy("prev");
-window.nextPolicy = () => switchPolicy("next");
 
 const policyMap = {
   FCFS,
@@ -49,8 +30,7 @@ const policyMap = {
   HRRN,
 };
 
-const whatPolicy = () => policyMap[policy.innerText] || null;
+const whatPolicy = () => policyMap[policy.value] || null;
 
-policy.addEventListener("click", () => switchPolicy("next"));
 
 export { whatPolicy };

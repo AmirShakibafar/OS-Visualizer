@@ -286,6 +286,8 @@ nav {
 }
 
 .procces-table {
+  position: sticky;
+  top: 20px;
   border-collapse: collapse;
   font-size: 0.75rem;
   border-radius: 12px;
@@ -337,6 +339,11 @@ td {
   padding: 12px 0;
   font-size: 0.8rem;
   color: var(--warning-color);
+  transition: all 0.3s;
+}
+.procces-table tbody tr:first-child td:hover {
+  background-color: var(--warning-color);
+  color: white;
 }
 
 .procces-table tbody tr:first-child td button {
