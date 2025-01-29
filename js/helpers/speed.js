@@ -1,4 +1,4 @@
-let SPEED = 200;
+let SPEED = 500;
 
 const setAnimationSpeed = (newSpeed) => {
   SPEED = newSpeed;
