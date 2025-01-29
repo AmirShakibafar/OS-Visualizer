@@ -66,7 +66,7 @@ describe("generateAccentColor", () => {
 
 
 
-  describe("sleep", () => {
+describe("sleep", () => {
     it("Test case 1: should resolve after approximately the specified time", async () => {
       const start = Date.now();
       await sleep(200); // 200ms delay
