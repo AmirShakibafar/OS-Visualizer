@@ -134,10 +134,10 @@
             <div class="algorithm-container">
               <label for="algorithm-select">Algorithm:</label>
               <select id="algorithm-select">
-                <option value="FCFS">First-Fit</option>
-                <option value="RR">Best-Fit</option>
-                <option value="SPN">Worst-Fit</option>
-                <option value="SRTF">Next-fit</option>
+                <option value="First-Fit">First-Fit</option>
+                <option value="Best-Fit">Best-Fit</option>
+                <option value="Worst-Fit">Worst-Fit</option>
+                <option value="Next-Fit">Next-fit</option>
               </select>
             </div>
             <div class="play-back-buttons">
@@ -154,7 +154,7 @@
           </div>
           <div class="stats-section">
             <div class="show-time-section">
-              <p id="current-time">Current Time: TBD</p>
+              <p id="current-time">Current Time: <span id="curr-time">TBD</span></p>
             </div>
           </div>
 
@@ -190,4 +190,5 @@
   <script src="./js/memory/memory_table.js" type="module"></script>
   <script src="./js/memory/manual_add_process_block.js" type="module"></script>
   <script src="./js/memory/random_create_process_blocks.js" type="module"></script>
+  <script src="./js/memory/animation_section.js" type="module"></script>
 </html>
