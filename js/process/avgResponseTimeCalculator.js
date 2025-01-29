@@ -1,4 +1,4 @@
-const responseInfo = document.getElementById("response-result-box");
+
 
 const avgResponseTime = (process) => {
   let totalResponseTime = 0;
@@ -15,6 +15,7 @@ const avgResponseTime = (process) => {
 };
 
 const ShowAvgResponseTime = (time) => {
+  const responseInfo = document.getElementById("response-result-box");
   time = parseFloat(time.toFixed(2));
   responseInfo.textContent = `Average Response Time: ${time}`;
 };

@@ -8,6 +8,9 @@ import { getContextSwitch } from "./context_switch.js";
 
 
 const handleCS = async (curr_tick) => {
+  if (readIsCancelled()) {
+    return { curr_tick: null };
+  }
   curr_tick = curr_tick;
   for (let i = 0; i < getContextSwitch(); i++) {
     const result = await handleContextSwitch(curr_tick);
@@ -110,5 +113,5 @@ const Display = async (processes, q = 0) => {
 
 
 export { Display };
-export { handleIdleState, processExecution} // needed for testing
+export { handleIdleState, processExecution, handleContextSwitch, handleCS} // needed for testing
 
