@@ -19,11 +19,11 @@ Each module has two key functions. The module includes the following functions:
 
 1. `Name_Of_Scheduling_Policies` **ProcessSort**
 
-    |   `FCFSProcessSort()`
-    |   `SPNProcessSort()`
-    |   `SRTFProcessSort()` 
-    |   `RRProcessSort()` 
-    |   `HRRNProcessSort()` 
+    |   `FCFSProcessSort(processes, CS)`
+    |   `SPNProcessSort(processes, CS)`
+    |   `SRTFProcessSort(processes, CS)` 
+    |   `RRProcessSort(processes, CS)` 
+    |   `HRRNProcessSort(processes, CS)` 
 
 * The responsibility of organizing and prioritizing processes based on the scheduling policy rules.
 
@@ -37,9 +37,12 @@ Each module has two key functions. The module includes the following functions:
 
 *  A higher-level function that sorts the processes, calculates their average waiting time, and displays the results using helper functions:
 
-    |   `Display(processes);` 
-    |   `ShowAvgTime(time);` // Input: Average Waiting Time ( int or float )
+    |   `Display(processes, q=0);` 
+    |   `ShowAvgWaitTime(AvgWaitTime);`
+    |   `ShowAvgResponseTime(AvgResponseTime);`
     |   `avgWaitTime(processes);` 
+    |   `avgResponseTime(processes);`
+    |   `getContextSwitch();`
 
 |
 |
@@ -70,7 +73,7 @@ Process Sort Documentation
 1.  **FCFSProcessSort**
 
 
-        `FCFSProcessSort(processes)`
+        `FCFSProcessSort(processes, CS)`
 
     The **FCFS (First-Come, First-Served)** scheduling policy processes tasks in the order they **arrive**. The first process to enter the queue is the first to be executed, regardless of its duration.
 
@@ -78,6 +81,7 @@ Process Sort Documentation
 
     
         **Input:**
+              | // q=0, CS=0 
               | [
               | { name: "P1", start: 0, duration: 3 },
               | { name: "P2", start: 5, duration: 2 },
@@ -97,7 +101,7 @@ Process Sort Documentation
 2.  **SPNProcessSort**
 
 
-        `SPNProcessSort(processes)`
+        `SPNProcessSort(processes, CS)`
 
     The **SPN (Shortest Process Next)** scheduling policy prioritizes processes based on the **shortest execution time** at current time. The process with the shortest processing time is executed first.
 
@@ -105,6 +109,7 @@ Process Sort Documentation
 
     
         **Input:**
+              | // q=0, CS=0 
               | [
               | { name: "P1", start: 0, duration: 3 },
               | { name: "P2", start: 1, duration: 5 },
@@ -124,7 +129,7 @@ Process Sort Documentation
 3.  **HRRNProcessSort**
 
 
-        `HRRNProcessSort(processes)`
+        `HRRNProcessSort(processes, CS)`
 
     The **HRRN (Highest Response Ratio Next)** scheduling policy selects the process with the **highest response ratio** to execute next. The response ratio is calculated as:
     
@@ -135,6 +140,7 @@ Process Sort Documentation
 
     
         **Input:**
+              | // q=0, CS=0 
               | [
               | { name: "P1", start: 0, duration: 3 },
               | { name: "P2", start: 1, duration: 5 },
@@ -154,14 +160,15 @@ Process Sort Documentation
 4.  **RRProcessSort**
 
 
-        `RRProcessSort(processes)`
+        `RRProcessSort(processes, q, CS)`
 
     The **RR (Round Robin)** scheduling policy allocates a **fixed time slice**, called a quantum, to each process in the queue. Processes are executed in a **cyclic order**, and if a process doesn't complete within its time slice, it is **moved to the back of the queue**.
 
     **Example:**
-
+        
     
         **Input:**
+              | // q=2, CS=0 
               | [
               | { name: "P1", start: 0, duration: 3 },
               | { name: "P2", start: 1, duration: 5 },
@@ -186,7 +193,7 @@ Process Sort Documentation
 5.  **SRTFProcessSort**
 
 
-        `SRTFProcessSort(processes)`
+        `SRTFProcessSort(processes, q, CS)`
 
     The **SRTF (Shortest Remaining Time First)** scheduling policy selects the process with the **shortest remaining execution time** to execute next. If a new process arrives with a shorter remaining time than the currently running process, the current process is preempted, and the new process is executed.
     
@@ -194,6 +201,7 @@ Process Sort Documentation
 
     
         **Input:**
+              | // q=1, CS=0 
               | [
               | { name: "P1", start: 3, duration: 4 },
               | { name: "P2", start: 0, duration: 5 },
@@ -224,6 +232,21 @@ Process Sort Documentation
 Diagram
 -----------------------
 
-* All structure of modules are the same :
+**FCFS, SPN, HRRN structures of modules are the same :**
 
 .. image:: Diagrams/FCFS.drawio.svg
+
+
+|
+|
+
+**RR**
+
+.. image:: Diagrams/RR.drawio.svg
+
+|
+|
+
+**SRTF**
+
+.. image:: Diagrams/SRTF.drawio.svg
