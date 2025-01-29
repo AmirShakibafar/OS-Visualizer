@@ -2,12 +2,15 @@ import { describe, it, expect, vi, beforeEach } from "vitest";
 import { 
     Display,
     handleIdleState,
-    processExecution 
+    processExecution,
+    handleContextSwitch,
+    handleCS
 } from "../display"
 import { sleep } from "../../helpers/helpers";
 import { SPEED } from "../../helpers/speed";
 import { readIsCancelled } from "../../helpers/cancelFlag";
 import { getNextBlock } from "../processAnimationView.js";
+import { getContextSwitch } from "../context_switch.js";
 
 vi.mock('../process_table', () => ({
     processTable: null
@@ -46,9 +49,38 @@ vi.mock('../../helpers/cancelFlag.js', () => ({
 
 
 
+describe('handleCS', () => {
+  beforeEach(()=>{
+      vi.clearAllMocks()
+        readIsCancelled.mockReturnValue(false);
+        getContextSwitch.mockReturnValue(0);
+
+  })
+  it('Test case 1: sould send correct value to another functions',async () => {
+    readIsCancelled.mockReturnValue(false);
+    getContextSwitch.mockReturnValue(2);
+    let cur_time = 2;
+    let res = await handleCS(cur_time)
+    expect(res).toStrictEqual({curr_tick: 4});
+    expect(getNextBlock).toBeCalledTimes(2);
+    expect(sleep).toHaveBeenCalledWith(SPEED);
+  });
+
+  it('Test case 2: sould return if isCancelled is true', async () => {
+    readIsCancelled.mockReturnValue(true);
+
+    let cur_time = 2;
+    let res = await handleCS(cur_time)
+    expect(res).toStrictEqual({curr_tick: null});
+    expect(getNextBlock).toBeCalledTimes(0);
+  });
+})
+
 describe('handleIdleState', () => {
     beforeEach(()=>{
         vi.clearAllMocks()
+        readIsCancelled.mockReturnValue(false);
+        getContextSwitch.mockReturnValue(0);
     })
     it('Test case 1: sould send correct value to another functions',async () => {
       let cur_time = 2;
@@ -68,11 +100,38 @@ describe('handleIdleState', () => {
       expect(getNextBlock).toBeCalledTimes(0);
     });
 })
+describe('handleContextSwitch', () => {
+    beforeEach(()=>{
+        vi.clearAllMocks()
+        readIsCancelled.mockReturnValue(false);
+        getContextSwitch.mockReturnValue(0);
+    })
+    it('Test case 1: sould send correct value to another functions',async () => {
+      readIsCancelled.mockReturnValue(false);
+      let cur_time = 2;
+      let res = await handleContextSwitch(cur_time)
+      expect(res).toStrictEqual({curr_tick: 3});
+      expect(getNextBlock).toBeCalledTimes(1);
+      expect(getNextBlock).toHaveBeenCalledWith({ bgcolor: "#000", color: "#fff", name: "CS" },2);
+      expect(sleep).toHaveBeenCalledWith(SPEED);
+    });
+
+    it('Test case 2: sould return if isCancelled is true', async () => {
+      readIsCancelled.mockReturnValue(true);
+
+      let cur_time = 2;
+      let res = await handleContextSwitch(cur_time)
+      expect(res).toStrictEqual({curr_tick: null});
+      expect(getNextBlock).toBeCalledTimes(0);
+    });
+})
 
 
 describe('processExecution', () => {
     beforeEach(()=>{
         vi.clearAllMocks()
+        readIsCancelled.mockReturnValue(false);
+        getContextSwitch.mockReturnValue(0);
         
     })
     it('Test case 1: sould send correct value to another functions',async () => {
@@ -103,6 +162,8 @@ describe('processExecution', () => {
 describe('Display', () => {
   beforeEach(()=>{
       vi.clearAllMocks()
+      readIsCancelled.mockReturnValue(false);
+        getContextSwitch.mockReturnValue(0);
   })
 
   it('Test case 1: sould send correct value to another functions if q = 0',async () => {
