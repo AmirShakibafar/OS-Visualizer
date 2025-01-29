@@ -115,7 +115,6 @@ nav {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 3rem;
-  gap: 3.8rem;
 }
 
 /* user input  */
@@ -182,6 +181,7 @@ nav {
 .guide {
   font-family: "Poppins", serif;
   display: flex;
+  width: 60%;
   flex-wrap: wrap;
   background: white;
   padding: 20px;
