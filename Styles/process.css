@@ -2,13 +2,13 @@
   display: flex;
   justify-content: space-evenly;
   background-color: var(--background-color, #fdfffc);
+  border-radius: 0 0 8px 8px;
 }
 
 .show-time-section {
   font-size: 1rem;
   padding: 10px 20px;
   margin: 0 5px;
-  border-radius: 12px;
 }
 
 .show-time-section p{
