@@ -1,6 +1,6 @@
 :root {
   --background-color: #f2f4f3;
-  --primary-color: #011627;
+  --primary-color: #22aea0;
   --warning-color: #e71d36;
   --section-background: #fdfffc;
   --text-color: #252422;
@@ -26,7 +26,6 @@ input {
   display: block;
   width: 50%;
   padding: 0.5rem;
-  margin-bottom: 1rem;
   border: 1px solid #ddd;
   border-radius: 4px;
 }
@@ -162,6 +161,10 @@ nav {
   animation: fadeIn 0.3s ease forwards;
 }
 
+#tab-content input {
+  margin-bottom: 1rem;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -174,7 +177,9 @@ nav {
 }
 
 /* for guide */
-
+.small-input-type {
+    width: 50px;
+}
 .guide {
     font-family: "Poppins", serif;
     font-weight: 400;
@@ -336,22 +341,12 @@ label {
 
 select {
     padding: 8px 12px;
-    width: 200px;
+    width: auto;
     font-size: 16px;
     border: 2px solid var(--primary-color, #011627);
     border-radius: 6px;
     background-color: #fff;
     cursor: pointer;
-}
-
-button {
-    padding: 8px 16px;
-    font-size: 16px;
-    font-weight: 600;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease-in-out;
 }
 
 .play-btn {
@@ -367,14 +362,4 @@ button {
 .speed-btn {
     background-color: var(--primary-color, #011627);
     color: white;
-}
-
-
-
-.squre-button {
-    width: 40px;
-    height: 40px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
 }

@@ -67,6 +67,27 @@
           </div>
 
           <div class="guide-item">
+            <input
+              type="text"
+              class="small-input-type"
+              placeholder="TQ"
+              id="time-quantom"
+              disabled
+            />
+            <span>➝ Enter the Time Quantum (TQ) value. Only enabled for Round Robin (RR).</span>
+          </div>
+        
+          <div class="guide-item">
+            <input
+              type="text"
+              class="small-input-type"
+              placeholder="CS"
+              id="context-switch"
+            />
+            <span>➝ Enter the Context Switch (CS) time to account for process switching delays.</span>
+          </div>
+
+          <div class="guide-item">
             <button class="squre-button play-btn">
               <img src="./images/play.svg" alt="Play" />
             </button>
@@ -81,7 +102,7 @@
           </div>
 
           <div class="guide-item">
-            <button class="squre-button  speed-btn">2X</button>
+            <button class="squre-button speed-btn">2X</button>
             <span>➝ Speed up the animation</span>
           </div>
         </div>
@@ -129,7 +150,7 @@
       <div class="visualizer-section">
         <section class="animation-section">
           <div class="animation-controls">
-            <label for="algorithm-select">Choose Algorithm:</label>
+            <label for="algorithm-select">Algorithm:</label>
             <select id="algorithm-select">
               <option value="fcfs">FCFS</option>
               <option value="rr">RR</option>
@@ -137,6 +158,19 @@
               <option value="srtf">SRTF</option>
               <option value="hrrn">HRRN</option>
             </select>
+            <input
+              type="text"
+              class="medium-input-type"
+              placeholder="TQ"
+              id="time-quantom"
+              disabled
+            />
+            <input
+              type="text"
+              class="medium-input-type"
+              placeholder="CS"
+              id="context-switch"
+            />
             <button class="squre-button play-btn">
               <img src="./images/play.svg" alt="Play" />
             </button>
@@ -166,28 +200,28 @@
                 <td>0</td>
                 <td>5</td>
                 <td><div class="color-circle"></div></td>
-                <td><button class="edit-btn">del</button></td>
+                <td><img src="./images/trash3.svg" alt=""></td>
               </tr>
               <tr>
                 <td>P2</td>
                 <td>2</td>
                 <td>3</td>
                 <td><div class="color-circle"></div></td>
-                <td><button class="edit-btn">del</button></td>
+                <td><img src="./images/trash3.svg" alt=""></td>
               </tr>
               <tr>
                 <td>P3</td>
                 <td>4</td>
                 <td>7</td>
                 <td><div class="color-circle"></div></td>
-                <td><button class="edit-btn">del</button></td>
+                <td><img src="./images/trash3.svg" alt=""></td>
               </tr>
               <tr>
                 <td>P4</td>
                 <td>6</td>
                 <td>2</td>
                 <td><div class="color-circle"></div></td>
-                <td><button class="edit-btn">del</button></td>
+                <td><img src="./images/trash3.svg" alt=""></td>
               </tr>
             </tbody>
           </table>
