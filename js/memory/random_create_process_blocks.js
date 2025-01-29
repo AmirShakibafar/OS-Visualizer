@@ -2,7 +2,6 @@ import { oneDigitNumberBox } from "../helpers/inputValidation.js";
 import { addToMemoryBlocks } from "./memory_blocks.js";
 import { renderAllTables } from "./hub_memory_process_table.js";
 import { createMemoryBlock } from "./memory_block.js";
-import { showMessage } from "../helpers/message.js";
 const submitRandomProcesses = document.getElementById(
   "random-proccess-generator"
 );
@@ -33,10 +32,8 @@ const addRandomMemoryBlocks = (
 
 const addRandomBlocksHandler = () => {
   if (!amount.value) {
-    showMessage("input field is empty!", "fail");
     return;
   }
-  showMessage("processes added succesfully!", "success");
   addRandomMemoryBlocks(amount.value);
   renderAllTables();
 };

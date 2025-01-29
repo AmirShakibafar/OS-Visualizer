@@ -5,23 +5,22 @@ import {
   deleteMemoryBlock,
 } from "./memory_blocks.js";
 import { renderMemoryTable } from "./memory_process_table.js";
-import { renderMobileTable } from "./mobile_process_table.js";
-const cardsContainer = document.querySelector(".cards-container");
-const mobileControls = document.getElementById("mobile-controls");
-const mobileDeleteAll = document.getElementById("mobile-delete-all");
-const memoryTable = document.getElementById("memory-process-table-body");
+// import { renderMobileTable } from "./mobile_process_table.js";
+// const cardsContainer = document.querySelector(".cards-container");
+// const mobileControls = document.getElementById("mobile-controls");
+// const mobileDeleteAll = document.getElementById("mobile-delete-all");
+const memoryTable = document.getElementById("process-table-body");
 
 const deleteAll = () => {
   clearMemoryBlocks();
-  renderMobileTable();
+  // renderMobileTable();
   renderMemoryTable();
 };
 
 const deleteOne = (process, card) => {
-  console.log(process);
   deleteMemoryBlock(process.name, card);
   reArrangeMemoryBlocks();
-  renderMobileTable();
+  // renderMobileTable();
   renderMemoryTable();
 };
 
@@ -44,7 +43,7 @@ const deleteAllRowButton = () => {
   memoryTable.prepend(deleteAllRow);
 };
 
-mobileDeleteAll.addEventListener("click", deleteAll);
+// mobileDeleteAll.addEventListener("click", deleteAll);
 
 const createNewRow = (process) => {
   const row = document.createElement("tr");
@@ -66,13 +65,26 @@ const createNewRow = (process) => {
   row.appendChild(sizeCell);
 
   const colorCell = document.createElement("td");
-  colorCell.style.backgroundColor = process.bgColor;
+  const colorCircle = document.createElement("div");
+  colorCircle.style.backgroundColor = process.bgColor;
+  colorCircle.style.width = "20px";  
+  colorCircle.style.height = "20px";
+  colorCircle.style.borderRadius = "50%"; 
+  colorCircle.style.margin = "auto"; 
+
+  colorCell.appendChild(colorCircle);
   row.appendChild(colorCell);
 
   const deleteCell = document.createElement("td");
-  deleteCell.textContent = "Delete";
-  deleteCell.classList.add("delete");
-  deleteCell.onclick = () => deleteOne(process, row);
+  const deleteIcon = document.createElement("img");
+  deleteIcon.src = "images/trash-2.svg";  
+  deleteIcon.alt = "Delete";
+  deleteIcon.style.cursor = "pointer";
+  deleteIcon.style.width = "25px"; 
+  deleteIcon.style.height = "25px";
+  deleteIcon.onclick = () => deleteOne(process, row);
+
+  deleteCell.appendChild(deleteIcon);
   row.appendChild(deleteCell);
 
   return row;
@@ -109,6 +121,6 @@ export {
   createNewRow,
   deleteAllRowButton,
   showOrHideButton,
-  cardsContainer,
+  // cardsContainer,
   memoryTable,
 };

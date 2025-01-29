@@ -1,5 +1,4 @@
 import { renderMemorySections } from "./memory_table.js";
-import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
   allocateMemorySpace,
@@ -23,10 +22,6 @@ const findFirstFit = async (processBlock) => {
     
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
-      showMessage(
-        `found empty block for ${processBlock.name} at index: ${startIndex}`,
-        "success"
-      );
       allocateMemorySpace(startIndex, processBlock);
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
@@ -38,11 +33,7 @@ const findFirstFit = async (processBlock) => {
     startIndex++;
   }
 
-  showMessage(
-    `No available memory block found for ${processBlock.name}!`,
-    "fail"
-  );
-  await sleep(500);
+  
 
   return;
 };

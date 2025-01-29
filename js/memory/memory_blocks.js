@@ -1,4 +1,3 @@
-import { showMessage } from "../helpers/message.js";
 let memoryBlocks = [];
 
 const getMemoryBlocks = () => {
@@ -6,16 +5,13 @@ const getMemoryBlocks = () => {
 };
 
 const addToMemoryBlocks = (memoryBlock) => {
-  showMessage("process added successfully", "success");
   memoryBlocks.push(memoryBlock);
 };
 
 const clearMemoryBlocks = () => {
   if (!memoryBlocks.length) {
-    showMessage("Table is already empty!", "fail");
     return;
   }
-  showMessage("processes cleared successfully", "success");
   memoryBlocks = [];
 };
 
