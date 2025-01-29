@@ -1,11 +1,12 @@
 :root {
   --background-color: #f2f4f3;
   --primary-color: #22aea0;
+  --primary-color-darker: #1c887d;
   --warning-color: #e71d36;
   --section-background: #fdfffc;
   --text-color: #252422;
   --secondary-text-color: #fafafa;
-  --shadow-color: rgba(0, 0, 0, 0.1);
+  --shadow-color: rgba(0, 0, 0, 0.05);
 }
 
 * {
@@ -46,7 +47,6 @@ button:hover {
 
 section {
   background-color: var(--section-background);
-  border: 2px solid var(--primary-color);
   box-shadow: 10px 10px 6px var(--shadow-color);
   border-radius: 24px;
   margin: 2% 10%;
@@ -101,7 +101,6 @@ nav {
 .hero-text h1 {
   font-size: 2rem;
   text-align: left;
-  border-bottom: 2px solid var(--text-color);
   width: fit-content;
   margin-bottom: 4%;
 }
@@ -116,18 +115,17 @@ nav {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 3rem;
+  gap: 3.8rem;
 }
 
 /* user input  */
 
-
 #tab-controls {
-    width: 380px;
+  width: 370px;
   list-style: none;
   padding: 0;
   margin: 0;
   display: flex;
-  border-bottom: 2px solid #eee;
 }
 
 #tab-controls button {
@@ -178,59 +176,89 @@ nav {
 
 /* for guide */
 .small-input-type {
-    width: 50px;
+  width: 50px;
 }
-.guide {
-    font-family: "Poppins", serif;
-    font-weight: 400;
-    font-style: normal;
-    padding: 20px;
-    background: var(--section-background, #FFFCF2);
-    border-radius: 12px;
-}
-.guide h1{
-    font-size: 2rem;
 
+.guide {
+  font-family: "Poppins", serif;
+  display: flex;
+  flex-wrap: wrap;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  border: 2px solid var(--primary-color);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
-.guide p {
-    margin-bottom: 1rem;
+
+
+.guide h1 {
+  text-align: left;
+  color: #333;
 }
 .guide-item {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border-radius: 5px;
+  margin: 10px 0;
+  cursor: pointer;
+  user-select: none;
 }
 
-.guide-btn, .squre-button, .guide-dropdown {
-    padding: 8px 12px;
-    font-size: 16px;
-    border: 2px solid var(--primary-color, #011627);
-    border-radius: 6px;
-    cursor: pointer;
+
+.guide-item span {
+  font-size: 14px;
+  color: #666;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  justify-content: center;
+  align-items: center;
+}
+.modal-content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 400px;
+  text-align: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+.close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  color: #555;
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .squre-button {
-    background: white;
-    border: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40px;
-    height: 40px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: white;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .squre-button img {
-    width: 20px;
-    height: 20px;
+  width: 20px;
+  height: 20px;
 }
-
-.guide-item span {
-    font-size: 16px;
-    color: var(--text-color, #252422);
-}
-
 
 /* visualizer section */
 
@@ -245,6 +273,7 @@ nav {
   background-color: var(--section-background);
   border-radius: 12px;
   border-width: 1px;
+  border: 2px solid var(--primary-color);
 }
 
 /* for process table */
@@ -312,54 +341,54 @@ td {
 }
 
 .color-circle {
-    background-color: #e71d36;
-    width: 20px;
-    height: 20px;
-    border-radius: 50%;
+  background-color: #e71d36;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
 }
 
 /* inside animation section */
 
 .animation-controls {
-    font-family: "Poppins", serif;
-    font-weight: 400;
-    font-style: normal;
-    display: flex;
-    gap: 12px;
-    align-items: center;
-    padding: 12px 20px;
-    background-color: var(--background-color, #FDFFFC);
-    border-radius: 8px;
-    box-shadow: 0 2px 4px var(--shadow-color, rgba(0, 0, 0, 0.1));
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  font-style: normal;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 20px;
+  background-color: var(--background-color, #fdfffc);
+  border-radius: 8px;
+  box-shadow: 0 2px 4px var(--shadow-color, rgba(0, 0, 0, 0.1));
 }
 
 label {
-    font-size: 16px;
-    font-weight: 500;
-    color: var(--text-color, #252422);
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--text-color, #252422);
 }
 
 select {
-    padding: 8px 12px;
-    width: auto;
-    font-size: 16px;
-    border: 2px solid var(--primary-color, #011627);
-    border-radius: 6px;
-    background-color: #fff;
-    cursor: pointer;
+  padding: 8px 12px;
+  width: auto;
+  font-size: 16px;
+  border: 2px solid var(--primary-color, #011627);
+  border-radius: 6px;
+  background-color: #fff;
+  cursor: pointer;
 }
 
 .play-btn {
-    background-color: #4CAF50;
-    color: white;
+  background-color: #4caf50;
+  color: white;
 }
 
 .cancel-btn {
-    background-color: #E71D36;
-    color: white;
+  background-color: #e71d36;
+  color: white;
 }
 
 .speed-btn {
-    background-color: var(--primary-color, #011627);
-    color: white;
+  background-color: var(--primary-color, #011627);
+  color: white;
 }

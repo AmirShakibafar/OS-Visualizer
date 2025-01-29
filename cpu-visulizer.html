@@ -27,7 +27,7 @@
     </nav>
     <section class="hero-section">
       <div class="ilustration-frame">
-        <img src="./newImages/CPU-Hero.png" class="hero-image" />
+        <img src="./images/cpu 2 Background Removed.png" class="hero-image" />
       </div>
       <div class="hero-text">
         <h1 class="poppins-bold">CPU Visualizer</h1>
@@ -43,67 +43,106 @@
     <section class="main-section">
       <div class="user-guide-and-input">
         <div class="guide">
-          <h1>User Guide</h1>
-          <p>
-            Understand how each button functions in the CPU scheduling
-            visualizer.
-          </p>
+          <div class="guid text">
+            <h1>User Guide</h1>
+            <p>Click on each item to learn more about its functionality.</p>
+          </div>
 
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal1')">
             <button class="guide-btn">Create New Process</button>
-            <span>➝ Manually add a process with arrival time & duration</span>
           </div>
-
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal2')">
             <button class="guide-btn">Generate Processes Randomly</button>
-            <span>➝ Auto-generate a set number of processes</span>
           </div>
-
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal3')">
             <select class="guide-dropdown">
               <option>Choose Algorithm</option>
             </select>
-            <span>➝ Select a scheduling algorithm (FCFS, RR, SPN, etc.)</span>
           </div>
-
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal4')">
             <input
               type="text"
               class="small-input-type"
               placeholder="TQ"
-              id="time-quantom"
               disabled
             />
-            <span>➝ Enter the Time Quantum (TQ) value. Only enabled for Round Robin (RR).</span>
           </div>
-        
-          <div class="guide-item">
-            <input
-              type="text"
-              class="small-input-type"
-              placeholder="CS"
-              id="context-switch"
-            />
-            <span>➝ Enter the Context Switch (CS) time to account for process switching delays.</span>
+          <div class="guide-item" onclick="openModal('modal5')">
+            <input type="text" class="small-input-type" placeholder="CS" />
           </div>
-
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal6')">
             <button class="squre-button play-btn">
               <img src="./images/play.svg" alt="Play" />
             </button>
-            <span>➝ Start the simulation</span>
           </div>
-
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal7')">
             <button class="squre-button cancel-btn">
               <img src="images/trash.svg" alt="Trash" />
             </button>
-            <span>➝ Stop and reset the simulation</span>
           </div>
-
-          <div class="guide-item">
+          <div class="guide-item" onclick="openModal('modal8')">
             <button class="squre-button speed-btn">2X</button>
-            <span>➝ Speed up the animation</span>
+          </div>
+        </div>
+
+        <div id="modal1" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal1')">&times;</span>
+            <p>Manually add a process with arrival time & duration.</p>
+          </div>
+        </div>
+        <div id="modal2" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal2')">&times;</span>
+            <p>Auto-generate a set number of processes.</p>
+          </div>
+        </div>
+        <div id="modal3" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal3')">&times;</span>
+            <p>Select a scheduling algorithm (FCFS, RR, SPN, etc.).</p>
+          </div>
+        </div>
+        <div id="modal4" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal4')">&times;</span>
+            <p>
+              Enter the Time Quantum (TQ) value. Only enabled for Round Robin
+              (RR).
+            </p>
+          </div>
+        </div>
+        <div id="modal5" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal5')">&times;</span>
+            <p>
+              Enter the Context Switch (CS) time to account for process
+              switching delays.
+            </p>
+          </div>
+        </div>
+        <div id="modal6" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal6')">&times;</span>
+            <p>
+              Start The Visualization.
+            </p>
+          </div>
+        </div>
+        <div id="modal7" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal7')">&times;</span>
+            <p>
+              Cancel The Visualization.
+            </p>
+          </div>
+        </div>
+        <div id="modal8" class="modal">
+          <div class="modal-content">
+            <span class="close" onclick="closeModal('modal8')">&times;</span>
+            <p>
+              adjust The Speed.
+            </p>
           </div>
         </div>
         <div id="tab-interface">
@@ -111,7 +150,7 @@
             <ul id="tab-controls">
               <li role="presentation">
                 <button role="tab" aria-selected="true" data-target="panel-one">
-                  Create New Process
+                  Create Process
                 </button>
               </li>
               <li role="presentation">
@@ -120,7 +159,7 @@
                   aria-selected="false"
                   data-target="panel-two"
                 >
-                  Generate Processes Randomly
+                  Create Randomly
                 </button>
               </li>
             </ul>
@@ -200,28 +239,28 @@
                 <td>0</td>
                 <td>5</td>
                 <td><div class="color-circle"></div></td>
-                <td><img src="./images/trash3.svg" alt=""></td>
+                <td><img src="./images/trash3.svg" alt="" /></td>
               </tr>
               <tr>
                 <td>P2</td>
                 <td>2</td>
                 <td>3</td>
                 <td><div class="color-circle"></div></td>
-                <td><img src="./images/trash3.svg" alt=""></td>
+                <td><img src="./images/trash3.svg" alt="" /></td>
               </tr>
               <tr>
                 <td>P3</td>
                 <td>4</td>
                 <td>7</td>
                 <td><div class="color-circle"></div></td>
-                <td><img src="./images/trash3.svg" alt=""></td>
+                <td><img src="./images/trash3.svg" alt="" /></td>
               </tr>
               <tr>
                 <td>P4</td>
                 <td>6</td>
                 <td>2</td>
                 <td><div class="color-circle"></div></td>
-                <td><img src="./images/trash3.svg" alt=""></td>
+                <td><img src="./images/trash3.svg" alt="" /></td>
               </tr>
             </tbody>
           </table>
@@ -230,4 +269,5 @@
     </section>
   </body>
   <script src="./js/helpers/input_tab_view.js"></script>
+  <script src="./js/helpers/modal_opening.js"></script>
 </html>
