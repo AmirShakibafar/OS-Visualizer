@@ -409,7 +409,7 @@ select {
   display: flex;
   background-color: var(--background-color, #fdfffc);
   border-radius: 0 0 8px 8px;
-  padding: 0 1rem;
+  padding: 0.5rem 1rem;
   font-family: "Poppins", serif;
   font-weight: 500;
 }

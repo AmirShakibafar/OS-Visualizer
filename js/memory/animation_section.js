@@ -1,7 +1,6 @@
 import { setAnimationSpeed } from "../helpers/speed.js";
 import { renderMemorySections } from "./memory_table.js";
 import { clearMemorySpaces, getMemorySpaces } from "./memory_space.js";
-import { resetTime } from "./timer.js";
 import { whatPolicy } from "./hub_algorithmes.js";
 import {
   setIsCancelled,
@@ -14,7 +13,7 @@ const resetButton = document.getElementById("reset-button");
 const speedBTN = document.getElementById("speedBTN");
 
 const BASE_SPEED = 500;
-let stateSpeed = 1;
+let stateSpeed = 2;
 let speed = BASE_SPEED ;
 
 speedBTN.addEventListener("click", (event) => {
