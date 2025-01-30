@@ -3,6 +3,26 @@
     font-size: 0.8rem !important;
   }
 }
+@media screen and (min-width:401px) and (max-width: 560px){
+  .show-time-section{
+    font-size: 0.8rem !important;
+  }
+  .next-block {
+    font-size: 10px !important;
+  }
+}
+@media screen and (max-width: 400px){
+  .show-time-section{
+    font-size: 0.6rem !important;
+    padding: 5px !important;
+    margin: 0 !important;
+  }
+  .next-block {
+    font-size: 8px !important;
+    width: 7vw !important;
+  }
+}
+
 .show-time-section {
   font-size: 1rem;
   padding: 10px 20px;

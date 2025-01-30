@@ -54,7 +54,15 @@
     </section>
 
     <section class="main-section" id="visual">
+
+      <!-- just let it be here -->
+      <div id="guide-container-mobile"></div>
+
       <div class="user-guide-and-input">
+        <div class="open-guide-btn">
+          <button id="guideBTN">User Guide</button>
+        </div>
+
         <div class="guide">
           <div class="guide-text">
             <h1>User Guide</h1>
@@ -139,6 +147,19 @@
         </div>
       </div>
 
+
+      <!--mobile table -->
+      <section class="mobile-table-area">
+        <div class="mobile-controls" id="mobile-controls">
+          <button class="delete-all-mobile" id="mobile-delete-all">
+            Delete All
+          </button>
+        </div>
+        <div class="cards-container">
+        </div>
+      </section> 
+
+
       <div class="visualizer-section">
         <section class="animation-section">
           <div class="animation-controls">
@@ -198,6 +219,8 @@
       </div>
     </section>
   </body>
+
+  <script src="./js/helpers/modal.js"></script>
   <script src="./js/helpers/input_tab_view.js" type="module"></script>
   <script src="./js/helpers/letsgobutton.js" type="module"></script>
   <script src="./js/helpers/modal_opening.js" type="module"></script>
