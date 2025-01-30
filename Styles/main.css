@@ -18,9 +18,12 @@
 }
 
 body {
-  background-size: 20px 20px;
-  background-image: linear-gradient(to right, #cbcbcb29 1px, transparent 1px),
-    linear-gradient(to bottom, #cbcbcb29 1px, transparent 1px);
+  background: rgb(253, 255, 252);
+  background: linear-gradient(
+    161deg,
+    rgba(253, 255, 252, 1) 0%,
+    rgba(34, 174, 160, 0.2) 91%
+  );
 }
 
 input {
@@ -47,8 +50,6 @@ button:hover {
 
 section {
   background-color: var(--section-background);
-  border-top: 2px solid var(--primary-color-darker);
-  border-left: 2px solid var(--primary-color-darker);
   box-shadow: 10px 10px 6px var(--shadow-color);
   border-radius: 24px;
   margin: 2% 10%;
@@ -196,7 +197,6 @@ nav {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-
 .guide h1 {
   text-align: left;
   color: #333;
@@ -216,7 +216,6 @@ nav {
   font-size: 14px;
   color: #666;
 }
-
 
 .tooltip {
   display: none;
