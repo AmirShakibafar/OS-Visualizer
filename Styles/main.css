@@ -162,7 +162,8 @@ body {
   background: linear-gradient(
     161deg, rgba(253, 255, 252, 1) 0%, rgba(34, 174, 160, 0.2) 91%
     );
-  
+}
+
 a {
   color: inherit;
   font-weight: 500;
