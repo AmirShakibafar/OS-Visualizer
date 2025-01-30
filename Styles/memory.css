@@ -79,3 +79,8 @@
 .fade-in {
   animation: fadeIn 0.5s ease-in-out;
 }
+
+
+.hero-text h1 {
+    font-size: 3.2rem;
+}

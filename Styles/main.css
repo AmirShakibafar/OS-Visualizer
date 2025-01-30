@@ -17,6 +17,11 @@
   box-sizing: border-box;
 }
 
+a {
+  color: inherit;
+  font-weight: 500;
+}
+
 body {
   background: rgb(253, 255, 252);
   background: linear-gradient(
@@ -31,7 +36,7 @@ input {
   width: 50%;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 4px;
+  border-radius: 12px;
 }
 
 button {
@@ -39,7 +44,7 @@ button {
   color: var(--secondary-text-color);
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 6px;
+  border-radius: 12px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -70,12 +75,33 @@ nav {
   font-size: 2rem;
 }
 
+.logo-start {
+  color: #1c887d;
+}
+
 .nav-options {
   display: flex;
 }
 
+.nav-active {
+  border-bottom: 4px solid var(--primary-color-darker);
+}
+
 .nav-options li {
   font-size: 1.5rem;
+}
+
+.nav-options li a:hover {
+  opacity: 0.7;
+}
+
+.nav-options li a {
+  display: flex;
+  align-items: center;
+}
+
+.nav-options li a img {
+  padding-right: 4px;
 }
 
 .nav-options li:first-child {
@@ -89,29 +115,69 @@ nav {
   justify-content: space-evenly;
 }
 
-.hero-image {
-  width: 25vw;
+.hero-image img {
+  vertical-align: middle;
+  width: 10vw;
 }
 
 .hero-text {
-  width: 40%;
+  width: 100%;
   display: flex;
   flex-direction: column;
+  text-align: center;
   justify-content: center;
+  align-items: center;
   color: var(--text-color);
 }
 
-.hero-text h1 {
-  font-size: 2rem;
-  text-align: left;
-  width: fit-content;
-  margin-bottom: 4%;
+.hero-slogan {
+  background-color: var(--primary-color);
+  color: var(--secondary-text-color);
+  border-radius: 24px;
+  padding: 1%;
+  display: inline-block;
+  animation: flap 2s ease-in-out infinite; 
 }
 
-.hero-text p {
-  width: 100%;
-  font-size: 1.2rem;
+@keyframes flap {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
+
+.hero-text h1 {
+  line-height: 2;
+  font-size: 3.5rem;
+  width: fit-content;
+  margin-bottom: 1%;
+}
+.hero-text h2 {
+  width: 80%;
+  font-size: 1.5rem;
+  color: var(--primary-color-darker);
+  margin-bottom: 2%;
+
+}
+.hero-text p {
+  width: 65%;
+  color: #666;
+  font-size: 1.3rem;
+}
+
+.hero-button {
+  padding: 1.5% 3%;
+  border-radius: 24px;
+  margin-top: 2%;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
 /* guid user input section */
 .user-guide-and-input {
   display: flex;
@@ -417,4 +483,27 @@ select {
   padding: 0.5rem 1rem;
   font-family: "Poppins", serif;
   font-weight: 500;
+}
+
+
+.footer {
+  text-align: center;
+  font-size: 1.2rem;
+  color: var(--text-color);
+  padding: 2%;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+.heart {
+  color: #ff4757;
+}
+
+.github {
+  color: #9128d2;
+}
+
+.github img {
+  vertical-align: middle;
 }
