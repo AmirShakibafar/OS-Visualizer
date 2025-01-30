@@ -31,5 +31,9 @@ Acceptance Criteria
 
 
 **Additional Features**  
-    * Uploading a file containing processes.  
     * Manually entering process data. 
+    * Create random process
+    * Configure context switch 
+    * Set quantum for Round Robin (RR)
+    * Assigning different color for each process
+    * User guide
