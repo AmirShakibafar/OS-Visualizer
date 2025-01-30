@@ -5,7 +5,8 @@
 }
 @media screen and (min-width:401px) and (max-width: 560px){
   .show-time-section{
-    font-size: 0.8rem !important;
+    padding: 0 !important;
+    font-size: 0.7rem !important;
   }
   .next-block {
     font-size: 10px !important;

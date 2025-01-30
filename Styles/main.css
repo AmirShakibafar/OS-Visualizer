@@ -45,14 +45,15 @@
   }
 }
 
-@media screen and (max-width:1100px) and (min-width:800px) {
+@media screen and (max-width:1099px) and (min-width:900px) {
   section{
     margin: 2% 5% !important;
     padding: 2% !important;
   }
 
   .nav-options li{
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
+    width: auto !important;
   }
 
   .hero-section{
@@ -77,9 +78,8 @@
   }
 
   .user-guide-and-input {
-    flex-direction: column;
     align-items: center !important;
-    justify-content: center !important;
+    justify-content: space-between !important;
   }
 
   
@@ -91,6 +91,9 @@
     margin: 2px 0 !important;
   }
 
+  .guide {
+    width: 60% !important;
+  }
   #tab-controls{
     margin-top: 3rem !important;
     width: auto !important;
@@ -122,7 +125,7 @@
 
 }
 
-@media screen and (max-width: 799px) and (min-width: 600px) {
+@media screen and (max-width: 899px) and (min-width: 600px) {
   .main-nav {
     flex-direction: column;
   }
@@ -275,6 +278,10 @@
   .animation-controls{
     flex-wrap: wrap !important;
     justify-content: center;
+  }
+
+  .animation-controls label {
+    font-size: 0.8rem;
   }
 
   .medium-input-type{
