@@ -23,6 +23,9 @@
     margin: 2% 5% !important;
     padding: 2% !important;
   }
+  .hero-text h1{
+    font-size: 2.4rem !important;
+  }
   .animation-section{
     margin: 0 !important;
   }
@@ -40,6 +43,10 @@
     padding: 2% !important;
   }
 
+  .nav-options li{
+    font-size: 1rem !important;
+  }
+
   .hero-section{
     gap: 5% !important;
   }
@@ -49,8 +56,8 @@
     align-items: center !important;
   }
 
-  .hero-text p{
-    font-size: 1rem !important;
+  .hero-text h1{
+    font-size: 2rem !important;
   }
 
   .animation-section{
@@ -91,12 +98,12 @@
 
 }
 
-@media screen and (max-width: 799px) and (min-width: 560px){
+@media screen and (max-width: 799px) and (min-width: 600px) {
   .logo-text {
-    font-size: 1.5rem !important;
+    font-size: 1.2rem !important;
   }
   .nav-options li{
-    font-size: 1rem !important;
+    font-size: 0.7rem !important;
   }
 
   .hero-section{
@@ -142,7 +149,9 @@
     width: 100% !important;
   }
 
-
+  .mobile-table-area{
+    display: block !important;
+  }
 
   .animation-section{
     width: auto !important;;
@@ -156,6 +165,87 @@
     max-width: 36px !important;
   }
 }
+
+@media screen and (max-width: 600px){
+  .logo-text {
+    font-size: 1rem !important;
+    text-align: center;
+  }
+  .nav-options li:first-child{
+    margin-right: 5px !important;
+  }
+  .nav-options li{
+    font-size: 0.5rem !important;
+  }
+
+  .hero-section{
+    gap: 5% !important;
+  }
+
+  .ilustration-frame{
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .hero-text p{
+    font-size: 0.8rem !important;
+  }
+  .hero-text h1{
+    font-size: 1.1rem !important;
+  }
+
+  .hero-image{
+    width: 20vw !important;
+  } 
+
+  .process-table-container{
+    display: none !important;
+  }
+
+  .guide{
+    display: none !important;
+  }
+
+  .user-guide-and-input{
+    flex-direction: column !important;
+    align-items: start !important;;
+    gap: 30px !important;
+  }
+
+  .open-guide-btn{
+    display: block !important;
+    width: 100% !important;
+    margin-top: 10px;
+  }
+  #guideBTN{
+    width: 100% !important;
+  }
+
+  #tab-controls{
+    width: auto !important;
+  }
+
+  .mobile-table-area{
+    display: block !important;
+  }
+
+  .animation-section{
+    width: auto !important;;
+  }
+
+  .animation-controls{
+    flex-wrap: wrap !important;
+  }
+
+  .medium-input-type{
+    max-width: 36px !important;
+  }
+  footer{
+    font-size: 0.7rem !important;
+  }
+}
+
+
 
 body {
   background-color: rgb(255, 255, 255);
@@ -324,6 +414,7 @@ nav {
   justify-content: space-between;
   align-items: flex-end;
   margin-bottom: 3rem;
+  gap: 1%;
 }
 
 /* user input  */
@@ -394,13 +485,14 @@ nav {
 #guide-container-mobile{
   display: none;
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 7%;
+  left: 10%;
 }
 
 .small-input-type {
   width: 50px;
 }
+
 
 .guide {
   font-family: "Poppins", serif;
@@ -491,6 +583,7 @@ nav {
 .visualizer-section {
   display: flex;
   justify-content: space-between;
+  gap: 1%;
 }
 
 .animation-section {
@@ -610,6 +703,9 @@ select {
   background-color: #fff;
   cursor: pointer;
 }
+.medium-input-type{
+  min-width: 36px !important;
+}
 
 .play-btn {
   background-color: #4caf50;
@@ -657,4 +753,126 @@ select {
 
 .github img {
   vertical-align: middle;
+}
+
+
+/* for mobile table */
+
+
+.mobile-table-area {
+  position: sticky;
+  display: none;
+  height: auto;
+  margin: 30px 1%;
+  background-color: var(--background-color);
+  border-radius: 15px;
+  padding: 0 1%;
+  box-shadow: none;
+  border: 1px solid var(--primary-color);
+}
+
+.mobile-controls {
+  display: none;
+}
+
+.delete-all-mobile {
+  padding: 10px;
+  margin: 15px;
+  background-color: #e71d36;
+}
+
+.cards-container {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.card-title {
+  text-align: center;
+  font-family: "Poppins", serif;
+  font-size: 1.7rem;
+}
+
+.card-color {
+  background-color: #2dedaa;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.card-info {
+  font-family: "Poppins", serif;
+  font-weight: 400;
+  text-align: center;
+  width: 100%;
+  padding: 5px 10px;
+  font-size: 0.8rem;
+}
+
+.cards-container .card:first-child {
+  margin-left: 40px;
+}
+
+.card {
+  position: relative;
+  width: 90px;
+  height: fit-content;
+  background-color: transparent;
+  border: 1px solid var(--primary-color);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 12px;
+  scroll-snap-align: end;
+  flex: 0 0 auto;
+}
+
+.card .delete-btn {
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  background-color: #e71d36;
+  color: #fff;
+  border: none;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  transition: all 0.2s ease-in-out;
+}
+
+.card .delete-btn:hover {
+  background-color: #e71d36;
+  transform: scale(1.1);
+}
+
+.cards-container {
+  display: flex;
+  overflow-x: scroll;
+  scroll-snap-type: x mandatory;
+  gap: 20px;
+  padding: 10px;
+  white-space: nowrap;
+}
+
+.cards-container::-webkit-scrollbar {
+  height: 8px;
+}
+
+.cards-container::-webkit-scrollbar-thumb {
+  background: #3a86ff;
+  border-radius: 12px;
 }

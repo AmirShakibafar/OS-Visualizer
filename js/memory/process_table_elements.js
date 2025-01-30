@@ -5,10 +5,10 @@ import {
   deleteMemoryBlock,
 } from "./memory_blocks.js";
 import { renderMemoryTable } from "./memory_process_table.js";
-// import { renderMobileTable } from "./mobile_process_table.js";
-// const cardsContainer = document.querySelector(".cards-container");
-// const mobileControls = document.getElementById("mobile-controls");
-// const mobileDeleteAll = document.getElementById("mobile-delete-all");
+import { renderMobileTable } from "./mobile_process_table.js";
+const cardsContainer = document.querySelector(".cards-container");
+const mobileControls = document.getElementById("mobile-controls");
+const mobileDeleteAll = document.getElementById("mobile-delete-all");
 const memoryTable = document.getElementById("process-table-body");
 
 const deleteAll = () => {
@@ -20,7 +20,7 @@ const deleteAll = () => {
 const deleteOne = (process, card) => {
   deleteMemoryBlock(process.name, card);
   reArrangeMemoryBlocks();
-  // renderMobileTable();
+   renderMobileTable();
   renderMemoryTable();
 };
 
@@ -43,7 +43,7 @@ const deleteAllRowButton = () => {
   memoryTable.prepend(deleteAllRow);
 };
 
-// mobileDeleteAll.addEventListener("click", deleteAll);
+ mobileDeleteAll.addEventListener("click", deleteAll);
 
 const createNewRow = (process) => {
   const row = document.createElement("tr");
@@ -121,6 +121,6 @@ export {
   createNewRow,
   deleteAllRowButton,
   showOrHideButton,
-  // cardsContainer,
+  cardsContainer,
   memoryTable,
 };
