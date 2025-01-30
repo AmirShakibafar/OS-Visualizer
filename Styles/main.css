@@ -47,6 +47,8 @@ button:hover {
 
 section {
   background-color: var(--section-background);
+  border-top: 2px solid var(--primary-color-darker);
+  border-left: 2px solid var(--primary-color-darker);
   box-shadow: 10px 10px 6px var(--shadow-color);
   border-radius: 24px;
   margin: 2% 10%;
@@ -151,6 +153,10 @@ nav {
   padding: 1.5rem 0.5rem;
   opacity: 0;
   transition: opacity 0.3s ease;
+}
+
+#tab-content div[role="tabpanel"] {
+  display: none;
 }
 
 #tab-content div[aria-hidden="false"] {

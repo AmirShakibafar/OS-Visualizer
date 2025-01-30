@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+const tabHandler = () => {
     // Tab switching logic
     const tabs = document.querySelectorAll('#tab-controls button[role="tab"]');
     const panels = document.querySelectorAll('#tab-content div[role="tabpanel"]');
@@ -34,4 +34,5 @@ document.addEventListener('DOMContentLoaded', () => {
             target.setAttribute('aria-hidden', 'false');
         });
     });
-});
+}
+document.addEventListener('DOMContentLoaded', tabHandler());
