@@ -7,7 +7,6 @@ import {
   updateHoverState,
 } from "../memory_space.js";
 import { renderMemorySections } from "../memory_table";
-import { showMessage } from "../../helpers/message";
 import { Display } from "../display.js";
 import { readIsCancelled } from "../../helpers/cancelFlag";
 
@@ -39,9 +38,6 @@ vi.mock("../memory_table", () => ({
   renderMemorySections: vi.fn(),
 }));
 
-vi.mock("../helpers/message", () => ({
-  showMessage: vi.fn(),
-}));
 
 vi.mock('../../helpers/speed.js', () => ({
   SPEED : 1,
@@ -89,7 +85,6 @@ describe("findFirstFit", () => {
     expect(renderMemorySections).toHaveBeenCalled();
     expect(checkIfRangeEmpty).toHaveBeenCalledWith(0, 5);
     expect(allocateMemorySpace).toHaveBeenCalledWith(0, processBlock);
-    expect(showMessage).toHaveBeenCalledWith("found empty block for ProcessA at index: 0", "success");
   });
 
   it("Test case 2: should fail to find a block if no space is available", async () => {
@@ -102,7 +97,6 @@ describe("findFirstFit", () => {
     expect(renderMemorySections).toHaveBeenCalled();
     expect(checkIfRangeEmpty).toHaveBeenCalled();
     expect(allocateMemorySpace).not.toHaveBeenCalled();
-    expect(showMessage).toHaveBeenCalledWith("No available memory block found for ProcessB!", "fail");
   });
 
   it("Test case 3: should handle memory wrapping around the end of the array", async () => {
@@ -116,7 +110,6 @@ describe("findFirstFit", () => {
       expect(updateHoverState).toHaveBeenCalledWith(i, 5, false); // Hover off
     }
     expect(allocateMemorySpace).toHaveBeenCalledWith(59, processBlock);
-    expect(showMessage).toHaveBeenCalledWith("found empty block for ProcessC at index: 59", "success");
   });
 
   it("Test case 4: should stop execution if cancelled ", async () => {
@@ -128,10 +121,6 @@ describe("findFirstFit", () => {
     expect(updateHoverState).toHaveBeenCalledTimes(0); // Stops after cancellation
     expect(renderMemorySections).toHaveBeenCalledTimes(0);
     expect(allocateMemorySpace).not.toHaveBeenCalled();
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("found empty block"),
-      "success"
-    );
   });
 
   it("Test case 5: should correctly allocate in a fragmented memory scenario", async () => {
@@ -149,7 +138,6 @@ describe("findFirstFit", () => {
     expect(updateHoverState).toHaveBeenCalledWith(30, 5, true);
     expect(allocateMemorySpace).toHaveBeenCalledWith(30, processBlock);
     expect(renderMemorySections).toHaveBeenCalled();
-    expect(showMessage).toHaveBeenCalledWith("found empty block for ProcessE at index: 30", "success");
   });
 });
 

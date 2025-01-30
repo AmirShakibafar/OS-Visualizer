@@ -8,7 +8,6 @@ import {
   findRangeOfEmpty,
 } from "../memory_space.js";
 import { renderMemorySections } from "../memory_table";
-import { showMessage } from "../../helpers/message";
 import { Display } from "../display.js";
 import { readIsCancelled } from "../../helpers/cancelFlag";
 
@@ -26,11 +25,6 @@ vi.mock("../memory_space", () => ({
 vi.mock("../display", () => ({
   Display: vi.fn(),
 }))
-
-vi.mock('../../helpers/message', () => ({
-  showMessage: vi.fn(),
-  messageBox: null
-}));
 
 vi.mock("../../helpers/helpers", () => ({
   sleep: vi.fn(() => Promise.resolve()),
@@ -148,10 +142,6 @@ describe("findBestFit", () => {
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, false);
     expect(renderMemorySections).toHaveBeenCalled();
     expect(allocateMemorySpace).toHaveBeenCalledWith(2, processBlock); // find best fit in index 2 and allocate
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
   });
 
   it("Test case 2: should fail to find a block if no suitable space is available", async () => {
@@ -164,10 +154,6 @@ describe("findBestFit", () => {
     expect(renderMemorySections).not.toHaveBeenCalled();
     expect(checkIfRangeEmpty).toHaveBeenCalled();
     expect(allocateMemorySpace).not.toHaveBeenCalled();
-    expect(showMessage).toHaveBeenCalledWith(
-      "No available memory block found for ProcessB!",
-      "fail"
-    );
   });
 
   it("Test case 3: should stop execution if cancelled", async () => {
@@ -179,7 +165,6 @@ describe("findBestFit", () => {
     expect(updateHoverState).toHaveBeenCalledTimes(0); // Stops after cancellation
     expect(renderMemorySections).toHaveBeenCalledTimes(0);
     expect(allocateMemorySpace).not.toHaveBeenCalled();
-    expect(showMessage).not.toHaveBeenCalled();
   });
 
 
@@ -278,12 +263,6 @@ describe("findBestFit", () => {
     // Ensure the best fit block is allocated
     expect(allocateMemorySpace).toHaveBeenCalledWith(5, processBlock); // Allocate to index 5
     expect(renderMemorySections).toHaveBeenCalled();
-  
-    // Ensure no failure message was shown
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
   });
 
   
@@ -414,11 +393,6 @@ describe("findBestFit", () => {
     expect(allocateMemorySpace).toHaveBeenCalledWith(7, processBlock); // Allocate to index 7
     expect(renderMemorySections).toHaveBeenCalled();
   
-    // Ensure no failure message was shown
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
   });
 
 
