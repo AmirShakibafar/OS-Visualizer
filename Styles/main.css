@@ -17,10 +17,81 @@
   box-sizing: border-box;
 }
 
+@media screen and (max-width: 1200px) and (min-width:1050px ) {
+  section{
+    margin: 2% 5% !important;
+    padding: 2% !important;
+  }
+  .animation-section{
+    margin: 0 !important;
+  }
+  .visualizer-section, .user-guide-and-input{
+    gap: 1%;
+  }
+  .medium-input-type{
+    min-width: 36px !important;
+  }
+}
+
+@media screen and (max-width:1050px) and (min-width:800px) {
+  section{
+    margin: 2% 5% !important;
+    padding: 2% !important;
+  }
+  .hero-section{
+    justify-content: center;
+    gap: 5%;
+  }
+
+  .ilustration-frame{
+    display: flex;
+    align-items: center;
+  }
+  
+  .hero-text p{
+    font-size: 1rem !important;
+  }
+  .animation-section{
+    margin: 0 !important;
+  }
+
+  .guide div{
+    margin: 2px 0 !important;
+  }
+
+  #tab-controls{
+    width: auto !important;
+  }
+
+  #tab-controls button{
+    padding: 12px 18px !important;
+  }
+
+  .visualizer-section, .user-guide-and-input{
+    gap: 1%;
+  }
+
+  .animation-controls{
+    flex-wrap: wrap !important;
+  }
+  .procces-table tbody tr td{
+    padding: 0 !important;
+  }
+  .procces-table thead tr th{
+    padding: 12px 5px !important;
+  }
+  .medium-input-type{
+    max-width: 36px !important;
+  }
+}
+
+
+
 body {
-  background-size: 20px 20px;
-  background-image: linear-gradient(to right, #cbcbcb29 1px, transparent 1px),
-    linear-gradient(to bottom, #cbcbcb29 1px, transparent 1px);
+  background-color: rgb(255, 255, 255);
+  background: linear-gradient(
+    161deg, rgba(253, 255, 252, 1) 0%, rgba(34, 174, 160, 0.2) 91%
+    );
 }
 
 input {
