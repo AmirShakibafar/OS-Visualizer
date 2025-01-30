@@ -1,4 +1,8 @@
-
+@media screen and (max-width: 799px) and (min-width: 560px){
+  .show-time-section{
+    font-size: 0.8rem !important;
+  }
+}
 .show-time-section {
   font-size: 1rem;
   padding: 10px 20px;
