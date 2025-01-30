@@ -38,19 +38,20 @@
     margin: 2% 5% !important;
     padding: 2% !important;
   }
+
   .hero-section{
-    justify-content: center;
-    gap: 5%;
+    gap: 5% !important;
   }
 
   .ilustration-frame{
-    display: flex;
-    align-items: center;
+    display: flex !important;
+    align-items: center !important;
   }
-  
+
   .hero-text p{
     font-size: 1rem !important;
   }
+
   .animation-section{
     margin: 0 !important;
   }
@@ -68,24 +69,92 @@
   }
 
   .visualizer-section, .user-guide-and-input{
-    gap: 1%;
+    gap: 1% !important;
   }
 
   .animation-controls{
     flex-wrap: wrap !important;
   }
+
+  .medium-input-type{
+    max-width: 36px !important;
+  }
+
   .procces-table tbody tr td{
     padding: 0 !important;
   }
+
   .procces-table thead tr th{
     padding: 12px 5px !important;
   }
+
+}
+
+@media screen and (max-width: 799px) and (min-width: 560px){
+  .logo-text {
+    font-size: 1.5rem !important;
+  }
+  .nav-options li{
+    font-size: 1rem !important;
+  }
+
+  .hero-section{
+    gap: 5% !important;
+  }
+
+  .ilustration-frame{
+    display: flex !important;
+    align-items: center !important;
+  }
+
+  .hero-text p{
+    font-size: 0.8rem !important;
+  }
+  .hero-text h1{
+    font-size: 1.1rem !important;
+  }
+
+  .hero-image{
+    width: 20vw !important;
+  } 
+
+  .process-table-container{
+    display: none !important;
+  }
+
+  .guide{
+    display: none !important;
+  }
+
+  .user-guide-and-input{
+    flex-direction: column !important;
+    align-items: start !important;;
+    gap: 30px !important;
+  }
+
+  .open-guide-btn{
+    display: block !important;
+    width: 100% !important;
+    margin-top: 10px;
+  }
+  #guideBTN{
+    width: 100% !important;
+  }
+
+
+
+  .animation-section{
+    width: auto !important;;
+  }
+
+  .animation-controls{
+    flex-wrap: wrap !important;
+  }
+
   .medium-input-type{
     max-width: 36px !important;
   }
 }
-
-
 
 body {
   background-color: rgb(255, 255, 255);
@@ -251,6 +320,17 @@ nav {
 }
 
 /* for guide */
+.open-guide-btn{
+  display: none;
+}
+
+#guide-container-mobile{
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+}
+
 .small-input-type {
   width: 50px;
 }
