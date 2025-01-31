@@ -4,15 +4,13 @@ Welcome to OS Visualizer 🖥️🔍
 
 Dive into the inner workings of operating systems with OS Visualizer, an interactive educational tool designed to demystify complex OS algorithms through dynamic, step-by-step simulations. Whether you're a student grappling with textbook concepts, a developer reinforcing foundational knowledge, or an educator seeking engaging teaching aids, this project brings CPU scheduling, memory allocation, process synchronization, disk management, and more to life.
 
-By transforming abstract theory into visual, real-time demonstrations, OS Visualizer lets you see how algorithms like Round Robin, FIFO, LRU, and Banker’s Algorithm operate under the hood. Adjust parameters, track resource allocation, and observe outcomes—all within an intuitive interface built to deepen your understanding through hands-on exploration.
+By transforming abstract theory into visual, real-time demonstrations, OS Visualizer lets you see how algorithms like Cpu Schedualing and Memory Allocation Algorithms operate under the hood. Adjust parameters, track resource allocation, and observe outcomes—all within an intuitive interface built to deepen your understanding through hands-on exploration.
 
 Key Features:
 
     Interactive Simulations: Manipulate inputs and visualize algorithmic behavior.
 
-    Educational Breakdowns: Detailed explanations at every step.
-
-    Real-Time Insights: Watch processes, memory, and resources adapt dynamically.
+    Real-Time Insights: Watch processes and resources adapt dynamically.
 
 Perfect for classrooms, self-study, or quick reference, OS Visualizer bridges the gap between concept and practice. Start exploring to unravel the magic behind operating systems! 🚀
 
