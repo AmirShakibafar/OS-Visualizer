@@ -343,7 +343,7 @@ input {
   width: 50%;
   padding: 0.5rem;
   border: 1px solid #ddd;
-  border-radius: 12px;
+  border-radius: 8px;
 }
 
 button {
@@ -351,7 +351,7 @@ button {
   color: var(--secondary-text-color);
   padding: 0.5rem 1rem;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   cursor: pointer;
   transition: opacity 0.2s;
 }
@@ -363,7 +363,7 @@ button:hover {
 section {
   background-color: var(--section-background);
   box-shadow: 10px 10px 6px var(--shadow-color);
-  border-radius: 12px;
+  border-radius: 24px;
   margin: 2% 10%;
   padding: 3%;
 }
@@ -439,7 +439,7 @@ nav {
 
 .hero-slogan {
   color: var(--primary-color);
-  border-radius: 12px;
+  border-radius: 8px;
   padding: 1%;
   display: inline-block;
   animation: flap 2s ease-in-out infinite;
@@ -477,7 +477,7 @@ nav {
 
 .hero-button {
   padding: 1.5% 3%;
-  border-radius: 12px;
+  border-radius: 8px;
   margin-top: 2%;
   font-size: 1.4rem;
   font-weight: 600;
@@ -507,7 +507,7 @@ nav {
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 12px;
+  border-radius: 8px;
   transition: all 0.2s;
 }
 
@@ -609,7 +609,7 @@ nav {
   background: var(--background-color);
   color: var(--text-color);
   padding: 10px;
-  border-radius: 12px;
+  border-radius: 8px;
   white-space: nowrap;
   font-size: 14px;
   z-index: 10;
@@ -773,7 +773,7 @@ select {
   width: auto;
   font-size: 16px;
   border: 2px solid var(--primary-color, #011627);
-  border-radius: 12px;
+  border-radius: 8px;
   background-color: #fff;
   cursor: pointer;
 }
@@ -868,7 +868,7 @@ select {
 
 .card-color {
   background-color: #2dedaa;
-  border-radius: 12px;
+  border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -899,7 +899,7 @@ select {
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  border-radius: 12px;
+  border-radius: 8px;
   scroll-snap-align: end;
   flex: 0 0 auto;
 }
@@ -944,5 +944,5 @@ select {
 
 .cards-container::-webkit-scrollbar-thumb {
   background: var(--primary-color-darker);
-  border-radius: 12px;
+  border-radius: 8px;
 }
