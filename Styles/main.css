@@ -305,6 +305,25 @@
   }
 }
 
+@media screen and (max-width: 450px){
+  .nav-options li {
+    font-size: 0.8rem !important;
+  }
+  .user-guide-and-input {
+    flex-direction: column !important;
+    align-items: start !important;
+    gap: 30px !important;
+  }
+  #tab-controls button {
+    width: 130px !important;
+  }
+  #tab-content input {
+    width: 220px !important;
+    margin-bottom: 1rem;
+  }
+
+}
+
 body {
   background-color: rgb(255, 255, 255);
   background: linear-gradient(
