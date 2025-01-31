@@ -363,7 +363,7 @@ button:hover {
 section {
   background-color: var(--section-background);
   box-shadow: 10px 10px 6px var(--shadow-color);
-  border-radius: 24px;
+  border-radius: 12px;
   margin: 2% 10%;
   padding: 3%;
 }
@@ -439,7 +439,7 @@ nav {
 
 .hero-slogan {
   color: var(--primary-color);
-  border-radius: 24px;
+  border-radius: 12px;
   padding: 1%;
   display: inline-block;
   animation: flap 2s ease-in-out infinite;
@@ -477,7 +477,7 @@ nav {
 
 .hero-button {
   padding: 1.5% 3%;
-  border-radius: 24px;
+  border-radius: 12px;
   margin-top: 2%;
   font-size: 1.4rem;
   font-weight: 600;
@@ -507,7 +507,7 @@ nav {
   border: none;
   background: none;
   cursor: pointer;
-  border-radius: 8px;
+  border-radius: 12px;
   transition: all 0.2s;
 }
 
@@ -575,7 +575,7 @@ nav {
   flex-wrap: wrap;
   background: white;
   padding: 20px;
-  border-radius: 8px;
+  border-radius: 12px;
   border: 2px solid var(--primary-color);
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
@@ -609,7 +609,7 @@ nav {
   background: var(--background-color);
   color: var(--text-color);
   padding: 10px;
-  border-radius: 8px;
+  border-radius: 12px;
   white-space: nowrap;
   font-size: 14px;
   z-index: 10;
@@ -758,7 +758,7 @@ td {
   align-items: center;
   padding: 12px 20px;
   background-color: var(--background-color, #fdfffc);
-  border-radius: 8px;
+  border-radius: 12px;
   box-shadow: 0 2px 4px var(--shadow-color, rgba(0, 0, 0, 0.1));
 }
 
@@ -773,7 +773,7 @@ select {
   width: auto;
   font-size: 16px;
   border: 2px solid var(--primary-color, #011627);
-  border-radius: 6px;
+  border-radius: 12px;
   background-color: #fff;
   cursor: pointer;
 }
@@ -800,7 +800,7 @@ select {
 .stats-section {
   display: flex;
   background-color: var(--background-color, #fdfffc);
-  border-radius: 0 0 8px 8px;
+  border-radius: 0 0 12px 12px;
   padding: 0.5rem 1rem;
   font-family: "Poppins", serif;
   font-weight: 500;
@@ -836,7 +836,7 @@ select {
   height: auto;
   margin: 30px 1%;
   background-color: var(--section-background);
-  border-radius: 15px;
+  border-radius: 12px;
   padding: 0 1%;
   box-shadow: none;
   border: 1px solid var(--primary-color);
