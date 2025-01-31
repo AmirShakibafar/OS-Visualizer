@@ -103,5 +103,4 @@ export {
   cardsContainer,
   mobileControls,
   mobileDeleteAll,
-  mobileTable
 };

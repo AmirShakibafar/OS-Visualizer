@@ -1,6 +1,6 @@
 
 import {getProcesses, reOrderProcesses} from "./processes.js";
-import {mobileControls, cardsContainer, createNewCard, mobileTable} from "./process_table_elements.js";
+import {mobileControls, cardsContainer, createNewCard} from "./process_table_elements.js";
 
 const checkToShowDeleteButton = () => {
   if (getProcesses().length) {
