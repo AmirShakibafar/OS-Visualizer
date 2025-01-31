@@ -4,12 +4,29 @@ OS Visualizer is a tool designed to provide a visual representation of various o
 
 ## Features
 
-- **Memory Management**: visualizing Memory Management algorithms like FirstFit BestFit and NextFit.
-- **CPU Scheduling Algorithms**: Simulate and visualize common CPU scheduling algorithms such as First-Come-First-Served (FCFS), Round-Robin (RR), Shortest Job First (SJF), and others.
+- **Memory Management Algorithms**:
+   - First Fit
+   - Next Fit
+   - Best Fit
+   - Worst Fit
+   
+- **CPU Scheduling Algorithms**:
+   - FCFS (First Come, First Served)
+   - SPN (Shortest Process Next)
+   - SRTF (Shortest Remaining Time First)
+   - RR (Round Robin)
+      - Set quantum for Round Robin (RR)
+   - HRRN (Highest Response Ratio Next)
+
+- Manually entering process data.
+- Create random process
+- Configure context switch for CPU Scheduling Algorithms
+- Assigning different color for each process
+- User guide
 
 
 ## Technologies Used
-- **Frontend**: HTML, CSS, JavaScript
+- **Frontend**: HTML, CSS, JavaScript, Vitest
 
 ## Setup
 
@@ -25,16 +42,19 @@ To set up the project locally, follow these steps:
    cd OS-Visualizer
    ```
 
-3. Open `index.html` in your preferred browser to view the visualizations.
+3. Open `cpu-visulizer.html` or `memory-visulizer.html` in your preferred browser to view the visualizations.
 
 ## Usage
 
-- Open the relevant file from the interface to start the visualization of a particular OS concept.
-- Follow the interactive controls to simulate the chosen algorithm and visualize the process flow.
+1. Open `cpu-visulizer.html` or `memory-visulizer.html` in your preferred browser to view the visualizations.
+2. Read user guide
+3. Enter the inputs
+4. Click the play button
+5. And enjoy the show
 
 ## Contributing
 
-If you'd like to contribute to this project, feel free to fork the repository, create a branch, and submit a pull request. Please make sure to follow the project's coding standards and guidelines.
+If you'd like to contribute to this project, feel free to fork the repository, create a branch, and submit a pull request. Please make sure to follow the our project's coding standards.
 
 ## License
 
