@@ -20,7 +20,7 @@ const deleteAll = () => {
 const deleteOne = (process, card) => {
   deleteMemoryBlock(process.name, card);
   reArrangeMemoryBlocks();
-   renderMobileTable();
+  renderMobileTable();
   renderMemoryTable();
 };
 
