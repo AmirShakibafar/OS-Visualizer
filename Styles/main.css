@@ -18,13 +18,21 @@
 }
 
 
-@media screen and (max-width: 1200px) and (min-width:1050px ) {
+@media screen and (max-width: 1300px) and (min-width:1100px ) {
   section{
     margin: 2% 5% !important;
     padding: 2% !important;
   }
   .hero-text h1{
-    font-size: 2.4rem !important;
+    font-size: 3rem !important;
+  }
+
+  .hero-text h2{
+    font-size: 1.4rem !important;
+  }
+
+  .hero-text p{
+    font-size: 1.2rem !important;
   }
   .animation-section{
     margin: 0 !important;
@@ -37,14 +45,15 @@
   }
 }
 
-@media screen and (max-width:1050px) and (min-width:800px) {
+@media screen and (max-width:1099px) and (min-width:900px) {
   section{
     margin: 2% 5% !important;
     padding: 2% !important;
   }
 
   .nav-options li{
-    font-size: 1rem !important;
+    font-size: 1.1rem !important;
+    width: auto !important;
   }
 
   .hero-section{
@@ -57,9 +66,23 @@
   }
 
   .hero-text h1{
-    font-size: 2rem !important;
+    font-size: 2.8rem !important;
   }
 
+  .hero-text h2{
+    font-size: 1.3rem !important;
+  }
+
+  .hero-text p{
+    font-size: 1rem !important;
+  }
+
+  .user-guide-and-input {
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  
   .animation-section{
     margin: 0 !important;
   }
@@ -68,7 +91,11 @@
     margin: 2px 0 !important;
   }
 
+  .guide {
+    width: 60% !important;
+  }
   #tab-controls{
+    margin-top: 3rem !important;
     width: auto !important;
   }
 
@@ -93,17 +120,21 @@
   }
 
   .procces-table thead tr th{
-    padding: 12px 5px !important;
+    padding: 24px 10px !important;
   }
 
 }
 
-@media screen and (max-width: 799px) and (min-width: 600px) {
+@media screen and (max-width: 899px) and (min-width: 600px) {
+  .main-nav {
+    flex-direction: column;
+  }
+  
   .logo-text {
-    font-size: 1.2rem !important;
+    font-size: 2rem !important;
   }
   .nav-options li{
-    font-size: 0.7rem !important;
+    font-size: 1rem !important;
   }
 
   .hero-section{
@@ -116,12 +147,14 @@
   }
 
   .hero-text p{
-    font-size: 0.8rem !important;
+    font-size: 0.9rem !important;
   }
   .hero-text h1{
-    font-size: 1.1rem !important;
+    font-size: 2.4rem !important;
   }
-
+  .hero-text h2{
+    font-size: 1rem !important;
+  }
   .hero-image{
     width: 20vw !important;
   } 
@@ -154,7 +187,7 @@
   }
 
   .animation-section{
-    width: auto !important;;
+    width: 100% !important;
   }
 
   .animation-controls{
@@ -167,19 +200,23 @@
 }
 
 @media screen and (max-width: 600px){
+  .main-nav {
+    flex-direction: column;
+  }
   .logo-text {
-    font-size: 1rem !important;
+    font-size: 2rem !important;
     text-align: center;
   }
   .nav-options li:first-child{
-    margin-right: 5px !important;
+    margin-right: 1rem !important;
   }
   .nav-options li{
-    font-size: 0.5rem !important;
+    font-size: 1rem !important;
   }
 
   .hero-section{
-    gap: 5% !important;
+    gap: 10% !important;
+    padding: 5%;
   }
 
   .ilustration-frame{
@@ -188,14 +225,19 @@
   }
 
   .hero-text p{
-    font-size: 0.8rem !important;
+    font-size: 0.7rem !important;
+    width: 100% !important;
   }
   .hero-text h1{
-    font-size: 1.1rem !important;
+    font-size: 1.8rem !important;
+  }
+
+  .hero-text h2 {
+    font-size: 1rem !important;
   }
 
   .hero-image{
-    width: 20vw !important;
+    width: 25vw !important;
   } 
 
   .process-table-container{
@@ -230,11 +272,16 @@
   }
 
   .animation-section{
-    width: auto !important;;
+    width: auto !important;
   }
 
   .animation-controls{
     flex-wrap: wrap !important;
+    justify-content: center;
+  }
+
+  .animation-controls label {
+    font-size: 0.8rem;
   }
 
   .medium-input-type{
@@ -361,8 +408,7 @@ nav {
 }
 
 .hero-slogan {
-  background-color: var(--primary-color);
-  color: var(--secondary-text-color);
+  color: var(--primary-color);
   border-radius: 24px;
   padding: 1%;
   display: inline-block;
@@ -764,7 +810,7 @@ select {
   display: none;
   height: auto;
   margin: 30px 1%;
-  background-color: var(--background-color);
+  background-color: var(--section-background);
   border-radius: 15px;
   padding: 0 1%;
   box-shadow: none;
@@ -786,7 +832,6 @@ select {
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   gap: 20px;
-  padding: 10px;
   white-space: nowrap;
 }
 
@@ -809,7 +854,7 @@ select {
 .card-info {
   font-family: "Poppins", serif;
   font-weight: 400;
-  text-align: center;
+  text-align: left;
   width: 100%;
   padding: 5px 10px;
   font-size: 0.8rem;
