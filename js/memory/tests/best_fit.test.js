@@ -59,7 +59,6 @@ vi.mock('../../helpers/cancelFlag.js', () => ({
   
   
 describe("findBestFit", () => {
-  const mockIsCancelled = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -136,7 +135,7 @@ describe("findBestFit", () => {
         }
       })
 
-    await findBestFit(processBlock, mockIsCancelled);
+    await findBestFit(processBlock);
 
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, true);
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, false);
@@ -148,7 +147,7 @@ describe("findBestFit", () => {
     const processBlock = { name: "ProcessB", blockSize: 10, blockExitTime: 15 };
     checkIfRangeEmpty.mockReturnValue(false);
 
-    await findBestFit(processBlock, mockIsCancelled);
+    await findBestFit(processBlock);
 
     expect(updateHoverState).not.toHaveBeenCalled();
     expect(renderMemorySections).not.toHaveBeenCalled();
@@ -160,7 +159,7 @@ describe("findBestFit", () => {
     const processBlock = { name: "ProcessC", blockSize: 5, blockExitTime: 20 };
     readIsCancelled.mockReturnValue(true);
 
-    await findBestFit(processBlock, mockIsCancelled);
+    await findBestFit(processBlock);
 
     expect(updateHoverState).toHaveBeenCalledTimes(0); // Stops after cancellation
     expect(renderMemorySections).toHaveBeenCalledTimes(0);
@@ -254,7 +253,7 @@ describe("findBestFit", () => {
         return 3
       }
     })
-    await findBestFit(processBlock, mockIsCancelled);
+    await findBestFit(processBlock);
   
     // Ensure hover state is updated correctly for best fit
     expect(updateHoverState).toHaveBeenCalledWith(5, 3, true); // Hover on best fit (index 5)
@@ -381,7 +380,7 @@ describe("findBestFit", () => {
       }
     })
   
-    await findBestFit(processBlock, mockIsCancelled);
+    await findBestFit(processBlock);
   
     // Ensure hover state is updated correctly for best fit
     expect(updateHoverState).toHaveBeenCalledWith(7, 3, true); // Hover on best fit (index 7)

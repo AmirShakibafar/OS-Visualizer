@@ -1,4 +1,4 @@
-import { describe, test, it, expect, vi } from "vitest";
+import { describe, it, expect } from "vitest";
 import { 
     generate_random_color,
     generateAccentColor,
@@ -66,7 +66,7 @@ describe("generateAccentColor", () => {
 
 
 
-  describe("sleep", () => {
+describe("sleep", () => {
     it("Test case 1: should resolve after approximately the specified time", async () => {
       const start = Date.now();
       await sleep(200); // 200ms delay

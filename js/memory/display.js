@@ -78,3 +78,4 @@ const Display = async (typeOfMemory) => {
 };
 
 export { Display };
+export { getMemoryAlgorithm }; // needed for testing

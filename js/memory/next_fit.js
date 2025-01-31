@@ -20,10 +20,16 @@ const findNextFit = async (processBlock) => {
 
   let startIndex = lastAllocatedIndex;
 
-  if (readIsCancelled()) return;
+  if (readIsCancelled()){
+    clearLastAllocatedIndex()
+    return
+  };
 
   while (startIndex < memorySpaces.length) {
-    if (readIsCancelled()) return;
+    if (readIsCancelled()){
+      clearLastAllocatedIndex()
+      return
+    };
 
     if (!memorySpaces[startIndex]) {
       break;
@@ -47,7 +53,10 @@ const findNextFit = async (processBlock) => {
 
   startIndex = 0;
   while (startIndex < lastAllocatedIndex) {
-    if (readIsCancelled()) return;
+    if (readIsCancelled()){
+      clearLastAllocatedIndex()
+      return
+    };
 
     if (!memorySpaces[startIndex]) {
       break;

@@ -58,7 +58,6 @@ vi.mock('../../helpers/cancelFlag.js', () => ({
 
 
 describe("findFirstFit", () => {
-  const mockIsCancelled = vi.fn();
 
   beforeEach(() => {
     vi.clearAllMocks();
@@ -70,14 +69,13 @@ describe("findFirstFit", () => {
         blockIndex: i,
       }))
     );
-    mockIsCancelled.mockReturnValue(false);
   });
 
   it("Test case 1: should find and allocate the first available block", async () => {
     const processBlock = { name: "ProcessA", blockSize: 5, blockExitTime: 10, bgColor: "blue", color: "white" };
     checkIfRangeEmpty.mockReturnValue(true);
 
-    await findFirstFit(processBlock, mockIsCancelled);
+    await findFirstFit(processBlock);
 
     expect(updateHoverState).toHaveBeenCalledTimes(2);
     expect(updateHoverState).toHaveBeenCalledWith(0, 5, true); // Hover on
@@ -91,7 +89,7 @@ describe("findFirstFit", () => {
     const processBlock = { name: "ProcessB", blockSize: 10, blockExitTime: 15 };
     checkIfRangeEmpty.mockReturnValue(false);
 
-    await findFirstFit(processBlock, mockIsCancelled);
+    await findFirstFit(processBlock);
 
     expect(updateHoverState).toHaveBeenCalled();
     expect(renderMemorySections).toHaveBeenCalled();
@@ -103,7 +101,7 @@ describe("findFirstFit", () => {
     const processBlock = { name: "ProcessC", blockSize: 5, blockExitTime: 20 };
     checkIfRangeEmpty.mockImplementation((start, size) => start === 59 && size === 5);
 
-    await findFirstFit(processBlock, mockIsCancelled);
+    await findFirstFit(processBlock);
     expect(updateHoverState).toHaveBeenCalledTimes(120)
     for(let i = 0; i < 60; i++){
       expect(updateHoverState).toHaveBeenCalledWith(i, 5, true); // Hover on
@@ -116,7 +114,7 @@ describe("findFirstFit", () => {
     const processBlock = { name: "ProcessD", blockSize: 5, blockExitTime: 25 };
     readIsCancelled.mockReturnValue(true);
 
-    await findFirstFit(processBlock, mockIsCancelled);
+    await findFirstFit(processBlock);
 
     expect(updateHoverState).toHaveBeenCalledTimes(0); // Stops after cancellation
     expect(renderMemorySections).toHaveBeenCalledTimes(0);
