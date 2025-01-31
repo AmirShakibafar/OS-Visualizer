@@ -1047,7 +1047,6 @@ select {
   border-radius: 12px;
   padding: 0 1%;
   box-shadow: none;
-  border: 1px solid var(--primary-color);
 }
 
 .mobile-controls {

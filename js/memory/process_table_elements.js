@@ -10,11 +10,13 @@ const cardsContainer = document.querySelector(".cards-container");
 const mobileControls = document.getElementById("mobile-controls");
 const mobileDeleteAll = document.getElementById("mobile-delete-all");
 const memoryTable = document.getElementById("process-table-body");
+const mobileSection = document.getElementById("mobile-table-container")
 
 const deleteAll = () => {
   clearMemoryBlocks();
   renderMobileTable();
   renderMemoryTable();
+  mobileSection.style.border = "none";
 };
 
 const deleteOne = (process, card) => {
@@ -123,4 +125,5 @@ export {
   showOrHideButton,
   cardsContainer,
   memoryTable,
+  mobileSection
 };

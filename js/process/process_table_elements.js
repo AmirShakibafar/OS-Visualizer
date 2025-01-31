@@ -5,6 +5,7 @@ const processTable = document.getElementById("process-table-body");
 const cardsContainer = document.querySelector(".cards-container");
 const mobileControls = document.getElementById("mobile-controls");
 const mobileDeleteAll = document.getElementById("mobile-delete-all");
+const mobileSection = document.getElementById("mobile-table-container")
 
 const deleteOne = (process, row) => {
   removeProcess(process.name, row);
@@ -103,4 +104,5 @@ export {
   cardsContainer,
   mobileControls,
   mobileDeleteAll,
+  mobileSection
 };
