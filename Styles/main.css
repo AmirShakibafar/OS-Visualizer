@@ -81,6 +81,9 @@
     align-items: center !important;
     justify-content: space-between !important;
   }
+  #tab-interface{
+    width: 319px !important;
+  }
 
   .animation-section {
     margin: 0 !important;
@@ -92,6 +95,7 @@
 
   .guide {
     width: 60% !important;
+    padding: 2% !important;
   }
   #tab-controls {
     margin-top: 3rem !important;
@@ -171,13 +175,25 @@
     align-items: center !important;
     gap: 30px !important;
   }
+  #tab-controls{
+    width: auto !important;;
+  }
   #tab-controls button {
     width: 160px !important;
   }
+
   #tab-content input {
-    width: 300px !important;
+    width: 100% !important;
     margin-bottom: 1rem;
   }
+  
+  #process-adder{
+    width: 100% !important;
+  }
+  #proccess-generator{
+    width: 100% !important;
+  }
+
   .open-guide-btn {
     display: block !important;
     width: 100% !important;
@@ -209,7 +225,7 @@
     flex-direction: column;
   }
   .logo-text {
-    font-size: 2rem !important;
+    font-size: 1.5rem !important;
     text-align: center;
   }
   .nav-options li:first-child {
@@ -230,19 +246,24 @@
   }
 
   .hero-text p {
-    font-size: 0.7rem !important;
+    font-size: 0.6rem !important;
     width: 100% !important;
   }
   .hero-text h1 {
-    font-size: 1.8rem !important;
+    font-size: 1rem !important;
   }
 
   .hero-text h2 {
-    font-size: 1rem !important;
+    font-size: 0.8rem !important;
   }
 
   .hero-image {
     width: 25vw !important;
+  }
+
+  .hero-button{
+    width: 100px !important;
+    font-size: 0.8rem !important;
   }
 
   .process-table-container {
@@ -279,6 +300,12 @@
     width: 300px !important;
     margin-bottom: 1rem;
   }
+  #process-adder{
+    width: 100% !important;
+  }
+  #proccess-generator{
+    width: 100% !important;
+  }
 
   .mobile-table-area {
     display: block !important;
@@ -311,14 +338,15 @@
   }
   .user-guide-and-input {
     flex-direction: column !important;
-    align-items: start !important;
+    align-items: center !important;
     gap: 30px !important;
   }
   #tab-controls button {
     width: 130px !important;
+    padding: 8px 7px !important;
   }
   #tab-content input {
-    width: 220px !important;
+    width: 100% !important;
     margin-bottom: 1rem;
   }
  
