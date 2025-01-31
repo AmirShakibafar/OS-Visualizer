@@ -97,8 +97,8 @@
     width: 60% !important;
     padding: 2% !important;
   }
+
   #tab-controls {
-    margin-top: 3rem !important;
     width: auto !important;
   }
 
@@ -713,6 +713,9 @@ nav {
 
 /* user input  */
 
+#tab-interface {
+  height: 35vh;
+}
 #tab-controls {
   width: 370px;
   list-style: none;
