@@ -13,7 +13,7 @@ const memoryTable = document.getElementById("process-table-body");
 
 const deleteAll = () => {
   clearMemoryBlocks();
-  // renderMobileTable();
+  renderMobileTable();
   renderMemoryTable();
 };
 
