@@ -2,6 +2,7 @@ import { getMemoryBlocks, reArrangeMemoryBlocks } from "./memory_blocks.js";
 import {
   deleteAllRowButton,
   createNewRow,
+  memoryTable
 } from "./process_table_elements.js";
 
 const renderMemoryTable = () => {
