@@ -2,36 +2,19 @@ import { executeFirstFit } from "./first_fit.js";
 import { executeBestFit } from "./best_fit.js";
 import { executeWorstFit } from "./worst_fit.js";
 import { executeNextFit } from "./next_fit.js";
-const policies = ["FirstFit", "BestFit", "WorstFit", "NextFit"];
-const policy = document.getElementById("memory-policy-heading");
-let currentIndex = 0;
+const policy = document.getElementById("algorithm-select");
 
-const switchPolicy = () => {
-  policy.classList.add("flip-out");
-  setTimeout(() => {
-    currentIndex = (currentIndex + 1) % policies.length;
-    const nextPolicyText = policies[currentIndex];
-    policy.innerText = nextPolicyText;
-    policy.classList.remove("flip-out");
-    policy.classList.add("flip-in");
-  }, 500);
+const policyMap = {
+  "First-Fit":executeFirstFit,
+  "Best-Fit":executeBestFit,
+  "Worst-Fit":executeWorstFit,
+  "Next-Fit":executeNextFit,
 };
 
 const whatPolicy = () => {
-  switch (policy.innerText) {
-    case "FirstFit":
-      return executeFirstFit;
-    case "BestFit":
-      return executeBestFit;
-    case "WorstFit":
-      return executeWorstFit;
-    case "NextFit":
-      return executeNextFit;
-    default:
-      return null;
-  }
+  console.log(policy.value)
+  return policyMap[policy.value] || null;
 };
 
-policy.addEventListener("click", switchPolicy);
 
 export { whatPolicy };

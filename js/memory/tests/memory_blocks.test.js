@@ -5,21 +5,7 @@ import {
     reArrangeMemoryBlocks,
     getMemoryBlocks,
 } from  "../memory_blocks.js";
-import { showMessage } from "../../helpers/message.js";
 
-
-
-// Disable DOM
-
-vi.mock('../../helpers/message', () => ({
-    showMessage: vi.fn(),
-    messageBox: null
-  }));
-  
-
-
-
-/////////////////////////////     Tests    ////////////////////////////
 
 describe("Memory Blocks Manager", () => {
     beforeEach(() => {
@@ -37,7 +23,6 @@ describe("Memory Blocks Manager", () => {
       addToMemoryBlocks(memoryBlock);
   
       expect(getMemoryBlocks()).toEqual([memoryBlock]);
-      expect(showMessage).toHaveBeenCalledWith("process added successfully", "success");
     });
   
     it("Test case 3: should clear memory blocks and call showMessage", () => {
@@ -45,14 +30,12 @@ describe("Memory Blocks Manager", () => {
       clearMemoryBlocks();
   
       expect(getMemoryBlocks()).toEqual([]);
-      expect(showMessage).toHaveBeenCalledWith("processes cleared successfully", "success");
     });
   
     it("Test case 4: should not clear memory blocks if already empty", () => {
       clearMemoryBlocks();
   
       expect(getMemoryBlocks()).toEqual([]);
-      expect(showMessage).toHaveBeenCalledWith("Table is already empty!", "fail");
     });
   
     it("Test case 5: should rearrange memory blocks and rename processes", () => {
@@ -85,7 +68,6 @@ describe("Memory Blocks Manager", () => {
         addToMemoryBlocks(memoryBlock3);
     
         expect(getMemoryBlocks()).toEqual([memoryBlock1, memoryBlock2, memoryBlock3]);
-        expect(showMessage).toHaveBeenCalledTimes(3);
       });
     
       it("Test case 8: should not modify the array when reArrangeMemoryBlocks is called with blocks having the same arrival time", () => {
@@ -126,7 +108,6 @@ describe("Memory Blocks Manager", () => {
     
         clearMemoryBlocks();
         expect(getMemoryBlocks()).toEqual([]);
-        expect(showMessage).toHaveBeenCalledWith("processes cleared successfully", "success");
       });
     
       it("Test case 11: should handle adding a memory block with duplicate arrival times", () => {
@@ -137,7 +118,6 @@ describe("Memory Blocks Manager", () => {
           { blockArrival: 2, name: "Block1" },
           { blockArrival: 2, name: "Block2" },
         ]);
-        expect(showMessage).toHaveBeenCalledTimes(2);
       });
     
     
@@ -149,6 +129,5 @@ describe("Memory Blocks Manager", () => {
         expect(getMemoryBlocks().length).toBe(3);
         clearMemoryBlocks();
         expect(getMemoryBlocks()).toEqual([]);
-        expect(showMessage).toHaveBeenCalledWith("processes cleared successfully", "success");
       });
   });

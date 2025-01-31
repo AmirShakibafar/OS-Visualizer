@@ -1,5 +1,4 @@
 import { renderMemorySections } from "./memory_table.js";
-import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
   allocateMemorySpace,
@@ -52,12 +51,6 @@ const findWorstFit = async (processBlock) => {
     allocateMemorySpace(worstFitIndex, processBlock);
     updateHoverState(worstFitIndex, processBlock.blockSize, false);
     renderMemorySections();
-  } else {
-    showMessage(
-      `No available memory block found for ${processBlock.name}!`,
-      "fail"
-    );
-    await sleep(500);
   }
 };
 

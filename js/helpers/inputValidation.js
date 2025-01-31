@@ -1,13 +1,14 @@
+const sanitizeInput = (input, maxLength) => {
+  let value = input.value.replace(/\D/g, '');
+  input.value = value.slice(0, maxLength);
+};
+
 const correctTwoDigitInputSize = (input) => {
-  if (input.value.length > 2) {
-    input.value = input.value.slice(0, 2);
-  }
+  sanitizeInput(input, 2);
 };
 
 const correctOneDigitInputSize = (input) => {
-  if (input.value.length > 1) {
-    input.value = input.value.slice(0, 1);
-  }
+  sanitizeInput(input, 1);
 };
 
 const allowNumbersOnly = (inputElement) => {
@@ -32,6 +33,4 @@ const twoDigitNumberBox = (inputElement) => {
   inputElement.addEventListener("input", (e) => correctTwoDigitInputSize(e.target));
 };
 
-
-
-export { oneDigitNumberBox, twoDigitNumberBox};
+export { oneDigitNumberBox, twoDigitNumberBox };

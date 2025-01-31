@@ -4,7 +4,6 @@ import {
   showOrHideButton,
   createNewCard,
 } from "./process_table_elements.js";
-
 const renderMobileTable = () => {
   cardsContainer.innerHTML = "";
   showOrHideButton();
@@ -13,5 +12,4 @@ const renderMobileTable = () => {
     cardsContainer.appendChild(createNewCard(process));
   });
 };
-
 export { renderMobileTable };

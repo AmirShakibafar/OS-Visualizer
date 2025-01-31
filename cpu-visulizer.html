@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+    <title>CPU Visualizer</title>
+    <link rel="stylesheet" href="./Styles/fonts.css" />
+    <link rel="stylesheet" href="./Styles/main.css" />
+    <link rel="stylesheet" href="./Styles/process.css" />
+  </head>
+
+  <body>
+    <nav class="main-nav">
+      <div class="logo">
+        <h1 class="logo-text poppins-bold"><span class="logo-start">OS</span> Visualizer</h1>
+      </div>
+      <div class="poppins-regular">
+        <ul class="nav-options">
+          <li class="nav-active">
+            <a href="./cpu-visulizer.html"
+              ><img src="./images/cpu.svg" alt="" /> CPU Scheduling</a
+            >
+          </li>
+          <li>
+            <a href="./memory-visulizer.html"
+              ><img src="./images/hard-drive.svg" alt="" /> Memory Alocation</a
+            >
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="hero-text">
+        <h1 class="poppins-bold">
+          Bring
+          <span class="hero-image"><img src="./images/cpu3.png" alt="" /></span>
+          scheduling algorithms to life with our interactive
+          <span class="hero-slogan">visualizer.</span>
+        </h1>
+        <h2 class="poppins-semibold">
+          Explore key scheduling algorithms like FCFS, SPN, and more...
+        </h2>
+        <p class="poppins-regular">
+          Perfect for students, educators, and enthusiasts looking to deepen
+          their understanding of process management.
+        </p>
+        <button class="hero-button" id="scrollButton">Let's Go!</button>
+      </div>
+    </section>
+
+
+    <section class="main-section">
+      <!-- just let it be here -->
+      <div id="guide-container-mobile" >
+          <button id="close-modal" style="background-color: #e71d36;">x</button>
+          <h1>User Guide</h1>
+          <p>
+            Understand how each button functions in the CPU scheduling
+            visualizer.
+          </p>
+
+          <div class="guide-item">
+            <button class="guide-btn">Create New Process</button>
+            <span>➝ Manually add a process with arrival time & duration</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="guide-btn">Generate Processes Randomly</button>
+            <span>➝ Auto-generate a set number of processes</span>
+          </div>
+
+          <div class="guide-item">
+            <select class="guide-dropdown">
+              <option>Choose Algorithm</option>
+            </select>
+            <span>➝ Select a scheduling algorithm (FCFS, RR, SPN, etc.)</span>
+          </div>
+
+          <div
+            class="guide-item">
+            <input
+              type="text"
+              class="small-input-type"
+              placeholder="TQ"
+              disabled
+            />
+            <span>➝ Enter the Time Quantum (TQ) value. <strong>Only enabled for Round Robin (RR).</strong></span>
+          </div>
+
+          <div
+            class="guide-item">
+            <input
+              type="text"
+              class="small-input-type"
+              placeholder="CS"
+            />
+            <span>➝ Enter the Context Switch (CS) time to account for process switching delays.</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="squre-button play-btn">
+              <img src="./images/play.svg" alt="Play" />
+            </button>
+            <span>➝ Start the simulation</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="squre-button cancel-btn">
+              <img src="images/trash.svg" alt="Trash" />
+            </button>
+            <span>➝ Stop and reset the simulation</span>
+          </div>
+
+          <div class="guide-item">
+            <button class="squre-button  speed-btn">2X</button>
+            <span>➝ Speed up the animation</span>
+          </div>
+
+      </div>
+
+      <div class="user-guide-and-input">
+        <div class="open-guide-btn">
+          <button id="guideBTN">User Guide</button>
+        </div>
+
+        <div class="guide">
+          <div class="guide-text">
+            <h1>User Guide</h1>
+            <p>Hover over each item to learn more about its functionality.</p>
+          </div>
+
+          <div
+            class="guide-item"
+            data-tooltip="Manually add a process with arrival time & duration."
+          >
+            <button class="guide-btn">Create New Process</button>
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Auto-generate a set number of processes."
+          >
+            <button class="guide-btn">Generate Processes Randomly</button>
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Select a scheduling algorithm (FCFS, RR, SPN, etc.)."
+          >
+            <select class="guide-dropdown">
+              <option>Choose Algorithm</option>
+            </select>
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Enter the Time Quantum (TQ) value. Only enabled for Round Robin (RR)."
+          >
+            <input
+              type="text"
+              class="small-input-type"
+              placeholder="TQ"
+              disabled
+            />
+          </div>
+          <div
+            class="guide-item"
+            data-tooltip="Enter the Context Switch (CS) time to account for process switching delays."
+          >
+            <input type="text" class="small-input-type" placeholder="CS" />
+          </div>
+          <div class="guide-item" data-tooltip="Start the simulation.">
+            <button class="squre-button play-btn">
+              <img src="./images/play.svg" alt="Play" />
+            </button>
+          </div>
+          <div class="guide-item" data-tooltip="Stop and reset the simulation.">
+            <button class="squre-button cancel-btn">
+              <img src="images/trash.svg" alt="Trash" />
+            </button>
+          </div>
+          <div class="guide-item" data-tooltip="Speed up the animation.">
+            <button class="squre-button speed-btn">2X</button>
+          </div>
+        </div>
+
+        <div id="tab-interface">
+          <nav role="tablist">
+            <ul id="tab-controls">
+              <li role="presentation">
+                <button role="tab" aria-selected="true" data-target="panel-one">
+                  Create Process
+                </button>
+              </li>
+              <li role="presentation">
+                <button
+                  role="tab"
+                  aria-selected="false"
+                  data-target="panel-two"
+                >
+                  Create Randomly
+                </button>
+              </li>
+            </ul>
+          </nav>
+          <div id="tab-content">
+            <div id="panel-one" role="tabpanel" aria-hidden="false">
+              <input
+                type="number"
+                placeholder="Arrival time"
+                id="arrive-time"
+              />
+              <input type="number" placeholder="Duration" id="duration" />
+              <button id="process-adder">Add Process</button>
+            </div>
+
+            <div id="panel-two" role="tabpanel" aria-hidden="true">
+              <input
+                type="number"
+                placeholder="Number of processes"
+                id="amount-box"
+              />
+              <button id="proccess-generator">Generate</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!--mobile table -->
+      <section class="mobile-table-area">
+        <div class="mobile-controls" id="mobile-controls">
+          <button class="delete-all-mobile" id="mobile-delete-all">
+            Delete All
+          </button>
+        </div>
+        <div class="cards-container">
+        </div>
+      </section> 
+
+
+
+      <div class="visualizer-section" id="visual">
+        <section class="animation-section">
+          <div class="animation-controls">
+            <label for="algorithm-select">Algorithm:</label>
+            <select id="algorithm-select">
+              <option value="FCFS">FCFS</option>
+              <option value="RR">RR</option>
+              <option value="SPN">SPN</option>
+              <option value="SRTF">SRTF</option>
+              <option value="HRRN">HRRN</option>
+            </select>
+            <input
+              type="text"
+              class="medium-input-type"
+              placeholder="TQ"
+              id="time-quantom"
+              disabled
+            />
+            <input
+              type="text"
+              class="medium-input-type"
+              placeholder="CS"
+              id="context-switch"
+            />
+            <button id="play-button" class="squre-button play-btn">
+              <img src="./images/play.svg" alt="Play" />
+            </button>
+            <button id="reset-button" class="squre-button cancel-btn">
+              <img src="images/trash.svg" alt="trash" />
+            </button>
+            <button id="speedBTN" value="2" class="squre-button speed-btn">
+              1X
+            </button>
+          </div>
+          <div class="stats-section">
+            <div class="show-time-section">
+              <p id="response-result-box" class="poppins-regular">
+                Average Response Time: TBD
+              </p>
+            </div>
+            <div class="show-time-section">
+              <p id="average-result-box" class="poppins-regular">
+                Average Wait Time: TBD
+              </p>
+            </div>
+          </div>
+          <div class="animation-table" id="table-section">
+            <table id="dynamic_table">
+              <tbody class="dynamic_table_body poppins-medium"></tbody>
+            </table>
+          </div>
+        </section>
+        <div class="process-table-container">
+          <table class="procces-table">
+            <thead>
+              <tr>
+                <th>Process</th>
+                <th>Arrival</th>
+                <th>Duration</th>
+                <th>Color</th>
+                <th>Option</th>
+              </tr>
+            </thead>
+            <tbody id="process-table-body"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <p class="poppins-regular">Made with <span class="heart">❤️</span> by Amir Shakibafar 🤜🤛 Alireza Ahmadinia</p>
+      <p class="poppins-regular">wanna contribute? check us out at <span class="github"><a href="https://github.com/AmirShakibafar/OS-Visualizer"><img src="./images/github(2).svg" alt=""></a></span></p>
+    </footer>
+  </body>
+
+  <script src="./js/helpers/input_tab_view.js"></script>
+  <script src="./js/helpers/modal_opening.js"></script>
+  <script src="./js/helpers/modal.js"></script>
+
+  <script type="module" src="./js/helpers/helpers.js"></script>
+  <script type="module" src="./js/helpers/letsgobutton.js"></script>
+  <script type="module" src="./js/helpers/inputValidation.js"></script>
+  <script type="module" src="./js/process/processes.js"></script>
+  <script type="module" src="./js/process/process_table_elements.js"></script>
+  <script type="module" src="./js/process/hub_table.js"></script>
+  <script type="module" src="./js/process/manual_add_process.js"></script>
+  <script type="module" src="./js/process/random_generate_process.js"></script>
+  <script type="module" src="./js/process/timing_policies.js"></script>
+  <script type="module" src="./js/process/processAnimationControls.js"></script>
+</html>

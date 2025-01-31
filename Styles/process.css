@@ -1,29 +1,39 @@
-.arrival {
-  border-radius: 12px 0 0 12px;
+@media screen and (max-width: 799px) and (min-width: 560px){
+  .show-time-section{
+    font-size: 0.8rem !important;
+  }
 }
-
-.duration {
-  border-radius: 0 12px 12px 0;
+@media screen and (min-width:401px) and (max-width: 560px){
+  .show-time-section{
+    padding: 0 !important;
+    font-size: 0.7rem !important;
+  }
+  .next-block {
+    font-size: 10px !important;
+  }
 }
-
-.input-boxes-section {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.stats-section {
-  display: flex;
+@media screen and (max-width: 400px){
+  .show-time-section{
+    font-size: 0.6rem !important;
+    padding: 5px !important;
+    margin: 0 !important;
+  }
+  .next-block {
+    font-size: 8px !important;
+    width: 7vw !important;
+  }
 }
 
 .show-time-section {
-  background-color: #f6f6f6;
   font-size: 1rem;
-  text-align: left;
   padding: 10px 20px;
   margin: 0 5px;
-  border-radius: 12px;
 }
+
+.show-time-section p{
+    text-align: center;
+}
+
 
 .animation-table table {
   border-collapse: collapse;

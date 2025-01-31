@@ -17,7 +17,6 @@ const deleteAll = () => {
 };
 
 mobileDeleteAll.addEventListener("click", () => deleteAll());
-
 const createNewRow = (process) => {
   const row = document.createElement("tr");
 
@@ -34,18 +33,31 @@ const createNewRow = (process) => {
   row.appendChild(durationCell);
 
   const colorCell = document.createElement("td");
-  colorCell.style.backgroundColor = process.bgcolor;
+  const colorCircle = document.createElement("div");
+  colorCircle.style.backgroundColor = process.bgcolor;
+  colorCircle.style.width = "20px";  
+  colorCircle.style.height = "20px";
+  colorCircle.style.borderRadius = "50%"; 
+  colorCircle.style.margin = "auto"; 
+
+  colorCell.appendChild(colorCircle);
   row.appendChild(colorCell);
 
   const deleteCell = document.createElement("td");
-  deleteCell.textContent = "delete";
-  deleteCell.classList.add("delete");
-  deleteCell.style.cursor = "pointer";
-  deleteCell.onclick = () => deleteOne(process, row);
+  const deleteIcon = document.createElement("img");
+  deleteIcon.src = "images/trash-2.svg";  
+  deleteIcon.alt = "Delete";
+  deleteIcon.style.cursor = "pointer";
+  deleteIcon.style.width = "25px"; 
+  deleteIcon.style.height = "25px";
+  deleteIcon.onclick = () => deleteOne(process, row);
+
+  deleteCell.appendChild(deleteIcon);
   row.appendChild(deleteCell);
 
   return row;
 };
+
 
 const createDeleteRow = () => {
   const deleteAllRow = document.createElement("tr");

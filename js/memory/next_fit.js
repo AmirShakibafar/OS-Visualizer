@@ -1,5 +1,4 @@
 import { renderMemorySections } from "./memory_table.js";
-import { showMessage } from "../helpers/message.js";
 import {
   getMemorySpaces,
   allocateMemorySpace,
@@ -33,7 +32,6 @@ const findNextFit = async (processBlock) => {
     };
 
     if (!memorySpaces[startIndex]) {
-      console.error(`Error: memorySpaces[${startIndex}] is undefined`);
       break;
     }
     updateHoverState(startIndex, processBlock.blockSize, true);
@@ -41,11 +39,6 @@ const findNextFit = async (processBlock) => {
     await sleep(SPEED);
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
-      showMessage(
-        `Found empty block for ${processBlock.name} at index: ${startIndex}`,
-        "success"
-      );
-
       allocateMemorySpace(startIndex, processBlock);
       updateHoverState(startIndex, processBlock.blockSize, false);
       renderMemorySections();
@@ -66,7 +59,6 @@ const findNextFit = async (processBlock) => {
     };
 
     if (!memorySpaces[startIndex]) {
-      console.error(`Error: memorySpaces[${startIndex}] is undefined`);
       break;
     }
 
@@ -75,10 +67,6 @@ const findNextFit = async (processBlock) => {
     await sleep(SPEED);
 
     if (checkIfRangeEmpty(startIndex, processBlock.blockSize)) {
-      showMessage(
-        `Found empty block for ${processBlock.name} at index: ${startIndex}`,
-        "success"
-      );
 
       allocateMemorySpace(startIndex, processBlock);
       updateHoverState(startIndex, processBlock.blockSize, false);
@@ -91,13 +79,6 @@ const findNextFit = async (processBlock) => {
     renderMemorySections();
     startIndex++;
   }
-
-  showMessage(
-    `No available memory block found for ${processBlock.name}!`,
-    "fail"
-  );
-  await sleep(500);
-
   return;
 };
 
