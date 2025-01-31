@@ -321,7 +321,7 @@
     width: 220px !important;
     margin-bottom: 1rem;
   }
-
+ 
 }
 
 body {
@@ -943,6 +943,6 @@ select {
 }
 
 .cards-container::-webkit-scrollbar-thumb {
-  background: #3a86ff;
+  background: var(--primary-color-darker);
   border-radius: 12px;
 }
