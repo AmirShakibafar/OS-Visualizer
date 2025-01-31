@@ -1,9 +1,10 @@
 import { getMemoryBlocks, reArrangeMemoryBlocks } from "./memory_blocks.js";
 import {
-  memoryTable,
   deleteAllRowButton,
   createNewRow,
-  mobileSection
+  mobileSection,
+  memoryTable
+
 } from "./process_table_elements.js";
 
 const renderMemoryTable = () => {

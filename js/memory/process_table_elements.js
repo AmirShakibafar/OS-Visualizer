@@ -14,7 +14,7 @@ const mobileSection = document.getElementById("mobile-table-container")
 
 const deleteAll = () => {
   clearMemoryBlocks();
-  // renderMobileTable();
+  renderMobileTable();
   renderMemoryTable();
   mobileSection.style.border = "none";
 };
@@ -22,7 +22,7 @@ const deleteAll = () => {
 const deleteOne = (process, card) => {
   deleteMemoryBlock(process.name, card);
   reArrangeMemoryBlocks();
-   renderMobileTable();
+  renderMobileTable();
   renderMemoryTable();
 };
 

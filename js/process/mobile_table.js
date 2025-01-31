@@ -1,5 +1,6 @@
 
 import {getProcesses, reOrderProcesses} from "./processes.js";
+
 import {mobileControls, cardsContainer, createNewCard, mobileSection} from "./process_table_elements.js";
 
 

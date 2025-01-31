@@ -105,5 +105,4 @@ export {
   mobileControls,
   mobileDeleteAll,
   mobileSection
-
 };
