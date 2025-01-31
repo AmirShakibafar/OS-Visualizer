@@ -81,7 +81,7 @@
     align-items: center !important;
     justify-content: space-between !important;
   }
-  #tab-interface{
+  #tab-interface {
     width: 319px !important;
   }
 
@@ -175,8 +175,8 @@
     align-items: center !important;
     gap: 30px !important;
   }
-  #tab-controls{
-    width: auto !important;;
+  #tab-controls {
+    width: auto !important;
   }
   #tab-controls button {
     width: 160px !important;
@@ -186,11 +186,11 @@
     width: 100% !important;
     margin-bottom: 1rem;
   }
-  
-  #process-adder{
+
+  #process-adder {
     width: 100% !important;
   }
-  #proccess-generator{
+  #proccess-generator {
     width: 100% !important;
   }
 
@@ -198,6 +198,90 @@
     display: block !important;
     width: 100% !important;
     margin-top: 10px;
+  }
+  #guide-container-mobile h1 {
+    margin-top: 1.5rem !important;
+    padding-top: 1rem;
+    text-align: left;
+    font-size: 2rem !important;
+    padding-left: 1rem;
+  }
+
+  #guide-container-mobile p {
+    text-align: left;
+    font-size: 0.9rem !important;
+    padding-left: 1rem;
+  }
+  #guide-container-mobile h1 {
+    margin-top: 1.5rem !important;
+    padding-top: 1rem;
+    font-size: 2rem !important;
+  }
+
+  #guide-container-mobile p {
+    font-size: 0.9rem !important;
+  }
+
+  #close-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 80%;
+    margin: 0 auto;
+    height: 32px;
+    font-size: 16px;
+    background-color: #e71d36;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  #close-modal:hover {
+    background-color: #c91a2f;
+  }
+
+  #close-modal:active {
+    transform: scale(0.9);
+  }
+
+  .guide-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    text-align: left;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .guide-btn,
+  .guide-dropdown {
+    width: 90% !important;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .small-input-type {
+    width: 25% !important;
+  }
+
+  .squre-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .squre-button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    font-size: 13px;
+    max-width: 90%;
   }
   #guideBTN {
     width: 100% !important;
@@ -261,7 +345,7 @@
     width: 25vw !important;
   }
 
-  .hero-button{
+  .hero-button {
     width: 100px !important;
     font-size: 0.8rem !important;
     margin-top: 40px !important;
@@ -287,6 +371,83 @@
     width: 100% !important;
     margin-top: 10px;
   }
+
+  #guide-container-mobile h1 {
+    margin-top: 1.5rem !important;
+    padding-top: 1rem;
+    text-align: left;
+    font-size: 2rem !important;
+    padding-left: 1rem;
+  }
+
+  #guide-container-mobile p {
+    text-align: left;
+    font-size: 0.9rem !important;
+    padding-left: 1rem;
+  }
+
+  #close-modal {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 80%;
+    margin: 0 auto;
+    height: 32px;
+    font-size: 16px;
+    background-color: #e71d36;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+  }
+
+  #close-modal:hover {
+    background-color: #c91a2f;
+  }
+
+  #close-modal:active {
+    transform: scale(0.9);
+  }
+
+  .guide-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start !important;
+    text-align: left;
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .guide-btn,
+  .guide-dropdown {
+    width: 90% !important;
+    font-size: 14px;
+    padding: 8px;
+  }
+
+  .small-input-type {
+    width: 25% !important;
+  }
+
+  .squre-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .squre-button img {
+    width: 20px;
+    height: 20px;
+  }
+
+  span {
+    font-size: 13px;
+    max-width: 90%;
+  }
+
   #guideBTN {
     width: 100% !important;
   }
@@ -302,10 +463,10 @@
     width: 300px !important;
     margin-bottom: 1rem;
   }
-  #process-adder{
+  #process-adder {
     width: 100% !important;
   }
-  #proccess-generator{
+  #proccess-generator {
     width: 100% !important;
   }
 
@@ -334,15 +495,19 @@
   }
 }
 
-@media screen and (max-width: 450px){
+@media screen and (max-width: 450px) {
   .hero-text h1 {
     font-size: 1.8rem !important;
   }
 
   .hero-text p {
-    font-size: .6rem !important;
+    font-size: 0.6rem !important;
   }
 
+  .hero-slogan {
+    font-size: 1.8rem !important;
+  }
+  
   .hero-button {
     margin-top: 40px !important;
     padding: 5% !important;
@@ -355,15 +520,16 @@
     align-items: center !important;
     gap: 30px !important;
   }
+
   #tab-controls button {
     width: 130px !important;
     padding: 8px 7px !important;
   }
+
   #tab-content input {
     width: 100% !important;
     margin-bottom: 1rem;
   }
- 
 }
 
 body {
