@@ -133,6 +133,9 @@
     flex-direction: column;
   }
 
+  .logo-start {
+    font-size: 2rem !important;
+  }
   .logo-text {
     font-size: 2rem !important;
   }
@@ -153,6 +156,9 @@
     font-size: 0.9rem !important;
   }
   .hero-text h1 {
+    font-size: 2.4rem !important;
+  }
+  .hero-slogan {
     font-size: 2.4rem !important;
   }
   .hero-text h2 {
@@ -308,6 +314,9 @@
   .main-nav {
     flex-direction: column;
   }
+  .logo-start {
+    font-size: 1.5rem !important;
+  }
   .logo-text {
     font-size: 1.5rem !important;
     text-align: center;
@@ -336,7 +345,9 @@
   .hero-text h1 {
     font-size: 1.8rem !important;
   }
-
+  .hero-slogan {
+    font-size: 1.8rem !important;
+  }
   .hero-text h2 {
     font-size: 0.8rem !important;
   }
