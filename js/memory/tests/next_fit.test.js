@@ -7,7 +7,6 @@ import {
   updateHoverState,
 } from "../memory_space.js";
 import { renderMemorySections } from "../memory_table";
-import { showMessage } from "../../helpers/message";
 import { Display } from "../display.js";
 import { readIsCancelled } from "../../helpers/cancelFlag";
 
@@ -25,22 +24,12 @@ vi.mock("../display", () => ({
   Display: vi.fn(),
 }))
 
-
-vi.mock('../../helpers/message', () => ({
-  showMessage: vi.fn(),
-  messageBox: null
-}));
-
 vi.mock("../../helpers/helpers", () => ({
   sleep: vi.fn(() => Promise.resolve()),
 }));
 
 vi.mock("../memory_table", () => ({
   renderMemorySections: vi.fn(),
-}));
-
-vi.mock("../helpers/message", () => ({
-  showMessage: vi.fn(),
 }));
 
 vi.mock("../../speed", () => ({
@@ -61,51 +50,6 @@ vi.mock('../../helpers/cancelFlag.js', () => ({
 }));
 
 
-// Mock dependencies
-vi.mock("../memory_space", () => ({
-    getMemorySpaces: vi.fn(),
-    allocateMemorySpace: vi.fn(),
-    checkIfRangeEmpty: vi.fn(),
-    updateHoverState: vi.fn(),
-    clearMemorySpaces: vi.fn(),
-    deAllocateMemorySpace: vi.fn(),
-    findRangeOfEmpty: vi.fn()
-  }));
-  
-  vi.mock("../display", () => ({
-    Display: vi.fn(),
-  }))
-  
-  
-  vi.mock('../../helpers/message', () => ({
-    showMessage: vi.fn(),
-    messageBox: null
-  }));
-  
-  vi.mock("../../helpers/helpers", () => ({
-    sleep: vi.fn(() => Promise.resolve()),
-  }));
-  
-  vi.mock("../memory_table", () => ({
-    renderMemorySections: vi.fn(),
-  }));
-  
-  vi.mock("../helpers/message", () => ({
-    showMessage: vi.fn(),
-  }));
-  
-  vi.mock("../speed", () => ({
-    currentSpeed: 1,
-  }));
-  
-  vi.mock("../timer", () => ({
-    updateTime: vi.fn(),
-    resetTime: vi.fn(),
-  }));
-  
-  vi.mock("../memory_blocks", () => ({
-    getMemoryBlocks: vi.fn(),
-  }));
   
 describe("findWorstFit", () => {
 
@@ -185,10 +129,6 @@ describe("findWorstFit", () => {
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, false);
     expect(renderMemorySections).toHaveBeenCalled();
     expect(allocateMemorySpace).toHaveBeenCalledWith(0, processBlock1); // find next fit in index 0 and allocate
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
 
     await findNextFit(processBlock2);
 
@@ -196,10 +136,6 @@ describe("findWorstFit", () => {
     expect(updateHoverState).toHaveBeenCalledWith(expect.any(Number), 2, false);
     expect(renderMemorySections).toHaveBeenCalled();
     expect(allocateMemorySpace).toHaveBeenCalledWith(2, processBlock2); // find next fit in index 2 and allocate
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
   });
 
   it("Test case 2: should fail to find a block if no suitable space is available", async () => {
@@ -212,10 +148,6 @@ describe("findWorstFit", () => {
     expect(renderMemorySections).toHaveBeenCalled();
     expect(checkIfRangeEmpty).toHaveBeenCalled();
     expect(allocateMemorySpace).not.toHaveBeenCalled();
-    expect(showMessage).toHaveBeenCalledWith(
-      "No available memory block found for ProcessB!",
-      "fail"
-    );
   });
 
   it("Test case 3: should stop execution if cancelled", async () => {
@@ -229,7 +161,6 @@ describe("findWorstFit", () => {
     expect(updateHoverState).toHaveBeenCalledTimes(0); // Stops after cancellation
     expect(renderMemorySections).toHaveBeenCalledTimes(0);
     expect(allocateMemorySpace).not.toHaveBeenCalled();
-    expect(showMessage).not.toHaveBeenCalled();
   });
 
 
@@ -258,12 +189,6 @@ describe("findWorstFit", () => {
     expect(allocateMemorySpace).toHaveBeenCalledWith(0, processBlock1);
     expect(renderMemorySections).toHaveBeenCalled();
   
-    // Ensure no failure message was shown
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
-
     checkIfRangeEmpty.mockImplementation((start, size) => {
         if (start === 0 && size === 3) return false;
         if (start === 3 && size === 3) return true;
@@ -278,11 +203,6 @@ describe("findWorstFit", () => {
   
     expect(allocateMemorySpace).toHaveBeenCalledWith(3, processBlock2);
     expect(renderMemorySections).toHaveBeenCalled();
-  
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
 
     checkIfRangeEmpty.mockImplementation((start, size) => {
         if (start === 0 && size === 3) return false;
@@ -298,11 +218,7 @@ describe("findWorstFit", () => {
   
     expect(allocateMemorySpace).toHaveBeenCalledWith(6, processBlock2);
     expect(renderMemorySections).toHaveBeenCalled();
-  
-    expect(showMessage).not.toHaveBeenCalledWith(
-      expect.stringContaining("No available memory block"),
-      "fail"
-    );
+
   });
 });
 

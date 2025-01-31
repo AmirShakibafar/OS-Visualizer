@@ -9,10 +9,6 @@ import {
   findRangeOfEmpty
 } from "../memory_space"; 
 
-vi.mock('../../helpers/message', () => ({
-  showMessage: vi.fn(),
-  messageBox: null,
-}));
 
 describe("getMemorySpaces", () => {
   beforeEach(() => {
