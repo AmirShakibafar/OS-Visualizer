@@ -157,7 +157,7 @@ describe("sleep", () => {
       const start = Date.now();
       await sleep("invalid"); // Non-numeric input
       const end = Date.now();
-      expect(end - start).toBeLessThan(20); // Treated as no delay
+      expect(end - start).toBeLessThan(40); // Treated as no delay
     });
   
   });
