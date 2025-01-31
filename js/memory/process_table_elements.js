@@ -122,4 +122,5 @@ export {
   deleteAllRowButton,
   showOrHideButton,
   cardsContainer,
+  memoryTable,
 };
