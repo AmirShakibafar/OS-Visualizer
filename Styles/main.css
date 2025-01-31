@@ -356,6 +356,10 @@
     display: none !important;
   }
 
+  .mobile-table-area {
+    display: block !important;
+  }
+
   .guide {
     display: none !important;
   }
