@@ -17,63 +17,63 @@
   box-sizing: border-box;
 }
 
-
-@media screen and (max-width: 1300px) and (min-width:1100px ) {
-  section{
+@media screen and (max-width: 1300px) and (min-width: 1100px) {
+  section {
     margin: 2% 5% !important;
     padding: 2% !important;
   }
-  .hero-text h1{
+  .hero-text h1 {
     font-size: 3rem !important;
   }
 
-  .hero-text h2{
+  .hero-text h2 {
     font-size: 1.4rem !important;
   }
 
-  .hero-text p{
+  .hero-text p {
     font-size: 1.2rem !important;
   }
-  .animation-section{
+  .animation-section {
     margin: 0 !important;
   }
-  .visualizer-section, .user-guide-and-input{
+  .visualizer-section,
+  .user-guide-and-input {
     gap: 1%;
   }
-  .medium-input-type{
+  .medium-input-type {
     min-width: 36px !important;
   }
 }
 
-@media screen and (max-width:1099px) and (min-width:900px) {
-  section{
+@media screen and (max-width: 1099px) and (min-width: 900px) {
+  section {
     margin: 2% 5% !important;
     padding: 2% !important;
   }
 
-  .nav-options li{
+  .nav-options li {
     font-size: 1.1rem !important;
     width: auto !important;
   }
 
-  .hero-section{
+  .hero-section {
     gap: 5% !important;
   }
 
-  .ilustration-frame{
+  .ilustration-frame {
     display: flex !important;
     align-items: center !important;
   }
 
-  .hero-text h1{
+  .hero-text h1 {
     font-size: 2.8rem !important;
   }
 
-  .hero-text h2{
+  .hero-text h2 {
     font-size: 1.3rem !important;
   }
 
-  .hero-text p{
+  .hero-text p {
     font-size: 1rem !important;
   }
 
@@ -82,124 +82,129 @@
     justify-content: space-between !important;
   }
 
-  
-  .animation-section{
+  .animation-section {
     margin: 0 !important;
   }
 
-  .guide div{
+  .guide div {
     margin: 2px 0 !important;
   }
 
   .guide {
     width: 60% !important;
   }
-  #tab-controls{
+  #tab-controls {
     margin-top: 3rem !important;
     width: auto !important;
   }
 
-  #tab-controls button{
+  #tab-controls button {
     padding: 12px 18px !important;
   }
 
-  .visualizer-section, .user-guide-and-input{
+  .visualizer-section,
+  .user-guide-and-input {
     gap: 1% !important;
   }
 
-  .animation-controls{
+  .animation-controls {
     flex-wrap: wrap !important;
   }
 
-  .medium-input-type{
+  .medium-input-type {
     max-width: 36px !important;
   }
 
-  .procces-table tbody tr td{
+  .procces-table tbody tr td {
     padding: 0 !important;
   }
 
-  .procces-table thead tr th{
+  .procces-table thead tr th {
     padding: 24px 10px !important;
   }
-
 }
 
 @media screen and (max-width: 899px) and (min-width: 600px) {
   .main-nav {
     flex-direction: column;
   }
-  
+
   .logo-text {
     font-size: 2rem !important;
   }
-  .nav-options li{
+  .nav-options li {
     font-size: 1rem !important;
   }
 
-  .hero-section{
+  .hero-section {
     gap: 5% !important;
   }
 
-  .ilustration-frame{
+  .ilustration-frame {
     display: flex !important;
     align-items: center !important;
   }
 
-  .hero-text p{
+  .hero-text p {
     font-size: 0.9rem !important;
   }
-  .hero-text h1{
+  .hero-text h1 {
     font-size: 2.4rem !important;
   }
-  .hero-text h2{
+  .hero-text h2 {
     font-size: 1rem !important;
   }
-  .hero-image{
+  .hero-image {
     width: 20vw !important;
-  } 
+  }
 
-  .process-table-container{
+  .process-table-container {
     display: none !important;
   }
 
-  .guide{
+  .guide {
     display: none !important;
   }
 
-  .user-guide-and-input{
+  .user-guide-and-input {
     flex-direction: column !important;
-    align-items: start !important;;
+    align-items: center !important;
     gap: 30px !important;
   }
-
-  .open-guide-btn{
+  #tab-controls button {
+    width: 160px !important;
+  }
+  #tab-content input {
+    width: 300px !important;
+    margin-bottom: 1rem;
+  }
+  .open-guide-btn {
     display: block !important;
     width: 100% !important;
     margin-top: 10px;
   }
-  #guideBTN{
+  #guideBTN {
     width: 100% !important;
   }
 
-  .mobile-table-area{
+  .mobile-table-area {
     display: block !important;
   }
 
-  .animation-section{
+  .animation-section {
     width: 100% !important;
   }
 
-  .animation-controls{
+  .animation-controls {
     flex-wrap: wrap !important;
   }
 
-  .medium-input-type{
+  .medium-input-type {
     max-width: 36px !important;
   }
 }
 
-@media screen and (max-width: 600px){
+@media screen and (max-width: 600px) {
   .main-nav {
     flex-direction: column;
   }
@@ -207,28 +212,28 @@
     font-size: 2rem !important;
     text-align: center;
   }
-  .nav-options li:first-child{
+  .nav-options li:first-child {
     margin-right: 1rem !important;
   }
-  .nav-options li{
+  .nav-options li {
     font-size: 1rem !important;
   }
 
-  .hero-section{
+  .hero-section {
     gap: 10% !important;
     padding: 5%;
   }
 
-  .ilustration-frame{
+  .ilustration-frame {
     display: flex !important;
     align-items: center !important;
   }
 
-  .hero-text p{
+  .hero-text p {
     font-size: 0.7rem !important;
     width: 100% !important;
   }
-  .hero-text h1{
+  .hero-text h1 {
     font-size: 1.8rem !important;
   }
 
@@ -236,46 +241,54 @@
     font-size: 1rem !important;
   }
 
-  .hero-image{
+  .hero-image {
     width: 25vw !important;
-  } 
+  }
 
-  .process-table-container{
+  .process-table-container {
     display: none !important;
   }
 
-  .guide{
+  .guide {
     display: none !important;
   }
 
-  .user-guide-and-input{
+  .user-guide-and-input {
     flex-direction: column !important;
-    align-items: start !important;;
+    align-items: center !important;
     gap: 30px !important;
   }
 
-  .open-guide-btn{
+  .open-guide-btn {
     display: block !important;
     width: 100% !important;
     margin-top: 10px;
   }
-  #guideBTN{
+  #guideBTN {
     width: 100% !important;
   }
 
-  #tab-controls{
+  #tab-controls {
     width: auto !important;
   }
 
-  .mobile-table-area{
+  #tab-controls button {
+    width: 160px !important;
+  }
+  #tab-content input {
+    width: 300px !important;
+    margin-bottom: 1rem;
+  }
+
+  .mobile-table-area {
     display: block !important;
   }
 
-  .animation-section{
+  .animation-section {
     width: auto !important;
   }
 
-  .animation-controls{
+  .animation-controls {
     flex-wrap: wrap !important;
     justify-content: center;
   }
@@ -284,29 +297,27 @@
     font-size: 0.8rem;
   }
 
-  .medium-input-type{
+  .medium-input-type {
     max-width: 36px !important;
   }
-  footer{
+  footer {
     font-size: 0.7rem !important;
   }
 }
 
-
-
 body {
   background-color: rgb(255, 255, 255);
   background: linear-gradient(
-    161deg, rgba(253, 255, 252, 1) 0%, rgba(34, 174, 160, 0.2) 91%
-    );
+    161deg,
+    rgba(253, 255, 252, 1) 0%,
+    rgba(34, 174, 160, 0.2) 91%
+  );
 }
 
 a {
   color: inherit;
   font-weight: 500;
 }
-
-
 
 input {
   display: block;
@@ -412,7 +423,7 @@ nav {
   border-radius: 24px;
   padding: 1%;
   display: inline-block;
-  animation: flap 2s ease-in-out infinite; 
+  animation: flap 2s ease-in-out infinite;
 }
 
 @keyframes flap {
@@ -438,7 +449,6 @@ nav {
   font-size: 1.5rem;
   color: var(--primary-color-darker);
   margin-bottom: 2%;
-
 }
 .hero-text p {
   width: 65%;
@@ -524,11 +534,11 @@ nav {
 }
 
 /* for guide */
-.open-guide-btn{
+.open-guide-btn {
   display: none;
 }
 
-#guide-container-mobile{
+#guide-container-mobile {
   display: none;
   position: fixed;
   top: 7%;
@@ -538,7 +548,6 @@ nav {
 .small-input-type {
   width: 50px;
 }
-
 
 .guide {
   font-family: "Poppins", serif;
@@ -749,7 +758,7 @@ select {
   background-color: #fff;
   cursor: pointer;
 }
-.medium-input-type{
+.medium-input-type {
   min-width: 36px !important;
 }
 
@@ -778,7 +787,6 @@ select {
   font-weight: 500;
 }
 
-
 .footer {
   text-align: center;
   font-size: 1.2rem;
@@ -801,9 +809,7 @@ select {
   vertical-align: middle;
 }
 
-
 /* for mobile table */
-
 
 .mobile-table-area {
   position: sticky;

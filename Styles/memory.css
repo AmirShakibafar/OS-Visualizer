@@ -1,6 +1,4 @@
-@media screen and (max-width: 899px) and (min-width: 600px) {
-  
-}
+
 
 .animation-section {
   width: 55%;
@@ -87,4 +85,35 @@
 
 .hero-text h1 {
     font-size: 3.2rem;
+}
+
+@media screen and (max-width: 599px) {
+  #tab-controls button {
+    width: 160px !important;
+  }
+  #tab-content input {
+    width: 300px !important;
+    margin-bottom: 1rem;
+  }
+  .user-guide-and-input {
+    flex-direction: column !important;
+    align-items: start !important;
+    gap: 30px !important;
+  }
+}
+
+@media screen and (min-width: 600px) and (max-width: 900px){
+  .user-guide-and-input {
+    flex-direction: column !important;
+    align-items: start !important;
+    gap: 30px !important;
+  }
+  #tab-controls button {
+    width: 160px !important;
+  }
+  #tab-content input {
+    width: 300px !important;
+    margin-bottom: 1rem;
+  }
+
 }
