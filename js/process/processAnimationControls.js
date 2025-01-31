@@ -13,7 +13,7 @@ const resetButton = document.getElementById("reset-button");
 const speedBTN = document.getElementById("speedBTN");
 
 const BASE_SPEED = 500;
-let stateSpeed = 1;
+let stateSpeed = 2;
 let speed = BASE_SPEED ;
 
 speedBTN.addEventListener("click", (event) => {
