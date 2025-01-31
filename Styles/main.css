@@ -246,11 +246,11 @@
   }
 
   .hero-text p {
-    font-size: 0.6rem !important;
+    font-size: 0.8rem !important;
     width: 100% !important;
   }
   .hero-text h1 {
-    font-size: 1rem !important;
+    font-size: 1.8rem !important;
   }
 
   .hero-text h2 {
@@ -264,6 +264,8 @@
   .hero-button{
     width: 100px !important;
     font-size: 0.8rem !important;
+    margin-top: 40px !important;
+    padding: 4% !important;
   }
 
   .process-table-container {
@@ -333,6 +335,18 @@
 }
 
 @media screen and (max-width: 450px){
+  .hero-text h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .hero-text p {
+    font-size: .6rem !important;
+  }
+
+  .hero-button {
+    margin-top: 40px !important;
+    padding: 5% !important;
+  }
   .nav-options li {
     font-size: 0.8rem !important;
   }
