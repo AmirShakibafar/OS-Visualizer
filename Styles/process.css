@@ -58,7 +58,6 @@
   font-size: 14px;
   text-align: center;
   white-space: nowrap;
-  width: 10vw;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
   border-style: solid;
 }
@@ -69,4 +68,11 @@
 
 .dynamic_table_body tr td:last-child {
   border-radius: 0 12px 12px 0;
+}
+.dynamic_table_body tr {
+  width: 100%;
+
+}
+#dynamic_table{
+  width: 100%;
 }
