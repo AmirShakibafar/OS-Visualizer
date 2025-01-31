@@ -54,11 +54,11 @@ To set up the project locally, follow these steps:
    cd OS-Visualizer
    ```
 
-3. Open `cpu-visulizer.html` or `memory-visulizer.html` in your preferred browser to view the visualizations.
+3. Open `index.html` in your preferred browser to view the visualizations.
 
 ## Usage
 
-1. Open `cpu-visulizer.html` or `memory-visulizer.html` in your preferred browser to view the visualizations.
+1. Open `index.html` in your preferred browser to view the visualizations.
 2. Read user guide
 3. Enter the inputs
 4. Click the play button
