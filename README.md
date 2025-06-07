@@ -1,6 +1,8 @@
 # OS Visualizer
 
-Welcome to OS Visualizer 🖥️🔍
+## Welcome to OS Visualizer 🖥️🔍
+
+![UI Preview](docs/readme/hero.png)
 
 Dive into the inner workings of operating systems with OS Visualizer, an interactive educational tool designed to demystify complex OS algorithms through dynamic, step-by-step simulations. Whether you're a student grappling with textbook concepts, a developer reinforcing foundational knowledge, or an educator seeking engaging teaching aids, this project brings CPU scheduling, memory allocation, process synchronization, disk management, and more to life.
 
@@ -63,6 +65,8 @@ To set up the project locally, follow these steps:
 3. Enter the inputs
 4. Click the play button
 5. And enjoy the show
+
+![UI Preview](docs/readme/main.png)
 
 ## Contributing
 
